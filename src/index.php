@@ -20,5 +20,5 @@ require_once("Config/routes.php");
 
 $routing_service->dispatch();
 
-
+//TODO: Error Handling
 

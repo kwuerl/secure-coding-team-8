@@ -15,11 +15,18 @@ class RoutingService {
         ':all' => '.*'
     );
     private $error_callback;
-    public function __construct($service_container) {
+    /**
+	 * Constructor
+	 */
+    public function __construct(ServiceContainer $service_container) {
     	$this->service_container = $service_container;
     }
     /**
      * Defines a route w/ callback and method
+     * Possible Methods will be: get, post, put, head, delete
+     * Param 1 will be the route. Example: "/", "/(:any)", "/(:num)" oder any regexp
+     * Param 2 will be eiter a lambda function or a string which stands for service and function. Example: "test_controller:class_function"
+     * Example: (RoutingService)->post("/test/(:any)", "test_controller:class_function");
      */
     public function __call($method, $params) 
     {
@@ -30,20 +37,27 @@ class RoutingService {
         array_push($this->callbacks, $callback);
     }
     /**
-     * Defines callback if route is not found
-    */
+	 * Defines callback if route is not found
+	 *
+	 * @param function $callback	Anonymous function to call if a route is not found
+	 */
     public function error($callback)
     {
         $this->error_callback = $callback;
     }
     
+    /**
+	 * Decide if the router should stop if a matching route is found
+	 *
+	 * @param boolean $flag		true(default): halt on match
+	 */
     public function haltOnMatch($flag = true)
     {
         $this->halts = $flag;
     }
     /**
-     * Runs the callback for the given request
-     */
+	 * Runs the callback for the given request
+	 */
     public function dispatch()
     {
     	$request = new \Helper\Request();

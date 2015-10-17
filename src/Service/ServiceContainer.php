@@ -9,6 +9,7 @@ class ServiceContainer {
 	private $dependency_loop_lock = array();
 	/**
 	 * registers a service Class within the Service Container
+	 *
 	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
 	 * @param string $class_name 	Fully qualified name of the service class. Example: "\Service\NiceService"
 	 * @param array $parameters 	Constructor parameters which will be used to init the Service. Example: array(array("type"=>"constant", "value"=>"Nice"), array("type"=>"service", "value"=>"other_service"), array("type"=>"service_container"))
@@ -18,6 +19,7 @@ class ServiceContainer {
 	}
 	/**
 	 * inits a serice class with the provided parameters
+	 *
 	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
 	 *
 	 * @return $class_name
@@ -46,6 +48,7 @@ class ServiceContainer {
 	}
 	/**
 	 * returns the service class
+	 *
 	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
 	 *
 	 * @return $class_name

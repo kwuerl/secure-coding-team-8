@@ -1,24 +1,66 @@
 <?php
 namespace \Model
-
+/**
+ * Repository base class
+ * TODO: Should be written in a generic way, so it can handle most of the models
+ */
 class Repository {
 	private $mysqli_wrapper;
-	function __constructor($mysqli_wrapper) {
+	/**
+	 * Constructor
+	 */
+	function __construct($mysqli_wrapper) {
 		$this->mysqli_wrapper = $mysqli_wrapper;
 	}
+	/**
+	 * Retuns a array of Model Instances that fit for the $filter criterions
+	 *
+	 * @param array $filter 	Simple filter array. Example: array("id"=>1)
+	 *
+	 * @return array
+	 */
 	public function find($filter) {
 		//TODO
 	}
-	public function get() {
+	/**
+	 * Returns a single Model Instance for ID $id
+	 *
+	 * @param integer $id	ID to match
+	 *
+	 * @return $model
+	 */
+	public function get($id) {
 		//TODO
 	}
-	public function add() {
+	/**
+	 * Adds a Model Instances to the database and uptates its ID field
+	 *
+	 * @param $model $model_instance	Model Instance
+	 *
+	 * @return boolean
+	 */
+	public function add($model_instance) {
 		//TODO
 	}
-	public function delete() {
+	/**
+	 * Saves the changes of Model Instances to the database
+	 *
+	 * @param string $model_instance	Model Instance
+	 *
+	 * @return string
+	 */
+	public function save($model_instance) {
 		//TODO
 	}
-	public function save() {
+	/**
+	 * Deletes a Model Instances from the database
+	 *
+	 * @param string $model_instance	Model Instance
+	 *
+	 * @return boolean
+	 */
+	public function delete($model_instance) {
 		//TODO
 	}
+	
 }

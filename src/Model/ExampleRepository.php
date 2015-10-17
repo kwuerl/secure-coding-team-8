@@ -1,6 +1,8 @@
 <?php
 namespace Model;
-
-class TestRepository extends Repository {
+/**
+ * Repository class for the Example model
+ */
+class ExampleRepository extends Repository {
 	//TODO
 }
