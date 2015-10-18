@@ -4,6 +4,8 @@ namespace Service;
 use Model\User;
 /**
  * AuthService is used to manage logins and sessions
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class AuthService {
 	$user_repo;
