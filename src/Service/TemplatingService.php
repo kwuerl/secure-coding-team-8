@@ -6,6 +6,10 @@ namespace Service;
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class TemplatingService {
+	private $template_helper_extensions;
+	public function addTemplateHelperExtension(Helper\TemplatingHelperExtensions $extension) {
+		$template_helper_extensions[] = $extension;
+	}
 	/**
 	 * renders a template either to "echo" or to output
 	 *
@@ -44,7 +48,7 @@ class TemplatingService {
 			}
 			return $ret;
 		};
-		$t = new \Helper\TemplatingHelper($payload);
+		$t = new \Helper\TemplatingHelper($payload, $this->template_helper_extensions);
 		// Start rendering
 		$t->__setCurrentTemplateName($template_name);
 		$ret = $render($t);

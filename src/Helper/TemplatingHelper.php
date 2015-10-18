@@ -11,11 +11,13 @@ class TemplatingHelper {
 	private $curr_extends = "";
 	private $all_extends = array();
 	private $current_template_name;
+	private $extensions;
 	/**
 	 * Constructor
 	 */
-	function __construct($payload) {
+	function __construct($payload, $extensions) {
 		$this->payload = $payload;
+		$this->extensions = $extensions;
 	}
 	/**
 	 * Can be used from within a template. If used, the provided "extended" template will be used to render the "blocks" defined withn the actual template. 
@@ -84,5 +86,21 @@ class TemplatingHelper {
 	public function get($param_name) {
 		if(!array_key_exists($param_name, $this->payload)) throw new \Exception("Parameter $param_name does not exist.");
 		return $this->payload[$param_name];
-	} 
+	}
+	/**
+	 * Tries to find the Method in one of the extensions
+	 *
+	 * @return any
+	 */
+	public function __call($name, $arguments) 
+    {
+        foreach ($this->extensions as $extension) {
+        	$provided_methods = $extension->getMethodNames();
+        	if(array_key_exists($name, $provided_methods)) {
+        		$method_description = $provided_methods[$name];
+        		return call_user_func_array(array($method_description[0], $method_description[1]), $arguments);
+        	}
+        }
+        throw new \Exception("Function '$name' not found!");
+    }
 }
