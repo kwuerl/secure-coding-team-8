@@ -14,10 +14,29 @@ class ServiceContainer {
 	 *
 	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
 	 * @param string $class_name 	Fully qualified name of the service class. Example: "\Service\NiceService"
-	 * @param array $parameters 	Constructor parameters which will be used to init the Service. Example: array(array("type"=>"constant", "value"=>"Nice"), array("type"=>"service", "value"=>"other_service"), array("type"=>"service_container"))
+	 * @param array $parameters 	Constructor parameters which will be used to init the Service. 
+	 *								Example: 
+	 *										array(
+	 *											array("type"=>"constant", "value"=>"Nice"), 
+	 *											array("type"=>"service", "value"=>"other_service"), 
+	 *											array("type"=>"service_container")
+	 *										)
+	 * @param array $calls 			Functions to be called after construction.  
+	 *								Example: 
+	 *										array(
+	 *											array(
+	 *												"function"=>"exampleFunctionName", 
+	 *												"parameters"=>array(
+	 *													array("type"=>"constant", "value"=>"Nice"), 
+	 *													array("type"=>"service", "value"=>"other_service"), 
+	 *													array("type"=>"service_container")
+	 *												)
+	 *											)
+	 *										)
 	 */
-	public function register($service_name, $class_name, $parameters) {
-		$this->registered_service_map[$service_name] = array("class_name"=>$class_name,"parameters"=>$parameters);
+	public function register($service_name, $class_name, $parameters, $calls=null) {
+		if($calls==null) $calls = array()
+		$this->registered_service_map[$service_name] = array("class_name"=>$class_name,"parameters"=>$parameters, "calls"=>$calls);
 	}
 	/**
 	 * inits a serice class with the provided parameters
@@ -31,22 +50,44 @@ class ServiceContainer {
 		if(!array_key_exists($name, $this->registered_service_map)) throw new \Exception("Service '$name' not found!");
 		$service_config = $this->registered_service_map[$name];
 		if(!class_exists($service_config["class_name"]))  throw new \Exception("Service class ".$service_config["class_name"]." does not exist for service $name!");
+		// loop lock
 		$dependency_loop_lock[] = $name;
-		$contructor_paramters = array();
-		foreach($service_config["parameters"] as $conf) {
-			if ($conf["type"] == "constant") {
-				$contructor_paramters[] = $conf["value"];
-			} else if ($conf["type"] == "service") {
-				$contructor_paramters[] = $this->get($conf["value"]);
-			} else if ($conf["type"] == "service_container") {
-				$contructor_paramters[] = $this;
-			}
-		}
+		// resolve dependencies
+		$contructor_paramters = $this->resolveParameters($service_config["parameters"]);
 		$ref = new \ReflectionClass($service_config["class_name"]);
   		$class_instance = $ref->newInstanceArgs($contructor_paramters);
   		$this->initialized_service_map[$name] = $class_instance;
 		unset($dependency_loop_lock[$name]);
+		//make all function calls
+		foreach ($service_config["calls"] as $call) {
+			if(array_key_exists("function", $call) && array_key_exists("parameters", $call) {
+				$resolved_paramters = $this->resolveParameters($call["parameters"]);
+				call_user_func_array(array($class_instance, $call["function"]), $resolved_paramters);
+			}
+			
+		}
 		return $class_instance;
+	}
+	/**
+	 * Resolves the parameters of a function
+	 *
+	 * @param array $parameter_array	Parameters to resolve
+	 *
+	 * @return array
+	 */
+	private function resolveParameters($parameter_array) {
+		$resolved_paramters = array();
+		//inject all contructor parameters
+		foreach($parameter_array as $conf) {
+			if ($conf["type"] == "constant") {
+				$resolved_paramters[] = $conf["value"];
+			} else if ($conf["type"] == "service") {
+				$resolved_paramters[] = $this->get($conf["value"]);
+			} else if ($conf["type"] == "service_container") {
+				$resolved_paramters[] = $this;
+			}
+		}
+		return $resolved_paramters;
 	}
 	/**
 	 * returns the service class
