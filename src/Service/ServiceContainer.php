@@ -2,6 +2,8 @@
 namespace Service;
 /**
  * ServiceContainer is used to manage service classes 
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class ServiceContainer {
 	private $registered_service_map = array();
@@ -28,7 +30,7 @@ class ServiceContainer {
 		if(in_array($name, $this->dependency_loop_lock)) throw new \Exception("Dependency loop detected in service $name!");
 		if(!array_key_exists($name, $this->registered_service_map)) throw new \Exception("Service '$name' not found!");
 		$service_config = $this->registered_service_map[$name];
-		if(!class_exists($service_config["class_name"]))  throw new \Exception("Service class ".$service_config["class_name"]." for service $name!");
+		if(!class_exists($service_config["class_name"]))  throw new \Exception("Service class ".$service_config["class_name"]." does not exist for service $name!");
 		$dependency_loop_lock[] = $name;
 		$contructor_paramters = array();
 		foreach($service_config["parameters"] as $conf) {

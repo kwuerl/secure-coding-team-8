@@ -2,6 +2,8 @@
 namespace Controller;
 /**
  * Controller base class. Gets ServiceContainer injected.
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class Controller {
 	private $service_container;

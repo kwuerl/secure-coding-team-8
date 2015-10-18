@@ -2,6 +2,8 @@
 namespace Service;
 /**
  *	TemplatingService can be used to render templates and provides access to a Helper\TemplatingHelper containing the template parameters within the template.
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class TemplatingService {
 	/**

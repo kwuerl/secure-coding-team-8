@@ -2,6 +2,8 @@
 namespace Service;
 /**
  * Just wraps Mysqli for usage with the ServiceContainer
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class MysqliWrapperService {
 	private $mysqli;

@@ -2,6 +2,8 @@
 namespace Service;
 /**
  * RoutingService is used to route requests to controller functions
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class RoutingService {
 	private $service_container;

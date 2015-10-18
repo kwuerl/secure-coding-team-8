@@ -2,6 +2,8 @@
 namespace Service;
 /**
  * ParameterService can be used to store and fetch configuration parameters
+ *
+ * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class ParameterService {
 	private $parameters = array();
