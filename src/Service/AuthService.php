@@ -28,7 +28,7 @@ class AuthService {
 	/**
 	 * Tries to login a User  
 	 *
-	 * @param string $name	Name of the parameter
+	 * @param User $user	User to login
 	 *
 	 * @return boolean
 	 *
@@ -41,7 +41,8 @@ class AuthService {
 	/**
 	 * Cheks if the user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
 	 *
-	 * @param string $name	Name of the parameter
+	 * @param User $name	User to check
+	 * @param string $group_expr	Group to check
 	 *
 	 * @return boolean
 	 *
