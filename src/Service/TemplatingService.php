@@ -7,7 +7,7 @@ namespace Service;
  */
 class TemplatingService {
 	private $template_helper_extensions;
-	public function addTemplateHelperExtension(Helper\TemplatingHelperExtensions $extension) {
+	public function addTemplateHelperExtension(\Helper\TemplatingHelperExtension $extension) {
 		$template_helper_extensions[] = $extension;
 	}
 	/**

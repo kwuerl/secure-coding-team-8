@@ -35,7 +35,7 @@ class ServiceContainer {
 	 *										)
 	 */
 	public function register($service_name, $class_name, $parameters, $calls=null) {
-		if($calls==null) $calls = array()
+		if($calls==null) $calls = array();
 		$this->registered_service_map[$service_name] = array("class_name"=>$class_name,"parameters"=>$parameters, "calls"=>$calls);
 	}
 	/**
@@ -60,7 +60,7 @@ class ServiceContainer {
 		unset($dependency_loop_lock[$name]);
 		//make all function calls
 		foreach ($service_config["calls"] as $call) {
-			if(array_key_exists("function", $call) && array_key_exists("parameters", $call) {
+			if(array_key_exists("function", $call) && array_key_exists("parameters", $call)) {
 				$resolved_paramters = $this->resolveParameters($call["parameters"]);
 				call_user_func_array(array($class_instance, $call["function"]), $resolved_paramters);
 			}

@@ -5,7 +5,7 @@ namespace Helper;
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
-abstract class TemplatingHelperExtensions {
+abstract class TemplatingHelperExtension {
 	/**
 	 * Returns an array of all templating functions this class provides.
 	 * Example: array("form" => array($this, "createForm"), "form2" => array($this, "createForm2"))

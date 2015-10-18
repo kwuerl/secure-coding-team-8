@@ -1,13 +1,13 @@
 <?php
 namespace Helper;
 
-use Service/CSRFService;
+use Service\CSRFService;
 /**
  * TemplatingFormExtension can be used to secure forms
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
-class TemplatingFormExtension extends TemplatingHelperExtensions {
+class TemplatingFormExtension extends TemplatingHelperExtension {
 	private $csrf_service;
 	/**
 	 * Constructor
