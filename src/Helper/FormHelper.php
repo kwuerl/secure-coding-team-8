@@ -21,17 +21,21 @@ class FormHelper {
 	/**
 	 * Adds a form field to the FormHelper
 	 *
+	 * Example:
+	 * <code>
+	 * <?php
+	 * $helper = new FormFelper("test_form");
+	 * $helper->addField("test_field", "text", array(
+	 * 		array("required", "Field is required"),
+	 * 		array("lengthMinMax", "Field must be 1 to 5 digits long", array(1,5))
+	 * ), array("ltrin", "rtrim"), "default value");
+	 * ?>
+	 * </code>
+	 *
 	 * @param string $name  Name of the form field. If you want to use this helper to later fill a model this should have the same name as the model property
 	 * @param string $type  Type of the form field: email, textarea, text, password, ...
 	 * @param array $validations 	Validation rules for the model field. $validations is an array(validation_function[,message[,option_array]]). validation_function is a static function in the class ValidationHelper.
-	 *							Example:
-	 *								array(
-	 *									array("required", "Field is required"),
-	 *									array("lengthMinMax", "Field must be 1 to 5 digits long", array(1,5))
-	 *								)
 	 * @param array $sanitizations 	Sanitization rules for the model field. Form is an array(sanitization_function). sanitization_function is a static function in the class SanitizationHelper.
-	 *							Example:
-	 *								array("ltrim", "rtrim")
 	 * @param string $default 	Default value
 	 *
 	 * @return FormHelper

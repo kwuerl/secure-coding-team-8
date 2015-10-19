@@ -19,7 +19,9 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	 * Inherited
 	 */
 	public function getMethodNames() {
-		return array("form" => array($this, "createForm"));
+		return array(
+			"form" => array($this, "createForm"),
+			"field" => array($this, "createField"));
 	}
 	/**
 	 * Creates a secure form
@@ -28,7 +30,7 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	 * @param array $options	Options for the form //TODO
 	 * @param function $closure	Functions that echos the HTML inside the form when called
 	 */
-	public function form($t, $options, $closure) {
+	public function createForm($t, $options, $closure) {
 		echo "<form";
 		foreach ($options as $name=>$option) {
 			echo " ".$name."=\"".$option."\"";
@@ -46,7 +48,7 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	 * @param array $options	Options for the form //TODO
 	 * @param function $closure	Functions that echos the HTML inside the form when called
 	 */
-	public function form($t, FormHelper $helper, $options, $closure) {
+	public function createForm($t, FormHelper $helper, $options, $closure) {
 		echo "<form";
 		if(!array_key_exists("name", $options)) echo " name=\"".$helper->getName()."\"";
 		if(!array_key_exists("method", $options)) echo " method=\"".$helper->getMethod()."\"";
@@ -65,7 +67,7 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	 * @param FormHelper $helper
 	 * @param array $options	Options for the form //TODO
 	 */
-	public function field($t, FormHelper $helper, $options) {
+	public function createField($t, FormHelper $helper, $options) {
 		//TODO
 	}
 }

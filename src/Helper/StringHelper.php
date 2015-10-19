@@ -10,6 +10,7 @@ class StringHelper {
 	 *
 	 * @param string $input  Tring to camelcasify
 	 * @param boolean $first_char_caps  Turn first letter to caps
+	 *
 	 * @return boolean
 	 */
 	public static function underscoreToCamelCase($input, $first_char_caps = false) {
