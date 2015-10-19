@@ -166,7 +166,7 @@ class SessionService {
 	 *
 	 * @param string $name		Name of the parameter
 	 *
-	 * @return string
+	 * @return boolean
 	 */
 	public function has($name) {
 		return isset($_SESSION[$name]);

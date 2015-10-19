@@ -8,19 +8,50 @@ namespace Helper;
  */
 class Request {
 	private $query = array();
+	private $data = array();
+	private $server = array();
 	/**
 	 * Constructor
 	 */
 	function __construct() {
 		$this->query = $_GET;
+		$this->data = $_POST;
+		$this->server = $_SERVER;
 	}
 	/**
-	 * Returns the query parameters
+	 * Returns the query parameter for a given key
 	 *
-	 * @return array
+	 * @return string
 	 */
-	public function getQuery() {
-		return $this->query;
+	public function getQuery($name) {
+		if (isset($this->query[$name])) {
+			return $this->query[$name];
+		} else {
+			return null;
+		}
 	}
-
+	/**
+	 * Returns the data parameter for a given key
+	 *
+	 * @return mixed
+	 */
+	public function getData($name) {
+		if (isset($this->data[$name])) {
+			return $this->data[$name];
+		} else {
+			return null;
+		}
+	}
+	/**
+	 * Returns the server parameter for a given key
+	 *
+	 * @return string
+	 */
+	public function getServer($name) {
+		if (isset($this->server[$name])) {
+			return $this->server[$name];
+		} else {
+			return null;
+		}
+	}
 }

@@ -53,9 +53,9 @@ class ServiceContainer {
 		// loop lock
 		$dependency_loop_lock[] = $name;
 		// resolve dependencies
-		$contructor_paramters = $this->resolveParameters($service_config["parameters"]);
+		$constructor_parameters = $this->resolveParameters($service_config["parameters"]);
 		$ref = new \ReflectionClass($service_config["class_name"]);
-  		$class_instance = $ref->newInstanceArgs($contructor_paramters);
+  		$class_instance = $ref->newInstanceArgs($constructor_parameters);
   		$this->initialized_service_map[$name] = $class_instance;
 		unset($dependency_loop_lock[$name]);
 		//make all function calls
