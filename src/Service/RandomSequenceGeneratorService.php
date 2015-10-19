@@ -2,8 +2,8 @@
 namespace Service;
 /**
  * RandomService can be used to securely generate a variety of random strings and numbers
- * @modified Swathi Shyam Sunder <swathi.ssunder@tum.de>
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class RandomService {
 	/**
