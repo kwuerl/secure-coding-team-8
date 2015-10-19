@@ -9,41 +9,34 @@ namespace Service;
 class MysqliWrapperService {
 	private $mysqli;
 	/**
-	 * Constructor
+	 * Constructor: Opens a new connection to the MySQL server
+	 *
+	 * @param string $host Mysql
+	 * @param string $userName Mysql
+	 * @param string $password Mysql
+	 * @param string $dbName Mysql
 	 */
-	function __construct ($host, $user) {
-		//TODO
-		$mysqli = "TODO";
+	function __construct ($host, $userName, $password, $dbName) {
+		$this->mysqli = new mysqli($host, $userName, $password, $dbName);
+		if ($connection->connect_error) throw new Exception("Connection Error!");
 	}
 	/**
-	 * @function: Opens a new connection to the MySQL server
+	 * @function: Returns a connection to the MySQL server
 	 *
-	 * @params:
-	 * 		host:   Name/IP address of the host
-	 * 		userName: User name to connect to the server
-	 * 		password: Password to connect to the server
-	 * 		dbName:   Name of the database on the server
-	 *
-	 * @returns: Returns the newly created connection
-	 *
-	 *
+	 * @return Returns the mysqli connection
 	 */
-	public function get($host, $userName, $password, $dbName) {
-		$connection = new mysqli($host, $userName, $password, $dbName);
-		if (!$connection->connect_error)
-			return $connection;
-		/*TODO: error handling*/
+	public function get() {
+		return $this->mysqli;
 	}
 
 	/**
-	 * @function: Closes the connection to the MySQL server
-	 *
-	 * @params:
-	 * 		connection: Connection to the MySQL server
-	 *
-	 * @return
+	 * Closes the connection to the MySQL server
 	 */
-	public function close($connection) {
-		$connection->close();
+	public function close() {
+		$this->mysqli->close();
 	}
+
+	function __destruct() {
+       $this->close();
+   	}
 }
