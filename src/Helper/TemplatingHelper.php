@@ -98,7 +98,7 @@ class TemplatingHelper {
         	$provided_methods = $extension->getMethodNames();
         	if(array_key_exists($name, $provided_methods)) {
         		$method_description = $provided_methods[$name];
-        		return call_user_func_array(array($method_description[0], $method_description[1]), $arguments);
+        		return call_user_func_array(array($method_description[0], $method_description[1]), array_merge(array($this),$arguments));
         	}
         }
         throw new \Exception("Function '$name' not found!");

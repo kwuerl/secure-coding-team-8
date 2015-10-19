@@ -37,6 +37,7 @@ class AuthService {
 	 */
 	public function login(User $user) {
 		//TODO
+		return true;
 	}
 	/**
 	 * Cheks if the user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
@@ -50,5 +51,6 @@ class AuthService {
 	 */
 	public function check(User $user, $group_expr) {
 		//TODO
+		return true;
 	}
 }

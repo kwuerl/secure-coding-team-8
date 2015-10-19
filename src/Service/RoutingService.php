@@ -3,6 +3,8 @@ namespace Service;
 /**
  * RoutingService is used to route requests to controller functions
  *
+ * Based on https://github.com/noahbuscher/Macaw
+ *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class RoutingService {
