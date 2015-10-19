@@ -40,7 +40,7 @@ class AuthService {
 		return true;
 	}
 	/**
-	 * Cheks if the user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
+	 * Cheks if the user has certain user groups. If the User does not have the desired Group, this function starts a redirect and throws an exception
 	 *
 	 * @param User $name	User to check
 	 * @param string $group_expr	Group to check
@@ -50,6 +50,19 @@ class AuthService {
 	 * @throws PermissionDeniedException
 	 */
 	public function check(User $user, $group_expr) {
+		//TODO
+		return true;
+	}
+	/**
+	 * Cheks if the current user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
+	 *
+	 * @param string $group_expr	Group to check
+	 *
+	 * @return boolean
+	 *
+	 * @throws PermissionDeniedException
+	 */
+	public function checkCurrentUser($group_expr) {
 		//TODO
 		return true;
 	}
