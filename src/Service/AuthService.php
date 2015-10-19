@@ -39,9 +39,9 @@ class AuthService {
 		//TODO
 	}
 	/**
-	 * Cheks if the user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
+	 * Checks if the user has certain user groups. If the current User does not have the desired Group, this function starts a redirect and throws an exception
 	 *
-	 * @param User $name	User to check
+	 * @param User $user	User to check
 	 * @param string $group_expr	Group to check
 	 *
 	 * @return boolean
@@ -50,5 +50,15 @@ class AuthService {
 	 */
 	public function check(User $user, $group_expr) {
 		//TODO
+	}
+	/**
+	 * Registers a user and returns true, if the registration was successful and returns false, if the registration failed.
+	 *
+	 * @param User $user	User to register
+	 *
+	 * @return boolean
+	 */
+	public function register(User $user) {
+		
 	}
 }

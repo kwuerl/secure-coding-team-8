@@ -8,6 +8,8 @@ namespace Model;
 class User {
 	private $email = "";
 	private $password_plain = "";
+	private $forename = "";
+	private $name = "";
 	/**
 	 * Constructor
 	 */
@@ -25,5 +27,17 @@ class User {
 	 */
 	public function setPasswordPlain($password) {
 		$this->password_plain = $password;
+	}
+	/**
+	 * Sets the forename
+	 */
+	public function setForename($forename) {
+		$this->forename = $forename;
+	}
+	/**
+	 * Sets the name
+	 */
+	public function setName($name) {
+		$this->name = $name;
 	}
 }
