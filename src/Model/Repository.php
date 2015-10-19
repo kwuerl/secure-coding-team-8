@@ -15,7 +15,7 @@ class Repository {
 		$this->mysqli_wrapper = $mysqli_wrapper;
 	}
 	/**
-	 * Retuns a array of Model Instances that fit for the $filter criterions
+	 * Returns a array of Model Instances that fit for the $filter criteria
 	 *
 	 * @param array $filter 	Simple filter array. Example: array("id"=>1)
 	 *
@@ -35,7 +35,7 @@ class Repository {
 		//TODO
 	}
 	/**
-	 * Adds a Model Instances to the database and uptates its ID field
+	 * Adds a Model Instances to the database and updates its ID field
 	 *
 	 * @param $model $model_instance	Model Instance
 	 *

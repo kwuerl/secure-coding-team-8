@@ -18,7 +18,7 @@ class ParameterService {
 		$this->parameters[$name] = $value;
 	}
 	/**
-	 * inits a serice class with the provided parameters
+	 * initializes a service class with the provided parameters
 	 *
 	 * @param string $name							Name of the parameter
 	 *
