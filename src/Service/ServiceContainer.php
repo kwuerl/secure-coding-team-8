@@ -39,9 +39,9 @@ class ServiceContainer {
 		$this->registered_service_map[$service_name] = array("class_name"=>$class_name,"parameters"=>$parameters, "calls"=>$calls);
 	}
 	/**
-	 * inits a serice class with the provided parameters
+	 * initializes a service class with the provided parameters
 	 *
-	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
+	 * @param string $service_name	Name of the service. Example: "nice_service"
 	 *
 	 * @return $class_name
 	 */
@@ -92,7 +92,7 @@ class ServiceContainer {
 	/**
 	 * returns the service class
 	 *
-	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
+	 * @param string $service_name	Name of the service. Example: "nice_service"
 	 *
 	 * @return $class_name
 	 */
