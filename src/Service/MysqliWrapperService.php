@@ -16,8 +16,8 @@ class MysqliWrapperService {
 	 * @param string $password Mysql
 	 * @param string $dbName Mysql
 	 */
-	function __construct ($host, $userName, $password, $dbName) {
-		$this->mysqli = new mysqli($host, $userName, $password, $dbName);
+	function __construct ($host, $user_name, $password, $db_name) {
+		$this->mysqli = new mysqli($host, $user_name, $password, $db_name);
 		if ($connection->connect_error) throw new Exception("Connection Error!");
 	}
 	/**
