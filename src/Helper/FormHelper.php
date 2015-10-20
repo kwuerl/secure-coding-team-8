@@ -1,5 +1,8 @@
 <?php
 namespace Helper;
+
+use \Helper\SanitizationHelper;
+use \Helper\ValidationHelper;
 /**
  * FormService can be used to sanatize form data and map post data to objects
  *
@@ -28,7 +31,7 @@ class FormHelper {
 	 * $helper->addField("test_field", "text", array(
 	 * 		array("required", "Field is required"),
 	 * 		array("lengthMinMax", "Field must be 1 to 5 digits long", array(1,5))
-	 * ), array("ltrin", "rtrim"), "default value");
+	 * ), array("ltrim", "rtrim"), "default value");
 	 * ?>
 	 * </code>
 	 *
@@ -67,15 +70,14 @@ class FormHelper {
 		if($data == null) return false;
 
 		// get Reflection Class
-		$sanitization_helper_reflec = new ReflectionClass('SanitizationHelper'); 
+		$sanitization_helper_reflec = new \ReflectionClass('Helper\SanitizationHelper'); 
 
 		$error_messages = array();
 
 		// loop through all field configs
-		foreach ($field_configs as $name=>$config) {
+		foreach ($this->field_configs as $name=>$config) {
 
 			$field_raw = "";
-
 			//get from request or set to default
 			if(array_key_exists($name, $data)) {
 				$field_raw = $data[$name];
@@ -85,7 +87,6 @@ class FormHelper {
 
 			// run all sanitizations
 			foreach($config["sanitizations"] as $sanitization) {
-
 				//see if SanitizationHelper has the right function
 				if($sanitization_helper_reflec->hasMethod($sanitization)) {
 					$sanitization_helper_reflec_method = $sanitization_helper_reflec->getMethod($sanitization);
@@ -113,12 +114,12 @@ class FormHelper {
 	 */
 	public function validate() {
 		// get Reflection Classes
-		$validation_helper_reflec = new ReflectionClass('ValidationHelper'); 
+		$validation_helper_reflec = new \ReflectionClass('Helper\ValidationHelper'); 
 
 		$error_messages = array();
 
 		// loop through all field configs
-		foreach ($field_configs as $name=>$config) {
+		foreach ($this->field_configs as $name=>$config) {
 			$error_messages_field = array();
 
 			//check all validations
@@ -131,7 +132,7 @@ class FormHelper {
 					if(sizeof($validation)>1 && is_string($validation[1])) $message = $validation[1];
 
 					$options = array();
-					if(sizeof($validation)>2 && is_array($validation[2])) $options = $validation[2å];
+					if(sizeof($validation)>2 && is_array($validation[2])) $options = $validation[2];
 
 					//see if ValidationHelper has the right function
 					if($validation_helper_reflec->hasMethod($type)) {
@@ -170,12 +171,12 @@ class FormHelper {
 	public function fillModel($model) {
 		if(is_object($model)) {
 			$class = get_class($model);
-			$reflec =  new ReflectionClass($model);
+			$reflec =  new \ReflectionClass($model);
 			foreach ($this->field_values as $name=>$field_value) {
 				$name_cc = StringHelper::underscoreToCamelCase($name, true);
-				if($refelc->hasMethod("set".$name_cc)) {
+				if($reflec->hasMethod("set".$name_cc)) {
 					call_user_func_array(array($model,"set".$name_cc),array($field_value));
-				} else if($refelc->hasProperty($name)) {
+				} else if($reflec->hasProperty($name)) {
 					$property = $class->getProperty($name);
 					$property->setAccessible(true);
 					$property->setValue($model, $field_value);

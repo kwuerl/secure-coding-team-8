@@ -1,4 +1,5 @@
 <?php
+namespace Helper;
 /**
  * SanitizationHelper is a collection of static functions that can be used by the FormHelper to sanatize form fields
  *
@@ -6,7 +7,11 @@
  */
 class SanitizationHelper {
 	//TODO
-	public static function email($input) {
-		return $input;
+	public static function rtrim($input) {
+		return rtrim($input);
+	}
+
+	public static function ltrim($input) {
+		return ltrim($input);
 	}
 }

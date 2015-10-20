@@ -21,7 +21,9 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	public function getMethodNames() {
 		return array(
 			"form" => array($this, "createForm"),
-			"field" => array($this, "createField"));
+			"formh" => array($this, "createFormWithHelper"),
+			"field" => array($this, "createField")
+			);
 	}
 	/**
 	 * Creates a secure form
@@ -48,7 +50,7 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 	 * @param array $options	Options for the form //TODO
 	 * @param function $closure	Functions that echos the HTML inside the form when called
 	 */
-	public function createForm($t, FormHelper $helper, $options, $closure) {
+	public function createFormWithHelper($t, FormHelper $helper, $options, $closure) {
 		echo "<form";
 		if(!array_key_exists("name", $options)) echo " name=\"".$helper->getName()."\"";
 		if(!array_key_exists("method", $options)) echo " method=\"".$helper->getMethod()."\"";

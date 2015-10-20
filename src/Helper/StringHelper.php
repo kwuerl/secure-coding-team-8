@@ -1,4 +1,5 @@
 <?php
+namespace Helper;
 /**
  * StringHelper is a collection of static string functions
  *
