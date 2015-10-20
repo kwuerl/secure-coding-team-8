@@ -1,11 +1,14 @@
 <?php
+/**
+ *	$service_container is instance of Service\ServiceContainer
+ */
 // ------------   Services  -----------------
 
 $service_container->register("routing", "Service\\RoutingService", array(
 	array("type"=>"service_container")
 ));
 
-$service_container->register("random", "Service\\RandomService", array(
+$service_container->register("random", "Service\\RandomSequenceGeneratorService", array(
 ));
 
 $service_container->register("session", "Service\\SessionService", array(

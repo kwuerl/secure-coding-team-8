@@ -5,7 +5,7 @@ namespace Service;
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
-class RandomService {
+class RandomSequenceGeneratorService {
 	/**
 	 * Returns a random String with length $length
 	 *
