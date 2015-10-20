@@ -1,4 +1,4 @@
-<?php $t->extend("example.html.php"); ?>
+<?php $t->extend("base.html.php"); ?>
 
 <?php $t->block("body", function ($t) { ?>
 	<?php $t->formh($t->get("form"), array("action"=>"/form_example"), function ($t) { ?>
