@@ -11,13 +11,19 @@ class User {
 	private $email = "";
 	private $is_active = false;
 	private $password_plain = "";
-	private $forename = "";
-	private $name = "";
 	/**
 	 * Constructor
 	 */
 	function __construct() {
 		
+	}
+	/**
+	 * Gets the first name
+	 *
+	 * @return string
+	 */
+	public function getFirstName() {
+		return $this->first_name;
 	}
 	/**
 	 * Sets the first name
@@ -28,12 +34,28 @@ class User {
 		$this->first_name = $firstName;
 	}
 	/**
+	 * Gets the last name
+	 *
+	 * @return string
+	 */
+	public function getLastName() {
+		return $this->last_name;
+	}
+	/**
 	 * Sets the last name
 	 * 
 	 * @param string $lastName
 	 */
 	public function setLastName($lastName) {
 		$this->last_name = $lastName;
+	}
+	/**
+	 * Gets the email
+	 *
+	 * @return string
+	 */
+	public function getEmail() {
+		return $this->email;
 	}
 	/**
 	 * Sets the email
@@ -44,6 +66,14 @@ class User {
 		$this->email = $email;
 	}
 	/**
+	 * Gets the plain password
+	 *
+	 * @return string
+	 */
+	public function getPasswordPlain() {
+		return $this->password_plain;
+	}
+	/**
 	 * Sets the plain password
 	 * 
 	 * @param string $password
@@ -52,21 +82,14 @@ class User {
 		$this->password_plain = $password;
 	}
 	/**
-	 * Sets the forename
+	 * Gets the active status
 	 *
-	 * @param string $forename
+	 * @return boolean
 	 */
-	public function setForename($forename) {
-		$this->forename = $forename;
+	public function getIsActive() {
+		return $this->is_active;
 	}
 	/**
-	 * Sets the name
-	 *
-	 * @param string $name
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	/*
 	 * Sets the active status
 	 * 
 	 * @param boolean $isActive
