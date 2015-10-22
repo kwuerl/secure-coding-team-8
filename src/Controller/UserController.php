@@ -13,6 +13,7 @@ class UserController extends Controller {
 			$user->setEmail($email);
 			$user->setPasswordPlain($pw);
 			// TODO: check in database if exists
+			$user_data = $this->get("user_repository")->find(array("email" => $email));
 		} else {
 
 		}
