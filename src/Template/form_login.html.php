@@ -30,7 +30,7 @@
       <?php }); ?>
 
       <!--a href="#">Forgot password?</a><br-->
-      <a href="form_register.html" class="text-center">Register for a new account</a>
+      <a href="register" class="text-center">Register for a new account</a>
     </div><!-- /.login-box-body -->
 
   </div><!-- /.login-box -->

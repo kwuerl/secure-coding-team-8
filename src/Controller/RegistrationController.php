@@ -13,8 +13,16 @@ class RegistrationController extends Controller {
 		$helper = new \Helper\FormHelper("form_registration");
 
 		//add one field
-		$helper->addField("email", "text", array(
-			array("required", "Email is required")
+		$helper->addField("first_name", "text", array(
+			array("required", "First name is required")
+		), array("ltrim", "rtrim"), "");
+
+		$helper->addField("last_name", "text", array(
+			array("required", "Last name is required")
+		), array("ltrim", "rtrim"), "");
+
+		$helper->addField("email", "email", array(
+			array("required", "E-Mail is required")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("password", "text", array(
