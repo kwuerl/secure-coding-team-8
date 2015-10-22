@@ -1,0 +1,14 @@
+Possible Security Risks
+
+-> HTML Form Submission    : Verifying + Sanitizing form fields
+
+-> Sending Emails          : Email Injection => Verifying + Sanitizing parameters for mail function 
+
+-> Database Operations     : SQL Injection => Use mysqli or PDO 
+
+-> File Upload
+
+-> File Parsing
+
+-> Code generation         : Vulnerabilites with random number generation => random_bytes is preferred
+

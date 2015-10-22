@@ -12,36 +12,39 @@ class ServiceContainer {
 	/**
 	 * registers a service Class within the Service Container
 	 *
+	 * Example:
+	 * <code>
+	 * <?php
+	 * $service_container->register("test_service, "\Service\NiceService", array(
+	 *		array("type"=>"constant", "value"=>"Nice"), 
+	 *		array("type"=>"service", "value"=>"other_service"), 
+	 *		array("type"=>"service_container")
+	 * ), array(
+	 *		array(
+	 *			"function"=>"exampleFunctionName", 
+	 *			"parameters"=>array(
+	 *				array("type"=>"constant", "value"=>"Nice"), 
+	 *				array("type"=>"service", "value"=>"other_service"), 
+	 *				array("type"=>"service_container")
+	 *			)
+	 *		)
+	 * ));
+	 * ?>
+	 * </code>
+	 *
 	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
 	 * @param string $class_name 	Fully qualified name of the service class. Example: "\Service\NiceService"
 	 * @param array $parameters 	Constructor parameters which will be used to init the Service. 
-	 *								Example: 
-	 *										array(
-	 *											array("type"=>"constant", "value"=>"Nice"), 
-	 *											array("type"=>"service", "value"=>"other_service"), 
-	 *											array("type"=>"service_container")
-	 *										)
-	 * @param array $calls 			Functions to be called after construction.  
-	 *								Example: 
-	 *										array(
-	 *											array(
-	 *												"function"=>"exampleFunctionName", 
-	 *												"parameters"=>array(
-	 *													array("type"=>"constant", "value"=>"Nice"), 
-	 *													array("type"=>"service", "value"=>"other_service"), 
-	 *													array("type"=>"service_container")
-	 *												)
-	 *											)
-	 *										)
+	 * @param array $calls 			Functions to be called after construction. 
 	 */
 	public function register($service_name, $class_name, $parameters, $calls=null) {
 		if($calls==null) $calls = array();
 		$this->registered_service_map[$service_name] = array("class_name"=>$class_name,"parameters"=>$parameters, "calls"=>$calls);
 	}
 	/**
-	 * inits a serice class with the provided parameters
+	 * initializes a service class with the provided parameters
 	 *
-	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
+	 * @param string $service_name	Name of the service. Example: "nice_service"
 	 *
 	 * @return $class_name
 	 */
@@ -92,7 +95,7 @@ class ServiceContainer {
 	/**
 	 * returns the service class
 	 *
-	 * @param string $service_name	Name of the serivce. Example: "nice_service" 
+	 * @param string $service_name	Name of the service. Example: "nice_service"
 	 *
 	 * @return $class_name
 	 */

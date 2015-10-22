@@ -27,7 +27,7 @@ class TemplatingHelper {
 	 */
 	public function extend($template_path) {
 		if(in_array($template_path, $this->all_extends)) throw new \Exception("Template extends loop detected in ".$current_template_name);
-		$extands_stack = $template_path;
+		$this->curr_extends = $template_path;
 	}
 	/**
 	 * Defines a "block". The block can be overwritten if any other template extends this one. The HTML echoed withn this or any extending block within the same name will be echoed at the space in the base template file where the "block" function is called
@@ -39,11 +39,11 @@ class TemplatingHelper {
 	 */
 	public function block($name, $function) {
 		if(!array_key_exists($name, $this->blocks)) {
-			$blocks[$name] = $function;
+			$this->blocks[$name] = $function;
 		}
-		if (empty($curr_extends)) {
+		if (empty($this->curr_extends)) {
 			// calls the block lanbda function
-			$blocks[$name]($this);
+			$this->blocks[$name]($this);
 		}
 	}
 	/**
@@ -98,7 +98,7 @@ class TemplatingHelper {
         	$provided_methods = $extension->getMethodNames();
         	if(array_key_exists($name, $provided_methods)) {
         		$method_description = $provided_methods[$name];
-        		return call_user_func_array(array($method_description[0], $method_description[1]), $arguments);
+        		return call_user_func_array(array($method_description[0], $method_description[1]), array_merge(array($this),$arguments));
         	}
         }
         throw new \Exception("Function '$name' not found!");

@@ -19,7 +19,9 @@ class Request {
 		$this->server = $_SERVER;
 	}
 	/**
-	 * Returns the query parameter for a given key
+	 * Returns the query ($_GET) parameter for a given key
+	 *
+	 * @param string $name	Key
 	 *
 	 * @return string
 	 */
@@ -31,7 +33,9 @@ class Request {
 		}
 	}
 	/**
-	 * Returns the data parameter for a given key
+	 * Returns the data ($_POST) parameter for a given key
+	 *
+	 * @param string $name	Key
 	 *
 	 * @return mixed
 	 */

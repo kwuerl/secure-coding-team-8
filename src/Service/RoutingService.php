@@ -3,6 +3,8 @@ namespace Service;
 /**
  * RoutingService is used to route requests to controller functions
  *
+ * Based on https://github.com/noahbuscher/Macaw
+ *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class RoutingService {
@@ -28,7 +30,12 @@ class RoutingService {
      * Possible Methods will be: get, post, put, head, delete
      * Param 1 will be the route. Example: "/", "/(:any)", "/(:num)" oder any regexp
      * Param 2 will be eiter a lambda function or a string which stands for service and function. Example: "test_controller:class_function"
-     * Example: (RoutingService)->post("/test/(:any)", "test_controller:class_function");
+     * Example: 
+     * <code>
+     * <?php
+     * $routing_service->post("/test/(:any)", "test_controller:class_function");
+     * ?>
+     * </code>
      */
     public function __call($method, $params) 
     {

@@ -8,4 +8,36 @@ class ExampleController extends Controller {
 			"fixed_param"=>$this->get("param")->get("example_param")
 		));
 	}
+
+	public function formtest ($request) {
+		// create the FormHelper
+		$helper = new \Helper\FormHelper("test_form");
+
+		//add one field
+		$helper->addField("test_field", "text", array(
+	  		array("required", "Field is required")
+		), array("ltrim", "rtrim"), "");
+
+		// try to process the request
+		if($helper->processRequest($request)) {
+
+			//try to validate
+			if($helper->validate()) {
+
+				// fill the model
+				$model = new \Model\Example();
+				$helper->fillModel($model);
+
+				// render the model
+				$this->get("templating")->render("form_example_success.html.php", array(
+					"example" => $model
+				));
+				return;
+			}
+		}
+		// render the form
+		$this->get("templating")->render("form_example.html.php", array(
+			"form" => $helper
+		));
+	}
 }

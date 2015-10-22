@@ -8,7 +8,7 @@ namespace Service;
 class TemplatingService {
 	private $template_helper_extensions;
 	public function addTemplateHelperExtension(\Helper\TemplatingHelperExtension $extension) {
-		$template_helper_extensions[] = $extension;
+		$this->template_helper_extensions[] = $extension;
 	}
 	/**
 	 * renders a template either to "echo" or to output

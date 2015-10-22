@@ -1,11 +1,14 @@
 <?php
+/**
+ *	$service_container is instance of Service\ServiceContainer
+ */
 // ------------   Services  -----------------
 
 $service_container->register("routing", "Service\\RoutingService", array(
 	array("type"=>"service_container")
 ));
 
-$service_container->register("random", "Service\\RandomService", array(
+$service_container->register("random", "Service\\RandomSequenceGeneratorService", array(
 ));
 
 $service_container->register("session", "Service\\SessionService", array(
@@ -30,7 +33,9 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 
 $service_container->register("mysqli_wrapper", "Service\\RoutingService", array(
 	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_host")),
-	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_user"))
+	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_user")),
+	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_password")),
+	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_database"))
 ));
 
 // ------------  Templating Extensions  -----------------
@@ -42,6 +47,10 @@ $service_container->register("templating_form_extension", "Helper\\TemplatingFor
 // ------------  Controllers  -----------------
 
 $service_container->register("example_controller", "Controller\\ExampleController", array(
+	array("type"=>"service_container")
+));
+
+$service_container->register("login_controller", "Controller\\LoginController", array(
 	array("type"=>"service_container")
 ));
 
