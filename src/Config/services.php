@@ -54,6 +54,10 @@ $service_container->register("login_controller", "Controller\\LoginController", 
 	array("type"=>"service_container")
 ));
 
+$service_container->register("registration_controller", "Controller\\RegistrationController", array(
+	array("type"=>"service_container")
+));
+
 // ------------  Repositories  -----------------
 
 $service_container->register("example_repository", "Model\\ExampleRepository", array(
