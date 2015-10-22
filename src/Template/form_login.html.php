@@ -10,16 +10,23 @@
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your banking session</p>
 
-      <?php $t->formh($t->get("form"), array("action"=>"/processLogin", "method"=>"post"), function ($t) { ?>
-        <?php foreach ($t->get("form")->getError("email") as $error) { ?>
-        <?= $error ?><br>
-        <?php } ?>
-        <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="E-Mail" name="login_form[email]">
+      <?php $t->formh($t->get("form"), array("action"=>"/login", "method"=>"post"), function ($t) { ?>
+        <?php
+          $email_errors = $t->get("form")->getError("email");
+          $password_errors = $t->get("form")->getError("password");
+        ?>
+        <div class="form-group has-feedback <?php if (sizeof($email_errors) > 0) echo "has-error"; ?>">
+            <?php if (sizeof($email_errors) > 0) { ?>
+              <label for="form_login[email]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span><?= $email_errors[0] ?></label>
+            <?php } ?>
+            <input type="email" class="form-control" placeholder="E-Mail" name="form_login[email]">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
-        <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password" name="login_form[password]">
+        <div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
+            <?php if (sizeof($password_errors) > 0) { ?>
+              <label for="form_login[password]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span><?= $password_errors[0] ?></label>
+            <?php } ?>
+            <input type="password" class="form-control" placeholder="Password" name="form_login[password]">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">

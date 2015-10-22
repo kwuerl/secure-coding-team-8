@@ -103,4 +103,15 @@ class TemplatingHelper {
         }
         throw new \Exception("Function '$name' not found!");
     }
+    /**
+     * Sanitizes input for use in template
+     *
+     * @param string $input
+     *
+     * @return string
+     */
+    public function s($input) {
+    	// TODO: sanitize input for use in template
+    	return $input;
+    }
 }

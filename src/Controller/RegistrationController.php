@@ -22,11 +22,16 @@ class RegistrationController extends Controller {
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("email", "email", array(
-			array("required", "E-Mail is required")
+			array("required", "E-Mail is required"),
+			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("password", "text", array(
 			array("required", "Password is required")
+		), array("ltrim", "rtrim"), "");
+
+		$helper->addField("password_repeat", "text", array(
+			array("required", "Please repeat your password")
 		), array("ltrim", "rtrim"), "");
 
 		// try to process the request

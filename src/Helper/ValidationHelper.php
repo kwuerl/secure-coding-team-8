@@ -8,7 +8,7 @@ namespace Helper;
 class ValidationHelper {
 	//TODO
 	public static function email($input) {
-		return true;
+		return filter_var($input, FILTER_VALIDATE_EMAIL);
 	}
 	public static function required($input) {
 		return !empty($input);

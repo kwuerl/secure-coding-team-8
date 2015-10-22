@@ -37,7 +37,7 @@ class FormHelper {
 	 *
 	 * @param string $name  Name of the form field. If you want to use this helper to later fill a model this should have the same name as the model property
 	 * @param string $type  Type of the form field: email, textarea, text, password, ...
-	 * @param array $validations 	Validation rules for the model field. $validations is an array(validation_function[,message[,option_array]]). validation_function is a static function in the class ValidationHelper.
+	 * @param array $validations 	Validation rules for the model field. $validations is an array of array(validation_function[,message[,option_array]]). validation_function is a static function in the class ValidationHelper.
 	 * @param array $sanitizations 	Sanitization rules for the model field. Form is an array(sanitization_function). sanitization_function is a static function in the class SanitizationHelper.
 	 * @param string $default 	Default value
 	 *
