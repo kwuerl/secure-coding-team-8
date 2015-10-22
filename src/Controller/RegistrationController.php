@@ -40,8 +40,8 @@ class RegistrationController extends Controller {
 				$helper->fillModel($model);
 
 				// render the model
-				$this->get("templating")->render("form_login_success.html.php", array(
-					"login" => $model
+				$this->get("templating")->render("form_registration_success.html.php", array(
+					"registration" => $model
 				));
 				return;
 			}

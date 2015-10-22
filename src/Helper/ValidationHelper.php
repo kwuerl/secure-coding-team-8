@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Helper;
 /**
  * ValidationHelper is a collection of static functions that can be used by the FormHelper to validate form fields
