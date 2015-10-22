@@ -31,7 +31,7 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 	))
 ));
 
-$service_container->register("mysqli_wrapper", "Service\\RoutingService", array(
+$service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
 	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_host")),
 	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_user")),
 	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_password")),
