@@ -11,7 +11,7 @@
 	    <link rel="stylesheet" href="Vendor/theme/skin.min.css">
     </head>
     <body class="hold-transition
-    <?php if ($_SERVER['REQUEST_URI'] == '/overview') echo 'skin-blue sidebar-mini'; else echo 'login-page';?>">
+    <?php if ($_SERVER['REQUEST_URI'] == '/register' || $_SERVER['REQUEST_URI'] == '/login') echo 'login-page'; else echo 'skin-blue sidebar-mini';?>">
     <?php $t->block("body", function ($t) { ?>
         Default
     <?php }); ?>
