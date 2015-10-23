@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 /**
- * Controller base class. Gets ServiceContainer injected.
+ * User Controller class that handles loading of user-related pages. Gets ServiceContainer injected.
  *
  * @author Vivek Sethia<vivek.sethia@tum.de>
  */

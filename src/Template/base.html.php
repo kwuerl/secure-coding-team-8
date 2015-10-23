@@ -10,7 +10,8 @@
 	    <link rel="stylesheet" href="Vendor/theme/header.css">
 	    <link rel="stylesheet" href="Vendor/theme/skin.min.css">
     </head>
-    <body class="hold-transition skin-blue sidebar-mini"> <!-- hold-transition login-page -->
+    <body class="hold-transition
+    <?php if ($_SERVER['REQUEST_URI'] == '/overview') echo 'skin-blue sidebar-mini'; else echo 'login-page';?>">
     <?php $t->block("body", function ($t) { ?>
         Default
     <?php }); ?>
