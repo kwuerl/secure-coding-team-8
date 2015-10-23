@@ -1,5 +1,5 @@
 <?php
-namespace \Model
+namespace Model;
 /**
  * Repository base class
  * TODO: Should be written in a generic way, so it can handle most of the models
