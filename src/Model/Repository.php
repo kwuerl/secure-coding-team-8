@@ -5,6 +5,7 @@ namespace Model;
  * TODO: Should be written in a generic way, so it can handle most of the models
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class Repository {
 	private $mysqli_wrapper;
@@ -64,5 +65,37 @@ class Repository {
 	public function delete($model_instance) {
 		//TODO
 	}
-	
+	/**
+	 * Executes a query and returns the result.
+	 *
+	 * @param query $query	A valid mysqli prepared query
+	 *
+	 * @return object Result of the query execution
+	 */
+	public function execute($query) {
+		/* execute query */
+	    $query->execute();
+
+		$metaData = $query->result_metadata();
+
+		while ($field = $metaData->fetch_field()) {
+		  	$parameters[] = &$row[$field->name];
+		}
+
+	    /* bind result variables */
+		call_user_func_array(array($query, 'bind_result'), $parameters);
+
+	    /* fetch values */
+		while ($query->fetch()) {
+		  	foreach($row as $key => $val) {
+		    	$temp[$key] = $val;
+		  	}
+		  	$result[] = $temp;
+		}
+
+	    /* close the query */
+	    $query->close();
+
+	    return $result;
+	}
 }

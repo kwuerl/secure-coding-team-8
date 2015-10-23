@@ -1,6 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
 
-<?php $t->block("content", function ($t) { ?>
+<?php $t->block("content", function ($t) {
+      $currentUser = $t->get("currentUser"); ?>
         <!-- Content Wrapper. Contains page content -->
               <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -26,11 +27,15 @@
                           <div class="box-body">
                             <div class="form-group">
                               <label>Name</label>
-                              <div>Vivek Sethia</div>
+                              <div>
+                                <?php echo $currentUser->getFirstName() . " " . $currentUser->getLastName(); ?>
+                              </div>
                             </div>
                             <div class="form-group">
-                              <label >Email</label>
-                              <div>sethiavivek2006@gmail.com</div>
+                              <label>Email</label>
+                              <div>
+                                <?php echo $currentUser->getEmail(); ?>
+                              </div>
                             </div>
                             <div class="form-group">
                               <label>Account No.</label>
