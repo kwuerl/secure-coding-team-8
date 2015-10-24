@@ -33,15 +33,18 @@
                       $(this).parent().removeClass('open');
                  });
 
-                  $("#example1").DataTable({
-                                   "paging": true,
-                                   "lengthChange": false,
-                                   "searching": false,
-                                   "ordering": true,
-                                   "info": true,
-                                   "autoWidth": false,
-                                   "pageLength": 3
-                               });
+              $('.app-data-table').each(function () {
+                 // var source = $(this).attr("data-source");
+                  $(this).dataTable({
+                       "paging": true,
+                       "lengthChange": false,
+                       "searching": false,
+                       "ordering": true,
+                       "info": true,
+                       "autoWidth": false,
+                       "pageLength": 3
+                  });
+             });
             });
      </script>
     </body>

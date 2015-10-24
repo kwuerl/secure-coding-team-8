@@ -24,6 +24,10 @@ body {
     overflow-x: hidden;
     overflow-y: auto
 }
+
+textarea{
+    resize: none;
+}
 .wrapper {
     min-height: 100%;
     position: static;
@@ -4559,4 +4563,14 @@ table.text-center th {
     .table-responsive>.table tr td {
         white-space: normal!important
     }
+}
+
+/* Customized css for our application */
+#regsitrations_table .btn{
+    padding :1px 6px;
+}
+
+#regsitrations_table .btn-reject{
+    background-color :#ff5151;
+    color : #fff;
 }

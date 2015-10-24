@@ -30,4 +30,10 @@ class UserController extends Controller {
             //"form" => $helper
         ));
     }
+     public function makeTransfer ($request) {
+            // render the form
+            $this->get("templating")->render("make_transfer.html.php", array(
+                //"form" => $helper
+            ));
+        }
 }

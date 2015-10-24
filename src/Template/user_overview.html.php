@@ -16,7 +16,7 @@
                             <!-- Tasks: style can be found in dropdown.less -->
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs">Alexander Pierce</span>
                               </a>
                               <ul class="dropdown-menu">
@@ -79,6 +79,27 @@
                                  <span>Transaction History</span>
                               </a>
                            </li>
+                            <li class="treeview">
+                                <a href="/make_transfer">
+                                  <i class="fa fa-files-o"></i>
+                                    <span>Make Transfer</span>
+                                 </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="/customers">
+                                  <i class="fa fa-files-o"></i>
+                                    <span>Customers</span>
+                                 </a>
+                            </li>
+                            <li class="treeview">
+                              <a href="/approve_registrations">
+                                <i class="fa fa-edit"></i> <span>Registrations</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                              </a>
+                              <ul class="treeview-menu">
+                                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Employee</a></li>
+                                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Customers</a></li>
+                              </ul>
                         </ul>
                       </section>
                       <!-- /.sidebar -->
