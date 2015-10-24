@@ -74,3 +74,7 @@ $service_container->register("example_repository", "Model\\ExampleRepository", a
 $service_container->register("user_repository", "Model\\UserRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper")
 ));
+
+$service_container->register("transaction_repository", "Model\\TransactionRepository", array(
+	array("type"=>"service", "value"=>"mysqli_wrapper")
+));

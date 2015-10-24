@@ -1,7 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
 
-<?php $t->block("content", function ($t) {?>
-
+<?php $t->block("content", function ($t) {
+  $transactions = $t->get("transactions"); ?>
  <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -27,130 +27,42 @@
                         <th>Transaction ID</th>
                         <th>Date of transaction</th>
                         <th>Amount</th>
-                        <th>To Account No.</th>
+                        <th>Beneficiary Account ID</th>
+                        <th>Beneficiary Account Name</th>
                         <th>Remarks</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach($transactions as $transaction) {?>
                       <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
+                        <td>
+                          <?php echo $transaction->getTransactionId(); ?>
+                        </td>
+                        <td>
+                          <?php echo $transaction->getDate(); ?>
+                        </td>
+                        <td>
+                          <?php echo $transaction->getAmount(); ?>
+                        </td>
+                        <td>
+                          <?php echo $transaction->getToAccountId(); ?>
+                        </td>
+                        <td>
+                          <?php echo $transaction->getToAccountName(); ?>
+                        </td>
+                        <td>
+                          <?php echo $transaction->getRemarks(); ?>
+                        </td>
                       </tr>
-                      <tr>
-                        <td>123890500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
-                      <tr>
-                        <td>123450500</td>
-                        <td>10.10.2015</td>
-                        <td>1050</td>
-                        <td>231200568</td>
-                        <td>Transfer for monthly rent</td>
-                      </tr>
+                      <?php }?>
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>Transaction ID</th>
                         <th>Date of transaction</th>
                         <th>Amount</th>
-                        <th>To Account No.</th>
+                        <th>Beneficiary Account ID</th>
+                        <th>Beneficiary Account Name</th>
                         <th>Remarks</th>
                       </tr>
                     </tfoot>

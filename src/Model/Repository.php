@@ -8,7 +8,6 @@ namespace Model;
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class Repository {
-	private $mysqli_wrapper;
 	/**
 	 * Constructor
 	 */

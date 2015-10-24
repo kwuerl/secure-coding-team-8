@@ -36,5 +36,5 @@ class UserRepository extends Repository {
     		$user->setEmail($result["EMAIL"]);
     		return $user;
     	}
-	}
+   	}
 }
