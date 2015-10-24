@@ -28,6 +28,35 @@ class Repository {
 	 */
 	public function find($filter) {
 		$mysqli = $this->mysqli_wrapper->get();
+		$query = "SELECT * FROM ".$this->table_name." WHERE ";
+		$type_array = array();
+		$value_array = array();
+		foreach ($filter as $name => $value) {
+			$db_field_name = strtoupper($mysqli->real_escape_string($name));
+			$query .= $db_field_name." = ? ";
+			if (is_int($value)) {
+				array_push($type_array, "i");
+			} else if (is_float($value)) {
+				array_push($type_array, "d");
+			} else {
+				array_push($type_array, "s");
+			}
+			array_push($value_array, $value);
+		}
+		if ($stmt = $mysqli->prepare($query)) {
+			foreach ($type_array as $key => $type) {
+				$stmt->bind_param($type, $value_array[$key]);
+			}
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$model_array = array();
+			while ($row = $result->fetch_assoc()) {
+				array_push($model_array, $this->fillModel($row));
+			}
+			$stmt->free_result();
+			$stmt->close();
+			return $model_array;
+		}
 	}
 	/**
 	 * Returns a single Model Instance for ID $id
@@ -46,6 +75,7 @@ class Repository {
 				return $this->fillModel($row);
 			}
 			$stmt->free_result();
+			$stmt->close();
 		}
 	}
 	/**

@@ -26,14 +26,7 @@ class TransactionRepository extends Repository {
     		$query->bind_param("i", $customerId);
     		$result = $this->execute($query);
     		foreach($result as $row) {
-				$transaction = new Transaction();
-	    		$transaction->setTransactionId($row["ID"]);
-	    		$transaction->setFromAccountId($row["FROM_ACCOUNT_ID"]);
-	    		$transaction->setToAccountId($row["TO_ACCOUNT_ID"]);
-	    		$transaction->setToAccountName($row["TO_ACCOUNT_NAME"]);
-	    		$transaction->setDate($row["TRANSACTION_DATE"]);
-	    		$transaction->setAmount($row["AMOUNT"]);
-	    		$transaction->setRemarks($row["REMARKS"]);
+				$transaction = $this->fillModel($row);
 	    		$transactions[] = $transaction;
     		}
     		return $transactions;
