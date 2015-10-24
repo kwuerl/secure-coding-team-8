@@ -29,11 +29,13 @@ class LoginController extends Controller {
 			if($helper->validate()) {
 
 				// fill the model
-				$model = new \Model\Login();
+				$model = new \Model\User();
 				$helper->fillModel($model);
 
-				// render the model
-				$this->get("routing")->redirect("overview", array());
+				// AuthService
+				if (!$this->get("auth")->login($model)) {
+					// TODO: login failed
+				}
 				return;
 			}
 		}

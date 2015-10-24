@@ -8,11 +8,16 @@ namespace Model;
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class Repository {
+	protected $mysqli_wrapper;
+	protected $table_name;
+	protected $model_class_name;
 	/**
 	 * Constructor
 	 */
-	function __construct($mysqli_wrapper) {
+	function __construct($mysqli_wrapper, $table_name, $model_class_name) {
 		$this->mysqli_wrapper = $mysqli_wrapper;
+		$this->table_name = $table_name;
+		$this->model_class_name = $model_class_name;
 	}
 	/**
 	 * Returns a array of Model Instances that fit for the $filter criteria
@@ -22,7 +27,7 @@ class Repository {
 	 * @return array
 	 */
 	public function find($filter) {
-		//TODO
+		$mysqli = $this->mysqli_wrapper->get();
 	}
 	/**
 	 * Returns a single Model Instance for ID $id
@@ -32,7 +37,16 @@ class Repository {
 	 * @return $model
 	 */
 	public function get($id) {
-		//TODO
+		$mysqli = $this->mysqli_wrapper->get();
+		if ($stmt = $mysqli->prepare("SELECT * FROM ".$this->table_name." WHERE ID = ? LIMIT 1;")) {
+			$stmt->bind_param('i', $id);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while ($row = $result->fetch_assoc()) {
+				return $this->fillModel($row);
+			}
+			$stmt->free_result();
+		}
 	}
 	/**
 	 * Adds a Model Instances to the database and updates its ID field
@@ -95,5 +109,31 @@ class Repository {
 	    $query->close();
 
 	    return $result;
+	}
+	/**
+	 * Fills the corresponding model with values.
+	 *
+	 * @param object|array $model  The model
+	 *
+	 * @return Model
+	 */
+	public function fillModel($values) {
+		$instance = new $this->model_class_name();
+		$reflection_obj = new \ReflectionClass($this->model_class_name);
+		foreach ($values as $name => $value) {
+			$name_lower = strtolower($name);
+			$name_cc = \Helper\StringHelper::underscoreToCamelCase($name_lower, true);
+			if ($reflection_obj->hasMethod("set".$name_cc)) {
+				call_user_func_array(	
+					array($instance, "set".$name_cc),
+					array($value)
+				);
+			} else if ($reflection_obj->hasProperty($name_lower)) {
+				$property = $class->getProperty($name_lower);
+				$property->setAccessible(true);
+				$property->setValue($instance, $value);
+			}
+		}
+		return $instance;
 	}
 }
