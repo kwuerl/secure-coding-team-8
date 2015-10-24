@@ -118,7 +118,7 @@ class Repository {
 	public function execute($query) {
 		/* execute query */
 	    $query->execute();
-
+		
 		$metaData = $query->result_metadata();
 
 		while ($field = $metaData->fetch_field()) {
@@ -130,7 +130,7 @@ class Repository {
 
 		$result = array();
 	    /* fetch values */
-		while ($row = $query->fetch()) {
+		while ($query->fetch()) {
 		  	foreach($row as $key => $val) {
 		    	$temp[$key] = $val;
 		  	}

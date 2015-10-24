@@ -16,15 +16,15 @@ class ServiceContainer {
 	 * <code>
 	 * <?php
 	 * $service_container->register("test_service, "\Service\NiceService", array(
-	 *		array("type"=>"constant", "value"=>"Nice"), 
-	 *		array("type"=>"service", "value"=>"other_service"), 
+	 *		_CONSTANT,
+	 *		array("type"=>"service", "value"=>"other_service"),
 	 *		array("type"=>"service_container")
 	 * ), array(
 	 *		array(
-	 *			"function"=>"exampleFunctionName", 
+	 *			"function"=>"exampleFunctionName",
 	 *			"parameters"=>array(
-	 *				array("type"=>"constant", "value"=>"Nice"), 
-	 *				array("type"=>"service", "value"=>"other_service"), 
+	 *				_CONSTANT,
+	 *				array("type"=>"service", "value"=>"other_service"),
 	 *				array("type"=>"service_container")
 	 *			)
 	 *		)
@@ -82,12 +82,14 @@ class ServiceContainer {
 		$resolved_paramters = array();
 		//inject all contructor parameters
 		foreach($parameter_array as $conf) {
-			if ($conf["type"] == "constant") {
-				$resolved_paramters[] = $conf["value"];
-			} else if ($conf["type"] == "service") {
-				$resolved_paramters[] = $this->get($conf["value"]);
-			} else if ($conf["type"] == "service_container") {
-				$resolved_paramters[] = $this;
+			if (is_array($conf)) {
+				if ($conf["type"] == "service") {
+					$resolved_paramters[] = $this->get($conf["value"]);
+				} else if ($conf["type"] == "service_container") {
+					$resolved_paramters[] = $this;
+				}
+			} else {
+				$resolved_paramters[] = $conf;
 			}
 		}
 		return $resolved_paramters;

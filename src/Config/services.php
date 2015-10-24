@@ -16,8 +16,7 @@ $service_container->register("session", "Service\\SessionService", array(
 ));
 
 $service_container->register("auth", "Service\\AuthService", array(
-	array("type"=>"service", "value"=>"user_repository"),
-	array("type"=>"service", "value"=>"param")
+	array("type"=>"service", "value"=>"user_repository")
 ));
 
 $service_container->register("csrf", "Service\\CSRFService", array(
@@ -32,10 +31,7 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 ));
 
 $service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
-	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_host")),
-	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_user")),
-	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_password")),
-	array("type"=>"constant", "value"=>$service_container->get("param")->get("mysql_database"))
+	_MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
 ));
 
 // ------------  Templating Extensions  -----------------
@@ -73,12 +69,12 @@ $service_container->register("example_repository", "Model\\ExampleRepository", a
 
 $service_container->register("user_repository", "Model\\UserRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
-	array("type"=>"constant", "value"=>"TBL_CUSTOMER"),
-	array("type"=>"constant", "value"=>"\Model\User")
+	_TBL_CUSTOMER,
+	_CLASS_MODEL_USER
 ));
 
 $service_container->register("transaction_repository", "Model\\TransactionRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
-	array("type"=>"constant", "value"=>"TBL_TRANSACTION"),
-	array("type"=>"constant", "value"=>"\Model\Transaction")
+	_TBL_TRANSACTION,
+	_CLASS_MODEL_TRANSACTION
 ));

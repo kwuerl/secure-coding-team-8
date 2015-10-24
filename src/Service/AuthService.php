@@ -1,6 +1,7 @@
 <?php
 namespace Service;
 
+use Model\UserRepository;
 use Model\User;
 /**
  * AuthService is used to manage logins and sessions
@@ -8,17 +9,15 @@ use Model\User;
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 class AuthService {
-	$user_repo;
-	$param_service;
+	private $user_repo;
 	/**
 	 * Constructor
 	 */
-	function __construct(UserRepository $user_repo, ParameterService $param_service) {
+	function __construct(UserRepository $user_repo) {
 		$this->user_repo = $user_repo;
-		$this->param_service = $param_service;
 	}
 	/**
-	 * Returns the current User. If there is none, a blank User is returned. 
+	 * Returns the current User. If there is none, a blank User is returned.
 	 *
 	 * @return Model\User
 	 */

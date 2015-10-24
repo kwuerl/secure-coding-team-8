@@ -10,8 +10,6 @@ $loader->addPrefix("Model", "Model");
 $loader->register();
 
 $service_container = new \Service\ServiceContainer();
-$service_container->register("param", "Service\\ParameterService", array());
-$parameter_service = $service_container->get("param");
 require_once("Config/parameters.php");
 require_once("Config/services.php");
 
