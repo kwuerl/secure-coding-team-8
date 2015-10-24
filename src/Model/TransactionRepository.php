@@ -7,13 +7,6 @@ namespace Model;
  */
 class TransactionRepository extends Repository {
 	/**
-	 * Constructor
-	 */
-	function __construct($mysqli_wrapper) {
-		$this->mysqli_wrapper = $mysqli_wrapper;
-	}
-
-	/**
 	 * Returns all Transaction Instances for customer id $customerId
 	 *
 	 * @param integer $customerId Customer ID to match
@@ -26,6 +19,7 @@ class TransactionRepository extends Repository {
 		 				WHERE TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
 		 				AND TBL_ACCOUNT.CUSTOMER_ID = ?";
 
+		$transactions = array();
 		/* create a prepared statement */
 		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */

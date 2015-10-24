@@ -98,8 +98,9 @@ class Repository {
 	    /* bind result variables */
 		call_user_func_array(array($query, 'bind_result'), $parameters);
 
+		$result = array();
 	    /* fetch values */
-		while ($query->fetch()) {
+		while ($row = $query->fetch()) {
 		  	foreach($row as $key => $val) {
 		    	$temp[$key] = $val;
 		  	}
