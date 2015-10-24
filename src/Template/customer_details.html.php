@@ -11,7 +11,8 @@
                   </h1>
                   <ol class="breadcrumb">
                     <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Customer Detail</li>
+                    <li><a href="/customers"><i class="fa fa-dashboard"></i> Customers</a></li>
+                    <li class="active">Customer Details</li>
                   </ol>
                 </section>
 
@@ -22,6 +23,9 @@
                     <div class="col-md-4">
                       <!-- general form elements -->
                       <div class="box box-primary">
+                            <div class="box-header with-border">
+                              <h3 class="box-title">Profile</h3>
+                            </div><!-- /.box-header -->
                         <!-- form start -->
                         <form role="form">
                           <div class="box-body">
@@ -47,50 +51,59 @@
                     </div>
                     <! -- Pending Transaction Details -->
                     <div class="col-md-8">
-                                          <!-- general form elements -->
-                                          <div class="box box-primary">
-                                           <div class="box-body">
-                                               <table id="cust_details_table1" class="table table-bordered table-striped app-data-table">
-                                                  <thead>
-                                                    <tr>
-                                                      <th>Transaction Id</th>
-                                                      <th>To Account Number</th>
-                                                      <th>Date of Transaction</th>
-                                                      <th>Amount</th>
-                                                      <th>Remarks</th>
-                                                  </thead>
-                                                      <tbody>
-                                                      <?php for($i=0; $i<15; $i++) { ?>
-                                                            <tr>
-                                                              <td>12222</td>
-                                                              <td>46366346346</td>
-                                                              <td>10.10.15</td>
-                                                              <td>50004</td>
-                                                              <td>For rent</td>
-                                                            </tr>
-                                                       <?php } ?>
+                      <!-- general form elements -->
+                      <div class="box box-primary">
+                           <div class="box-header with-border">
+                             <h3 class="box-title">Transactions Approval Pending</h3>
+                           </div><!-- /.box-header -->
+                           <div class="box-body">
+                               <table id="cust_details_table1" class="table table-bordered table-striped app-data-table">
+                                  <thead>
+                                    <tr>
+                                      <th>Transaction Id</th>
+                                      <th>To Account Number</th>
+                                      <th>Date of Transaction</th>
+                                      <th>Amount</th>
+                                      <th>Actions</th>
+                                  </thead>
+                                      <tbody>
+                                      <?php for($i=0; $i<15; $i++) { ?>
+                                            <tr>
+                                              <td><a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">12222</a></td>
+                                              <td>46366346346</td>
+                                              <td>10.10.15</td>
+                                              <td>50004</td>
+                                              <td>
+                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
+                                                 <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
+                                              </td>
+                                            </tr>
+                                       <?php } ?>
 
-                                                      </tbody>
-                                                      <tfoot>
-                                                        <tr>
-                                                            <th>Transaction Id</th>
-                                                            <th>To Account Number</th>
-                                                            <th>Date of Transaction</th>
-                                                            <th>Amount</th>
-                                                            <th>Remarks</th>
-                                                        </tr>
-                                                      </tfoot>
-                                               </table>
-                                          </div><!-- /.box -->
-                                          </div>
+                                      </tbody>
+                                      <tfoot>
+                                        <tr>
+                                            <th>Transaction Id</th>
+                                            <th>To Account Number</th>
+                                            <th>Date of Transaction</th>
+                                            <th>Amount</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                      </tfoot>
+                               </table>
+                      </div><!-- /.box -->
+                      </div>
                   </div>
-
+                </div>
                   <div class="row">
                       <!-- left column -->
                       <div class="col-md-12">
                       <!-- general form elements -->
                         <div class="box box-primary">
-                            <div class="box-body">
+                             <div class="box-header with-border">
+                                <h3 class="box-title">All Transactions</h3>
+                             </div><!-- /.box-header -->
+                             <div class="box-body">
                                 <table id="cust_details_table2" class="table table-bordered table-striped app-data-table">
                                       <thead>
                                         <tr>

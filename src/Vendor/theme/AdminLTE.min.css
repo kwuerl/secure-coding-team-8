@@ -25,9 +25,7 @@ body {
     overflow-y: auto
 }
 
-textarea{
-    resize: none;
-}
+
 .wrapper {
     min-height: 100%;
     position: static;
@@ -4565,11 +4563,32 @@ table.text-center th {
 }
 
 /* Customized css for our application */
-#regsitrations_table .btn{
+#regsitrations_table .btn, #cust_details_table1 .btn{
     padding :1px 6px;
 }
 
-#regsitrations_table .btn-reject{
+#regsitrations_table .btn-reject, #cust_details_table1 .btn-reject{
     background-color :#ff5151;
     color : #fff;
+}
+
+table {
+    width : 100%;
+    table-layout: fixed;
+}
+
+.modal-header{
+    background-color : #3c8dbc;
+    color : #fff;
+}
+.modal-title{
+    font-weight:bold;
+}
+
+.modal-body{
+    min-height:150px;
+}
+textarea{
+    resize: none;
+    width : 100%;
 }
