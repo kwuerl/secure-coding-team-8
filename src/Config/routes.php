@@ -3,19 +3,28 @@
  *	$routing_service is instance of Service\RoutingService
  */
 
-$routing_service->get("/test/(:all)", "example_controller:testFunction");
-$routing_service->get("/form_example", "example_controller:formtest");
-$routing_service->post("/form_example", "example_controller:formtest");
-$routing_service->get("/login", "login_controller:processLogin");
-$routing_service->post("/login", "login_controller:processLogin");
-$routing_service->get("/register", "registration_controller:processRegistration");
-$routing_service->post("/register", "registration_controller:processRegistration");
-$routing_service->get("/overview", "user_controller:loadOverview");
-$routing_service->get("/profile", "user_controller:loadProfile");
-$routing_service->get("/transaction_history", "user_controller:loadTransactionHistory");
-$routing_service->get("/make_transfer", "user_controller:makeTransfer");
+$routing_service->get("test_route", "/test/(:all)/(:all)/(:any)", "example_controller:testFunction");
+$routing_service->get("form_example_get", "/form_example", "example_controller:formtest");
+$routing_service->post("form_example_post", "/form_example", "example_controller:formtest");
+/*
+ * Login and registration routes
+ */
+$routing_service->get("login_get", "/login", "login_controller:processLogin");
+$routing_service->post("login_post", "/login", "login_controller:processLogin");
+$routing_service->get("register_get", "/register", "registration_controller:processRegistration");
+$routing_service->post("register_post", "/register", "registration_controller:processRegistration");
+/*
+ * User routes
+ */
+$routing_service->get("overview", "/overview", "user_controller:loadOverview");
+$routing_service->get("profile", "/profile", "user_controller:loadProfile");
+$routing_service->get("transaction_history", "/transaction_history", "user_controller:loadTransactionHistory");
+$routing_service->get("make_transfer", "/make_transfer", "user_controller:makeTransfer");
+/*
+ * Employee routes
+ */
 //$routing_service->get("/overview", "employee_controller:loadOverview");
-$routing_service->get("/profile", "employee_controller:loadProfile");
-$routing_service->get("/customers", "employee_controller:loadCustomersList");
-$routing_service->get("/customer_details", "employee_controller:loadCustomerDetails");
-$routing_service->get("/approve_registrations","employee_controller:approveRegistration");
+$routing_service->get("employee_profile", "/employee/profile", "employee_controller:loadProfile");
+$routing_service->get("customers", "/customers", "employee_controller:loadCustomersList");
+$routing_service->get("customer_detail", "/customer_details", "employee_controller:loadCustomerDetails");
+$routing_service->get("approve_registrations", "/approve_registrations","employee_controller:approveRegistration");

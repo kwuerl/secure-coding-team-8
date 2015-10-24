@@ -19,16 +19,16 @@
         ?>
         <div class="form-group has-feedback <?php if (sizeof($email_errors) > 0) echo "has-error"; ?>">
             <?php if (sizeof($email_errors) > 0) { ?>
-              <label for="form_login[email]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span><?= $email_errors[0] ?></label>
+              <label for="form_login[email]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $email_errors[0] ?></label>
             <?php } ?>
-            <input type="email" class="form-control" placeholder="E-Mail" name="form_login[email]">
+            <input type="email" class="form-control" placeholder="E-Mail" name="form_login[email]" value="<?= $t->s($t->get('form')->getValue('email')); ?>" required>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
             <?php if (sizeof($password_errors) > 0) { ?>
-              <label for="form_login[password]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span><?= $password_errors[0] ?></label>
+              <label for="form_login[password]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?></label>
             <?php } ?>
-            <input type="password" class="form-control" placeholder="Password" name="form_login[password]">
+            <input type="password" class="form-control" placeholder="Password" name="form_login[password]" value="<?= $t->s($t->get('form')->getValue('password')); ?>" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">

@@ -10,6 +10,7 @@ namespace Service;
 class RoutingService {
 	private $service_container;
 	private $halts = false;
+    private $names = array();
     private $routes = array();
     private $methods = array();
     private $callbacks = array();
@@ -28,8 +29,9 @@ class RoutingService {
     /**
      * Defines a route w/ callback and method
      * Possible Methods will be: get, post, put, head, delete
-     * Param 1 will be the route. Example: "/", "/(:any)", "/(:num)" oder any regexp
-     * Param 2 will be eiter a lambda function or a string which stands for service and function. Example: "test_controller:class_function"
+     * Param 1 will be the name of the route.
+     * Param 2 will be the route. Example: "/", "/(:any)", "/(:num)" oder any regexp
+     * Param 3 will be eiter a lambda function or a string which stands for service and function. Example: "test_controller:class_function"
      * Example: 
      * <code>
      * <?php
@@ -39,8 +41,10 @@ class RoutingService {
      */
     public function __call($method, $params) 
     {
-        $uri = dirname($_SERVER['PHP_SELF']).$params[0];
-        $callback = $params[1];
+        $name = $params[0];
+        $uri = dirname($_SERVER['PHP_SELF']).$params[1];
+        $callback = $params[2];
+        array_push($this->names, $name);
         array_push($this->routes, $uri);
         array_push($this->methods, strtoupper($method));
         array_push($this->callbacks, $callback);
@@ -146,6 +150,40 @@ class RoutingService {
                 };
             }
             call_user_func($this->error_callback);
+        }
+    }
+
+    /**
+     * Defines a redirect to $dest
+     *
+     * @param string $dest
+     * @param array $url_parameters
+     */
+    public function redirect($dest, $url_parameters)
+    {
+        $index = array_search($dest, $this->names);
+        if ($index !== false) {
+            $searches = array_keys($this->patterns);
+            $replaces = array_values($this->patterns);
+            $uri = $this->routes[$index];
+            $route = str_replace($searches, $replaces, $uri);
+            $offset = 1;
+            $uri_with_params = $uri;
+            foreach ($url_parameters as $url) {
+                $start = strpos($uri_with_params, "(", $offset);
+                $end = strpos($uri_with_params, ")", $start);
+                if ($start !== false) {
+                    $uri_with_params = substr_replace($uri_with_params, $url, $start, $end-$start+1);
+                    $offset = $start+1;
+                }
+            }
+            if (preg_match("#^".$route.'$#', $uri_with_params)) {
+                header('Location: '.$uri_with_params);
+            } else {
+                throw new \Exception("URL Parameters don't match!");
+            }
+        } else {
+            throw new \Exception("Route for \"".$dest."\" not found!");
         }
     }
 }

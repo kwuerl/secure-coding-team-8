@@ -14,7 +14,8 @@ class LoginController extends Controller {
 
 		//add one field
 		$helper->addField("email", "text", array(
-			array("required", "Email is required")
+			array("required", "Email is required"),
+			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("password", "text", array(
@@ -32,9 +33,7 @@ class LoginController extends Controller {
 				$helper->fillModel($model);
 
 				// render the model
-				$this->get("templating")->render("form_login_success.html.php", array(
-					"login" => $model
-				));
+				$this->get("routing")->redirect("overview", array());
 				return;
 			}
 		}
