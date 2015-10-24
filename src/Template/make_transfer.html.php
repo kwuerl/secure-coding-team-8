@@ -40,14 +40,15 @@
                                               <label>Transaction Code</label>
                                               <input class="form-control" id="transactionCode" placeholder="Enter transaction code">
                                             </div>
-                                            OR
-                                            <div class="form-group">
-                                              <label>File input</label>
-                                              <input type="file" id="transactionCodeFile">
-                                            </div>
+
                                            <div class="form-group">
                                              <label>Remarks</label>
                                              <textarea class="form-control" id="remarks" placeholder="Enter remarks"></textarea>
+                                           </div>
+                                            OR
+                                           <div class="form-group">
+                                             <label>File input</label>
+                                             <input type="file" id="transactionCodeFile">
                                            </div>
                                           </div><!-- /.box-body -->
 
