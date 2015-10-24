@@ -26,9 +26,15 @@
                         <form role="form">
                           <div class="box-body">
                             <div class="form-group">
-                              <label>Name</label>
+                              <label>First Name</label>
                               <div>
-                                <?php echo $currentUser->getFirstName() . " " . $currentUser->getLastName(); ?>
+                                <?php echo $currentUser->getFirstName(); ?>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Last Name</label>
+                              <div>
+                                <?php echo $currentUser->getLastName(); ?>
                               </div>
                             </div>
                             <div class="form-group">
@@ -36,10 +42,6 @@
                               <div>
                                 <?php echo $currentUser->getEmail(); ?>
                               </div>
-                            </div>
-                            <div class="form-group">
-                              <label>Account No.</label>
-                              <div>2242243555</div>
                             </div>
                           </div><!-- /.box-body -->
                         </form>

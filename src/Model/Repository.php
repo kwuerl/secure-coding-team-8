@@ -92,7 +92,6 @@ class Repository {
 		  	}
 		  	$result[] = $temp;
 		}
-
 	    /* close the query */
 	    $query->close();
 

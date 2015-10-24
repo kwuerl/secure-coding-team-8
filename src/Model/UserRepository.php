@@ -21,8 +21,12 @@ class UserRepository extends Repository {
 	 * @return User $user An instance of the User Model class
 	 */
 	public function get($id) {
+		$statement = "SELECT *
+		 				from TBL_CUSTOMER
+		 				WHERE ID = ?";
+
 		/* create a prepared statement */
-		if ($query = $this->mysqli_wrapper->get()->prepare("SELECT * FROM TBL_CUSTOMER WHERE ID = ?")) {
+		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */
     		$query->bind_param("i", $id);
     		$result = $this->execute($query)[0];
