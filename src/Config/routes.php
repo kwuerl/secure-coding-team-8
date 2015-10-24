@@ -14,7 +14,7 @@ $routing_service->get("/overview", "user_controller:loadOverview");
 $routing_service->get("/profile", "user_controller:loadProfile");
 $routing_service->get("/transaction_history", "user_controller:loadTransactionHistory");
 $routing_service->get("/make_transfer", "user_controller:makeTransfer");
-$routing_service->get("/overview", "employee_controller:loadOverview");
+//$routing_service->get("/overview", "employee_controller:loadOverview");
 $routing_service->get("/profile", "employee_controller:loadProfile");
 $routing_service->get("/customers", "employee_controller:loadCustomersList");
 $routing_service->get("/customer_details", "employee_controller:loadCustomerDetails");
