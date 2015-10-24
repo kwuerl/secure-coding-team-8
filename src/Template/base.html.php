@@ -22,30 +22,6 @@
      <script src="Vendor/js/jQuery-2.1.4.min.js"></script>
      <script src="Vendor/js/jquery.dataTables.min.js"></script>
      <script src="Vendor/js/dataTables.bootstrap.min.js"></script>
-
-
-    <script>
-            $(document).ready(function(){
-                $('.dropdown-toggle').on('click', function(){
-                   if( !$(this).parent().hasClass('open'))
-                      $(this).parent().addClass('open');
-                   else
-                      $(this).parent().removeClass('open');
-                 });
-
-              $('.app-data-table').each(function () {
-                 // var source = $(this).attr("data-source");
-                  $(this).dataTable({
-                       "paging": true,
-                       "lengthChange": false,
-                       "searching": false,
-                       "ordering": true,
-                       "info": true,
-                       "autoWidth": false,
-                       "pageLength": 3
-                  });
-             });
-            });
-     </script>
+     <script src="Scripts/app.js"></script>
     </body>
 </html>
