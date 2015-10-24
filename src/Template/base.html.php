@@ -133,4 +133,84 @@
 
       </div>
     </div>
+
+    <!-- Approve Registration Modal -->
+
+        <div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Approve Registration</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <div>
+                        Tom
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email Id</label>
+                      <div>
+                       tom@cat.com
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Account No.</label>
+                      <div>1232525526</div>
+                    </div>
+                </form>
+              </div><!-- /.box-body -->
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Approve</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Reject Registration Modal -->
+        <div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Approve Registration</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form role="form">
+                          <div class="box-body">
+                            <div class="form-group">
+                              <label>Name</label>
+                              <div>
+                                Tom
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Email Id</label>
+                              <div>
+                               tom@cat.com
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Account No.</label>
+                              <div>1232525526</div>
+                            </div>
+                        </form>
+                      </div><!-- /.box-body -->
+
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Approve</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
 </html>

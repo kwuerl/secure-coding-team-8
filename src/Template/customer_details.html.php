@@ -21,8 +21,7 @@
                   <div class="row">
                     <!-- left column -->
                     <div class="col-md-4">
-                      <!-- general form elements -->
-                      <div class="box box-primary">
+                      <div class="box box-primary" id="custProfileDetail">
                             <div class="box-header with-border">
                               <h3 class="box-title">Profile</h3>
                             </div><!-- /.box-header -->

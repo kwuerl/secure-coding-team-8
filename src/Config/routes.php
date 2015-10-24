@@ -24,7 +24,9 @@ $routing_service->get("make_transfer", "/make_transfer", "user_controller:makeTr
  * Employee routes
  */
 $routing_service->get("employee_overview", "/employee_overview", "employee_controller:loadOverview");
-$routing_service->get("employee_profile", "/employee/profile", "employee_controller:loadProfile");
+$routing_service->get("employee_profile", "/employee_profile", "employee_controller:loadProfile");
 $routing_service->get("customers", "/customers", "employee_controller:loadCustomersList");
 $routing_service->get("customer_detail", "/customer_details", "employee_controller:loadCustomerDetails");
-$routing_service->get("approve_registrations", "/approve_registrations","employee_controller:approveRegistration");
+$routing_service->get("approve_registration", "/approve_registrations","employee_controller:approveRegistrations");
+$routing_service->get("approve_transactions", "/approve_transactions","employee_controller:approveTransactions");
+

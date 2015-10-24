@@ -35,10 +35,16 @@ class EmployeeController extends Controller {
                 //"form" => $helper
             ));
         }
-    public function approveRegistration ($request) {
-                // render the form
-                $this->get("templating")->render("approve_registrations.html.php", array(
-                    //"form" => $helper
-                ));
-            }
+    public function approveRegistrations ($request) {
+        // render the form
+        $this->get("templating")->render("approve_registration.html.php", array(
+            //"form" => $helper
+        ));
+    }
+    public function approveTransactions ($request) {
+            // render the form
+            $this->get("templating")->render("approve_transactions.html.php", array(
+                //"form" => $helper
+            ));
+    }
 }

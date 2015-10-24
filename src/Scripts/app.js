@@ -15,6 +15,16 @@ var secureBank = {
                 else
                     $(this).parent().removeClass('open');
             });
+            $('.sidebar-menu li').each(function(){
+                $(this).on("click",function(event){
+                    console.log('hi');
+                    if( !$(this).hasClass('active'))
+                        $(this).addClass('active');
+                    else
+                        $(this).removeClass('active');
+
+                });
+            });
             // initializing all the data tables which are present in the page
             $('.app-data-table').each(function () {
                 // var source = $(this).attr("data-source");

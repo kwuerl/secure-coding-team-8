@@ -22,7 +22,8 @@ body {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    overflow-y: auto
+    overflow-y: auto;
+    background-color : #ecf0f5;
 }
 
 
@@ -2369,10 +2370,10 @@ a:focus {
     text-transform: uppercase
 }
 .nav-tabs-custom {
-    margin-bottom: 20px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 3px
+    border-radius: 3px;
+    padding-top: 1%;
 }
 .nav-tabs-custom>.nav-tabs {
     margin: 0;
@@ -2394,6 +2395,8 @@ a:focus {
 }
 .nav-tabs-custom>.nav-tabs>li>a,
 .nav-tabs-custom>.nav-tabs>li>a:hover {
+    border : 1px solid #ccc;
+    border-radius : 10px 10px 0 0;
     background: transparent;
     margin: 0
 }
@@ -2403,15 +2406,17 @@ a:focus {
 .nav-tabs-custom>.nav-tabs>li:not(.active)>a:hover,
 .nav-tabs-custom>.nav-tabs>li:not(.active)>a:focus,
 .nav-tabs-custom>.nav-tabs>li:not(.active)>a:active {
-    border-color: transparent
+    border : 1px solid #ccc;
+    border-radius : 10px 10px 0 0;
 }
-.nav-tabs-custom>.nav-tabs>li.active {
-    border-top-color: #3c8dbc
-}
+
 .nav-tabs-custom>.nav-tabs>li.active>a,
 .nav-tabs-custom>.nav-tabs>li.active:hover>a {
-    background-color: #fff;
-    color: #444
+    background-color: #ccc;
+    color: #444;
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: bold;
 }
 .nav-tabs-custom>.nav-tabs>li.active>a {
     border-top-color: transparent;
@@ -4563,11 +4568,11 @@ table.text-center th {
 }
 
 /* Customized css for our application */
-#regsitrations_table .btn, #cust_details_table1 .btn{
+#regsitrations_table .btn, #cust_details_table1 .btn, #approve_trans_table .btn{
     padding :1px 6px;
 }
 
-#regsitrations_table .btn-reject, #cust_details_table1 .btn-reject{
+#regsitrations_table .btn-reject, #cust_details_table1 .btn-reject, #approve_trans_table .btn-reject{
     background-color :#ff5151;
     color : #fff;
 }
@@ -4591,4 +4596,8 @@ table {
 textarea{
     resize: none;
     width : 100%;
+}
+
+#custProfileDetail{
+    min-height:368px;
 }

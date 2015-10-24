@@ -71,56 +71,49 @@ $t->block("body", function ($t) { $current_user = USER_EMPLOYEE;
         case USER_CUSTOMER : ?>
               <li class="treeview">
                 <a href="/overview">
-                  <i class="fa fa-files-o"></i>
                   <span>Home</span>
                 </a>
               </li>
               <li class="treeview">
                 <a href="/profile">
-                  <i class="fa fa-files-o"></i>
                   <span>Profile</span>
                 </a>
               </li>
                <li class="active treeview">
                  <a href="/transaction_history">
-                   <i class="fa fa-files-o"></i>
                      <span>Transaction History</span>
                   </a>
                </li>
                 <li class="treeview">
                     <a href="/make_transfer">
-                      <i class="fa fa-files-o"></i>
                         <span>Make Transfer</span>
                      </a>
                 </li>
        <?php break;
         case USER_EMPLOYEE : ?>
-                <li class="treeview">
+                <li class="treeview active">
                 <a href="/employee_overview">
-                  <i class="fa fa-files-o"></i>
                   <span>Home</span>
                 </a>
               </li>
               <li class="treeview">
                 <a href="/employee_profile">
-                  <i class="fa fa-files-o"></i>
                   <span>Profile</span>
                 </a>
                 <li class="treeview">
                     <a href="/customers">
-                      <i class="fa fa-files-o"></i>
                         <span>Customers</span>
                      </a>
                 </li>
-                <li class="treeview">
+                <li class="treeview" >
                   <a href="/approve_registrations">
-                    <i class="fa fa-edit"></i> <span>Registrations</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <span>Approve Registrations</span>
                   </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Employee</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Customers</a></li>
-                  </ul>
+                </li>
+                <li class="treeview" >
+                  <a href="/approve_transactions">
+                    <span>Approve Transactions</span>
+                  </a>
                 </li>
         <?php break;
         default : break;
