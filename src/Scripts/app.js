@@ -26,9 +26,8 @@ var secureBank = {
                 });
             });
 
-            // initializing all the data tables which are present in the page
+            // initializing all the data tables
             $('.app-data-table').each(function () {
-
                 // var source = $(this).attr("data-source");
                 $(this).dataTable({
                     "paging": true,
@@ -41,9 +40,17 @@ var secureBank = {
                     'aoColumnDefs': [{
                         'bSortable': false,
                         'aTargets': [-1]
-                    }]
+                    }],
+                    /* to remove pagination text when no data is there in the table */
+                    "fnDrawCallback":function(){
+                        var paginate_id = $(this).attr('id')+"_paginate";
+                        if( $('#'+paginate_id+' > ul li').length == 2)  {
+                            $('#'+paginate_id).parent().parent().css('display',"none");
+                        }
+                    }
                 });
             });
+
             // adjusting height of sidebar after the dom is created
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
         });

@@ -11,9 +11,9 @@
           </h1>
           <ol class="breadcrumb">
             <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="active">Transaction History</a></li>
+            <li class="active">Transaction History</li>
           </ol>
-        </section>
+        </section
 
         <!-- Main content -->
         <section class="content">
@@ -56,6 +56,7 @@
                       </tr>
                       <?php }?>
                     </tbody>
+                     <?php if( count($transactions) != 0 ) {?>
                     <tfoot>
                       <tr>
                         <th>Transaction ID</th>
@@ -66,6 +67,7 @@
                         <th>Remarks</th>
                       </tr>
                     </tfoot>
+                    <?php } ?>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

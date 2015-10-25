@@ -4598,6 +4598,6 @@ textarea{
     width : 100%;
 }
 
-#custProfileDetail{
+.app-section-min-height{
     min-height:368px;
 }

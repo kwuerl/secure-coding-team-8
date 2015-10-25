@@ -24,7 +24,7 @@
                   <div class="row">
                     <!-- left column -->
                     <div class="col-md-4">
-                      <div class="box box-primary" id="custProfileDetail">
+                      <div class="box box-primary app-section-min-height" >
                             <div class="box-header with-border">
                               <h3 class="box-title">Profile</h3>
                             </div><!-- /.box-header -->
@@ -54,9 +54,9 @@
                     <!-- Pending Transaction Details -->
                     <div class="col-md-8">
                       <!-- general form elements -->
-                      <div class="box box-primary">
+                      <div class="box box-primary app-section-min-height">
                            <div class="box-header with-border">
-                             <h3 class="box-title">Transactions Approval Pending</h3>
+                             <h3 class="box-title">Transactions Pending for Approval</h3>
                            </div><!-- /.box-header -->
                            <div class="box-body">
                                <table id="cust_details_table1" class="table table-bordered table-striped app-data-table">
@@ -112,7 +112,7 @@
                       <!-- general form elements -->
                         <div class="box box-primary">
                              <div class="box-header with-border">
-                                <h3 class="box-title">All Transactions</h3>
+                                <h3 class="box-title">Completed Transactions</h3>
                              </div><!-- /.box-header -->
                              <div class="box-body">
                                 <table id="cust_details_table2" class="table table-bordered table-striped app-data-table">

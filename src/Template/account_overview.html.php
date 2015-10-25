@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="form-group">
                                       <label >Email</label>
-                                      <div>sethiavivek2006@gmail.com</div>
+                                      <div>tomcat@gmail.com</div>
                                     </div>
                                     <div class="form-group">
                                       <label>Account No.</label>

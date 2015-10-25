@@ -1,7 +1,16 @@
 <?php $t->extend("base.html.php"); ?>
 
 <?php
-$t->block("body", function ($t) { $current_user = _GROUP_EMPLOYEE;
+$t->block("body", function ($t) {
+    // TODO : Remove hard coding of the current user type
+    $current_user = _GROUP_EMPLOYEE;
+    switch($current_user) {
+        case _GROUP_USER : $profile_href = '/profile';
+                            break;
+        case _GROUP_EMPLOYEE : $profile_href = '/employee_profile';
+                            break;
+        default : break;
+    }
 ?>
 
 <header class="main-header">
@@ -25,7 +34,8 @@ $t->block("body", function ($t) { $current_user = _GROUP_EMPLOYEE;
           <ul class="dropdown-menu">
             <!-- Menu Footer-->
             <li class="user-footer">
-              <a href="/profile">
+               <a href=
+                   <?php echo "'" . $profile_href . "'>"?>
                Profile
               </a>
                 <a href="#" >
