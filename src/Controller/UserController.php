@@ -28,11 +28,11 @@ class UserController extends Controller {
     public function loadTransactionHistory ($request) {
         $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in user */
         /*Fetch the transaction details for the current user */
-        $transactions = $this->get('transaction_repository')->getTransactionsByCustomerId($currentUserId);
+        $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($currentUserId);
         // render the form
         $this->get("templating")->render("transaction_history.html.php", array(
             //"form" => $helper,
-            "transactions" => $transactions
+            "transactionList" => $transactionList
         ));
     }
      public function makeTransfer ($request) {

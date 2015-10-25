@@ -1,6 +1,9 @@
 <?php $t->extend("user_overview.html.php"); ?>
 
-<?php $t->block("content", function ($t) { ?>
+<?php $t->block("content", function ($t) {
+      $customer = $t->get("customer");
+      $onHoldTransactionList = $t->get("onHoldTransactionList");
+      $approvedTransactionList = $t->get("approvedTransactionList"); ?>
 
         <!-- Content Wrapper. Contains page content -->
               <div class="content-wrapper">
@@ -31,13 +34,13 @@
                             <div class="form-group">
                               <label>Name</label>
                               <div>
-                                Tom
+                                <?php echo $customer->getFirstName(); ?>
                               </div>
                             </div>
                             <div class="form-group">
                               <label>Email</label>
                               <div>
-                               tom@cat.com
+                                <?php echo $customer->getEmail(); ?>
                               </div>
                             </div>
                             <div class="form-group">
@@ -48,7 +51,7 @@
                         </form>
                       </div><!-- /.box -->
                     </div>
-                    <! -- Pending Transaction Details -->
+                    <!-- Pending Transaction Details -->
                     <div class="col-md-8">
                       <!-- general form elements -->
                       <div class="box box-primary">
@@ -66,19 +69,28 @@
                                       <th>Actions</th>
                                   </thead>
                                       <tbody>
-                                      <?php for($i=0; $i<15; $i++) { ?>
-                                            <tr>
-                                              <td><a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">12222</a></td>
-                                              <td>46366346346</td>
-                                              <td>10.10.15</td>
-                                              <td>50004</td>
-                                              <td>
-                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
-                                                 <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
-                                              </td>
-                                            </tr>
-                                       <?php } ?>
-
+                                        <?php foreach($onHoldTransactionList as $transaction) {?>
+                                        <tr>
+                                          <td>
+                                            <a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">
+                                              <?php echo $transaction->getId(); ?>
+                                            </a>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getToAccountId(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getTransactionDate(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getAmount(); ?>
+                                          </td>
+                                          <td>
+                                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
+                                             <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
+                                          </td>
+                                        </tr>
+                                        <?php }?>
                                       </tbody>
                                       <tfoot>
                                         <tr>
@@ -113,15 +125,25 @@
                                           <th>Remarks</th>
                                       </thead>
                                       <tbody>
-                                      <?php for($i=0;$i<10;$i++) { ?>
-                                            <tr>
-                                              <td>12222</td>
-                                              <td>46366346346</td>
-                                              <td>10.10.15</td>
-                                              <td>50004</td>
-                                              <td>For rent</td>
-                                            </tr>
-                                      <?php } ?>
+                                        <?php foreach($approvedTransactionList as $transaction) {?>
+                                        <tr>
+                                          <td>
+                                            <?php echo $transaction->getId(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getToAccountId(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getTransactionDate(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getAmount(); ?>
+                                          </td>
+                                          <td>
+                                            <?php echo $transaction->getRemarks(); ?>
+                                          </td>
+                                        </tr>
+                                        <?php }?>
                                       </tbody>
                                       <tfoot>
                                         <tr>

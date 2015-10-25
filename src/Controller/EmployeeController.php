@@ -31,12 +31,28 @@ class EmployeeController extends Controller {
             "customerList" => $customerList
         ));
     }
-     public function loadCustomerDetails ($request) {
-            // render the form
-            $this->get("templating")->render("customer_details.html.php", array(
-                //"form" => $helper
-            ));
+     public function loadCustomerDetails ($request, $customerId) {
+        
+        $customer = $this->get('user_repository')->get($customerId);
+        $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($customerId);
+        
+        $onHoldTransactionList = array();
+        $approvedTransactionList = array();
+        foreach ($transactionList as $transaction) {
+            $onHold = $transaction->getId();
+            if ($onHold === 1)
+                $onHoldTransactionList[] = $transaction;
+            else
+                $approvedTransactionList[] = $transaction;
         }
+        // render the form
+        $this->get("templating")->render("customer_details.html.php", array(
+            //"form" => $helper
+            "customer" => $customer,
+            "onHoldTransactionList" => $onHoldTransactionList,
+            "approvedTransactionList" => $approvedTransactionList
+        ));
+    }
     public function approveRegistrations ($request) {
         // render the form
         $this->get("templating")->render("approve_registration.html.php", array(

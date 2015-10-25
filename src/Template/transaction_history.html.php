@@ -1,7 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
 
 <?php $t->block("content", function ($t) {
-  $transactions = $t->get("transactions"); ?>
+  $transactionList = $t->get("transactionList"); ?>
  <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -33,7 +33,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach($transactions as $transaction) {?>
+                      <?php foreach($transactionList as $transaction) {?>
                       <tr>
                         <td>
                           <?php echo $transaction->getId(); ?>

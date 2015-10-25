@@ -34,7 +34,10 @@
                       <?php foreach($customerList as $customer) {?>
                         <tr>
                           <td>
-                            <?php echo $customer->getFirstName(); ?>
+                            <a href=
+                              <?php echo "'/customer_details/" . $customer->getId() . "'>"; ?>
+                              <?php echo $customer->getFirstName(); ?>
+                            </a>
                           </td>
                           <td>
                             <?php echo $customer->getLastName(); ?>

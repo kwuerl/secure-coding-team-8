@@ -13,6 +13,7 @@ class Transaction {
 	private $amount = 0;
 	private $transaction_date = "";
 	private $remarks = "";
+	private $on_hold = 0;
 	/**
 	 * Constructor
 	 */
@@ -130,5 +131,21 @@ class Transaction {
 	 */
 	public function setRemarks($remarks) {
 		$this->remarks = $remarks;
+	}
+	/**
+	 * Gets the on-hold status of the transaction
+	 *
+	 * @return integer
+	 */
+	public function getOnHold() {
+		return $this->on_hold;
+	}
+	/**
+	 * Sets the on-hold status of the transaction
+	 *
+	 * @param integer $onHold
+	 */
+	public function setOnHold($onHold) {
+		$this->on_hold = $onHold;
 	}
 }

@@ -6,6 +6,7 @@ namespace Model;
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class User {
+	private $id = "";
 	private $first_name = "";
 	private $last_name = "";
 	private $email = "";
@@ -16,6 +17,22 @@ class User {
 	 */
 	function __construct() {
 		
+	}
+	/**
+	 * Gets the user id
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	/**
+	 * Sets the user id
+	 *
+	 * @param integer $id
+	 */
+	public function setId($userId) {
+		$this->id = $userId;
 	}
 	/**
 	 * Gets the first name
