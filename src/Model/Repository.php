@@ -67,13 +67,25 @@ class Repository {
 	 */
 	public function get($id) {
 		$mysqli = $this->mysqli_wrapper->get();
-		if ($stmt = $mysqli->prepare("SELECT * FROM ".$this->table_name." WHERE ID = ? LIMIT 1;")) {
+		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = ? LIMIT 1;")) {
 			$stmt->bind_param('i', $id);
 			$result = $this->execute($stmt);
 
-			/*If result contains a single element, return it & return the complete result otherwise*/
-			if (count($result) == 1)
-				return $result[0];
+			/*Result will contain a single element and hence return it*/
+			return $result[0];
+		}
+	}
+	/**
+	 * Returns all instances of the Model
+	 *
+	 * @param integer $id ID to match
+	 *
+	 * @return array $result Array of Model instances
+	 */
+	public function getAll() {
+		$mysqli = $this->mysqli_wrapper->get();
+		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . ";")) {
+			$result = $this->execute($stmt);
 			return $result;
 		}
 	}

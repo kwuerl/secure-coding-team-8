@@ -15,18 +15,20 @@ class EmployeeController extends Controller {
         ));
 	}
 	public function loadProfile ($request) {
-        $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in user */
-        /*Fetch the details of the current user */
-        //$user = $this->get('user_repository')->get($currentUserId);
+        $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in employee */
+        /*Fetch the details of the current employee */
+        $employee = $this->get('employee_repository')->get($currentUserId);
         $this->get("templating")->render("profile_view.html.php", array(
             //"form" => $helper,
-            "currentUser" => $user
+            "currentUser" => $employee
         ));
     }
     public function loadCustomersList ($request) {
+        $customerList = $this->get('user_repository')->getAll();
         // render the form
         $this->get("templating")->render("customers_list.html.php", array(
             //"form" => $helper
+            "customerList" => $customerList
         ));
     }
      public function loadCustomerDetails ($request) {

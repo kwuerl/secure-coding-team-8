@@ -1,6 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
 
-<?php $t->block("content", function ($t) {?>
+<?php $t->block("content", function ($t) {
+      $customerList = $t->get("customerList"); ?>
 
  <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -24,25 +25,30 @@
                   <table id="cust_list_table" class="table table-bordered table-striped app-data-table">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Account Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email Id</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php for($i=0; $i<15; $i++){?>
-                      <tr>
-                        <td><a href="/customer_details">Tom</a></td>
-                        <td>13252525</td>
-                        <td>to@cat.com</td>
-                      </tr>
-                    <?php } ?>
-
+                      <?php foreach($customerList as $customer) {?>
+                        <tr>
+                          <td>
+                            <?php echo $customer->getFirstName(); ?>
+                          </td>
+                          <td>
+                            <?php echo $customer->getLastName(); ?>
+                          </td>
+                          <td>
+                            <?php echo $customer->getEmail(); ?>
+                          </td>
+                        </tr>
+                      <?php }?>
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th>Name</th>
-                        <th>Account No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email Id</th>
                       </tr>
                     </tfoot>
