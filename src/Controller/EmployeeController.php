@@ -24,6 +24,7 @@ class EmployeeController extends Controller {
         ));
     }
     public function loadCustomersList ($request) {
+        /*Fetch the details of all customers*/
         $customerList = $this->get('user_repository')->getAll();
         // render the form
         $this->get("templating")->render("customers_list.html.php", array(
@@ -32,15 +33,17 @@ class EmployeeController extends Controller {
         ));
     }
      public function loadCustomerDetails ($request, $customerId) {
-        
+        /*Fetch the details of the selected customer */
         $customer = $this->get('user_repository')->get($customerId);
+        /*Fetch all transactions for the selected customer*/
         $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($customerId);
         
+        /*Separate the transactions into completed and on-hold transactions.*/
         $onHoldTransactionList = array();
         $approvedTransactionList = array();
         foreach ($transactionList as $transaction) {
-            $onHold = $transaction->getId();
-            if ($onHold === 1)
+            $onHold = $transaction->getOnHold();
+            if ($onHold)
                 $onHoldTransactionList[] = $transaction;
             else
                 $approvedTransactionList[] = $transaction;
@@ -60,9 +63,9 @@ class EmployeeController extends Controller {
         ));
     }
     public function approveTransactions ($request) {
-            // render the form
-            $this->get("templating")->render("approve_transactions.html.php", array(
-                //"form" => $helper
-            ));
+        // render the form
+        $this->get("templating")->render("approve_transactions.html.php", array(
+            //"form" => $helper
+        ));
     }
 }
