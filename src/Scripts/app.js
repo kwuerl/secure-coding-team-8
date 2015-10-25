@@ -10,10 +10,10 @@ var secureBank = {
         $(document).ready(function(){
             // enabling click functionality on user name click ( for prfoile view or logout )
             $('.dropdown-toggle').on('click', function(){
-                if( !$(this).parent().hasClass('open'))
-                    $(this).parent().addClass('open');
+                if( !$(".user-menu").hasClass('open'))
+                    $(".user-menu").parent().addClass('open');
                 else
-                    $(this).parent().removeClass('open');
+                    $(".user-menu").parent().removeClass('open');
             });
             $('.sidebar-menu li').each(function(){
                 $(this).on("click",function(event){
@@ -25,8 +25,10 @@ var secureBank = {
 
                 });
             });
+
             // initializing all the data tables which are present in the page
             $('.app-data-table').each(function () {
+
                 // var source = $(this).attr("data-source");
                 $(this).dataTable({
                     "paging": true,
@@ -35,7 +37,11 @@ var secureBank = {
                     "ordering": true,
                     "info": true,
                     "autoWidth": false,
-                    "pageLength": 3
+                    "pageLength": 3,
+                    'aoColumnDefs': [{
+                        'bSortable': false,
+                        'aTargets': [-1]
+                    }]
                 });
             });
             // adjusting height of sidebar after the dom is created

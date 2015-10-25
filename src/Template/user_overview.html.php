@@ -1,10 +1,7 @@
 <?php $t->extend("base.html.php"); ?>
 
 <?php
-define("USER_ADMIN", "1");
-define("USER_CUSTOMER", "2");
-define("USER_EMPLOYEE", "3");
-$t->block("body", function ($t) { $current_user = USER_EMPLOYEE;
+$t->block("body", function ($t) { $current_user = _GROUP_EMPLOYEE;
 ?>
 
 <header class="main-header">
@@ -68,7 +65,7 @@ $t->block("body", function ($t) { $current_user = USER_EMPLOYEE;
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
     <?php switch($current_user){
-        case USER_CUSTOMER : ?>
+        case _GROUP_USER : ?>
               <li class="treeview">
                 <a href="/overview">
                   <span>Home</span>
@@ -90,7 +87,7 @@ $t->block("body", function ($t) { $current_user = USER_EMPLOYEE;
                      </a>
                 </li>
        <?php break;
-        case USER_EMPLOYEE : ?>
+        case _GROUP_EMPLOYEE : ?>
                 <li class="treeview active">
                 <a href="/employee_overview">
                   <span>Home</span>
