@@ -24,11 +24,8 @@ class TransactionRepository extends Repository {
 		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */
     		$query->bind_param("i", $customerId);
-    		$result = $this->execute($query);
-    		foreach($result as $row) {
-				$transaction = $this->fillModel($row);
-	    		$transactions[] = $transaction;
-    		}
+    		$transactions = $this->execute($query);
+
     		return $transactions;
     	}
 	}

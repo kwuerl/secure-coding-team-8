@@ -36,10 +36,10 @@
                       <?php foreach($transactions as $transaction) {?>
                       <tr>
                         <td>
-                          <?php echo $transaction->getTransactionId(); ?>
+                          <?php echo $transaction->getId(); ?>
                         </td>
                         <td>
-                          <?php echo $transaction->getDate(); ?>
+                          <?php echo $transaction->getTransactionDate(); ?>
                         </td>
                         <td>
                           <?php echo $transaction->getAmount(); ?>

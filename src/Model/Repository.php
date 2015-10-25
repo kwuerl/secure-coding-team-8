@@ -69,13 +69,12 @@ class Repository {
 		$mysqli = $this->mysqli_wrapper->get();
 		if ($stmt = $mysqli->prepare("SELECT * FROM ".$this->table_name." WHERE ID = ? LIMIT 1;")) {
 			$stmt->bind_param('i', $id);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			while ($row = $result->fetch_assoc()) {
-				return $this->fillModel($row);
-			}
-			$stmt->free_result();
-			$stmt->close();
+			$result = $this->execute($stmt);
+
+			/*If result contains a single element, return it & return the complete result otherwise*/
+			if (count($result) == 1)
+				return $result[0];
+			return $result;
 		}
 	}
 	/**
@@ -118,28 +117,17 @@ class Repository {
 	public function execute($query) {
 		/* execute query */
 	    $query->execute();
-		
-		$metaData = $query->result_metadata();
-
-		while ($field = $metaData->fetch_field()) {
-		  	$parameters[] = &$row[$field->name];
+	    $result = $query->get_result();
+	    $data = array();
+	    /*Populate the model from the result of query execution*/
+		while ($row = $result->fetch_assoc()) {
+			$data[] = $this->fillModel($row);
 		}
 
-	    /* bind result variables */
-		call_user_func_array(array($query, 'bind_result'), $parameters);
-
-		$result = array();
-	    /* fetch values */
-		while ($query->fetch()) {
-		  	foreach($row as $key => $val) {
-		    	$temp[$key] = $val;
-		  	}
-		  	$result[] = $temp;
-		}
-	    /* close the query */
-	    $query->close();
-
-	    return $result;
+		/*Free the result and close the query*/
+		$query->free_result();
+		$query->close();
+		return $data;
 	}
 	/**
 	 * Fills the corresponding model with values.

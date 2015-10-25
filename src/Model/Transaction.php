@@ -6,12 +6,12 @@ namespace Model;
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  */
 class Transaction {
-	private $transaction_id = 0;
+	private $id = 0;
 	private $from_account_id = 0;
 	private $to_account_id = 0;
 	private $to_account_name = "";
 	private $amount = 0;
-	private $date = "";
+	private $transaction_date = "";
 	private $remarks = "";
 	/**
 	 * Constructor
@@ -24,16 +24,16 @@ class Transaction {
 	 *
 	 * @return integer
 	 */
-	public function getTransactionId() {
-		return $this->transaction_id;
+	public function getId() {
+		return $this->id;
 	}
 	/**
 	 * Sets the transaction id
 	 *
 	 * @param integer $transactionId
 	 */
-	public function setTransactionId($transactionId) {
-		$this->transaction_id = $transactionId;
+	public function setId($transactionId) {
+		$this->id = $transactionId;
 	}
 	/**
 	 * Gets the from account id
@@ -104,16 +104,16 @@ class Transaction {
 	 *
 	 * @return string
 	 */
-	public function getDate() {
-		return $this->date;
+	public function getTransactionDate() {
+		return $this->transaction_date;
 	}
 	/**
 	 * Sets the transaction date
-	 * 
-	 * @param string $date
+	 *
+	 * @param string $transactionDate
 	 */
-	public function setDate($date) {
-		$this->date = $date;
+	public function setTransactionDate($transactionDate) {
+		$this->transaction_date = $transactionDate;
 	}
 	/**
 	 * Gets the remarks
