@@ -114,9 +114,9 @@ class RoutingService {
         } else {
             // check if defined with regex
             $pos = 0;
-            foreach ($this->routes as $route_id) {
+            foreach ($this->routes as $route_id=>$route) {
                 if (strpos($route, ':') !== false) {
-                    $route = str_replace($searches, $replaces, $route_id);
+                    $route = str_replace($searches, $replaces, $route);
                 }
                 if (preg_match('#^' . $route . '$#', $uri, $matched)) {
                     if ($this->methods[$pos] == $method) {
@@ -130,7 +130,7 @@ class RoutingService {
 
 	                    	if(!method_exists($controller_service, $rout_conf[1])) throw new \Exception("Controller ".$rout_conf[0]." does not have method ".$rout_conf[1]."!");
 
-                            $this->current_request->setRouteName($this->names[$route]);
+                            $this->current_request->setRouteName($this->names[$route_id]);
                             $this->current_request->setRouteParams($matched);
 
 	                    	call_user_func_array(array($controller_service, $rout_conf[1]), array_merge(array($request), $matched));
