@@ -37,7 +37,7 @@ class AuthService {
 	 * @return Model\User
 	 */
 	public function getCurrentUser() {
-		//TODO
+		return $this->current_user;
 	}
 	/**
 	 * Tries to login a User  
@@ -106,7 +106,7 @@ class AuthService {
 				$groups = $user->getGroups();
 				if(in_array($group_expr, $groups)) {
 					$this->current_user = $user;
-					return true;
+					return $this->current_user;
 				}
 			}
 		}

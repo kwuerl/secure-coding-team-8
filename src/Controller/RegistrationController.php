@@ -48,6 +48,7 @@ class RegistrationController extends Controller {
 				$model = new \Model\User();
 				$helper->fillModel($model);
 
+				$model->setGroups(array(_GROUP_USER));
 				// add to repository
 				if($this->get('customer_repository')->add($model)) {
 					// render the model

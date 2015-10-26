@@ -206,7 +206,7 @@ class Repository {
 	 *
 	 * @return object Result of the query execution
 	 */
-	public function execute($query) {
+	protected function execute($query) {
 		/* execute query */
 	    $query->execute();
 	    $result = $query->get_result();
@@ -228,7 +228,7 @@ class Repository {
 	 *
 	 * @return Model
 	 */
-	public function fillModel($values) {
+	protected function fillModel($values) {
 		$instance = new $this->model_class_name();
 		$reflection_obj = new \ReflectionClass($this->model_class_name);
 		foreach ($values as $name => $value) {

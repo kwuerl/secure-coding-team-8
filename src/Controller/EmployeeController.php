@@ -17,9 +17,7 @@ class EmployeeController extends UserController {
         ));
 	}
 	public function loadProfile ($request) {
-        $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in employee */
-        /*Fetch the details of the current employee */
-        $employee = $this->get('employee_repository')->get($currentUserId);
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
         $this->get("templating")->render("profile_view.html.php", array(
             //"form" => $helper,
@@ -27,6 +25,7 @@ class EmployeeController extends UserController {
         ));
     }
     public function loadCustomersList ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of all customers*/
         $customerList = $this->get('customer_repository')->getAll();
         // render the form
@@ -36,6 +35,7 @@ class EmployeeController extends UserController {
         ));
     }
      public function loadCustomerDetails ($request, $customerId) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
         /*Fetch all transactions for the selected customer*/
@@ -60,6 +60,7 @@ class EmployeeController extends UserController {
         ));
     }
     public function approveRegistrations ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch all transactions for the selected customer*/
         $customerRegistrationList = $this->get('customer_repository')->find(array("is_active"=>0));
         $employeeRegistrationList = $this->get('employee_repository')->find(array("is_active"=>0));
@@ -71,8 +72,9 @@ class EmployeeController extends UserController {
         ));
     }
     public function approveTransactions ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch all transactions that are on-hold.*/
-        $transactionList = $this->get('transaction_repository')->getByOnHoldStatus(1);
+        $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
         // render the form
         $this->get("templating")->render("approve_transactions.html.php", array(
             //"form" => $helper

