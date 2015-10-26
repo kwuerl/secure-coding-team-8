@@ -28,12 +28,14 @@ class RegistrationController extends Controller {
 			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim"), "");
 
-		$helper->addField("_password_plain", "text", array(
-			array("required", "Password is required")
+		$helper->addField("_password_plain", "password", array(
+			array("required", "Password is required"),
+			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
 		), array("ltrim", "rtrim"), "");
 
-		$helper->addField("password_repeat", "text", array(
-			array("required", "Please repeat your password")
+		$helper->addField("password_repeat", "password", array(
+			array("required", "Please repeat your password"),
+			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
 		), array("ltrim", "rtrim"), "");
 
 		// try to process the request
@@ -50,6 +52,7 @@ class RegistrationController extends Controller {
 				$this->get('user_repository')->add($model);
 
 				// render the model
+				// TODO: send email + employee approval
 				$this->get("templating")->render("form_registration_success.html.php", array(
 					"registration" => $model
 				));
