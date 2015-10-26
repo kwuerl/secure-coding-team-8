@@ -7,6 +7,7 @@ $loader->addPrefix("Service", "Service");
 $loader->addPrefix("Helper", "Helper");
 $loader->addPrefix("Controller", "Controller");
 $loader->addPrefix("Model", "Model");
+$loader->addPrefix("Auth", "Auth");
 $loader->register();
 
 $service_container = new \Service\ServiceContainer();

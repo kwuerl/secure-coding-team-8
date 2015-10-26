@@ -15,12 +15,45 @@ $service_container->register("session", "Service\\SessionService", array(
 	array("type"=>"service", "value"=>"random")
 ));
 
-$service_container->register("auth", "Service\\AuthService", array(
-	array("type"=>"service", "value"=>"user_repository")
-));
-
 $service_container->register("csrf", "Service\\CSRFService", array(
 	array("type"=>"service", "value"=>"session")
+));
+
+$service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
+	_MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
+));
+
+// ------------  Auth  -----------------
+
+$service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(
+	array("type"=>"service", "value"=>"customer_repository")
+));
+
+$service_container->register("employee_auth_provider", "Auth\\EmployeeAuthProvider", array(
+	array("type"=>"service", "value"=>"employee_repository")
+));
+
+$service_container->register("static_auth_provider", "Auth\\StaticAuthProvider", array(
+));
+
+$service_container->register("auth", "Service\\AuthService", array(
+	array("type"=>"service", "value"=>"session")
+), array(
+	array("function"=>"addUserProvider", "parameters"=>array(
+		array("type"=>"service", "value"=>"customer_auth_provider")
+	)),
+	array("function"=>"addUserProvider", "parameters"=>array(
+		array("type"=>"service", "value"=>"employee_auth_provider")
+	)),
+	array("function"=>"addUserProvider", "parameters"=>array(
+		array("type"=>"service", "value"=>"static_auth_provider")
+	))
+));
+
+// ------------  Templating   -----------------
+
+$service_container->register("templating_form_extension", "Helper\\TemplatingFormExtension", array(
+	array("type"=>"service", "value"=>"csrf")
 ));
 
 $service_container->register("templating", "Service\\TemplatingService", array(
@@ -28,16 +61,6 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
 		array("type"=>"service", "value"=>"templating_form_extension")
 	))
-));
-
-$service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
-	_MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
-));
-
-// ------------  Templating Extensions  -----------------
-
-$service_container->register("templating_form_extension", "Helper\\TemplatingFormExtension", array(
-	array("type"=>"service", "value"=>"csrf")
 ));
 
 // ------------  Controllers  -----------------

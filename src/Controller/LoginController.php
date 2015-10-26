@@ -33,10 +33,10 @@ class LoginController extends Controller {
 				$helper->fillModel($model);
 
 				// AuthService
-				if (!$this->get("auth")->login($model)) {
-					// TODO: login failed
+				if ($this->get("auth")->login($model)) {
+					echo "LOGIN!";
 				}
-				return;
+				//return;
 			}
 		}
 		// render the form
