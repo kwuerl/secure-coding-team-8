@@ -18,7 +18,7 @@ class LoginController extends Controller {
 			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim"), "");
 
-		$helper->addField("password", "text", array(
+		$helper->addField("password_plain", "text", array(
 			array("required", "Password is required")
 		), array("ltrim", "rtrim"), "");
 
