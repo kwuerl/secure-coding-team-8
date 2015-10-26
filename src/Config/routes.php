@@ -21,6 +21,7 @@ $routing_service->get("overview", "/overview", "customer_controller:loadOverview
 $routing_service->get("profile", "/profile", "customer_controller:loadProfile");
 $routing_service->get("transaction_history", "/transaction_history", "customer_controller:loadTransactionHistory");
 $routing_service->get("make_transfer", "/make_transfer", "customer_controller:makeTransfer");
+$routing_service->get("transaction_history_download", "/transaction_history_download", "customer_controller:generateTransactionPDF");
 /*
  * Employee routes
  */

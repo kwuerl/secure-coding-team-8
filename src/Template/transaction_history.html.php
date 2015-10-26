@@ -7,12 +7,13 @@
     <section class="content-header">
     <h1>
         Transaction History
-    </h1>
+    </h1>( <a href='transaction_history_download' target='_blank'>Download as PDF</a> )
     <ol class="breadcrumb">
         <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Transaction History</li>
     </ol>
     </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
