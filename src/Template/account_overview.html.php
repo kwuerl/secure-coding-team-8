@@ -1,5 +1,8 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("content", function ($t) { ?>
+<?php $t->block("content", function ($t) {
+      $currentUser = $t->get("currentUser");
+      $accountInfo = $t->get("accountInfo"); ?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,11 +24,15 @@
                             </div>
                             <div class="form-group">
                                 <label >Email</label>
-                                <div>tomcat@gmail.com</div>
+                                <div>
+                                    <?php echo $currentUser->getEmail(); ?>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Account No.</label>
-                                <div>2242243555</div>
+                                <div>
+                                    <?php echo $accountInfo->getAccountId(); ?>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-body -->

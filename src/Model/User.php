@@ -15,12 +15,6 @@ class User {
 	private $_password_plain = "";
 	private $password = "";
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		
-	}
-	/**
 	 * Gets the user id
 	 *
 	 * @return integer

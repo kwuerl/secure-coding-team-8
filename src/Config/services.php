@@ -89,6 +89,12 @@ $service_container->register("employee_repository", "Model\\EmployeeRepository",
 	_CLASS_MODEL_EMPLOYEE
 ));
 
+$service_container->register("account_repository", "Model\\AccountRepository", array(
+	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	_TBL_ACCOUNT,
+	_CLASS_MODEL_ACCOUNT
+));
+
 $service_container->register("transaction_repository", "Model\\TransactionRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
 	_TBL_TRANSACTION,
