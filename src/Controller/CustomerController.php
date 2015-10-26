@@ -27,7 +27,7 @@ class CustomerController extends UserController {
     public function loadTransactionHistory ($request) {
         $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in user */
         /*Fetch the transaction details for the current user */
-        $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($currentUserId);
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($currentUserId);
         // render the form
         $this->get("templating")->render("transaction_history.html.php", array(
             //"form" => $helper,
@@ -44,7 +44,7 @@ class CustomerController extends UserController {
     public function generateTransactionPDF($request) {
         $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in user */
         /*Fetch the transaction details for the current user */
-        $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($currentUserId);
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($currentUserId);
         // render the form
         $this->get("templating")->render("transaction_history_download.php", array(
         //"form" => $helper

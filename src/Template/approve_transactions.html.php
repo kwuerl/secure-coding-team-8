@@ -1,15 +1,17 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("content", function ($t) { ?>
+<?php $t->block("content", function ($t) {
+      $transactionList = $t->get("transactionList"); ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Approve Transactions
+        Transactions pending for Approval
     </h1>
     <ol class="breadcrumb">
         <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/approve_transactions"><i class="fa fa-dashboard"></i> Approve Transactions</a></li>
+        <li><a href="/approve_transactions"><i class="fa fa-dashboard"></i>Pending Transactions</a></li>
     </ol>
 </section>
 <!-- Main content -->
@@ -24,33 +26,48 @@
                 <thead>
                     <tr>
                         <th>Transaction Id</th>
-                        <th>To Account Number</th>
                         <th>Date of Transaction</th>
                         <th>Amount</th>
+                        <th>To Account Number</th>
+                        <th>To Account Name</th>
                         <th>Remarks</th>
                         <th>Actions</th>
                 </thead>
                 <tbody>
-                    <?php for($i=0;$i<10;$i++) { ?>
+                    <?php foreach ($transactionList as $transaction) {?>
                     <tr>
-                        <td>12222</td>
-                        <td>46366346346</td>
-                        <td>10.10.15</td>
-                        <td>50004</td>
-                        <td>For rent</td>
+                        <td>
+                            <?php echo $transaction->getId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $transaction->getTransactionDate(); ?>
+                        </td>
+                        <td>
+                            <?php echo $transaction->getAmount(); ?>
+                        </td>
+                        <td>
+                            <?php echo $transaction->getToAccountId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $transaction->getToAccountName(); ?>
+                        </td>
+                        <td>
+                            <?php echo $transaction->getRemarks(); ?>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
                             <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
                         </td>
                     </tr>
-                    <?php } ?>
+                    <?php }?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Transaction Id</th>
-                        <th>To Account Number</th>
                         <th>Date of Transaction</th>
                         <th>Amount</th>
+                        <th>To Account Number</th>
+                        <th>To Account Name</th>
                         <th>Remarks</th>
                         <th>Actions</th>
                     </tr>

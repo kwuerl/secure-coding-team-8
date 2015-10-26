@@ -4,9 +4,10 @@ namespace Controller;
  * Employee Controller class that handles loading of employee-related pages. Gets ServiceContainer injected.
  *
  * @author Vivek Sethia<vivek.sethia@tum.de>
+ * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
  */
 
-class EmployeeController extends Controller {
+class EmployeeController extends UserController {
 
 	public function loadOverview ($request) {
         // render the form
@@ -37,7 +38,7 @@ class EmployeeController extends Controller {
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
         /*Fetch all transactions for the selected customer*/
-        $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($customerId);
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($customerId);
         
         /*Separate the transactions into completed and on-hold transactions.*/
         $onHoldTransactionList = array();
@@ -69,9 +70,12 @@ class EmployeeController extends Controller {
         ));
     }
     public function approveTransactions ($request) {
+        /*Fetch all transactions that are on-hold.*/
+        $transactionList = $this->get('transaction_repository')->getByOnHoldStatus(1);
         // render the form
         $this->get("templating")->render("approve_transactions.html.php", array(
             //"form" => $helper
+            "transactionList" => $transactionList
         ));
     }
 }
