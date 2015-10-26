@@ -26,7 +26,10 @@ class AccountRepository extends Repository {
     		$query->bind_param("i", $customerId);
     		$account = $this->execute($query);
             /*Result will contain a single element and hence return it*/
-    		return $account[0];
+            if(sizeof($account) > 0) {
+                return $account[0];
+            }
     	}
+        return false;
 	}
 }

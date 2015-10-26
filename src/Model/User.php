@@ -91,6 +91,14 @@ class User {
 		$this->password = $encrypted_password;
 	}
 	/**
+	 * Gets the plain password
+	 *
+	 * @return string
+	 */
+	public function getPasswordPlain() {
+		return $this->_password_plain;
+	}
+	/**
 	 * Gets the password
 	 *
 	 * @return string

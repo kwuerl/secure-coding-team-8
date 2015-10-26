@@ -24,7 +24,7 @@ class Repository {
 	 *
 	 * @param array $filter Simple filter array. Example: array("id"=>1)
 	 *
-	 * @return array
+	 * @return array|boolean
 	 */
 	public function find($filter) {
 		$mysqli = $this->mysqli_wrapper->get();
@@ -57,6 +57,7 @@ class Repository {
 			$stmt->close();
 			return $model_array;
 		}
+		return false;
 	}
 	/**
 	 * Returns a one Model Instances that fit for the $filter criteria or false
@@ -73,27 +74,29 @@ class Repository {
 	}
 	/**
 	 * Returns a single Model Instance for ID $id
+	 * If no Model was found, return false
 	 *
 	 * @param integer $id ID to match
 	 *
-	 * @return $model
+	 * @return $model|boolean
 	 */
 	public function get($id) {
 		$mysqli = $this->mysqli_wrapper->get();
 		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = ? LIMIT 1;")) {
 			$stmt->bind_param('i', $id);
 			$result = $this->execute($stmt);
-
-			/*Result will contain a single element and hence return it*/
-			return $result[0];
+			if(sizeof($result)>0) {
+				return $result[0];
+			}
 		}
+		return false;
 	}
 	/**
 	 * Returns all instances of the Model
 	 *
 	 * @param integer $id ID to match
 	 *
-	 * @return array $result Array of Model instances
+	 * @return array|boolean $result Array of Model instances
 	 */
 	public function getAll() {
 		$mysqli = $this->mysqli_wrapper->get();
@@ -101,6 +104,7 @@ class Repository {
 			$result = $this->execute($stmt);
 			return $result;
 		}
+		return false;
 	}
 	/**
 	 * Adds a Model Instances to the database and updates its ID field
@@ -115,19 +119,27 @@ class Repository {
 		$query_values = array();
 		$query_types = "";
 		$reflection_obj = new \ReflectionClass($model_instance);
-		$class_methods = $reflection_obj->getMethods();
+		$class_properties = $reflection_obj->getProperties();
 		$values = array();
-		foreach ($class_methods as $method) {
-			if (strpos($method, 'get') !== false) {
-				$method_name = $method->name;
-				$attribute_name_cc = substr($method_name, 3);
-				$attribute_name = \Helper\StringHelper::camelCaseToUnderscore($attribute_name_cc);
-				$value = $model_instance->$method_name();
+		foreach ($class_properties as $property) {
+			$property_name = $property->getName();
+			if ($property_name[0] !== "_") {
+				$name_lower = strtolower($property_name);
+				$name_cc = \Helper\StringHelper::underscoreToCamelCase($name_lower, true);
+				if ($reflection_obj->hasMethod("get".$name_cc)) {
+					$value = call_user_func_array(	
+						array($model_instance, "get".$name_cc),
+						array()
+					);
+				} else {
+					$property->setAccessible(true);
+					$value = $property->getValue($model_instance);
+				}
 				if ($value !== null) {
 					if (is_bool($value)) {
-						$values[$attribute_name] = (int)$value;
+						$values[$property_name] = (int)$value;
 					} else {
-						$values[$attribute_name] = $value;
+						$values[$property_name] = $value;
 					}
 				}
 			}
@@ -152,8 +164,19 @@ class Repository {
 				$parameters[$key] = &$value;
 			}
 			call_user_func_array(array($stmt, "bind_param"), array_merge(array($query_types), $parameters));
-			$stmt->execute();
+			$result = $stmt->execute();
+			
+			if($result) {
+				$model_instance->setId($stmt->insert_id);
+				$stmt->close();
+				return true;
+			}
 			$stmt->close();
+			return false;
+		} else {
+			echo("Error in statement $query: " 
+                      . mysqli_error($mysqli));
+			return false;
 		}
 	}
 	/**

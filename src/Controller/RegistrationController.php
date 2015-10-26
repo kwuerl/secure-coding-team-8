@@ -49,14 +49,17 @@ class RegistrationController extends Controller {
 				$helper->fillModel($model);
 
 				// add to repository
-				$this->get('user_repository')->add($model);
+				if($this->get('customer_repository')->add($model)) {
+					// render the model
+					// TODO: send email + employee approval
+					$this->get("templating")->render("form_registration_success.html.php", array(
+						"registration" => $model
+					));
+					return;
+				} else {
+				}
 
-				// render the model
-				// TODO: send email + employee approval
-				$this->get("templating")->render("form_registration_success.html.php", array(
-					"registration" => $model
-				));
-				return;
+				
 			}
 		}
 		// render the form

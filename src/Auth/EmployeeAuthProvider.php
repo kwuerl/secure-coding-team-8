@@ -25,6 +25,11 @@ class EmployeeAuthProvider extends AuthProvider {
 	 * @return User|boolean
 	 */
 	public function verify(User $user) {
+		if($user_db = $this->cemployee_repository->findOne(array("email"=>$user->getEmail()))) {
+			if(password_verify ( $user->getPasswordPlain() , $user_db->getPassword() )) {
+				return $user_db;
+			}
+		}
 		return false;
 	}
 }
