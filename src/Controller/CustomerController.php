@@ -30,7 +30,7 @@ class CustomerController extends UserController {
     public function loadTransactionHistory ($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
         /*Fetch the transaction details for the current user */
-        $transactionList = $this->get('transaction_repository')->find(array("customer_id"=>$customer->getId()));
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($customer->getId());
         // render the form
         $this->get("templating")->render("transaction_history.html.php", array(
             //"form" => $helper,
@@ -47,7 +47,7 @@ class CustomerController extends UserController {
     public function generateTransactionPDF($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
         /*Fetch the transaction details for the current user */
-        $transactionList = $this->get('transaction_repository')->find(array("customer_id"=>$customer->getId()));
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($customer->getId());
         // render the form
         $this->get("templating")->render("transaction_history_download.php", array(
         //"form" => $helper
