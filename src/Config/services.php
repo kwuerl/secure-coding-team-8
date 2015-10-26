@@ -26,18 +26,23 @@ $service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", 
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(
-	array("type"=>"service", "value"=>"customer_repository")
+	array("type"=>"service", "value"=>"customer_repository"),
+	_CUSTOMER_START_PAGE
 ));
 
 $service_container->register("employee_auth_provider", "Auth\\EmployeeAuthProvider", array(
-	array("type"=>"service", "value"=>"employee_repository")
+	array("type"=>"service", "value"=>"employee_repository"),
+	_EMPLOYEE_START_PAGE
 ));
 
 $service_container->register("static_auth_provider", "Auth\\StaticAuthProvider", array(
+	_EMPLOYEE_START_PAGE
 ));
 
 $service_container->register("auth", "Service\\AuthService", array(
-	array("type"=>"service", "value"=>"session")
+	array("type"=>"service", "value"=>"session"),
+	array("type"=>"service", "value"=>"routing"),
+	_LOGIN_ROUTE_NAME
 ), array(
 	array("function"=>"addUserProvider", "parameters"=>array(
 		array("type"=>"service", "value"=>"customer_auth_provider")

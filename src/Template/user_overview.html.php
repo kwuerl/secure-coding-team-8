@@ -2,6 +2,7 @@
 <?php
     $t->block("body", function ($t) {
         // TODO : Remove hard coding of the current user type
+        // This belogs to Controller
         $current_user = _GROUP_EMPLOYEE;
         switch($current_user) {
             case _GROUP_USER : $profile_href = '/profile';
@@ -36,7 +37,7 @@
                             <?php echo "'" . $profile_href . "'>"?>
                             Profile
                             </a>
-                            <a href="#" >
+                            <a href="/logout" >
                             Sign out
                             </a>
                         </li>

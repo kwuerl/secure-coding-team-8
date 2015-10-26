@@ -11,6 +11,7 @@ class ExampleController extends Controller {
 	}
 
 	public function formtest ($request) {
+        $this->get("auth")->check(_GROUP_EMPLOYEE);
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("test_form");
 

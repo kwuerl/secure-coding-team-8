@@ -28,3 +28,7 @@ define('_CLASS_MODEL_CUSTOMER', "\Model\Customer");
 define('_CLASS_MODEL_EMPLOYEE', "\Model\Employee");
 define('_CLASS_MODEL_ACCOUNT', "\Model\Account");
 define('_CLASS_MODEL_TRANSACTION', "\Model\Transaction");
+
+define('_LOGIN_ROUTE_NAME', 'login_get');
+define('_EMPLOYEE_START_PAGE', 'employee_overview');
+define('_CUSTOMER_START_PAGE', 'overview');

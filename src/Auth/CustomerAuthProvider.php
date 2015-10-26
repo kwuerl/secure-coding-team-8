@@ -13,8 +13,9 @@ class CustomerAuthProvider extends AuthProvider {
 	/**
 	 * Constructor
 	 */
-	function __construct(CustomerRepository $customer_repository) {
+	function __construct(CustomerRepository $customer_repository, $afer_login_route_name) {
 		$this->customer_repository = $customer_repository;
+		parent::__construct($afer_login_route_name);
 	}
 	/**
 	 * Checks Login for a certain User and returns either the logged in User or false
@@ -23,7 +24,7 @@ class CustomerAuthProvider extends AuthProvider {
 	 *
 	 * @return User|boolean
 	 */
-	public function login(User $user) {
+	public function verify(User $user) {
 		return false;
 	}
 }

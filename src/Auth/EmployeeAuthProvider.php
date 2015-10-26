@@ -13,8 +13,9 @@ class EmployeeAuthProvider extends AuthProvider {
 	/**
 	 * Constructor
 	 */
-	function __construct(EmployeeRepository $employee_repository) {
+	function __construct(EmployeeRepository $employee_repository, $afer_login_route_name) {
 		$this->employee_repository = $employee_repository;
+		parent::__construct($afer_login_route_name);
 	}
 	/**
 	 * Checks Login for a certain User and returns either the logged in User or false
@@ -23,7 +24,7 @@ class EmployeeAuthProvider extends AuthProvider {
 	 *
 	 * @return User|boolean
 	 */
-	public function login(User $user) {
+	public function verify(User $user) {
 		return false;
 	}
 }

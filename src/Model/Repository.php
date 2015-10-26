@@ -59,6 +59,19 @@ class Repository {
 		}
 	}
 	/**
+	 * Returns a one Model Instances that fit for the $filter criteria or false
+	 *
+	 * @param array $filter Simple filter array. Example: array("id"=>1)
+	 *
+	 * @return array|boolean
+	 */
+	public function findOne($filter) {
+		$result = $this->find($filter);
+		if(sizeof($result) > 0) 
+			return $result[0];
+		return false;
+	}
+	/**
 	 * Returns a single Model Instance for ID $id
 	 *
 	 * @param integer $id ID to match

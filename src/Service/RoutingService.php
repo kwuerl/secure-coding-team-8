@@ -20,6 +20,7 @@ class RoutingService {
         ':all' => '.*'
     );
     private $error_callback;
+    private $current_request;
     /**
 	 * Constructor
 	 */
@@ -74,6 +75,7 @@ class RoutingService {
     public function dispatch()
     {
     	$request = new \Helper\Request();
+        $this->current_request = $request;
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];  
         $searches = array_keys($this->patterns);
@@ -96,7 +98,9 @@ class RoutingService {
 
                     	if(!method_exists($controller_service, $rout_conf[1])) throw new \Exception("Controller ".$rout_conf[0]." does not have method ".$rout_conf[1]."!");
 
-                    	call_user_func_array(array($controller_service, $rout_conf[1]), array($request));
+                        $this->current_request->setRouteName($this->names[$route]);
+
+                    	call_user_func_array(array($controller_service, $rout_conf[1]), array($this->current_request));
                         
                         if ($this->halts) return;
                         
@@ -125,6 +129,9 @@ class RoutingService {
 	                    	$controller_service = $this->service_container->get($rout_conf[0]);
 
 	                    	if(!method_exists($controller_service, $rout_conf[1])) throw new \Exception("Controller ".$rout_conf[0]." does not have method ".$rout_conf[1]."!");
+
+                            $this->current_request->setRouteName($this->names[$route]);
+                            $this->current_request->setRouteParams($matched);
 
 	                    	call_user_func_array(array($controller_service, $rout_conf[1]), array_merge(array($request), $matched));
     
@@ -159,7 +166,17 @@ class RoutingService {
      * @param string $dest
      * @param array $url_parameters
      */
-    public function redirect($dest, $url_parameters)
+    public function getRequest() {
+        return $this->current_request;
+    }
+
+    /**
+     * Returns a url for the given route name and params
+     *
+     * @param string $dest
+     * @param array $url_parameters
+     */
+    public function url($dest, $url_parameters)
     {
         $index = array_search($dest, $this->names);
         if ($index !== false) {
@@ -178,12 +195,23 @@ class RoutingService {
                 }
             }
             if (preg_match("#^".$route.'$#', $uri_with_params)) {
-                header('Location: '.$uri_with_params);
+                return $uri_with_params;
             } else {
                 throw new \Exception("URL Parameters don't match!");
             }
         } else {
             throw new \Exception("Route for \"".$dest."\" not found!");
         }
+    }
+
+    /**
+     * Defines a redirect to $dest
+     *
+     * @param string $dest
+     * @param array $url_parameters
+     */
+    public function redirect($dest, $url_parameters)
+    {
+         header('Location: '.$this->url($dest, $url_parameters));
     }
 }

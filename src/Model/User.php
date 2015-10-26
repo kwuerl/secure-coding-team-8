@@ -7,13 +7,15 @@ namespace Model;
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class User {
-	private $id = "";
-	private $first_name = "";
-	private $last_name = "";
-	private $email = "";
-	private $is_active = false;
-	private $_password_plain = "";
-	private $password = "";
+	protected $id = "";
+	protected $first_name = "";
+	protected $last_name = "";
+	protected $email = "";
+	protected $is_active = false;
+	protected $_password_plain = "";
+	protected $password = "";
+	protected $groups_plain = "";
+	protected $_provider;
 	/**
 	 * Gets the user id
 	 *
@@ -97,6 +99,14 @@ class User {
 		return $this->password;
 	}
 	/**
+	 * Gets the password
+	 *
+	 * @return string
+	 */
+	public function setPassword($password) {
+		$this->password = $password;
+	}
+	/**
 	 * Gets the active status
 	 *
 	 * @return boolean
@@ -111,5 +121,53 @@ class User {
 	 */
 	public function setIsActive($isActive) {
 		$this->is_active = $isActive;
+	}
+	/**
+	 * Gets the Users groups
+	 *
+	 * @return array
+	 */
+	public function getGroups() {
+		return explode(",", $this->groups_plain);
+	}
+	/**
+	 * Sets the Users groups
+	 * 
+	 * @param array $isActive
+	 */
+	public function setGroups($groups) {
+		$this->groups_plain = implode(",", $groups);
+	}
+	/**
+	 * Gets the Users groups
+	 *
+	 * @return array
+	 */
+	public function getGroupsPlain() {
+		return $this->groups_plain;
+	}
+	/**
+	 * Sets the Users groups
+	 * 
+	 * @param array $isActive
+	 */
+	public function setGroupsPlain($groups) {
+		$this->groups_plain = $groups;
+	}
+	/**
+	 * Gets the UserProvider
+	 *
+	 * @return array
+	 */
+	public function getProvider() {
+		return $this->_provider;
+	}
+	/**
+	 * Sets the UserProvider
+	 * 
+	 * @param array $isActive
+	 */
+	public function setProvider($provider) {
+		$this->_provider = $provider;
 	}
 }

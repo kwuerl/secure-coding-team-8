@@ -44,4 +44,7 @@ class LoginController extends Controller {
 			"form" => $helper
 		));
 	}
+	public function logout($request) {
+		$this->get("auth")->logout();
+	}
 }

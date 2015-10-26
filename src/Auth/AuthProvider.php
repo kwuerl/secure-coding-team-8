@@ -8,6 +8,13 @@ use Model\User;
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  */
 abstract class AuthProvider {
+	private $afer_login_route_name;
+	/**
+	 * Constructor
+	 */
+	function __construct($afer_login_route_name) {
+		$this->afer_login_route_name = $afer_login_route_name;
+	}
 	/**
 	 * Checks Login for a certain User and returns either the logged in User or false
 	 *
@@ -15,5 +22,13 @@ abstract class AuthProvider {
 	 *
 	 * @return User|boolean
 	 */
-	abstract public function login(User $user);
+	abstract public function verify(User $user);
+	/**
+	 * Returns the name of the route that shoulb be redirected to after login
+	 *
+	 * @return string
+	 */
+	public function getAfterLoginRouteName() {
+		return $this->afer_login_route_name;
+	}
 }

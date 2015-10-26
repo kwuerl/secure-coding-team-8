@@ -10,6 +10,7 @@ namespace Controller;
 class EmployeeController extends UserController {
 
 	public function loadOverview ($request) {
+        $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
         $this->get("templating")->render("employee_overview.html.php", array(
             //"form" => $helper

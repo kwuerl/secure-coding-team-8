@@ -10,6 +10,8 @@ class Request {
 	private $query = array();
 	private $data = array();
 	private $server = array();
+	private $route_name = "";
+	private $route_params = array();
 	/**
 	 * Constructor
 	 */
@@ -57,5 +59,33 @@ class Request {
 		} else {
 			return null;
 		}
+	}
+	/**
+	 * Sets the name of the current route
+	 */
+	public function setRouteName($name) {
+		$this->route_name = $name;
+	}
+	/**
+	 *Sets the current routes parameters
+	 */
+	public function setRouteParams($params) {
+		$this->route_params = $params;
+	}
+	/**
+	 * Sets the name of the current route
+	 *
+	 * @return string
+	 */
+	public function getRouteName() {
+		return $this->route_name;
+	}
+	/**
+	 *Sets the current routes parameters
+	 *
+	 * @return array
+	 */
+	public function getRouteParams() {
+		return $this->route_params;
 	}
 }

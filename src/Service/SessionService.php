@@ -170,5 +170,13 @@ class SessionService {
 	 */
 	public function has($name) {
 		return isset($_SESSION[$name]);
-	}	
+	}
+	/**
+	 * Unsets a param
+	 *
+	 * @param string $name		Name of the parameter
+	 */
+	public function del($name) {
+		unset($_SESSION[$name]);
+	}		
 }
