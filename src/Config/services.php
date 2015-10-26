@@ -99,12 +99,6 @@ $service_container->register("example_repository", "Model\\ExampleRepository", a
 	array("type"=>"service", "value"=>"mysqli_wrapper")
 ));
 
-$service_container->register("user_repository", "Model\\UserRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
-	"",
-	_CLASS_MODEL_USER
-));
-
 $service_container->register("customer_repository", "Model\\CustomerRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
 	_TBL_CUSTOMER,

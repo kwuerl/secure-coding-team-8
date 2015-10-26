@@ -61,8 +61,8 @@ class EmployeeController extends UserController {
     }
     public function approveRegistrations ($request) {
         /*Fetch all transactions for the selected customer*/
-        $customerRegistrationList = $this->get('customer_repository')->getByActiveStatus(0);
-        $employeeRegistrationList = $this->get('employee_repository')->getByActiveStatus(0);
+        $customerRegistrationList = $this->get('customer_repository')->find(array("is_active"=>0));
+        $employeeRegistrationList = $this->get('employee_repository')->find(array("is_active"=>0));
         // render the form
         $this->get("templating")->render("approve_registration.html.php", array(
             //"form" => $helper
