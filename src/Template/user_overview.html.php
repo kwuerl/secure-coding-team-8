@@ -33,8 +33,8 @@
                     <ul class="dropdown-menu">
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href=
-                            <?php echo "'" . $profile_href . "'>"?>
+                            <a href='
+                            <?= "" . $profile_href . "" ?>'>
                             Profile
                             </a>
                             <a href="/logout" >

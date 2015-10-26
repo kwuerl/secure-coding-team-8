@@ -40,13 +40,13 @@
                                         <?php foreach($customerRegistrationList as $customer) {?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $customer->getFirstName(); ?>
+                                                    <?= $t->s($customer->getFirstName()); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $customer->getLastName(); ?>
+                                                    <?= $t->s($customer->getLastName()); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $customer->getEmail(); ?>
+                                                    <?= $t->s($customer->getEmail()); ?>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
@@ -105,13 +105,13 @@
                                         <?php foreach($employeeRegistrationList as $employee) {?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $employee->getFirstName(); ?>
+                                                    <?= $t->s($employee->getFirstName()); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $employee->getLastName(); ?>
+                                                    <?= $t->s($employee->getLastName()); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $employee->getEmail(); ?>
+                                                    <?= $t->s($employee->getEmail()); ?>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>

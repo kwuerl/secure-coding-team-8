@@ -35,22 +35,22 @@
                                 <?php foreach($transactionList as $transaction) {?>
                                 <tr>
                                     <td>
-                                        <?php echo $transaction->getId(); ?>
+                                        <?= $t->s($transaction->getId()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $transaction->getTransactionDate(); ?>
+                                        <?= $t->s($transaction->getTransactionDate()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $transaction->getAmount(); ?>
+                                        <?= $t->s($transaction->getAmount()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $transaction->getToAccountId(); ?>
+                                        <?= $t->s($transaction->getToAccountId()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $transaction->getToAccountName(); ?>
+                                        <?= $t->s($transaction->getToAccountName()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $transaction->getRemarks(); ?>
+                                        <?= $t->s($transaction->getRemarks()); ?>
                                     </td>
                                 </tr>
                                 <?php }?>

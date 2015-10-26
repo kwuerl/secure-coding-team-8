@@ -26,19 +26,19 @@
                             <div class="form-group">
                                 <label>First Name</label>
                                 <div>
-                                    <?php echo $currentUser->getFirstName(); ?>
+                                    <?= $t->s($currentUser->getFirstName()); ?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Last Name</label>
                                 <div>
-                                    <?php echo $currentUser->getLastName(); ?>
+                                    <?= $t->s($currentUser->getLastName()); ?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <div>
-                                    <?php echo $currentUser->getEmail(); ?>
+                                    <?= $t->s($currentUser->getEmail()); ?>
                                 </div>
                             </div>
                         </div>

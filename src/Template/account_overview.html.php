@@ -25,13 +25,13 @@
                             <div class="form-group">
                                 <label >Email</label>
                                 <div>
-                                    <?php echo $currentUser->getEmail(); ?>
+                                    <?= $t->s($currentUser->getEmail()); ?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Account No.</label>
                                 <div>
-                                    <?php echo $accountInfo->getAccountId(); ?>
+                                    <?= $t->s($accountInfo->getAccountId()); ?>
                                 </div>
                             </div>
                         </div>

@@ -32,15 +32,15 @@
                                 <tr>
                                     <td>
                                         <a href=
-                                        <?php echo "'/customer_details/" . $customer->getId() . "'>"; ?>
-                                        <?php echo $customer->getFirstName(); ?>
+                                        '<?= $t->s("/customer_details/" . $customer->getId() . ""); ?>'>
+                                        <?= $t->s($customer->getFirstName()); ?>
                                         </a>
                                     </td>
                                     <td>
-                                        <?php echo $customer->getLastName(); ?>
+                                        <?= $t->s($customer->getLastName()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $customer->getEmail(); ?>
+                                        <?= $t->s($customer->getEmail()); ?>
                                     </td>
                                 </tr>
                                 <?php }?>

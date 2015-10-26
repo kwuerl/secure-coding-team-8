@@ -32,13 +32,13 @@
                         <div class="form-group">
                             <label>Name</label>
                             <div>
-                                <?php echo $customer->getFirstName(); ?>
+                                <?= $t->s($customer->getFirstName()); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
                             <div>
-                                <?php echo $customer->getEmail(); ?>
+                                <?= $t->s($customer->getEmail()); ?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,17 +74,17 @@
                             <tr>
                                 <td>
                                     <a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">
-                                    <?php echo $transaction->getId(); ?>
+                                    <?= $t->s($transaction->getId()); ?>
                                     </a>
                                 </td>
                                 <td>
-                                    <?php echo $transaction->getToAccountId(); ?>
+                                    <?= $t->s($transaction->getToAccountId()); ?>
                                 </td>
                                 <td>
-                                    <?php echo $transaction->getTransactionDate(); ?>
+                                    <?= $t->s($transaction->getTransactionDate()); ?>
                                 </td>
                                 <td>
-                                    <?php echo $transaction->getAmount(); ?>
+                                    <?= $t->s($transaction->getAmount()); ?>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
@@ -131,19 +131,19 @@
                         <?php foreach($approvedTransactionList as $transaction) {?>
                         <tr>
                             <td>
-                                <?php echo $transaction->getId(); ?>
+                                <?= $t->s($transaction->getId()); ?>
                             </td>
                             <td>
-                                <?php echo $transaction->getToAccountId(); ?>
+                                <?= $t->s($transaction->getToAccountId()); ?>
                             </td>
                             <td>
-                                <?php echo $transaction->getTransactionDate(); ?>
+                                <?= $t->s($transaction->getTransactionDate()); ?>
                             </td>
                             <td>
-                                <?php echo $transaction->getAmount(); ?>
+                                <?= $t->s($transaction->getAmount()); ?>
                             </td>
                             <td>
-                                <?php echo $transaction->getRemarks(); ?>
+                                <?= $t->s($transaction->getRemarks()); ?>
                             </td>
                         </tr>
                         <?php }?>
