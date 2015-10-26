@@ -114,9 +114,9 @@ class RoutingService {
         } else {
             // check if defined with regex
             $pos = 0;
-            foreach ($this->routes as $route) {
+            foreach ($this->routes as $route_id) {
                 if (strpos($route, ':') !== false) {
-                    $route = str_replace($searches, $replaces, $route);
+                    $route = str_replace($searches, $replaces, $route_id);
                 }
                 if (preg_match('#^' . $route . '$#', $uri, $matched)) {
                     if ($this->methods[$pos] == $method) {
