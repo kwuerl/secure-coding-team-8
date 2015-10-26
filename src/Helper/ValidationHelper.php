@@ -13,4 +13,10 @@ class ValidationHelper {
 	public static function required($input) {
 		return !empty($input);
 	}
+	public static function name($input) {
+		return preg_match("/^[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\-\s]+$/", $input);
+	}
+	public static function password($input) {
+		return preg_match("/^[a-zA-Z0-9\\\+\?\^\$#\-_]+$/", $input);
+	}
 }

@@ -91,7 +91,6 @@ class User {
 	 */
 	public function setPasswordPlain($password) {
 		$this->_password_plain = $password;
-		// TODO: encryption
 		$encrypted_password = password_hash($password, PASSWORD_BCRYPT);
 		$this->password = $encrypted_password;
 	}

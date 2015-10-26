@@ -38,7 +38,7 @@ login-page
 			</div>
 			<div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
 				<label for="form_registration[_password_plain]">Password</label>
-				<input type="password" class="form-control" name="form_registration[_password_plain]" value="<?= $t->s($t->get('form')->getValue('password')); ?>" required>
+				<input type="password" class="form-control" name="form_registration[_password_plain]" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
             	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
             	<?php if (sizeof($password_errors) > 0) { ?>
 	            	<p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?><br></p>
