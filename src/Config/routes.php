@@ -13,13 +13,14 @@ $routing_service->get("login_get", "/login", "login_controller:processLogin");
 $routing_service->post("login_post", "/login", "login_controller:processLogin");
 $routing_service->get("register_get", "/register", "registration_controller:processRegistration");
 $routing_service->post("register_post", "/register", "registration_controller:processRegistration");
+
 /*
- * User routes
+ * Customer routes
  */
-$routing_service->get("overview", "/overview", "user_controller:loadOverview");
-$routing_service->get("profile", "/profile", "user_controller:loadProfile");
-$routing_service->get("transaction_history", "/transaction_history", "user_controller:loadTransactionHistory");
-$routing_service->get("make_transfer", "/make_transfer", "user_controller:makeTransfer");
+$routing_service->get("overview", "/overview", "customer_controller:loadOverview");
+$routing_service->get("profile", "/profile", "customer_controller:loadProfile");
+$routing_service->get("transaction_history", "/transaction_history", "customer_controller:loadTransactionHistory");
+$routing_service->get("make_transfer", "/make_transfer", "customer_controller:makeTransfer");
 /*
  * Employee routes
  */
@@ -29,4 +30,3 @@ $routing_service->get("customers", "/customers", "employee_controller:loadCustom
 $routing_service->get("customer_detail", "/customer_details/(:num)", "employee_controller:loadCustomerDetails");
 $routing_service->get("approve_registration", "/approve_registrations","employee_controller:approveRegistrations");
 $routing_service->get("approve_transactions", "/approve_transactions","employee_controller:approveTransactions");
-

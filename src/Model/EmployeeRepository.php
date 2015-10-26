@@ -5,6 +5,6 @@ namespace Model;
  *
  * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
  */
-class EmployeeRepository extends Repository {
+class EmployeeRepository extends UserRepository {
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 /**
- * Employee Controller class that handles loading of user-related pages. Gets ServiceContainer injected.
+ * Employee Controller class that handles loading of employee-related pages. Gets ServiceContainer injected.
  *
  * @author Vivek Sethia<vivek.sethia@tum.de>
  */
@@ -18,6 +18,7 @@ class EmployeeController extends Controller {
         $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in employee */
         /*Fetch the details of the current employee */
         $employee = $this->get('employee_repository')->get($currentUserId);
+        // render the form
         $this->get("templating")->render("profile_view.html.php", array(
             //"form" => $helper,
             "currentUser" => $employee
@@ -25,7 +26,7 @@ class EmployeeController extends Controller {
     }
     public function loadCustomersList ($request) {
         /*Fetch the details of all customers*/
-        $customerList = $this->get('user_repository')->getAll();
+        $customerList = $this->get('customer_repository')->getAll();
         // render the form
         $this->get("templating")->render("customers_list.html.php", array(
             //"form" => $helper
@@ -34,7 +35,7 @@ class EmployeeController extends Controller {
     }
      public function loadCustomerDetails ($request, $customerId) {
         /*Fetch the details of the selected customer */
-        $customer = $this->get('user_repository')->get($customerId);
+        $customer = $this->get('customer_repository')->get($customerId);
         /*Fetch all transactions for the selected customer*/
         $transactionList = $this->get('transaction_repository')->getTransactionsByCustomerId($customerId);
         
@@ -57,9 +58,14 @@ class EmployeeController extends Controller {
         ));
     }
     public function approveRegistrations ($request) {
+        /*Fetch all transactions for the selected customer*/
+        $customerRegistrationList = $this->get('customer_repository')->getByActiveStatus(0);
+        $employeeRegistrationList = $this->get('employee_repository')->getByActiveStatus(0);
         // render the form
         $this->get("templating")->render("approve_registration.html.php", array(
             //"form" => $helper
+            "customerRegistrationList" => $customerRegistrationList,
+            "employeeRegistrationList" => $employeeRegistrationList
         ));
     }
     public function approveTransactions ($request) {

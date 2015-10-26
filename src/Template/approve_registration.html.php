@@ -1,5 +1,8 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("content", function ($t) { ?>
+<?php $t->block("content", function ($t) {
+      $customerRegistrationList = $t->get("customerRegistrationList");
+      $employeeRegistrationList = $t->get("employeeRegistrationList"); ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <div class="nav-tabs-custom">
@@ -11,7 +14,7 @@
         <div class="tab-pane active" id="customers">
             <section class="content-header">
                 <h1>
-                    Customers Registration Details
+                    Customer Registrations
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,29 +30,35 @@
                                 <table id="regsitrations_table" class="table table-bordered table-striped app-data-table">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th>Email Id</th>
-                                            <th>Account No.</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for($i=0; $i<15;$i++) { ?>
-                                        <tr>
-                                            <td>123450500</td>
-                                            <td>10.10.2015</td>
-                                            <td>1050</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                                <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
+                                        <?php foreach($customerRegistrationList as $customer) {?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $customer->getFirstName(); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $customer->getLastName(); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $customer->getEmail(); ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
+                                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                                </td>
+                                            </tr>
+                                        <?php }?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Account No.</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th>Email Id</th>
                                             <th>Actions</th>
                                         </tr>
@@ -86,29 +95,35 @@
                                 <table id="regsitrations_table" class="table table-bordered table-striped app-data-table">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th>Email Id</th>
-                                            <th>Account No.</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for($i=0; $i<15;$i++) { ?>
-                                        <tr>
-                                            <td>123450500</td>
-                                            <td>10.10.2015</td>
-                                            <td>1050</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                                <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
+                                        <?php foreach($employeeRegistrationList as $employee) {?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $employee->getFirstName(); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $employee->getLastName(); ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $employee->getEmail(); ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
+                                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                                </td>
+                                            </tr>
+                                        <?php }?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Account No.</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th>Email Id</th>
                                             <th>Actions</th>
                                         </tr>

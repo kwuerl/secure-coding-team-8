@@ -11,15 +11,14 @@ class TransactionRepository extends Repository {
 	 *
 	 * @param integer $customerId Customer ID to match
 	 *
-	 * @return Transaction $transactions Instances of the Transaction Model class
+	 * @return array $transactions Instances of the Transaction Model class
 	 */
 	public function getTransactionsByCustomerId($customerId) {
 		$statement = "SELECT TBL_TRANSACTION.*
-		 				from TBL_ACCOUNT, TBL_TRANSACTION
+		 				FROM TBL_ACCOUNT, TBL_TRANSACTION
 		 				WHERE TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
 		 				AND TBL_ACCOUNT.CUSTOMER_ID = ?";
 
-		$transactions = array();
 		/* create a prepared statement */
 		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */

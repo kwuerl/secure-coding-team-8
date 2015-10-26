@@ -58,6 +58,10 @@ $service_container->register("user_controller", "Controller\\UserController", ar
 	array("type"=>"service_container")
 ));
 
+$service_container->register("customer_controller", "Controller\\CustomerController", array(
+	array("type"=>"service_container")
+));
+
 $service_container->register("employee_controller", "Controller\\EmployeeController", array(
 	array("type"=>"service_container")
 ));
@@ -69,8 +73,14 @@ $service_container->register("example_repository", "Model\\ExampleRepository", a
 
 $service_container->register("user_repository", "Model\\UserRepository", array(
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
-	_TBL_CUSTOMER,
+	"",
 	_CLASS_MODEL_USER
+));
+
+$service_container->register("customer_repository", "Model\\CustomerRepository", array(
+	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	_TBL_CUSTOMER,
+	_CLASS_MODEL_CUSTOMER
 ));
 
 $service_container->register("employee_repository", "Model\\EmployeeRepository", array(
