@@ -15,12 +15,6 @@ class Transaction {
 	private $remarks = "";
 	private $on_hold = 0;
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		
-	}
-	/**
 	 * Gets the transaction id
 	 *
 	 * @return integer
