@@ -9,9 +9,16 @@ namespace Controller;
 class CustomerController extends UserController {
 
 	public function loadOverview ($request) {
+	    $currentUserId = 1; /*TODO needs to be set to the ID of the logged-in user */
+	    /*Fetch the details of the current user */
+        $customer = $this->get('customer_repository')->get($currentUserId);
+        /*Fetch the details of the current user */
+        $accountInfo = $this->get('account_repository')->getByCustomerId($currentUserId);
         // render the form
         $this->get("templating")->render("account_overview.html.php", array(
             //"form" => $helper
+            "currentUser" => $customer,
+            "accountInfo" => $accountInfo
         ));
 	}
 	public function loadProfile ($request) {

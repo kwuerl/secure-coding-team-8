@@ -26,9 +26,9 @@
         </div>
         <div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
             <?php if (sizeof($password_errors) > 0) { ?>
-              <label for="form_login[password]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?></label>
+              <label for="form_login[password_plain]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?></label>
             <?php } ?>
-            <input type="password" class="form-control" placeholder="Password" name="form_login[password]" value="<?= $t->s($t->get('form')->getValue('password')); ?>" required>
+            <input type="password" class="form-control" placeholder="Password" name="form_login[_password_plain]" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">

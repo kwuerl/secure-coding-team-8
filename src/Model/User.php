@@ -4,6 +4,7 @@ namespace Model;
  * the User model class
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class User {
 	private $id = "";
@@ -11,13 +12,8 @@ class User {
 	private $last_name = "";
 	private $email = "";
 	private $is_active = false;
-	private $password_plain = "";
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		
-	}
+	private $_password_plain = "";
+	private $password = "";
 	/**
 	 * Gets the user id
 	 *
@@ -83,20 +79,22 @@ class User {
 		$this->email = $email;
 	}
 	/**
-	 * Gets the plain password
-	 *
-	 * @return string
-	 */
-	public function getPasswordPlain() {
-		return $this->password_plain;
-	}
-	/**
-	 * Sets the plain password
+	 * Sets the plain password and saves the encrypted password in password.
 	 * 
 	 * @param string $password
 	 */
 	public function setPasswordPlain($password) {
-		$this->password_plain = $password;
+		$this->_password_plain = $password;
+		$encrypted_password = password_hash($password, PASSWORD_BCRYPT);
+		$this->password = $encrypted_password;
+	}
+	/**
+	 * Gets the password
+	 *
+	 * @return string
+	 */
+	public function getPassword() {
+		return $this->password;
 	}
 	/**
 	 * Gets the active status
