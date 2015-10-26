@@ -26,7 +26,7 @@ class RegistrationController extends Controller {
 			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim"), "");
 
-		$helper->addField("password", "text", array(
+		$helper->addField("_password_plain", "text", array(
 			array("required", "Password is required")
 		), array("ltrim", "rtrim"), "");
 
@@ -41,8 +41,11 @@ class RegistrationController extends Controller {
 			if($helper->validate()) {
 
 				// fill the model
-				$model = new \Model\Registration();
+				$model = new \Model\User();
 				$helper->fillModel($model);
+
+				// add to repository
+				$this->get('user_repository')->add($model);
 
 				// render the model
 				$this->get("templating")->render("form_registration_success.html.php", array(

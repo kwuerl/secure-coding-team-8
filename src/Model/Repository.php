@@ -97,7 +97,51 @@ class Repository {
 	 * @return boolean
 	 */
 	public function add($model_instance) {
-		//TODO
+		$mysqli = $this->mysqli_wrapper->get();
+		$query = "INSERT INTO " . $this->table_name . " (";
+		$query_values = array();
+		$query_types = "";
+		$reflection_obj = new \ReflectionClass($model_instance);
+		$class_methods = $reflection_obj->getMethods();
+		$values = array();
+		foreach ($class_methods as $method) {
+			if (strpos($method, 'get') !== false) {
+				$method_name = $method->name;
+				$attribute_name_cc = substr($method_name, 3);
+				$attribute_name = \Helper\StringHelper::camelCaseToUnderscore($attribute_name_cc);
+				$value = $model_instance->$method_name();
+				if ($value !== null) {
+					if (is_bool($value)) {
+						$values[$attribute_name] = (int)$value;
+					} else {
+						$values[$attribute_name] = $value;
+					}
+				}
+			}
+		}
+		foreach ($values as $col => $val) {
+			$query .= strtoupper($col).",";
+			$query_values[] = $val;
+			if (is_int($val)) {
+				$query_types .= "i";
+			} else if (is_float($val)) {
+				$query_types .= "d";
+			} else {
+				$query_types .= "s";
+			}
+		}
+		$query = rtrim($query, ",");
+		$query_values_str = rtrim(str_repeat("?,", sizeof($values)), ",");
+		$query .= ") VALUES(" . $query_values_str . ");";
+		if ($stmt = $mysqli->prepare($query)) {
+			$parameters = array();
+			foreach ($query_values as $key => &$value) {
+				$parameters[$key] = &$value;
+			}
+			call_user_func_array(array($stmt, "bind_param"), array_merge(array($query_types), $parameters));
+			$stmt->execute();
+			$stmt->close();
+		}
 	}
 	/**
 	 * Saves the changes of Model Instances to the database
