@@ -38,7 +38,7 @@ class TemplatingFlashBagExtension extends TemplatingHelperExtension {
 	 * @param TemplatingHelper $t
 	 */
 	public function echoFlashMessages($t) {
-		$messages = $this->getFlashMessages();
+		$messages = $this->getFlashMessages($t);
 		foreach($messages as $message) {
 			if($message->getType() == "error") {
 				echo '<div class="alert alert-danger alert-dismissable">';
