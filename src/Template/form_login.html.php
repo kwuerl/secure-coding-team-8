@@ -9,7 +9,7 @@
 
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your banking session</p>
-
+      <?php $t->flash_echo(); ?>
       <?php $t->formh($t->get("form"), array("action"=>"/login", "method"=>"post"), function ($t) { ?>
         <?php
           $email_errors = $t->get("form")->getError("email");

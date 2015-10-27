@@ -15,6 +15,10 @@ $service_container->register("session", "Service\\SessionService", array(
 	array("type"=>"service", "value"=>"random")
 ));
 
+$service_container->register("flash_bag", "Service\\FlashBagService", array(
+	array("type"=>"service", "value"=>"session")
+));
+
 $service_container->register("csrf", "Service\\CSRFService", array(
 	array("type"=>"service", "value"=>"session")
 ));
@@ -61,10 +65,17 @@ $service_container->register("templating_form_extension", "Helper\\TemplatingFor
 	array("type"=>"service", "value"=>"csrf")
 ));
 
+$service_container->register("templating_flash_bag_extension", "Helper\\TemplatingFlashBagExtension", array(
+	array("type"=>"service", "value"=>"flash_bag")
+));
+
 $service_container->register("templating", "Service\\TemplatingService", array(
 ), array(
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
 		array("type"=>"service", "value"=>"templating_form_extension")
+	)),
+	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
+		array("type"=>"service", "value"=>"templating_flash_bag_extension")
 	))
 ));
 
