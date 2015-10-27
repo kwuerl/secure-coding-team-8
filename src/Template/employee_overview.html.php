@@ -1,7 +1,5 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("menu_employee_overview_class", function ($t) { ?>
-    treeview active
-<?php }); ?>
+<?php $t->set("menu_active", "employee_overview"); ?>
 <?php $t->block("content", function ($t) { ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

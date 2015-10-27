@@ -1,3 +1,4 @@
+<?php $t->set("is_login", false); ?>
 <html>
     <head>
         <title>SecureBank</title>
@@ -11,11 +12,7 @@
 	    <link rel="stylesheet" href="/Vendor/theme/header.css">
 	    <link rel="stylesheet" href="/Vendor/theme/skin.min.css">
     </head>
-    <body class="hold-transition
-    <?php $t->block("body_classes", function ($t) { ?>
-        skin-blue sidebar-mini
-    <?php }); ?>
-    ">
+    <body class="hold-transition<?= $t->get("is_login")?" login-page":" skin-blue sidebar-mini";?>">
     <?php $t->block("body", function ($t) { ?>
         Default
     <?php }); ?>

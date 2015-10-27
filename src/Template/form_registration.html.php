@@ -1,7 +1,5 @@
 <?php $t->extend("base.html.php"); ?>
-<?php $t->block("body_classes", function ($t) { ?>
-login-page
-<?php }); ?>
+<?php $t->set("is_login", true); ?>
 <?php $t->block("body", function ($t) { ?>
 <div class="login-box">
 	<h1>Register an account</h1>

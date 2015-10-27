@@ -19,7 +19,7 @@ class EmployeeController extends UserController {
 	public function loadProfile ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
-        $this->get("templating")->render("profile_view.html.php", array(
+        $this->get("templating")->render("employee_profile_view.html.php", array(
             //"form" => $helper,
             "currentUser" => $employee
         ));

@@ -1,7 +1,5 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("menu_make_transfer_class", function ($t) { ?>
-    treeview active
-<?php }); ?>
+<?php $t->set("menu_active", "make_transfer"); ?>
 <?php $t->block("content", function ($t) { ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

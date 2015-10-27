@@ -22,7 +22,7 @@ class CustomerController extends UserController {
 	public function loadProfile ($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
         // render the form
-        $this->get("templating")->render("profile_view.html.php", array(
+        $this->get("templating")->render("customer_profile_view.html.php", array(
             //"form" => $helper,
             "currentUser" => $customer
         ));

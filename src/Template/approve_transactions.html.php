@@ -1,7 +1,5 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->block("menu_approve_transactions_class", function ($t) { ?>
-    treeview active
-<?php }); ?>
+<?php $t->set("menu_active", "approve_transactions"); ?>
 <?php $t->block("content", function ($t) {
       $transactionList = $t->get("transactionList"); ?>
 

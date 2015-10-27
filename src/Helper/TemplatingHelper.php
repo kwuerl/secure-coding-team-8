@@ -12,6 +12,7 @@ class TemplatingHelper {
 	private $all_extends = array();
 	private $current_template_name;
 	private $extensions;
+	private $template_variables = array();
 	/**
 	 * Constructor
 	 */
@@ -44,6 +45,19 @@ class TemplatingHelper {
 		if (empty($this->curr_extends)) {
 			// calls the block lanbda function
 			$this->blocks[$name]($this);
+		}
+	}
+	/**
+	 * Sets a Variable. The variable Definition can be overwritten by any parent template. Set Definitions overwrite payload variables
+	 *
+	 * @param string $name	Name of the block
+	 * @param string $function	HTML within the Block
+	 *
+	 * @return string
+	 */
+	public function set($name, $variable) {
+		if(!array_key_exists($name, $this->template_variables)) {
+			$this->template_variables[$name] = $variable;
 		}
 	}
 	/**
@@ -84,8 +98,14 @@ class TemplatingHelper {
 	 * @return any
 	 */
 	public function get($param_name) {
-		if(!array_key_exists($param_name, $this->payload)) throw new \Exception("Parameter $param_name does not exist.");
-		return $this->payload[$param_name];
+		$in_payload = array_key_exists($param_name, $this->payload);
+		$in_template = array_key_exists($param_name, $this->template_variables);
+		if(!$in_payload && !$in_template) throw new \Exception("Parameter $param_name does not exist.");
+		if($in_template) {
+			return $this->template_variables[$param_name];
+		} else {
+			return $this->payload[$param_name];
+		}
 	}
 	/**
 	 * Tries to find the Method in one of the extensions

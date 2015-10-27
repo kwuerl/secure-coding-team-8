@@ -1,4 +1,5 @@
 <?php $t->extend("base.html.php"); ?>
+<?php $t->set("menu_active", "home"); ?>
 <?php
     $t->block("body", function ($t) {
         // TODO : Remove hard coding of the current user type
@@ -75,76 +76,49 @@
         <ul class="sidebar-menu">
             <?php switch($current_user){
                 case _GROUP_USER : ?>
-            <li class="
-            <?php $t->block("menu_home_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="home"?" active":""; ?>">
                 <a href="/overview">
                     <span>Home</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_profile_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="profile"?" active":""; ?>">
                 <a href="/profile">
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_transaction_history_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="transaction_history"?" active":""; ?>">
                 <a href="/transaction_history">
                     <span>Transaction History</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_make_transfer_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="make_transfer"?" active":""; ?>">
                 <a href="/make_transfer">
                     <span>Make Transfer</span>
                 </a>
             </li>
             <?php break;
                 case _GROUP_EMPLOYEE : ?>
-            <li class="
-            <?php $t->block("menu_employee_overview_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="employee_overview"?" active":""; ?>">
                 <a href="/employee_overview">
                     <span>Home</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_employee_profile_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="employee_profile"?" active":""; ?>">
                 <a href="/employee_profile">
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_customers_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="customers"?" active":""; ?>">
                 <a href="/customers">
                     <span>Customers</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_approve_registrations_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="approve_registrations"?" active":""; ?>">
                 <a href="/approve_registrations">
                     <span>Approve Registrations</span>
                 </a>
             </li>
-            <li class="
-            <?php $t->block("menu_approve_transactions_class", function ($t) { ?>
-                treeview
-            <?php }); ?> ">
+            <li class="treeview<?= $t->get('menu_active')=="approve_transactions"?" active":""; ?>">
                 <a href="/approve_transactions">
                     <span>Approve Transactions</span>
                 </a>
