@@ -57,6 +57,7 @@ class Repository {
 			$stmt->close();
 			return $model_array;
 		}
+		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
 		return false;
 	}
 	/**
@@ -68,8 +69,9 @@ class Repository {
 	 */
 	public function findOne($filter) {
 		$result = $this->find($filter);
-		if(sizeof($result) > 0) 
+		if (sizeof($result) > 0) {
 			return $result[0];
+		}
 		return false;
 	}
 	/**
@@ -85,10 +87,12 @@ class Repository {
 		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = ? LIMIT 1;")) {
 			$stmt->bind_param('i', $id);
 			$result = $this->execute($stmt);
-			if(sizeof($result)>0) {
+			if (sizeof($result) > 0) {
+				$stmt->close();
 				return $result[0];
 			}
 		}
+		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
 		return false;
 	}
 	/**
@@ -104,6 +108,7 @@ class Repository {
 			$result = $this->execute($stmt);
 			return $result;
 		}
+		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
 		return false;
 	}
 	/**
@@ -166,18 +171,14 @@ class Repository {
 			call_user_func_array(array($stmt, "bind_param"), array_merge(array($query_types), $parameters));
 			$result = $stmt->execute();
 			
-			if($result) {
+			if ($result) {
 				$model_instance->setId($stmt->insert_id);
 				$stmt->close();
 				return true;
 			}
-			$stmt->close();
-			return false;
-		} else {
-			echo("Error in statement $query: " 
-                      . mysqli_error($mysqli));
-			return false;
 		}
+		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		return false;
 	}
 	/**
 	 * Saves the changes of Model Instances to the database

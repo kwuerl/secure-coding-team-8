@@ -39,19 +39,31 @@ class TemplatingFlashBagExtension extends TemplatingHelperExtension {
 	 */
 	public function echoFlashMessages($t) {
 		$messages = $this->getFlashMessages($t);
-		foreach($messages as $message) {
-			if($message->getType() == "error") {
-				echo '<div class="alert alert-danger alert-dismissable">';
-			} else if($message->getType() == "success") {
-				echo '<div class="alert alert-success alert-dismissable">';
-			} else if($message->getType() == "warning") {
-				echo '<div class="alert alert-warning alert-dismissable">';
-			} else {
-				echo '<div class="alert alert-info alert-dismissable">';
+		foreach ($messages as $message) {
+			$html_class = "";
+			$html_icon_class = "";
+			switch ($message->getType()) {
+				case 'error':
+					$html_class = "alert-danger";
+					$html_icon_class = "fa-ban";
+					break;
+				case 'success':
+					$html_class = "alert-success";
+					$html_icon_class = "fa-check";
+					break;
+				case 'warning':
+					$html_class = "alert-warning";
+					$html_icon_class = "fa-warning";
+					break;
+				default:
+					$html_class = "alert-info";
+					$html_icon_class = "fa-info";
+					break;
 			}
-	          echo '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-	          echo '<h4><i class="icon fa fa-ban"></i> '.$message->getHeadline().'</h4>';
-	          echo $message->getMessage();
+			echo '<div class="alert '.$html_class.' alert-dismissable">';
+	        echo '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+	        echo '<h4><i class="icon fa '.$html_icon_class.'"></i> '.$message->getHeadline().'</h4>';
+	        echo $message->getMessage();
 	        echo '</div>';
         }
 	}

@@ -69,8 +69,8 @@ class AuthService {
 	 * @throws UserNotEnabledException
 	 */
 	public function login(User $user) {
-		if($user = $this->verify($user)) {
-			if($this->session_service->has("redirect_after_login")) {
+		if ($user = $this->verify($user)) {
+			if ($this->session_service->has("redirect_after_login")) {
 				$redirect_after_login = $this->session_service->get("redirect_after_login");
 				$redirect_name = $redirect_after_login[0];
 				$redirect_params = $redirect_after_login[1];
@@ -87,6 +87,9 @@ class AuthService {
 			$this->session_service->clear();
 			$this->session_service->set("current_user", $sess_user);
 			$this->routing_service->redirect($redirect_name, $redirect_params);
+			return true;
+		} else {
+			return false;
 		}
 	}
 	/**

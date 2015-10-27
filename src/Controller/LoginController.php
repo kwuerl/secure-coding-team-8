@@ -33,12 +33,10 @@ class LoginController extends Controller {
 				$helper->fillModel($model);
 
 				// AuthService
-				if ($this->get("auth")->login($model)) {
-					return;
+				if (!$this->get("auth")->login($model)) {
+					$this->get("flash_bag")->add("Login failed", "Unfortunately the Login failed", "error");
 				} 
-				//return;
 			}
-			$this->get("flash_bag")->add("Login failed", "Unfortunately the Login failed", "error");
 		} 
 		// render the form
 		$this->get("templating")->render("form_login.html.php", array(

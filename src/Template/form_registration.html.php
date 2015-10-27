@@ -57,6 +57,7 @@
 	            </div><!-- /.col -->
 	        </div>
 		<?php }); ?>
+		<a href="login" class="text-center">Back to login</a>
 	</div>
 </div>
 <?php });

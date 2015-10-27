@@ -8,7 +8,7 @@ namespace Controller;
  */
 class RegistrationController extends Controller {
 
-	public function processRegistration ($request) {
+	public function processRegistration($request) {
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("form_registration");
 
@@ -39,26 +39,30 @@ class RegistrationController extends Controller {
 		), array("ltrim", "rtrim"), "");
 
 		// try to process the request
-		if($helper->processRequest($request)) {
+		if ($helper->processRequest($request)) {
 
 			//try to validate
-			if($helper->validate()) {
+			if ($helper->validate()) {
 
 				// fill the model
 				$model = new \Model\User();
 				$helper->fillModel($model);
 
 				$model->setGroups(array(_GROUP_USER));
-				// add to repository
-				if($this->get('customer_repository')->add($model)) {
-					$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
-					$this->get("routing")->redirect("login_get", array());
-					return;
-				} else {
-					$this->get("flash_bag")->add("Registration failed!", "Please try again later.", "error");
-				}
 
-				
+				// if customer with email doesn't exist, add to repository
+				if (!$this->get('customer_repository')->findOne(array("email" => $model->getEmail()))) {
+					// add to repository
+					if ($this->get('customer_repository')->add($model)) {
+						$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
+						$this->get("routing")->redirect("login_get", array());
+						return;
+					} else {
+						$this->get("flash_bag")->add("Registration failed!", "Please try again later.", "error");
+					}
+				} else {
+					$this->get("flash_bag")->add("Registration failed!", "There is already an account with this e-mail.", "error");
+				}
 			}
 		}
 		// render the form
