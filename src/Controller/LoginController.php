@@ -5,6 +5,7 @@ namespace Controller;
  * Login Controller class that extends Controller. Gets ServiceContainer injected.
  *
  * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class LoginController extends Controller {
 

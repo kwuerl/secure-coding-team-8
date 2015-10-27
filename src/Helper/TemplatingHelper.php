@@ -4,6 +4,7 @@ namespace Helper;
  * TemplatingHelper is injected into the template and contains the template parameters. Also it allowes "blocks" within the templates and to extend other templates
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class TemplatingHelper {
 	private $payload;

@@ -6,6 +6,7 @@ namespace Model;
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class Repository {
 	protected $mysqli_wrapper;

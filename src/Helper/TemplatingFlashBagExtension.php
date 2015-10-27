@@ -6,6 +6,7 @@ use Service\FlashBagService;
  * TemplatingFormExtension can be used to secure forms
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class TemplatingFlashBagExtension extends TemplatingHelperExtension {
 	private $flash_bag_service;

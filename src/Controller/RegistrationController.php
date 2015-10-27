@@ -15,12 +15,12 @@ class RegistrationController extends Controller {
 		//add one field
 		$helper->addField("first_name", "name", array(
 			array("required", "First name is required"),
-			array("name", "Only letters, '-' and white space allowed")
+			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("last_name", "name", array(
 			array("required", "Last name is required"),
-			array("name", "Only letters, '-' and white space allowed")
+			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("email", "email", array(
@@ -35,7 +35,8 @@ class RegistrationController extends Controller {
 
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
+			array("password", "Only letters, numbers and '-_$^?\+#' allowed"),
+			array("equal", "Passwords do not match", array("_password_plain"))
 		), array("ltrim", "rtrim"), "");
 
 		// try to process the request
