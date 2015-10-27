@@ -6,6 +6,7 @@
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="/Vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/Vendor/bootstrap/css/dataTables.bootstrap.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
         <!-- Theme style -->
 	    <link rel="stylesheet" href="/Vendor/theme/AdminLTE.min.css">

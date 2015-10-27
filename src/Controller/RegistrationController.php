@@ -51,13 +51,11 @@ class RegistrationController extends Controller {
 				$model->setGroups(array(_GROUP_USER));
 				// add to repository
 				if($this->get('customer_repository')->add($model)) {
-					// render the model
-					// TODO: send email + employee approval
-					$this->get("templating")->render("form_registration_success.html.php", array(
-						"registration" => $model
-					));
+					$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
+					$this->get("routing")->redirect("login_get", array());
 					return;
 				} else {
+					$this->get("flash_bag")->add("Registration failed!", "Please try again later.", "error");
 				}
 
 				

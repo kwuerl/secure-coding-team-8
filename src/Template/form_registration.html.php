@@ -4,6 +4,7 @@
 <div class="login-box">
 	<h1>Register an account</h1>
 	<div class="login-box-body">
+      	<?php $t->flash_echo(); ?>
 		<?php $t->formh($t->get("form"), array("action"=>"/register", "method"=>"post"), function ($t) { ?>
 			<?php
 				$first_name_errors = $t->get("form")->getError("first_name");
