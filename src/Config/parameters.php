@@ -3,6 +3,7 @@
  * Definition of constants used in the application.
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
@@ -32,3 +33,5 @@ define('_CLASS_MODEL_TRANSACTION', "\Model\Transaction");
 define('_LOGIN_ROUTE_NAME', 'login_get');
 define('_EMPLOYEE_START_PAGE', 'employee_overview');
 define('_CUSTOMER_START_PAGE', 'overview');
+
+define('_EMAIL', 'info@securebank.de');

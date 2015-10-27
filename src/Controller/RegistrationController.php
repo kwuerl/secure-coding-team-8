@@ -53,8 +53,18 @@ class RegistrationController extends Controller {
 
 				// if customer with email doesn't exist, add to repository
 				if (!$this->get('customer_repository')->findOne(array("email" => $model->getEmail()))) {
+
 					// add to repository
 					if ($this->get('customer_repository')->add($model)) {
+
+						// send confirmation email
+						$this->get("email")->sendMail(
+							$model->getEmail(),
+							"Thank you for your registration",
+							"Dear ".$model->getFirstName().$model->getLastName().",\nthank you for your registration at SecureBank.\nAs soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.\n\nHave a nice day,\nyour SecureBank"
+						);
+
+						// set flash message and redirect
 						$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
 						$this->get("routing")->redirect("login_get", array());
 						return;

@@ -27,6 +27,10 @@ $service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", 
 	_MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
 ));
 
+$service_container->register("email", "Service\\EmailService", array(
+	_EMAIL
+));
+
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(
