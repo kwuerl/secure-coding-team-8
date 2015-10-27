@@ -46,7 +46,7 @@ class User {
 	 * @param string $firstName
 	 */
 	public function setFirstName($firstName) {
-		$this->first_name = $firstName;
+		$this->first_name = ucfirst($firstName);
 	}
 	/**
 	 * Gets the last name
@@ -62,7 +62,7 @@ class User {
 	 * @param string $lastName
 	 */
 	public function setLastName($lastName) {
-		$this->last_name = $lastName;
+		$this->last_name = ucfirst($lastName);
 	}
 	/**
 	 * Gets the email
