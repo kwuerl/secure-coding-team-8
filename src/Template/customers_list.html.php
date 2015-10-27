@@ -1,4 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
+<?php $t->block("menu_customers_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
 <?php $t->block("content", function ($t) {
     $customerList = $t->get("customerList"); ?>
 <!-- Content Wrapper. Contains page content -->

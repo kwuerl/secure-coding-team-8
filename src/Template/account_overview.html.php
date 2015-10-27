@@ -1,4 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
+<?php $t->block("menu_home_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
 <?php $t->block("content", function ($t) {
       $currentUser = $t->get("currentUser");
       $accountInfo = $t->get("accountInfo"); ?>

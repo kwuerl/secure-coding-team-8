@@ -1,4 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
+<?php $t->block("menu_approve_registrations_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
 <?php $t->block("content", function ($t) {
       $customerRegistrationList = $t->get("customerRegistrationList");
       $employeeRegistrationList = $t->get("employeeRegistrationList"); ?>

@@ -1,4 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
+<?php $t->block("menu_transaction_history_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList"); ?>
 <!-- Content Wrapper. Contains page content -->

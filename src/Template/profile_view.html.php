@@ -1,4 +1,10 @@
 <?php $t->extend("user_overview.html.php"); ?>
+<?php $t->block("menu_profile_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
+<?php $t->block("menu_employee_profile_class", function ($t) { ?>
+    treeview active
+<?php }); ?>
 <?php $t->block("content", function ($t) {
     $currentUser = $t->get("currentUser"); ?>
 <!-- Content Wrapper. Contains page content -->
