@@ -90,7 +90,7 @@ class ValidationHelper {
 	 */
 	public static function maxLength(FormHelper $helper, $input, $maxLength=0) {
 		if ($maxLength > 0) {
-			if (strlen($input) == $maxLength) {
+			if (strlen($input) <= $maxLength) {
 				return true;
 			}
 		}
