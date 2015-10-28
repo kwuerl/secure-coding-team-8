@@ -14,6 +14,9 @@
         <li class='active'>Pending Transactions</a></li>
     </ol>
 </section>
+ <?php $t->formh($t->get("form"), array("action"=>"/approve_transactions", "method"=>"post"), function ($t) { ?>
+    <input id='selectedTransactionId' name='selectedTransactionId' type='hidden' value=''/>
+<?php }) ?>
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -36,7 +39,7 @@
                 <tbody>
                     <?php foreach ($transactionList as $transaction) {?>
                     <tr>
-                        <td>
+                        <td class='app-transaction-id'>
                             <?= $t->s($transaction->getId()); ?>
                         </td>
                         <td>
@@ -77,4 +80,46 @@
         <!-- /.box -->
     </div>
 </section>
+
+    <!-- Approve Transaction Modal -->
+    <div id="approveTransModal" class="modal fade" role="dialog" tabindex="-1">#
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Approve Transaction</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to approve the transaction?
+                </div>
+                <!-- /.box-body -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Transaction Modal -->
+    <div id="rejectTransModal" class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reject Transaction</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to reject the transaction?
+                </div>
+                <!-- /.box-body -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php }); ?>

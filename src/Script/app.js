@@ -52,10 +52,20 @@ var secureBank = {
             });
 
             $('#downloadPDF').on('click',function(){
-                 document.forms['download_pdf_form'].submit();
+                document.forms['download_pdf_form'].submit();
             });
             // adjusting height of sidebar after the dom is created
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
+
+            $('#approve_trans_table .btn-info').on('click',function(){
+                var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
+                $('#selectedTransactionId').val(transaction_id);
+            });
+
+            $('#approveTransModal').find('.btn-primary').on('click',function(){
+                var approval_form = document.forms['approve_transaction'];
+                approval_form.submit();
+            });
         });
     }
 };

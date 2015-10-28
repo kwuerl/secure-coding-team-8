@@ -27,11 +27,14 @@ class EmployeeController extends UserController {
     public function loadCustomersList ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of all customers*/
-        $customerList = $this->get('customer_repository')->getAll();
+        $customerList = $this->get('customer_repository')->find(array("is_active"=>1));
+        $customerRegistrationList = $this->get('customer_repository')->find(array("is_active"=>0));
+
         // render the form
         $this->get("templating")->render("customers_list.html.php", array(
             //"form" => $helper
-            "customerList" => $customerList
+            "customerList" => $customerList,
+            "customerRegistrationList" => $customerRegistrationList
         ));
     }
      public function loadCustomerDetails ($request, $customerId) {
@@ -71,14 +74,29 @@ class EmployeeController extends UserController {
             "employeeRegistrationList" => $employeeRegistrationList
         ));
     }
-    public function approveTransactions ($request) {
+    public function loadPendingTransactions ($request) {
+        // create the FormHelper
+        $helper = new \Helper\FormHelper("approve_transaction");
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch all transactions that are on-hold.*/
         $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
         // render the form
         $this->get("templating")->render("approve_transactions.html.php", array(
-            //"form" => $helper
+            "form" => $helper,
             "transactionList" => $transactionList
         ));
+    }
+
+    public function approveTransactions ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        /*approve transactions which are on hold*/
+        $transaction = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
+        $this->get('routing')->redirect('approve_transactions_get',array());
+    }
+
+    public function rejectTransactions ($request, $transactionId) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        /*reject transactions which are on hold*/
+        $transaction = $this->get('transaction_repository')->rejectTransaction($transactionId);
     }
 }

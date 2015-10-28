@@ -2314,11 +2314,21 @@ a:focus {
     text-decoration: underline
 }
 .alert-success {
-    border-color: #008d4c
+    border-color: #008d4c;
+    position: absolute;
+    top :20%;
+    right:30%;
+    width:30%;
+    display : none;
 }
 .alert-danger,
 .alert-error {
-    border-color: #d73925
+    border-color: #d73925;
+    position: absolute;
+    top :20%;
+    right:30%;
+    width:30%;
+    display : none;
 }
 .alert-warning {
     border-color: #e08e0b
@@ -4569,11 +4579,11 @@ table.text-center th {
 }
 
 /* Customized css for our application */
-#regsitrations_table .btn, #cust_details_table1 .btn, #approve_trans_table .btn{
+#customer_reg_pending .btn, #employee_regsitrations_table .btn,#cust_details_table1 .btn, #approve_trans_table .btn{
     padding :1px 6px;
 }
 
-#regsitrations_table .btn-reject, #cust_details_table1 .btn-reject, #approve_trans_table .btn-reject{
+#customer_reg_pending .btn-reject, #employee_regsitrations_table .btn-reject, #approve_trans_table .btn-reject{
     background-color :#ff5151;
     color : #fff;
 }
@@ -4591,9 +4601,6 @@ table {
     font-weight:bold;
 }
 
-.modal-body{
-    min-height:150px;
-}
 textarea{
     resize: none;
     width : 100%;
@@ -4606,4 +4613,9 @@ textarea{
 #downloadPDF{
     margin-right : 20px;
     margin-top : 20px;
+    cursor: pointer;
+}
+
+.#iframeApproveData , #iframeRejectData{
+    display:none;
 }
