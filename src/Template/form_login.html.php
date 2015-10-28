@@ -6,7 +6,7 @@
     <div class="login-logo">
         <a><b>Secure</b>Bank</a>
     </div><!-- /.login-logo -->
-
+    <h1>Login</h1>
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your banking session</p>
       <?php $t->flash_echo(); ?>

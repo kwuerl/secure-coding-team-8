@@ -17,12 +17,12 @@ class TransactionRepository extends Repository {
 		$statement = "SELECT TBL_TRANSACTION.*
 		 				FROM TBL_ACCOUNT, TBL_TRANSACTION
 		 				WHERE TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
-		 				AND TBL_ACCOUNT.CUSTOMER_ID = ?";
+		 				AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
 
 		/* create a prepared statement */
-		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
+		if ($query = $this->db_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */
-    		$query->bind_param("i", $customerId);
+    		$query->bindParam(":customerId", $customerId);
     		$transactions = $this->execute($query);
 
     		return $transactions;

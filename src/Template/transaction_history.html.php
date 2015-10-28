@@ -6,15 +6,24 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    <h1>
-        Transaction History
-    </h1>( <a href='transaction_history_download' target='_blank'>Download as PDF</a> )
-    <ol class="breadcrumb">
-        <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Transaction History</li>
-    </ol>
+        <h1>
+            Transaction History
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">Transaction History</li>
+        </ol>
     </section>
-
+    <div class="row">
+        <div class="col-xs-12">
+            <?php if( count($transactionList) != 0 ) {?>
+            <form name='download_pdf_form' action="/transaction_history_download" method="post" target='_blank'>
+                <a id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
+                </a>
+            </form>
+            <?php } ?>
+        </div>
+    </div>
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -29,6 +38,7 @@
                                     <th>Amount</th>
                                     <th>Beneficiary Account ID</th>
                                     <th>Beneficiary Account Name</th>
+                                    <th>Status</th>
                                     <th>Remarks</th>
                                 </tr>
                             </thead>
@@ -51,6 +61,9 @@
                                         <?= $t->s($transaction->getToAccountName()); ?>
                                     </td>
                                     <td>
+                                        <?= $t->s($transaction->getIsOnHold()); ?>
+                                    </td>
+                                    <td>
                                         <?= $t->s($transaction->getRemarks()); ?>
                                     </td>
                                 </tr>
@@ -64,6 +77,7 @@
                                     <th>Amount</th>
                                     <th>Beneficiary Account ID</th>
                                     <th>Beneficiary Account Name</th>
+                                    <th>Status</th>
                                     <th>Remarks</th>
                                 </tr>
                             </tfoot>

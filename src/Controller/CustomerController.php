@@ -11,7 +11,7 @@ class CustomerController extends UserController {
 	public function loadOverview ($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
         /*Fetch the details of the current user */
-        $accountInfo = $this->get('account_repository')->find(array("customer_id"=>$customer->getId()));
+        $accountInfo = $this->get('account_repository')->findOne(array("customer_id"=>$customer->getId()));
         // render the form
         $this->get("templating")->render("account_overview.html.php", array(
             //"form" => $helper

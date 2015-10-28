@@ -10,8 +10,8 @@
             Customers
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="active">Customers</a></li>
+            <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">Customers</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -33,7 +33,7 @@
                                 <tr>
                                     <td>
                                         <a href=
-                                        '<?= $t->s("/customer_details/" . $customer->getId() . ""); ?>'>
+                                            '<?= $t->s("/customer_details/" . $customer->getId() . ""); ?>'>
                                         <?= $t->s($customer->getFirstName()); ?>
                                         </a>
                                     </td>

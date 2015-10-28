@@ -331,7 +331,8 @@ a:focus {
     margin-right: 5px
 }
 .content-header>.breadcrumb>li+li:before {
-    content: '>\00a0'
+    content: '>\00a0';
+    color : #000;
 }
 @media (max-width: 991px) {
     .content-header>.breadcrumb {
@@ -4600,4 +4601,9 @@ textarea{
 
 .app-section-min-height{
     min-height:368px;
+}
+
+#downloadPDF{
+    margin-right : 20px;
+    margin-top : 20px;
 }

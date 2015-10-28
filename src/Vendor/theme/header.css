@@ -142,6 +142,8 @@
     top: 15px;
     right: 10px;
     border-radius: 2px;
+    background-color : #dbdbdb;
+    margin-right : 4px;
 }
 .content-header > .breadcrumb > li > a {
     color: #444;
@@ -155,6 +157,7 @@
 }
 .content-header > .breadcrumb > li + li:before {
     content: '>\00a0';
+    color : #000;
 }
 @media (max-width: 991px) {
     .content-header > .breadcrumb {
@@ -163,7 +166,7 @@
         top: 0;
         right: 0;
         float: none;
-        background: #555;
+        /*background: #555;*/
         padding-left: 10px;
     }
     .content-header > .breadcrumb li:before {

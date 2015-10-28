@@ -9,14 +9,14 @@ namespace Model;
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class Repository {
-	protected $mysqli_wrapper;
+	protected $db_wrapper;
 	protected $table_name;
 	protected $model_class_name;
 	/**
 	 * Constructor
 	 */
-	function __construct($mysqli_wrapper, $table_name, $model_class_name) {
-		$this->mysqli_wrapper = $mysqli_wrapper;
+	function __construct($db_wrapper, $table_name, $model_class_name) {
+		$this->db_wrapper = $db_wrapper;
 		$this->table_name = $table_name;
 		$this->model_class_name = $model_class_name;
 	}
@@ -28,37 +28,31 @@ class Repository {
 	 * @return array|boolean
 	 */
 	public function find($filter) {
-		$mysqli = $this->mysqli_wrapper->get();
+		$db = $this->db_wrapper->get();
 		$query = "SELECT * FROM ".$this->table_name." WHERE ";
 		$type_array = array();
 		$value_array = array();
 		foreach ($filter as $name => $value) {
-			$db_field_name = strtoupper($mysqli->real_escape_string($name));
-			$query .= $db_field_name." = ? ";
-			if (is_int($value)) {
-				array_push($type_array, "i");
-			} else if (is_float($value)) {
-				array_push($type_array, "d");
-			} else {
-				array_push($type_array, "s");
-			}
+			$db_field_name = strtoupper($name);
+			$query .= $db_field_name . " = :" . $db_field_name;
+
+			array_push($type_array, ":" . $db_field_name);
+
 			array_push($value_array, $value);
 		}
-		if ($stmt = $mysqli->prepare($query)) {
+		if ($stmt = $db->prepare($query)) {
 			foreach ($type_array as $key => $type) {
-				$stmt->bind_param($type, $value_array[$key]);
+				$stmt->bindParam($type, $value_array[$key]);
 			}
 			$stmt->execute();
-			$result = $stmt->get_result();
 			$model_array = array();
-			while ($row = $result->fetch_assoc()) {
+			while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 				array_push($model_array, $this->fillModel($row));
 			}
-			$stmt->free_result();
-			$stmt->close();
+			$stmt->closeCursor();
 			return $model_array;
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("Database error: ".$this->getError($db));
 		return false;
 	}
 	/**
@@ -84,16 +78,19 @@ class Repository {
 	 * @return $model|boolean
 	 */
 	public function get($id) {
-		$mysqli = $this->mysqli_wrapper->get();
-		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = ? LIMIT 1;")) {
-			$stmt->bind_param('i', $id);
+		$db = $this->db_wrapper->get();
+		if ($stmt = $db->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = :id LIMIT 1;")) {
+			$stmt->bindParam(':id', $id);
 			$result = $this->execute($stmt);
-			if (sizeof($result) > 0) {
-				$stmt->close();
-				return $result[0];
+			if (is_array($result)) {
+				if (sizeof($result) > 0) {
+					$stmt->closeCursor();
+					return $result[0];
+				} else
+					return $result;
 			}
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("Database error: ".$this->getError($db));
 		return false;
 	}
 	/**
@@ -104,12 +101,12 @@ class Repository {
 	 * @return array|boolean $result Array of Model instances
 	 */
 	public function getAll() {
-		$mysqli = $this->mysqli_wrapper->get();
-		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . ";")) {
+		$db = $this->db_wrapper->get();
+		if ($stmt = $db->prepare("SELECT * FROM " . $this->table_name . ";")) {
 			$result = $this->execute($stmt);
 			return $result;
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("Database error: ".$this->getError($db));
 		return false;
 	}
 	/**
@@ -120,10 +117,11 @@ class Repository {
 	 * @return boolean
 	 */
 	public function add($model_instance) {
-		$mysqli = $this->mysqli_wrapper->get();
+		$db = $this->db_wrapper->get();
 		$query = "INSERT INTO " . $this->table_name . " (";
 		$query_values = array();
-		$query_types = "";
+		$query_types = array();
+		$query_fields = array();
 		$reflection_obj = new \ReflectionClass($model_instance);
 		$class_properties = $reflection_obj->getProperties();
 		$values = array();
@@ -151,34 +149,31 @@ class Repository {
 			}
 		}
 		foreach ($values as $col => $val) {
-			$query .= strtoupper($col).",";
+			$query_fields[] = ":" . $col;
+			$query .= strtoupper($col) . ",";
 			$query_values[] = $val;
 			if (is_int($val)) {
-				$query_types .= "i";
-			} else if (is_float($val)) {
-				$query_types .= "d";
+				$query_types[] = \PDO::PARAM_INT;
 			} else {
-				$query_types .= "s";
+				$query_types[] = \PDO::PARAM_STR;
 			}
 		}
 		$query = rtrim($query, ",");
-		$query_values_str = rtrim(str_repeat("?,", sizeof($values)), ",");
-		$query .= ") VALUES(" . $query_values_str . ");";
-		if ($stmt = $mysqli->prepare($query)) {
-			$parameters = array();
+		$query .= ") VALUES(" . implode(",", $query_fields) . ");";
+
+		if ($stmt = $db->prepare($query)) {
 			foreach ($query_values as $key => &$value) {
-				$parameters[$key] = &$value;
+				call_user_func_array(array($stmt, "bindParam"), array($query_fields[$key], &$value, $query_types[$key]));
 			}
-			call_user_func_array(array($stmt, "bind_param"), array_merge(array($query_types), $parameters));
 			$result = $stmt->execute();
 			
 			if ($result) {
-				$model_instance->setId($stmt->insert_id);
-				$stmt->close();
+				$model_instance->setId($db->lastInsertId());
+				$stmt->closeCursor();
 				return true;
 			}
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("Database error: ".$this->getError($db));
 		return false;
 	}
 	/**
@@ -204,23 +199,21 @@ class Repository {
 	/**
 	 * Executes a query and returns the result.
 	 *
-	 * @param query $query	A valid mysqli prepared query
+	 * @param query $query	A valid prepared query
 	 *
 	 * @return object Result of the query execution
 	 */
 	protected function execute($query) {
 		/* execute query */
 	    $query->execute();
-	    $result = $query->get_result();
 	    $data = array();
 	    /*Populate the model from the result of query execution*/
-		while ($row = $result->fetch_assoc()) {
+		while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
 			$data[] = $this->fillModel($row);
 		}
 
 		/*Free the result and close the query*/
-		$query->free_result();
-		$query->close();
+		$query->closeCursor();
 		return $data;
 	}
 	/**
@@ -248,5 +241,19 @@ class Repository {
 			}
 		}
 		return $instance;
+	}
+	/**
+	 * Gets the error from the database
+	 *
+	 * @param Connection $db Connection to the database
+	 *
+	 * @return string|boolean $error|false Returns the error message, if error exists and false otherwise
+	 */
+	private function getError($db) {
+		$error = $db->errorInfo();
+		if (count($error) > 0 && !is_null($error[2])) {
+			return $error[2];
+		}
+		return false;
 	}
 }

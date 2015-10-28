@@ -9,6 +9,7 @@
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
 define('_DB_SECURE_BANK', 'BANK_DETAILS');
 
+define('_DB_SERVER', 'mysql');
 define('_MYSQL_HOST', '127.0.0.1');
 define('_MYSQL_USER', 'root');
 define('_MYSQL_PASSWORD', 'root');
