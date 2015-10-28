@@ -21,7 +21,9 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Account Balance</label>
-                                <div>10000 Euros</div>
+                                <div>
+                                    EURO <?= $t->s($accountInfo->getBalance()); ?>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label >Email</label>
@@ -33,6 +35,12 @@
                                 <label>Account No.</label>
                                 <div>
                                     <?= $t->s($accountInfo->getAccountId()); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Type</label>
+                                <div>
+                                    <?= $t->s($accountInfo->getType()); ?>
                                 </div>
                             </div>
                         </div>

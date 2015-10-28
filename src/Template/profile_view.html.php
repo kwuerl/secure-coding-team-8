@@ -42,6 +42,7 @@
                                     <?= $t->s($currentUser->getEmail()); ?>
                                 </div>
                             </div>
+                            <?= $t->block("profile_details", function () {}); ?>
                         </div>
                         <!-- /.box-body -->
                     </form>
