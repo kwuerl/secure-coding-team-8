@@ -23,6 +23,22 @@ class RegistrationController extends Controller {
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim"), "");
 
+		$helper->addField("address", "text", array(
+			array("required", "Address is required"),
+			array("maxLength", "Max. 60 characters allowed", array(60))
+		), array("ltrim", "rtrim"), "");
+
+		$helper->addField("postal_code", "text", array(
+			array("required", "Postal code is required"),
+			array("number", "Only numbers are allowed"),
+			array("maxLength", "Max. 5 numbers allowed", array(5))
+		), array("ltrim", "rtrim"), "");
+
+		$helper->addField("city", "text", array(
+			array("required", "City is required"),
+			array("maxLength", "Max. 20 characters allowed", array(20))
+		), array("ltrim", "rtrim"), "");
+
 		$helper->addField("email", "email", array(
 			array("required", "E-Mail is required"),
 			array("email", "Please input a valid e-mail")
@@ -46,7 +62,7 @@ class RegistrationController extends Controller {
 			if ($helper->validate()) {
 
 				// fill the model
-				$model = new \Model\User();
+				$model = new \Model\Customer();
 				$helper->fillModel($model);
 
 				$model->setGroups(array(_GROUP_USER));

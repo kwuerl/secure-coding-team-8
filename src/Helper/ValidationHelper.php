@@ -68,4 +68,32 @@ class ValidationHelper {
 		}
 		return $equal;
 	}
+	/**
+	 * Checks if $input is a number
+	 *
+	 * @param FormHelper $helper
+	 * @param string $input
+	 *
+	 * @return boolean
+	 */
+	public static function number(FormHelper $helper, $input) {
+		return is_numeric($input);
+	}
+	/**
+	 * Checks if $input length <= $maxLength
+	 *
+	 * @param FormHelper $helper
+	 * @param string $input
+	 * @param int $maxLength
+	 *
+	 * @return boolean
+	 */
+	public static function maxLength(FormHelper $helper, $input, $maxLength=0) {
+		if ($maxLength > 0) {
+			if (strlen($input) == $maxLength) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -12,6 +12,9 @@
 			<?php
 				$first_name_errors = $t->get("form")->getError("first_name");
 				$last_name_errors = $t->get("form")->getError("last_name");
+				$address_errors = $t->get("form")->getError("address");
+				$postal_code_errors = $t->get("form")->getError("postal_code");
+				$city_errors = $t->get("form")->getError("city");
 				$email_errors = $t->get("form")->getError("email");
 				$password_errors = $t->get("form")->getError("password");
 				$password_repeat_errors = $t->get("form")->getError("password_repeat");
@@ -28,6 +31,27 @@
 				<input type="text" class="form-control" name="form_registration[last_name]" value="<?= $t->s($t->get('form')->getValue('last_name')); ?>" required>
 				<?php if (sizeof($last_name_errors) > 0) { ?>
 	            	<p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $last_name_errors[0] ?><br></p>
+	            <?php } ?>
+			</div>
+			<div class="form-group has-feedback <?php if (sizeof($address_errors) > 0) echo "has-error"; ?>">
+				<label for="form_registration[address]">Address</label>
+				<input type="text" class="form-control" name="form_registration[address]" value="<?= $t->s($t->get('form')->getValue('address')); ?>" required>
+				<?php if (sizeof($address_errors) > 0) { ?>
+	            	<p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $address_errors[0] ?><br></p>
+	            <?php } ?>
+			</div>
+			<div class="form-group has-feedback <?php if (sizeof($postal_code_errors) > 0) echo "has-error"; ?>">
+				<label for="form_registration[postal_code]">Postal code</label>
+				<input type="text" class="form-control" name="form_registration[postal_code]" value="<?= $t->s($t->get('form')->getValue('postal_code')); ?>" required>
+				<?php if (sizeof($postal_code_errors) > 0) { ?>
+	            	<p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $postal_code_errors[0] ?><br></p>
+	            <?php } ?>
+			</div>
+			<div class="form-group has-feedback <?php if (sizeof($city_errors) > 0) echo "has-error"; ?>">
+				<label for="form_registration[city]">City</label>
+				<input type="text" class="form-control" name="form_registration[city]" value="<?= $t->s($t->get('form')->getValue('city')); ?>" required>
+				<?php if (sizeof($city_errors) > 0) { ?>
+	            	<p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $city_errors[0] ?><br></p>
 	            <?php } ?>
 			</div>
 			<div class="form-group has-feedback <?php if (sizeof($email_errors) > 0) echo "has-error"; ?>">
