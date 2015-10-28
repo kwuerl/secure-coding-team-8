@@ -12,8 +12,20 @@
 	    <link rel="stylesheet" href="/Vendor/theme/AdminLTE.min.css">
 	    <link rel="stylesheet" href="/Vendor/theme/header.css">
 	    <link rel="stylesheet" href="/Vendor/theme/skin.min.css">
+      <style>
+        .login-page {
+          background-image: url("/Vendor/img/login_bg.png");
+          background-size: cover;
+        }
+        .login-page .login-logo a {
+          color:white;
+        }
+        .login-page h1 {
+          color:white;
+        }
+      </style>
     </head>
-    <body class="hold-transition<?= $t->get("is_login")?" login-page":" skin-blue sidebar-mini";?>">
+    <body class="hold-transition<?= $t->get("is_login")?" login-page":" skin-black sidebar-mini";?>">
     <?php $t->block("body", function ($t) { ?>
         Default
     <?php }); ?>
@@ -22,6 +34,7 @@
      <script src="/Vendor/js/jquery.dataTables.min.js"></script>
      <script src="/Vendor/js/dataTables.bootstrap.min.js"></script>
      <script src="/Scripts/app.js"></script>
+     <script src="/Vendor/js/app.js"></script>
     </body>
      <!-- Modals -->
      <!-- Approve Transaction Modal -->

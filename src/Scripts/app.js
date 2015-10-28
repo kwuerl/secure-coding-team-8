@@ -9,7 +9,7 @@ var secureBank = {
     init : function(){
         $(document).ready(function(){
             // enabling click functionality on user name click ( for prfoile view or logout )
-            $('.dropdown-toggle').on('click', function(){
+           /* $('.dropdown-toggle').on('click', function(){
                 if( !$(".user-menu").hasClass('open'))
                     $(".user-menu").parent().addClass('open');
                 else
@@ -24,7 +24,7 @@ var secureBank = {
                         $(this).removeClass('active');
 
                 });
-            });
+            });*/
 
             // initializing all the data tables
             $('.app-data-table').each(function () {

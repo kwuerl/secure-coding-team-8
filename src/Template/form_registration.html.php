@@ -2,6 +2,9 @@
 <?php $t->set("is_login", true); ?>
 <?php $t->block("body", function ($t) { ?>
 <div class="login-box">
+	<div class="login-logo">
+        <a><b>Secure</b>Bank</a>
+    </div><!-- /.login-logo -->
 	<h1>Register an account</h1>
 	<div class="login-box-body">
       	<?php $t->flash_echo(); ?>
@@ -57,6 +60,7 @@
 	            </div><!-- /.col -->
 	        </div>
 		<?php }); ?>
+      <a href="login" class="text-center">Back to Login</a>
 	</div>
 </div>
 <?php });
