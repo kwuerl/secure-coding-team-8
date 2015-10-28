@@ -31,6 +31,10 @@ $service_container->register("email", "Service\\EmailService", array(
 	_EMAIL
 ));
 
+$service_container->register("transaction_code", "Service\\TransactionCodeGeneratorService", array(
+	array("type"=>"service", "value"=>"transaction_code_repository")
+));
+
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(
@@ -136,4 +140,10 @@ $service_container->register("transaction_repository", "Model\\TransactionReposi
 	array("type"=>"service", "value"=>"mysqli_wrapper"),
 	_TBL_TRANSACTION,
 	_CLASS_MODEL_TRANSACTION
+));
+
+$service_container->register("transaction_code_repository", "Model\\TransactionCodeRepository", array(
+	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	_TBL_TRANSACTION_CODE,
+	_CLASS_MODEL_TRANSACTION_CODE
 ));

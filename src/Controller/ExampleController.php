@@ -41,4 +41,11 @@ class ExampleController extends Controller {
 			"form" => $helper
 		));
 	}
+
+	public function testTransactionCode($request) {
+		$set = $this->get("transaction_code")->generateSet(1);
+		$this->get("templating")->render("test_transaction_codes.html.php", array(
+			"transaction_codes" => $set
+		));
+	}
 }

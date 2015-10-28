@@ -6,6 +6,7 @@
 $routing_service->get("test_route", "/test/(:all)/(:all)/(:any)", "example_controller:testFunction");
 $routing_service->get("form_example_get", "/form_example", "example_controller:formtest");
 $routing_service->post("form_example_post", "/form_example", "example_controller:formtest");
+$routing_service->get("test_transaction_codes", "/transaction_codes", "example_controller:testTransactionCode");
 /*
  * Login and registration routes
  */
