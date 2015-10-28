@@ -1,8 +1,7 @@
 <?php $t->extend("user_overview.html.php"); ?>
 <?php $t->set("menu_active", "approve_transactions"); ?>
 <?php $t->block("content", function ($t) {
-      $transactionList = $t->get("transactionList"); ?>
-
+    $transactionList = $t->get("transactionList"); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
@@ -11,8 +10,8 @@
         Transactions pending for Approval
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/approve_transactions"><i class="fa fa-dashboard"></i>Pending Transactions</a></li>
+        <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
+        <li class='active'>Pending Transactions</a></li>
     </ol>
 </section>
 <!-- Main content -->

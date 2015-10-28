@@ -51,6 +51,9 @@ var secureBank = {
                 });
             });
 
+            $('#downloadPDF').on('click',function(){
+                 document.forms['download_pdf_form'].submit();
+            });
             // adjusting height of sidebar after the dom is created
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
         });
