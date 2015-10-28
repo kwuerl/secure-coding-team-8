@@ -33,32 +33,26 @@ class Repository {
 		$type_array = array();
 		$value_array = array();
 		foreach ($filter as $name => $value) {
-			$db_field_name = strtoupper($mysqli->real_escape_string($name));
-			$query .= $db_field_name." = ? ";
-			if (is_int($value)) {
-				array_push($type_array, "i");
-			} else if (is_float($value)) {
-				array_push($type_array, "d");
-			} else {
-				array_push($type_array, "s");
-			}
+			$db_field_name = strtoupper($name);
+			$query .= $db_field_name . " = :" . $db_field_name;
+
+			array_push($type_array, ":" . $db_field_name);
+
 			array_push($value_array, $value);
 		}
 		if ($stmt = $mysqli->prepare($query)) {
 			foreach ($type_array as $key => $type) {
-				$stmt->bind_param($type, $value_array[$key]);
+				$stmt->bindParam($type, $value_array[$key]);
 			}
 			$stmt->execute();
-			$result = $stmt->get_result();
 			$model_array = array();
-			while ($row = $result->fetch_assoc()) {
+			while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 				array_push($model_array, $this->fillModel($row));
 			}
-			$stmt->free_result();
-			$stmt->close();
+			$stmt->closeCursor();
 			return $model_array;
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("MySQL error: ".$this->getError($mysqli));
 		return false;
 	}
 	/**
@@ -85,15 +79,18 @@ class Repository {
 	 */
 	public function get($id) {
 		$mysqli = $this->mysqli_wrapper->get();
-		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = ? LIMIT 1;")) {
-			$stmt->bind_param('i', $id);
+		if ($stmt = $mysqli->prepare("SELECT * FROM " . $this->table_name . " WHERE ID = :id LIMIT 1;")) {
+			$stmt->bindParam(':id', $id);
 			$result = $this->execute($stmt);
-			if (sizeof($result) > 0) {
-				$stmt->close();
-				return $result[0];
+			if (is_array($result)) {
+				if (sizeof($result) > 0) {
+					$stmt->closeCursor();
+					return $result[0];
+				} else
+					return $result;
 			}
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("MySQL error: ".$this->getError($mysqli));
 		return false;
 	}
 	/**
@@ -109,7 +106,7 @@ class Repository {
 			$result = $this->execute($stmt);
 			return $result;
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("MySQL error: ".$this->getError($mysqli));
 		return false;
 	}
 	/**
@@ -178,7 +175,7 @@ class Repository {
 				return true;
 			}
 		}
-		throw new \Exception("MySQL error: ".mysqli_error($mysqli));
+		throw new \Exception("MySQL error: ".$this->getError($mysqli));
 		return false;
 	}
 	/**
@@ -211,16 +208,14 @@ class Repository {
 	protected function execute($query) {
 		/* execute query */
 	    $query->execute();
-	    $result = $query->get_result();
 	    $data = array();
 	    /*Populate the model from the result of query execution*/
-		while ($row = $result->fetch_assoc()) {
+		while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
 			$data[] = $this->fillModel($row);
 		}
 
 		/*Free the result and close the query*/
-		$query->free_result();
-		$query->close();
+		$query->closeCursor();
 		return $data;
 	}
 	/**
@@ -248,5 +243,19 @@ class Repository {
 			}
 		}
 		return $instance;
+	}
+	/**
+	 * Gets the error from the database
+	 *
+	 * @param Mysqli $mysqli Connection to the database
+	 *
+	 * @return string|boolean $error|false Returns the error message, if error exists and false otherwise
+	 */
+	private function getError($mysqli) {
+		$error = $mysqli->errorInfo();
+		if (count($error) > 0 && !is_null($error[2])) {
+			return $error[2];
+		}
+		return false;
 	}
 }

@@ -13,7 +13,7 @@ class Transaction {
 	private $amount = 0;
 	private $transaction_date = "";
 	private $remarks = "";
-	private $on_hold = 0;
+	private $is_on_hold = 0;
 	/**
 	 * Gets the transaction id
 	 *
@@ -131,15 +131,15 @@ class Transaction {
 	 *
 	 * @return integer
 	 */
-	public function getOnHold() {
-		return $this->on_hold;
+	public function getIsOnHold() {
+		return $this->is_on_hold;
 	}
 	/**
 	 * Sets the on-hold status of the transaction
 	 *
-	 * @param integer $onHold
+	 * @param integer $isOnHold
 	 */
-	public function setOnHold($onHold) {
-		$this->on_hold = $onHold;
+	public function setIsOnHold($isOnHold) {
+		$this->is_on_hold = $isOnHold;
 	}
 }

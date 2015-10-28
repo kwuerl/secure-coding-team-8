@@ -11,14 +11,19 @@ class MysqliWrapperService {
 	/**
 	 * Constructor: Opens a new connection to the MySQL server
 	 *
-	 * @param string $host Mysql
-	 * @param string $userName Mysql
-	 * @param string $password Mysql
-	 * @param string $dbName Mysql
+	 * @param string $dbServer Name of the database server
+	 * @param string $host Host name or IP address
+	 * @param string $userName Username for the database host
+	 * @param string $password Password for the database host
+	 * @param string $dbName Name of the database on the host
 	 */
-	function __construct ($host, $user_name, $password, $db_name) {
-		$this->mysqli = new \mysqli($host, $user_name, $password, $db_name);
-		if ($this->mysqli->connect_error) throw new \Exception("Connection Error!");
+	function __construct ($dbServer, $host, $user_name, $password, $dbName) {
+		$this->mysqli = new \PDO($dbServer . ":host=" . $host .";dbname=" . $dbName, $user_name, $password);
+
+		$error = $this->mysqli->errorInfo();
+		if (count($error) > 0 && !is_null($error[2])) {
+			throw new \Exception("Connection Error - " . $error[2]);
+		}
 	}
 	/**
 	 * @function: Returns a connection to the MySQL server
@@ -33,7 +38,7 @@ class MysqliWrapperService {
 	 * Closes the connection to the MySQL server
 	 */
 	public function close() {
-		$this->mysqli->close();
+		$this->mysqli = null;
 	}
 
 	function __destruct() {

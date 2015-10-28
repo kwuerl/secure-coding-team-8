@@ -24,7 +24,7 @@ $service_container->register("csrf", "Service\\CSRFService", array(
 ));
 
 $service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
-	_MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
+	_DB_SERVER, _MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
 ));
 
 $service_container->register("email", "Service\\EmailService", array(

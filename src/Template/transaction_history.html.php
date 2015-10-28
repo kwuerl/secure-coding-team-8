@@ -38,6 +38,7 @@
                                     <th>Amount</th>
                                     <th>Beneficiary Account ID</th>
                                     <th>Beneficiary Account Name</th>
+                                    <th>Status</th>
                                     <th>Remarks</th>
                                 </tr>
                             </thead>
@@ -60,6 +61,9 @@
                                         <?= $t->s($transaction->getToAccountName()); ?>
                                     </td>
                                     <td>
+                                        <?= $t->s($transaction->getIsOnHold()); ?>
+                                    </td>
+                                    <td>
                                         <?= $t->s($transaction->getRemarks()); ?>
                                     </td>
                                 </tr>
@@ -73,6 +77,7 @@
                                     <th>Amount</th>
                                     <th>Beneficiary Account ID</th>
                                     <th>Beneficiary Account Name</th>
+                                    <th>Status</th>
                                     <th>Remarks</th>
                                 </tr>
                             </tfoot>
