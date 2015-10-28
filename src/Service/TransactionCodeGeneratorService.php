@@ -40,4 +40,21 @@ class TransactionCodeGeneratorService {
 			throw new \Exception("There was an error with generating a set of transaction codes.");
 		}
 	}
+	/**
+	 * Checks if the transaction code $code is valid
+	 *
+	 * @param int $customer_id    The customer id
+	 * @param string $code    The code to check
+	 *
+	 * @return boolean    Returns true, if code is valid and not used for that customer, otherwise returns false
+	 */
+	public function checkCode($customer_id, $code) {
+		$db_result = $this->repository->findOne(array("customer_id" => $customer_id, "code" => $code));
+		if ($db_result) {
+			if (!$db_result->getUsed()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
