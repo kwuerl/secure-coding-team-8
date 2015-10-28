@@ -23,7 +23,7 @@ $service_container->register("csrf", "Service\\CSRFService", array(
 	array("type"=>"service", "value"=>"session")
 ));
 
-$service_container->register("mysqli_wrapper", "Service\\MysqliWrapperService", array(
+$service_container->register("db_wrapper", "Service\\DbWrapperService", array(
 	_DB_SERVER, _MYSQL_HOST, _MYSQL_USER, _MYSQL_PASSWORD, _MYSQL_DATABASE
 ));
 
@@ -111,29 +111,29 @@ $service_container->register("employee_controller", "Controller\\EmployeeControl
 // ------------  Repositories  -----------------
 
 $service_container->register("example_repository", "Model\\ExampleRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper")
+	array("type"=>"service", "value"=>"db_wrapper")
 ));
 
 $service_container->register("customer_repository", "Model\\CustomerRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_CUSTOMER,
 	_CLASS_MODEL_CUSTOMER
 ));
 
 $service_container->register("employee_repository", "Model\\EmployeeRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_EMPLOYEE,
 	_CLASS_MODEL_EMPLOYEE
 ));
 
 $service_container->register("account_repository", "Model\\AccountRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_ACCOUNT,
 	_CLASS_MODEL_ACCOUNT
 ));
 
 $service_container->register("transaction_repository", "Model\\TransactionRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_TRANSACTION,
 	_CLASS_MODEL_TRANSACTION
 ));

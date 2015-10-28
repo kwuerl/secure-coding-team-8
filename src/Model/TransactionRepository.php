@@ -20,7 +20,7 @@ class TransactionRepository extends Repository {
 		 				AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
 
 		/* create a prepared statement */
-		if ($query = $this->mysqli_wrapper->get()->prepare($statement)) {
+		if ($query = $this->db_wrapper->get()->prepare($statement)) {
 			/* bind parameters for markers */
     		$query->bindParam(":customerId", $customerId);
     		$transactions = $this->execute($query);
