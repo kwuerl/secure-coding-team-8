@@ -16,7 +16,7 @@ class TransactionCode {
 	 * @return int
 	 */
 	public function getId() {
-		return $this->customer_id;
+		return $this->id;
 	}
 	/**
 	 * Sets the id
@@ -37,10 +37,10 @@ class TransactionCode {
 	/**
 	 * Sets the customer id
 	 *
-	 * @param int $id
+	 * @param int $customer_id
 	 */
-	public function setCustomerId($id) {
-		$this->customer_id = $id;
+	public function setCustomerId($customer_id) {
+		$this->customer_id = $customer_id;
 	}
 	/**
 	 * Gets the code

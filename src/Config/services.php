@@ -143,7 +143,7 @@ $service_container->register("transaction_repository", "Model\\TransactionReposi
 ));
 
 $service_container->register("transaction_code_repository", "Model\\TransactionCodeRepository", array(
-	array("type"=>"service", "value"=>"mysqli_wrapper"),
+	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_TRANSACTION_CODE,
 	_CLASS_MODEL_TRANSACTION_CODE
 ));
