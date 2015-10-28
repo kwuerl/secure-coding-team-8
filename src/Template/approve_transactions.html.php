@@ -14,8 +14,9 @@
         <li class='active'>Pending Transactions</a></li>
     </ol>
 </section>
- <?php $t->formh($t->get("form"), array("action"=>"/approve_transactions", "method"=>"post"), function ($t) { ?>
+ <?php $t->formh($t->get("form"), array("action"=>"/transactions", "method"=>"post"), function ($t) { ?>
     <input id='selectedTransactionId' name='selectedTransactionId' type='hidden' value=''/>
+    <input id='rejectionOperation' name='rejectionOperation' type='hidden' value=''/>
 <?php }) ?>
 <!-- Main content -->
 <section class="content">

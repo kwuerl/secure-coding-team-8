@@ -62,7 +62,21 @@ var secureBank = {
                 $('#selectedTransactionId').val(transaction_id);
             });
 
+            $('#approve_trans_table .btn-reject').on('click',function(){
+                var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
+                $('#selectedTransactionId').val(transaction_id);
+                $('#rejectionOperation').val(1);
+            });
+
+            $('#rejectTransModal').on('hidden.bs.modal', function () {
+                $('#rejectionOperation').val(0);
+            });
             $('#approveTransModal').find('.btn-primary').on('click',function(){
+                var approval_form = document.forms['approve_transaction'];
+                approval_form.submit();
+            });
+
+            $('#rejectTransModal').find('.btn-primary').on('click',function(){
                 var approval_form = document.forms['approve_transaction'];
                 approval_form.submit();
             });

@@ -87,16 +87,14 @@ class EmployeeController extends UserController {
         ));
     }
 
-    public function approveTransactions ($request) {
+    public function actOnTransactions ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*approve transactions which are on hold*/
-        $transaction = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
+        if( $request->getData('rejectionOperation') == 1)
+            $transaction = $this->get('transaction_repository')->rejectTransaction($request->getData('selectedTransactionId'));
+        else
+            $transaction = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
         $this->get('routing')->redirect('approve_transactions_get',array());
     }
 
-    public function rejectTransactions ($request, $transactionId) {
-        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
-        /*reject transactions which are on hold*/
-        $transaction = $this->get('transaction_repository')->rejectTransaction($transactionId);
-    }
 }

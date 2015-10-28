@@ -32,5 +32,5 @@ $routing_service->get("employee_profile", "/employee_profile", "employee_control
 $routing_service->get("customers", "/customers", "employee_controller:loadCustomersList");
 $routing_service->get("customer_detail", "/customer_details/(:num)", "employee_controller:loadCustomerDetails");
 $routing_service->get("approve_registration", "/approve_registrations","employee_controller:approveRegistrations");
-$routing_service->get("approve_transactions_get", "/approve_transactions","employee_controller:loadPendingTransactions");
-$routing_service->post("approve_transactions_post", "/approve_transactions","employee_controller:approveTransactions");
+$routing_service->get("transactions_get", "/transactions","employee_controller:loadPendingTransactions");
+$routing_service->post("transactions_post", "/transactions","employee_controller:actOnTransactions");

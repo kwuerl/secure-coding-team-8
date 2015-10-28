@@ -130,9 +130,9 @@
                 </a>
             </li>
             <li class="treeview<?= $t->get('menu_active')=="approve_transactions"?" active":""; ?>">
-                <a href="/approve_transactions_get">
+                <a href="/transactions">
                     <i class="fa fa-tasks"></i>
-                    <span>Approve Transactions</span>
+                    <span>Pending Transactions</span>
                 </a>
             </li>
             <?php break;
