@@ -57,20 +57,18 @@ var secureBank = {
             // adjusting height of sidebar after the dom is created
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
 
-            $('#approve_trans_table .btn-info').on('click',function(){
+            $('#approve_trans_table').find('.btn-info').on('click',function(){
                 var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
                 $('#selectedTransactionId').val(transaction_id);
+                $('#action_transaction').val(1);
             });
 
-            $('#approve_trans_table .btn-reject').on('click',function(){
+            $('#approve_trans_table').find('.btn-reject').on('click',function(){
                 var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
                 $('#selectedTransactionId').val(transaction_id);
-                $('#rejectionOperation').val(1);
+                $('#action_transaction').val(2);
             });
 
-            $('#rejectTransModal').on('hidden.bs.modal', function () {
-                $('#rejectionOperation').val(0);
-            });
             $('#approveTransModal').find('.btn-primary').on('click',function(){
                 var approval_form = document.forms['approve_transaction'];
                 approval_form.submit();

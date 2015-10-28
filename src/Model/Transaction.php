@@ -14,6 +14,7 @@ class Transaction {
 	private $transaction_date = "";
 	private $remarks = "";
 	private $is_on_hold = 0;
+	private $is_closed = 0;
 	/**
 	 * Gets the transaction id
 	 *
@@ -141,5 +142,21 @@ class Transaction {
 	 */
 	public function setIsOnHold($isOnHold) {
 		$this->is_on_hold = $isOnHold;
+	}
+	/**
+	 * Gets the closed status of the transaction
+	 *
+	 * @return integer
+	 */
+	public function getIsClosed() {
+		return $this->is_closed;
+	}
+	/**
+	 * Sets the closed status of the transaction
+	 *
+	 * @param integer $isClosed
+	 */
+	public function setIsClosed($isClosed) {
+		$this->is_closed = $isClosed;
 	}
 }

@@ -37,3 +37,8 @@ define('_EMPLOYEE_START_PAGE', 'employee_overview');
 define('_CUSTOMER_START_PAGE', 'overview');
 
 define('_EMAIL', 'info@securebank.de');
+
+define('_ACTION_APPROVE_TRANSACTION', 1);
+define('_ACTION_REJECT_TRANSACTION', 2);
+
+define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed. Refresh the page to view latest data.');

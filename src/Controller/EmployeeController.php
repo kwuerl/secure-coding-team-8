@@ -89,12 +89,21 @@ class EmployeeController extends UserController {
 
     public function actOnTransactions ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
-        /*approve transactions which are on hold*/
-        if( $request->getData('rejectionOperation') == 1)
-            $transaction = $this->get('transaction_repository')->rejectTransaction($request->getData('selectedTransactionId'));
-        else
-            $transaction = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
-        $this->get('routing')->redirect('approve_transactions_get',array());
+        /*perform appropriate actions on the transaction based on the specified action.*/
+        switch ($request->getData('action_transaction')) {
+            case _ACTION_APPROVE_TRANSACTION:
+                $error = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
+                break;
+            case _ACTION_REJECT_TRANSACTION:
+                $error = $this->get('transaction_repository')->rejectTransaction($request->getData('selectedTransactionId'));
+                break;
+        }
+        if (!$error) {
+            $this->get("flash_bag")->add("Approval successful", "Transaction was approved successfully.", "success");
+        } else {
+            $this->get("flash_bag")->add("Operation failed!", $error, "error");
+        }
+        $this->get('routing')->redirect('transactions_get',array());
+        return;
     }
-
 }

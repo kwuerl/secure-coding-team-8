@@ -42,6 +42,10 @@ class TransactionRepository extends Repository {
 						TBL_TRANSACTION
 						SET IS_ON_HOLD = 0 WHERE ID= :transactionId";
 
+		if ($this->isClosed($transactionId)) {
+			$error = _ERROR_TRANSACTION_CLOSED;
+			return $error;
+		}
 		/* set autocommit to off */
 		$db->beginTransaction();
 
@@ -52,11 +56,11 @@ class TransactionRepository extends Repository {
 			$query->execute();
 
 			$db->commit();
-			$error = $db->errorInfo();
-			if (count($error) > 0 && !is_null($error[2])) {
-				return $error[2];
+			$error = $this->getError($db, true);
+			if (!$error) {
+				$this->close($transactionId);
 			}
-			return true;
+			return $error;
 		}
 	}
 	/**
@@ -69,6 +73,11 @@ class TransactionRepository extends Repository {
 	public function rejectTransaction($transactionId) {
 		$db = $this->db_wrapper->get();
 		$transactionId = (int)$transactionId;
+
+		if ($this->isClosed($transactionId)) {
+			$error = _ERROR_TRANSACTION_CLOSED;
+			return $error;
+		}
 		$statement = "UPDATE
 						TBL_TRANSACTION
 						SET IS_REJECTED = 1, IS_ON_HOLD = 0 WHERE ID= :transactionId";
@@ -82,11 +91,80 @@ class TransactionRepository extends Repository {
 			$query->execute();
 
 			$db->commit();
-			$error = $db->errorInfo();
-			if (count($error) > 0 && !is_null($error[2])) {
-				return $error[2];
+			$error = $this->getError($db, true);
+			if (!$error) {
+				$this->close($transactionId);
 			}
-			return false;
+			return $error;
 		}
+	}
+	/**
+	 * Closes the transaction indicating that actions have already been performed on it.
+	 *
+	 * @param integer $transactionId Id of the transaction
+	 *
+	 * @return string|boolean $error|true Error if there is a failure and true otherwise
+	 */
+	public function close($transactionId) {
+		$db = $this->db_wrapper->get();
+		$transactionId = (int)$transactionId;
+		$statement = "UPDATE
+						TBL_TRANSACTION
+						SET IS_CLOSED = 1 WHERE ID= :transactionId";
+
+		$db->beginTransaction();
+
+		/* create a prepared statement */
+		if ($query = $db->prepare($statement)) {
+			/* bind parameters for markers */
+			$query->bindParam(':transactionId', $transactionId);
+			$query->execute();
+
+			$db->commit();
+			$error = $this->getError($db);
+			return $error;
+		}
+	}
+
+	/**
+	 * Checks the closed status of the transaction
+	 *
+	 * @param integer $transactionId Id of the transaction
+	 *
+	 * @return integer $status Closed status of the transaction
+	 */
+	public function isClosed($transactionId) {
+		$db = $this->db_wrapper->get();
+		$transactionId = (int)$transactionId;
+		$statement = "SELECT IS_CLOSED FROM
+						TBL_TRANSACTION
+						WHERE ID= :transactionId";
+
+		/* create a prepared statement */
+		if ($query = $db->prepare($statement)) {
+			/* bind parameters for markers */
+			$query->bindParam(':transactionId', $transactionId);
+			$query->execute();
+
+			$status = $query->fetchColumn();
+			return $status;
+		}
+	}
+	/**
+	 * Gets the error from the database
+	 *
+	 * @param Connection $db Connection to the database
+	 *
+	 * @return string|boolean $error|false Returns the error message, if error exists and false otherwise
+	 */
+	private function getError($db, $isRollBack = false) {
+		$error = $db->errorInfo();
+		if (count($error) > 0 && !is_null($error[2])) {
+			if ($isRollBack) {
+				$db->rollBack();
+			}
+			return $error[2];
+		}
+		return false;
 	}
 }
