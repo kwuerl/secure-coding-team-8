@@ -28,4 +28,65 @@ class TransactionRepository extends Repository {
     		return $transactions;
     	}
 	}
+	/**
+	 * Approve Transaction for the customer with particular transaction id
+	 *
+	 * @param integer $transactionId transaction id of the transaction
+	 *
+	 * @return array $transactions Instances of the Transaction Model class
+	 */
+	public function approveTransaction($transactionId) {
+		$db = $this->db_wrapper->get();
+		$transactionId = (int)$transactionId;
+		$statement = "UPDATE
+						TBL_TRANSACTION
+						SET IS_ON_HOLD = 0 WHERE ID= :transactionId";
+
+		/* set autocommit to off */
+		$db->beginTransaction();
+
+		/* create a prepared statement */
+		if ($query = $db->prepare($statement)) {
+			/* bind parameters for markers */
+			$query->bindParam(':transactionId', $transactionId);
+			$query->execute();
+
+			$db->commit();
+			$error = $db->errorInfo();
+			if (count($error) > 0 && !is_null($error[2])) {
+				return $error[2];
+			}
+			return false;
+		}
+	}
+	/**
+	 * Reject Transaction for the customer with particular transaction id
+	 *
+	 * @param integer $transactionId transaction id of the transaction
+	 *
+	 * @return array $transactions Instances of the Transaction Model class
+	 */
+	public function rejectTransaction($transactionId) {
+		$db = $this->db_wrapper->get();
+		$transactionId = (int)$transactionId;
+		$statement = "UPDATE
+						TBL_TRANSACTION
+						SET IS_REJECTED = 1, IS_ON_HOLD = 0 WHERE ID= :transactionId";
+
+		$db->beginTransaction();
+
+		/* create a prepared statement */
+		if ($query = $db->prepare($statement)) {
+			/* bind parameters for markers */
+			$query->bindParam(':transactionId', $transactionId);
+			$query->execute();
+
+			$db->commit();
+			$error = $db->errorInfo();
+			if (count($error) > 0 && !is_null($error[2])) {
+				return $error[2];
+			}
+			return false;
+		}
+	}
 }
