@@ -60,7 +60,7 @@
 	            </div><!-- /.col -->
 	        </div>
 		<?php }); ?>
-      <a href="login" class="text-center">Back to Login</a>
+      	<a href="login" class="text-center">Back to Login</a>
 	</div>
 </div>
 <?php });

@@ -1,9 +1,8 @@
 <?php $t->extend("user_overview.html.php"); ?>
 <?php $t->set("menu_active", "approve_registrations"); ?>
 <?php $t->block("content", function ($t) {
-      $customerRegistrationList = $t->get("customerRegistrationList");
-      $employeeRegistrationList = $t->get("employeeRegistrationList"); ?>
-
+    $customerRegistrationList = $t->get("customerRegistrationList");
+    $employeeRegistrationList = $t->get("employeeRegistrationList"); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <div class="nav-tabs-custom">
@@ -18,7 +17,7 @@
                     Customer Registrations
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="active">Registrations</a></li>
                 </ol>
             </section>
@@ -39,21 +38,21 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach($customerRegistrationList as $customer) {?>
-                                            <tr>
-                                                <td>
-                                                    <?= $t->s($customer->getFirstName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($customer->getLastName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($customer->getEmail()); ?>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <?= $t->s($customer->getFirstName()); ?>
+                                            </td>
+                                            <td>
+                                                <?= $t->s($customer->getLastName()); ?>
+                                            </td>
+                                            <td>
+                                                <?= $t->s($customer->getEmail()); ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
+                                                <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                            </td>
+                                        </tr>
                                         <?php }?>
                                     </tbody>
                                     <tfoot>
@@ -83,7 +82,7 @@
                     Employees Registration Details
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="active">Registrations</a></li>
                 </ol>
             </section>
@@ -104,21 +103,21 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach($employeeRegistrationList as $employee) {?>
-                                            <tr>
-                                                <td>
-                                                    <?= $t->s($employee->getFirstName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($employee->getLastName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($employee->getEmail()); ?>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                <?= $t->s($employee->getFirstName()); ?>
+                                            </td>
+                                            <td>
+                                                <?= $t->s($employee->getLastName()); ?>
+                                            </td>
+                                            <td>
+                                                <?= $t->s($employee->getEmail()); ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
+                                                <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                            </td>
+                                        </tr>
                                         <?php }?>
                                     </tbody>
                                     <tfoot>

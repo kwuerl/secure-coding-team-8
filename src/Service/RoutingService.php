@@ -6,6 +6,7 @@ namespace Service;
  * Based on https://github.com/noahbuscher/Macaw
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class RoutingService {
 	private $service_container;

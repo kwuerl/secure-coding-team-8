@@ -4,6 +4,7 @@ namespace Helper;
  * StringHelper is a collection of static string functions
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class StringHelper {
 	/**

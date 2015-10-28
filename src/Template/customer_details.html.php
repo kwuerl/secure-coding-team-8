@@ -11,8 +11,8 @@
         Customer Details
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/overview"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/customers"><i class="fa fa-dashboard"></i> Customers</a></li>
+        <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/customers">Customers</a></li>
         <li class="active">Customer Details</li>
     </ol>
 </section>

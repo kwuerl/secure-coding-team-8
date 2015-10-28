@@ -7,6 +7,7 @@ use \Helper\ValidationHelper;
  * FormService can be used to sanatize form data and map post data to objects
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class FormHelper {
 	private $field_configs = array();
@@ -138,8 +139,8 @@ class FormHelper {
 					if($validation_helper_reflec->hasMethod($type)) {
 						$validation_helper_reflec_method = $validation_helper_reflec->getMethod($type);
 						if($validation_helper_reflec_method->isPublic() && $validation_helper_reflec_method->isStatic()) {
-							//run the function 
-							$valid = call_user_func_array(__NAMESPACE__ .'\ValidationHelper::'.$type, array_merge(array($this->field_values[$name]),$options));
+							//run the function
+							$valid = call_user_func_array(__NAMESPACE__ .'\ValidationHelper::'.$type, array_merge(array($this, $this->field_values[$name]), $options));
 							//if invalid add the error message
 							if(!$valid) {
 								$error_messages_field[] = $message;

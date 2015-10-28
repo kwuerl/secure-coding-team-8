@@ -3,11 +3,13 @@
  * Definition of constants used in the application.
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
 define('_DB_SECURE_BANK', 'BANK_DETAILS');
 
+define('_DB_SERVER', 'mysql');
 define('_MYSQL_HOST', '127.0.0.1');
 define('_MYSQL_USER', 'root');
 define('_MYSQL_PASSWORD', 'root');
@@ -32,3 +34,5 @@ define('_CLASS_MODEL_TRANSACTION', "\Model\Transaction");
 define('_LOGIN_ROUTE_NAME', 'login_get');
 define('_EMPLOYEE_START_PAGE', 'employee_overview');
 define('_CUSTOMER_START_PAGE', 'overview');
+
+define('_EMAIL', 'info@securebank.de');

@@ -40,12 +40,12 @@ class EmployeeController extends UserController {
         $customer = $this->get('customer_repository')->get($customerId);
         /*Fetch all transactions for the selected customer*/
         $transactionList = $this->get('transaction_repository')->getByCustomerId($customerId);
-        
+
         /*Separate the transactions into completed and on-hold transactions.*/
         $onHoldTransactionList = array();
         $approvedTransactionList = array();
         foreach ($transactionList as $transaction) {
-            $onHold = $transaction->getOnHold();
+            $onHold = $transaction->getIsOnHold();
             if ($onHold)
                 $onHoldTransactionList[] = $transaction;
             else

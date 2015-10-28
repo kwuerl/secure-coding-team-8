@@ -8,19 +8,19 @@ namespace Controller;
  */
 class RegistrationController extends Controller {
 
-	public function processRegistration ($request) {
+	public function processRegistration($request) {
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("form_registration");
 
 		//add one field
 		$helper->addField("first_name", "name", array(
 			array("required", "First name is required"),
-			array("name", "Only letters, '-' and white space allowed")
+			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("last_name", "name", array(
 			array("required", "Last name is required"),
-			array("name", "Only letters, '-' and white space allowed")
+			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("email", "email", array(
@@ -35,30 +35,45 @@ class RegistrationController extends Controller {
 
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
+			array("password", "Only letters, numbers and '-_$^?\+#' allowed"),
+			array("equal", "Passwords do not match", array("_password_plain"))
 		), array("ltrim", "rtrim"), "");
 
 		// try to process the request
-		if($helper->processRequest($request)) {
+		if ($helper->processRequest($request)) {
 
 			//try to validate
-			if($helper->validate()) {
+			if ($helper->validate()) {
 
 				// fill the model
 				$model = new \Model\User();
 				$helper->fillModel($model);
 
 				$model->setGroups(array(_GROUP_USER));
-				// add to repository
-				if($this->get('customer_repository')->add($model)) {
-					$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
-					$this->get("routing")->redirect("login_get", array());
-					return;
-				} else {
-					$this->get("flash_bag")->add("Registration failed!", "Please try again later.", "error");
-				}
 
-				
+				// if customer with email doesn't exist, add to repository
+				if (!$this->get('customer_repository')->findOne(array("email" => $model->getEmail()))) {
+
+					// add to repository
+					if ($this->get('customer_repository')->add($model)) {
+
+						// send confirmation email
+						$this->get("email")->sendMail(
+							$model->getEmail(),
+							"Thank you for your registration",
+							"Dear ".$model->getFirstName().$model->getLastName().",\nthank you for your registration at SecureBank.\nAs soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.\n\nHave a nice day,\nyour SecureBank"
+						);
+
+						// set flash message and redirect
+						$this->get("flash_bag")->add("Thank you for your registration!", "You will receive an e-mail with further information soon.", "success");
+						$this->get("routing")->redirect("login_get", array());
+						return;
+					} else {
+						$this->get("flash_bag")->add("Registration failed!", "Please try again later.", "error");
+					}
+				} else {
+					$this->get("flash_bag")->add("Registration failed!", "There is already an account with this e-mail.", "error");
+				}
 			}
 		}
 		// render the form

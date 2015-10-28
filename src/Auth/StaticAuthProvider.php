@@ -39,7 +39,7 @@ class StaticAuthProvider extends AuthProvider {
 			return $employee;
 		} else if ($user->getEmail() == "user@user.de" 
 		&& password_verify ( "user" , $user->getPassword() )) {
-			$user = new Employee();
+			$user = new User();
 			$user->setEmail($user->getEmail());
 			$user->setFirstName("Mr.");
 			$user->setLastName("User");
