@@ -4,9 +4,9 @@ namespace Service;
 use Model\TransactionCode;
 use Model\TransactionCodeRepository;
 /**
- * This Service can be used to generate a set of 100 transaction codes.
+ * This Service is used for anything which has to do with Transaction
  */
-class TransactionCodeGeneratorService {
+class TransactionService {
 	private $repository;
 	/**
 	 * Constructor
@@ -21,7 +21,7 @@ class TransactionCodeGeneratorService {
 	 *
 	 * @return array    Array with TransactionCode models
 	 */
-	public function generateSet($customer_id) {
+	public function generateTransactionCodeSet($customer_id) {
 		$set = array();
 		for ($i = 0; $i < 100; $i++) {
 			do {

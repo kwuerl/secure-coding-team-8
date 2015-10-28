@@ -43,7 +43,7 @@ class ExampleController extends Controller {
 	}
 
 	public function testTransactionCode($request) {
-		$set = $this->get("transaction_code")->generateSet(1);
+		$set = $this->get("transaction")->generateTransactionCodeSet(1);
 		$this->get("templating")->render("test_transaction_codes.html.php", array(
 			"transaction_codes" => $set
 		));
