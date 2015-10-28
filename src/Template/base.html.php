@@ -32,7 +32,7 @@
       <script src="/Vendor/bootstrap/js/bootstrap.min.js"></script>
       <script src="/Vendor/js/jquery.dataTables.min.js"></script>
       <script src="/Vendor/js/dataTables.bootstrap.min.js"></script>
-      <script src="/Scripts/app.js"></script>
+      <script src="/Script/app.js"></script>
       <script src="/Vendor/js/app.js"></script>
     </body>
     <!-- Modals -->

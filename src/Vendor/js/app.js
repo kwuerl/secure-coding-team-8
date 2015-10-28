@@ -171,14 +171,6 @@ $(function () {
     FastClick.attach(document.body);
   }
 
-  //Activate direct chat widget
-  if (o.directChat.enable) {
-    $(document).on('click', o.directChat.contactToggleSelector, function () {
-      var box = $(this).parents('.direct-chat').first();
-      box.toggleClass('direct-chat-contacts-open');
-    });
-  }
-
   /*
    * INITIALIZE BUTTON TOGGLE
    * ------------------------
