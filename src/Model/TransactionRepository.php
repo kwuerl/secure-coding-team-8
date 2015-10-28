@@ -31,9 +31,9 @@ class TransactionRepository extends Repository {
 	/**
 	 * Approve Transaction for the customer with particular transaction id
 	 *
-	 * @param integer $transactionId transaction id of the transaction
+	 * @param integer $transactionId Id of the transaction
 	 *
-	 * @return array $transactions Instances of the Transaction Model class
+	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
 	public function approveTransaction($transactionId) {
 		$db = $this->db_wrapper->get();
@@ -56,15 +56,15 @@ class TransactionRepository extends Repository {
 			if (count($error) > 0 && !is_null($error[2])) {
 				return $error[2];
 			}
-			return false;
+			return true;
 		}
 	}
 	/**
 	 * Reject Transaction for the customer with particular transaction id
 	 *
-	 * @param integer $transactionId transaction id of the transaction
+	 * @param integer $transactionId Id of the transaction
 	 *
-	 * @return array $transactions Instances of the Transaction Model class
+	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
 	public function rejectTransaction($transactionId) {
 		$db = $this->db_wrapper->get();
