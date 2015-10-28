@@ -61,7 +61,7 @@ class RegistrationController extends Controller {
 						$this->get("email")->sendMail(
 							$model->getEmail(),
 							"Thank you for your registration",
-							"Dear ".$model->getFirstName().$model->getLastName().",\nthank you for your registration at SecureBank.\nAs soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.\n\nHave a nice day,\nyour SecureBank"
+							"Dear ".$model->getFirstName()." ".$model->getLastName().",\nthank you for your registration at SecureBank.\nAs soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.\n\nHave a nice day,\nyour SecureBank"
 						);
 
 						// set flash message and redirect

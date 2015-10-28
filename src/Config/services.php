@@ -31,7 +31,7 @@ $service_container->register("email", "Service\\EmailService", array(
 	_EMAIL
 ));
 
-$service_container->register("transaction_code", "Service\\TransactionCodeGeneratorService", array(
+$service_container->register("transaction", "Service\\TransactionService", array(
 	array("type"=>"service", "value"=>"transaction_code_repository")
 ));
 
