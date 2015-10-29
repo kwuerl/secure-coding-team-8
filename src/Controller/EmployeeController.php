@@ -133,14 +133,29 @@ class EmployeeController extends UserController {
 
     public function actOnCustomerRegistrations ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
-
+        $user_id = $request->getData('selectedUserId');
+        $user_model = $this->get('customer_repository')->findOne(array("id" => $user_id));
         switch ($request->getData('action_registration')) {
             case _ACTION_APPROVE:
-                $error = $this->get('customer_repository')->approveRegistration($request->getData('selectedUserId'));
+                $error = $this->get('customer_repository')->approveRegistration($user_id);
                 $success = 'Customer registration was approved successfully.';
+                // send email with transaction codes
+                $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
+                $email_msg = $this->get("templating")->render(
+                    "email_transaction_codes.html.php",
+                    array(
+                        "tans" => $tans,
+                        "user" => $user_model
+                    ),
+                    false);
+                $this->get("email")->sendMail(
+                    $user_model->getEmail(),
+                    "Your registration at SecureBank was successful!",
+                    $email_msg
+                );
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('customer_repository')->rejectRegistration($request->getData('selectedUserId'));
+                $error = $this->get('customer_repository')->rejectRegistration($user_id);
                 $success = 'Customer registration was rejected successfully.';
                 break;
         }

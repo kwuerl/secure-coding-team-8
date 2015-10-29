@@ -7,6 +7,7 @@ $routing_service->get("test_route", "/test/(:all)/(:all)/(:any)", "example_contr
 $routing_service->get("form_example_get", "/form_example", "example_controller:formtest");
 $routing_service->post("form_example_post", "/form_example", "example_controller:formtest");
 $routing_service->get("test_transaction_codes", "/transaction_codes", "example_controller:testTransactionCode");
+$routing_service->get("test_email_template", "/email_template", "example_controller:testEmailTemplate");
 /*
  * Login and registration routes
  */

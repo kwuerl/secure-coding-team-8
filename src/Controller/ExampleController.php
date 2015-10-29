@@ -48,4 +48,13 @@ class ExampleController extends Controller {
 			"transaction_codes" => $set
 		));
 	}
+
+	public function testEmailTemplate($request) {
+		$tans = $this->get("transaction")->generateTransactionCodeSet(1);
+		$user_model = $this->get('customer_repository')->findOne(array("id" => 7));
+		$this->get("templating")->render("email_transaction_codes.html.php", array(
+            "tans" => $tans,
+            "user" => $user_model
+        ));
+	}
 }

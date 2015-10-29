@@ -36,7 +36,7 @@ define('_LOGIN_ROUTE_NAME', 'login_get');
 define('_EMPLOYEE_START_PAGE', 'employee_overview');
 define('_CUSTOMER_START_PAGE', 'overview');
 
-define('_EMAIL', 'info@securebank.de');
+define('_EMAIL', 'securebank15@gmail.com');
 
 define('_ACTION_APPROVE', 1);
 define('_ACTION_REJECT', 2);
