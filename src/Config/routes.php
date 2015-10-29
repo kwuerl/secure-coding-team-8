@@ -15,6 +15,8 @@ $routing_service->post("login_post", "/login", "login_controller:processLogin");
 $routing_service->get("logout_get", "/logout", "login_controller:logout");
 $routing_service->get("register_get", "/register", "registration_controller:processRegistration");
 $routing_service->post("register_post", "/register", "registration_controller:processRegistration");
+$routing_service->get("register_employee_get", "/register_employee", "registration_controller:processEmployeeRegistration");
+$routing_service->post("register_employee_post", "/register_employee", "registration_controller:processEmployeeRegistration");
 
 /*
  * Customer routes
