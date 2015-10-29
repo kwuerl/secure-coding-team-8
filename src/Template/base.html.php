@@ -75,14 +75,4 @@
             </div>
         </div>
     </div>
-
-         <!-- Notifications -->
-         <div class="alert alert-success alert-dismissable">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span class='app-success-msg'></span>
-         </div>
-         <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <span class='app-error-msg'></span>
-          </div>
 </html>

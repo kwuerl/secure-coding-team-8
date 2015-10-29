@@ -2315,20 +2315,10 @@ a:focus {
 }
 .alert-success {
     border-color: #008d4c;
-    position: absolute;
-    top :20%;
-    right:30%;
-    width:30%;
-    display : none;
 }
 .alert-danger,
 .alert-error {
     border-color: #d73925;
-    position: absolute;
-    top :20%;
-    right:30%;
-    width:30%;
-    display : none;
 }
 .alert-warning {
     border-color: #e08e0b
