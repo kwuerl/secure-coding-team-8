@@ -4,7 +4,7 @@
     $t->block("body", function ($t) {
         // TODO : Remove hard coding of the current user type
         // This belogs to Controller
-        $current_user = _GROUP_USER;
+        $current_user = _GROUP_EMPLOYEE;
         switch($current_user) {
             case _GROUP_USER : $profile_href = '/profile';
                                 break;
@@ -123,10 +123,10 @@
                     <span>Customers</span>
                 </a>
             </li>
-            <li class="treeview<?= $t->get('menu_active')=="approve_registrations"?" active":""; ?>">
-                <a href="/approve_registrations">
-                    <i class="fa fa-tasks"></i>
-                    <span>Approve Registrations</span>
+            <li class="treeview<?= $t->get('menu_active')=="employees"?" active":""; ?>">
+                <a href="/employees">
+                <i class="fa fa-users"></i>
+                <span>Employees</span>
                 </a>
             </li>
             <li class="treeview<?= $t->get('menu_active')=="approve_transactions"?" active":""; ?>">

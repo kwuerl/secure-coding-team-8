@@ -38,7 +38,8 @@ define('_CUSTOMER_START_PAGE', 'overview');
 
 define('_EMAIL', 'info@securebank.de');
 
-define('_ACTION_APPROVE_TRANSACTION', 1);
-define('_ACTION_REJECT_TRANSACTION', 2);
+define('_ACTION_APPROVE', 1);
+define('_ACTION_REJECT', 2);
 
-define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed. Refresh the page to view latest data.');
+define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed.');
+define('_ERROR_REGISTRATION_CLOSED', 'This registration is already closed.');

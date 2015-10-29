@@ -78,6 +78,42 @@ var secureBank = {
                 var approval_form = document.forms['approve_transaction'];
                 approval_form.submit();
             });
+            // ==== Approve/ Reject Transaction operations ends =======//
+
+            // ==== Approve/ Reject Registration operations =======//
+            $('#employee_regsitrations_table .btn-info').on('click',function(){
+                var employee_id = $(this).parent().attr('id');
+                $('#selectedUserId').val(employee_id);
+                $('#action_registration').val(1);
+            });
+
+            $('#employee_regsitrations_table .btn-reject').on('click',function(){
+                var employee_id = $(this).parent().attr('id');
+                $('#selectedUserId').val(employee_id);
+                $('#action_registration').val(2);
+            });
+
+            $('#customer_reg_pending .btn-info').on('click',function(){
+                var employee_id = $(this).parent().attr('id');
+                $('#selectedUserId').val(employee_id);
+                $('#action_registration').val(1);
+            });
+
+            $('#customer_reg_pending .btn-reject').on('click',function(){
+                var employee_id = $(this).parent().attr('id');
+                $('#selectedUserId').val(employee_id);
+                $('#action_registration').val(2);
+            });
+
+            $('#approveRegModal').find('.btn-primary').on('click',function(){
+                var action_registration_form = document.forms['action_registration_form'];
+                action_registration_form.submit();
+            });
+
+            $('#rejectRegModal').find('.btn-primary').on('click',function(){
+                var action_registration_form = document.forms['action_registration_form'];
+                action_registration_form.submit();
+            });
         });
     }
 };

@@ -34,12 +34,14 @@ class Repository {
 		$value_array = array();
 		foreach ($filter as $name => $value) {
 			$db_field_name = strtoupper($name);
-			$query .= $db_field_name . " = :" . $db_field_name;
+			$query .= $db_field_name . " = :" . $db_field_name . " AND ";
 
 			array_push($type_array, ":" . $db_field_name);
 
 			array_push($value_array, $value);
 		}
+		$query = preg_replace('/ AND $/', '', $query);
+
 		if ($stmt = $db->prepare($query)) {
 			foreach ($type_array as $key => $type) {
 				$stmt->bindParam($type, $value_array[$key]);

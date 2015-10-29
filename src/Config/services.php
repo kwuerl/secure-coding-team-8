@@ -118,6 +118,12 @@ $service_container->register("example_repository", "Model\\ExampleRepository", a
 	array("type"=>"service", "value"=>"db_wrapper")
 ));
 
+$service_container->register("user_repository", "Model\\UserRepository", array(
+	array("type"=>"service", "value"=>"db_wrapper"),
+	"",
+	_CLASS_MODEL_USER
+));
+
 $service_container->register("customer_repository", "Model\\CustomerRepository", array(
 	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_CUSTOMER,

@@ -35,44 +35,4 @@
       <script src="/Script/app.js"></script>
       <script src="/Vendor/js/app.js"></script>
     </body>
-    <!-- Modals -->
-
-    <!-- Approve Registration Modal -->
-    <div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Approve Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to approve the registration?
-                </div><!-- /.box-body -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Approve</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Reject Registration Modal -->
-    <div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Reject Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to reject the registration?
-                </div><!-- /.box-body -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Approve</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </html>

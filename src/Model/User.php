@@ -15,6 +15,8 @@ class User {
 	protected $_password_plain = "";
 	protected $password = "";
 	protected $groups_plain = "";
+	protected $is_closed = 0;
+	protected $is_rejected = 0;
 	protected $_provider;
 	/**
 	 * Gets the user id
@@ -177,5 +179,37 @@ class User {
 	 */
 	public function setProvider($provider) {
 		$this->_provider = $provider;
+	}
+	/**
+	 * Gets the closed status of the user registration
+	 *
+	 * @return integer
+	 */
+	public function getIsClosed() {
+		return $this->is_closed;
+	}
+	/**
+	 * Sets the closed status of the user registration
+	 *
+	 * @param integer $isClosed
+	 */
+	public function setIsClosed($isClosed) {
+		$this->is_closed = $isClosed;
+	}
+	/**
+	 * Gets the rejected status of the user registration
+	 *
+	 * @return integer
+	 */
+	public function getIsRejected() {
+		return $this->is_rejected;
+	}
+	/**
+	 * Sets the rejected status of the user registration
+	 *
+	 * @param integer $isRejected
+	 */
+	public function setIsRejected($isRejected) {
+		$this->is_rejected = $isRejected;
 	}
 }

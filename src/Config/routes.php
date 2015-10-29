@@ -29,8 +29,10 @@ $routing_service->post("transaction_history_download", "/transaction_history_dow
  */
 $routing_service->get("employee_overview", "/employee_overview", "employee_controller:loadOverview");
 $routing_service->get("employee_profile", "/employee_profile", "employee_controller:loadProfile");
-$routing_service->get("customers", "/customers", "employee_controller:loadCustomersList");
+$routing_service->get("customers_get", "/customers", "employee_controller:loadCustomersList");
+$routing_service->post("customers_post", "/customers", "employee_controller:actOnCustomerRegistrations");
 $routing_service->get("customer_detail", "/customer_details/(:num)", "employee_controller:loadCustomerDetails");
-$routing_service->get("approve_registration", "/approve_registrations","employee_controller:approveRegistrations");
+$routing_service->get("employees_get", "/employees","employee_controller:loadEmployeesList");
+$routing_service->post("employees_post", "/employees","employee_controller:actOnEmployeeRegistrations");
 $routing_service->get("transactions_get", "/transactions","employee_controller:loadPendingTransactions");
 $routing_service->post("transactions_post", "/transactions","employee_controller:actOnTransactions");
