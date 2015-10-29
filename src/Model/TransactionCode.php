@@ -9,7 +9,7 @@ class TransactionCode {
 	private $id = 0;
 	private $customer_id = 0;
 	private $code = "";
-	private $used = false;
+	private $is_used = false;
 	/**
 	 * Gets the id
 	 *
@@ -63,15 +63,15 @@ class TransactionCode {
 	 *
 	 * @return boolean
 	 */
-	public function getUsed() {
-		return $this->used;
+	public function getIsUsed() {
+		return $this->is_used;
 	}
 	/**
 	 * Sets the used property
 	 *
-	 * @param boolean $used
+	 * @param boolean $isUsed
 	 */
-	public function setUsed($used) {
-		$this->used = $used;
+	public function setIsUsed($isUsed) {
+		$this->is_used = $isUsed;
 	}
 }

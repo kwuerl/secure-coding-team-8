@@ -30,7 +30,7 @@ class TransactionService {
 			$code_instance = new TransactionCode();
 			$code_instance->setCustomerId($customer_id);
 			$code_instance->setCode($code);
-			$code_instance->setUsed(false);
+			$code_instance->setIsUsed(false);
 			$this->repository->add($code_instance);
 			$set[] = $code_instance;
 		}
@@ -51,7 +51,7 @@ class TransactionService {
 	public function checkCode($customer_id, $code) {
 		$db_result = $this->repository->findOne(array("customer_id" => $customer_id, "code" => $code));
 		if ($db_result) {
-			if (!$db_result->getUsed()) {
+			if (!$db_result->getIsUsed()) {
 				return true;
 			}
 		}

@@ -91,17 +91,18 @@ class EmployeeController extends UserController {
 
     public function actOnTransactions ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
-        $transactionId = $request->getData('selectedTransactionId');
         $action = $request->getData('action_transaction');
+        $transaction_id = $request->getData('selectedTransactionId');
+        $transaction_model = $this->get('transaction_repository')->findOne(array("id" => (int)$transaction_id));
 
         /*perform appropriate actions on the transaction based on the specified action.*/
         switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('transaction_repository')->actOnTransaction($transactionId, $action);
+                $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action);
                 $success = 'Transaction was approved successfully.';
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('transaction_repository')->actOnTransaction($transactionId, $action);
+                $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action);
                 $success = 'Transaction was rejected successfully.';
                 break;
         }
