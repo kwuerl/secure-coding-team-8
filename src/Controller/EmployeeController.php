@@ -113,14 +113,15 @@ class EmployeeController extends UserController {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         $action = $request->getData('action_registration');
         $user_id = $request->getData('selectedUserId');
+        $user_model = $this->get('employee_repository')->findOne(array("id" => $user_id));
 
         switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('employee_repository')->actOnRegistration($user_id, $action);
+                $error = $this->get('employee_repository')->actOnRegistration($user_model, $action);
                 $success = 'Employee registration was approved successfully.';
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('employee_repository')->actOnRegistration($user_id, $action);
+                $error = $this->get('employee_repository')->actOnRegistration($user_model, $action);
                 $success = 'Employee registration was rejected successfully.';
                 break;
         }
@@ -136,25 +137,27 @@ class EmployeeController extends UserController {
 
         switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('customer_repository')->actOnRegistration($user_id, $action);
+                $error = $this->get('customer_repository')->actOnRegistration($user_model, $action);
                 $success = 'Customer registration was approved successfully.';
-                // send email with transaction codes
-                $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
-                $email_msg = $this->get("templating")->render(
-                    "email_transaction_codes.html.php",
-                    array(
-                        "tans" => $tans,
-                        "user" => $user_model
-                    ),
-                    false);
-                $this->get("email")->sendMail(
-                    $user_model->getEmail(),
-                    "Your registration at SecureBank was successful!",
-                    $email_msg
-                );
+                if (!$error) {
+                    // send email with transaction codes
+                    $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
+                    $email_msg = $this->get("templating")->render(
+                        "email_transaction_codes.html.php",
+                        array(
+                            "tans" => $tans,
+                            "user" => $user_model
+                        ),
+                        false);
+                    $this->get("email")->sendMail(
+                        $user_model->getEmail(),
+                        "Your registration at SecureBank was successful!",
+                        $email_msg
+                    );
+                }
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('customer_repository')->actOnRegistration($user_id, $action);
+                $error = $this->get('customer_repository')->actOnRegistration($user_model, $action);
                 $success = 'Customer registration was rejected successfully.';
                 break;
         }
