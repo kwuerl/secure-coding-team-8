@@ -111,6 +111,70 @@ class Repository {
 		throw new \Exception("Database error: ".$this->getError($db));
 		return false;
 	}
+    /**
+     * Updates a Model Instances to the database
+     *
+     * @param Model $model_instance	Model instance to update
+     * @param array	$fields Fields to be updated in the instance
+     * @param array	$filter Condition for update
+     *
+     * @return boolean
+     */
+	public function update($model_instance, $fields, $filter) {
+		$db = $this->db_wrapper->get();
+		$query = "UPDATE " . $this->table_name . " SET ";
+		$filter_array = array();
+
+		$reflection_obj = new \ReflectionClass($model_instance);
+		$class_properties = $reflection_obj->getProperties();
+
+		foreach ($fields as $property_name) {
+			$name_lower = strtolower($property_name);
+			$name_cc = \Helper\StringHelper::underscoreToCamelCase($name_lower, true);
+			if ($reflection_obj->hasMethod("get".$name_cc)) {
+				$value = call_user_func_array(
+					array($model_instance, "get".$name_cc),
+					array()
+				);
+			} else {
+				$property->setAccessible(true);
+				$value = $property->getValue($model_instance);
+			}
+			if ($value !== null) {
+				if (is_bool($value)) {
+					$values[$property_name] = (int)$value;
+				} else {
+					$values[$property_name] = $value;
+				}
+			}
+			$query .= strtoupper($property_name) . " = :" . $property_name . ",";
+		}
+
+		$query = rtrim($query, ',');
+		$query .= " WHERE ";
+
+		foreach ($filter as $name => $value) {
+			$filter_field = ':filter_' . $name;
+			$query .= strtoupper($name) . " = " . $filter_field . " AND ";
+			$filter_array[$filter_field] = $value;
+		}
+		$query = preg_replace('/ AND $/', '', $query);
+		if ($stmt = $db->prepare($query)) {
+
+			foreach (array_merge($values, $filter_array) as $key => &$value) {
+				call_user_func_array(array($stmt, "bindParam"), array($key, &$value));
+			}
+
+			$result = $stmt->execute();
+
+			if ($result) {
+				$stmt->closeCursor();
+				return true;
+			}
+		}
+		throw new \Exception("Database error: ".$this->getError($db));
+		return false;
+	}
 	/**
 	 * Adds a Model Instances to the database and updates its ID field
 	 *
