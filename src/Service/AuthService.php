@@ -103,6 +103,7 @@ class AuthService {
 	 * @throws PermissionDeniedException
 	 */
 	public function check($group_expr) {
+		$msg = "";
 		if($this->session_service->has("current_user")) {
 			$user = $this->session_service->get("current_user");
 			if($user = $this->verify($user)) {
@@ -110,14 +111,20 @@ class AuthService {
 				if(in_array($group_expr, $groups)) {
 					$this->current_user = $user;
 					return $this->current_user;
+				} else {
+					$msg = "Not in group ".$group_expr;
 				}
+			} else {
+				$msg = "Could not Verify current User";
 			}
+		} else {
+			$msg = "No Current User";
 		}
-		$request = $this->routing_service->getRequest();
-		$prev_url = array($request->getRouteName(), $request->getRouteParams());
-		$this->session_service->set("redirect_after_login", $prev_url);
-		$this->routing_service->redirect($this->login_route_name, array());
-		throw new \Exception\PermissionDeniedException();
+		//$request = $this->routing_service->getRequest();
+		//$prev_url = array($request->getRouteName(), $request->getRouteParams());
+		//$this->session_service->set("redirect_after_login", $prev_url);
+		//$this->routing_service->redirect($this->login_route_name, array());
+		throw new \Exception($msg);
 
 	}
 	/**
