@@ -4,6 +4,7 @@
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
+ * @author Vivek Sethia <vivek.sethia@tum.de>
  */
 
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
@@ -40,6 +41,9 @@ define('_EMAIL', 'securebank15@gmail.com');
 
 define('_ACTION_APPROVE', 1);
 define('_ACTION_REJECT', 2);
+
+define('_OPERATION_SUCCESS', 'Operation successful');
+define('_OPERATION_FAILURE', 'Operation failed!');
 
 define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed.');
 define('_ERROR_REGISTRATION_CLOSED', 'This registration is already closed.');

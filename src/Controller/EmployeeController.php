@@ -91,53 +91,52 @@ class EmployeeController extends UserController {
 
     public function actOnTransactions ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $transactionId = $request->getData('selectedTransactionId');
+        $action = $request->getData('action_transaction');
+
         /*perform appropriate actions on the transaction based on the specified action.*/
-        switch ($request->getData('action_transaction')) {
+        switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('transaction_repository')->approveTransaction($request->getData('selectedTransactionId'));
+                $error = $this->get('transaction_repository')->actOnTransaction($transactionId, $action);
                 $success = 'Transaction was approved successfully.';
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('transaction_repository')->rejectTransaction($request->getData('selectedTransactionId'));
+                $error = $this->get('transaction_repository')->actOnTransaction($transactionId, $action);
                 $success = 'Transaction was rejected successfully.';
                 break;
         }
-        if (!$error) {
-            $this->get("flash_bag")->add("Operation successful", $success, "success");
-        } else {
-            $this->get("flash_bag")->add("Operation failed!", $error, "error");
-        }
+        $this->notify($success, $error);
         $this->get('routing')->redirect('transactions_get',array());
     }
 
     public function actOnEmployeeRegistrations ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $action = $request->getData('action_registration');
+        $user_id = $request->getData('selectedUserId');
 
-        switch ($request->getData('action_registration')) {
+        switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('employee_repository')->approveRegistration($request->getData('selectedUserId'));
+                $error = $this->get('employee_repository')->actOnRegistration($user_id, $action);
                 $success = 'Employee registration was approved successfully.';
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('employee_repository')->rejectRegistration($request->getData('selectedUserId'));
+                $error = $this->get('employee_repository')->actOnRegistration($user_id, $action);
                 $success = 'Employee registration was rejected successfully.';
                 break;
         }
-        if (!$error) {
-            $this->get("flash_bag")->add("Operation successful", $success, "success");
-        } else {
-            $this->get("flash_bag")->add("Operation failed!", $error, "error");
-        }
+        $this->notify($success, $error);
         $this->get('routing')->redirect('employees_get',array());
     }
 
     public function actOnCustomerRegistrations ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $action = $request->getData('action_registration');
         $user_id = $request->getData('selectedUserId');
         $user_model = $this->get('customer_repository')->findOne(array("id" => $user_id));
-        switch ($request->getData('action_registration')) {
+
+        switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('customer_repository')->approveRegistration($user_id);
+                $error = $this->get('customer_repository')->actOnRegistration($user_id, $action);
                 $success = 'Customer registration was approved successfully.';
                 // send email with transaction codes
                 $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
@@ -155,15 +154,18 @@ class EmployeeController extends UserController {
                 );
                 break;
             case _ACTION_REJECT:
-                $error = $this->get('customer_repository')->rejectRegistration($user_id);
+                $error = $this->get('customer_repository')->actOnRegistration($user_id, $action);
                 $success = 'Customer registration was rejected successfully.';
                 break;
         }
-        if (!$error) {
-            $this->get("flash_bag")->add("Operation successful", $success, "success");
-        } else {
-            $this->get("flash_bag")->add("Operation failed!", $error, "error");
-        }
+        $this->notify($success, $error);
         $this->get('routing')->redirect('customers_get',array());
+    }
+    private function notify($success, $error) {
+        if (!$error) {
+            $this->get("flash_bag")->add(_OPERATION_SUCCESS, $success, "success");
+        } else {
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error");
+        }
     }
 }

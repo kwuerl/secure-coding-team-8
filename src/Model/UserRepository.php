@@ -9,13 +9,14 @@ namespace Model;
  */
 abstract class UserRepository extends Repository {
     /**
-     * Updates the the user registration status
+     * Updates the the user registration status to approved or rejected
      *
-     * @param array $userId - user id
+     * @param integer $userId User ID
+     * @param string $action Action to perform on the registration
      *
      * @return string|boolean $error|true Error if there is a failure and true otherwise
      */
-    public function approveRegistration($userId) {
+    public function actOnRegistration($userId, $action) {
 
         $db = $this->db_wrapper->get();
         $userId = (int)$userId;
@@ -24,8 +25,14 @@ abstract class UserRepository extends Repository {
             $error = _ERROR_REGISTRATION_CLOSED;
             return $error;
         }
-        $statement = "UPDATE " . $this->table_name . " SET IS_ACTIVE = 1 WHERE ID = :id";
-
+        switch($action) {
+            case _ACTION_APPROVE:
+                $statement = "UPDATE " . $this->table_name . " SET IS_ACTIVE = 1 WHERE ID = :id";
+                break;
+            case _ACTION_REJECT:
+                $statement = "UPDATE " . $this->table_name . " SET IS_ACTIVE = 0, IS_REJECTED = 1 WHERE ID = :id";
+                break;
+        }
         $db->beginTransaction();
 
         /* create a prepared statement */
@@ -34,44 +41,12 @@ abstract class UserRepository extends Repository {
             $query->bindParam(':id', $userId);
             $query->execute();
 
-            $db->commit();
             $error = $this->getError($db, true);
             if (!$error) {
-                $this->close($userId);
-            }
-            return $error;
-        }
-    }
-
-     /**
-     * Updates the the user registration status
-     *
-     * @param array $userId - user id
-     *
-	 * @return string|boolean $error|true Error if there is a failure and true otherwise
-     */
-    public function rejectRegistration($userId) {
-        $db = $this->db_wrapper->get();
-        $userId = (int)$userId;
-
-        if ($this->isClosed($userId)) {
-            $error = _ERROR_REGISTRATION_CLOSED;
-            return $error;
-        }
-        $statement = "UPDATE " . $this->table_name . " SET IS_ACTIVE = 0, IS_REJECTED = 1 WHERE ID = :id";
-
-        $db->beginTransaction();
-
-        /* create a prepared statement */
-        if ($query = $db->prepare($statement)) {
-            /* bind parameters for markers */
-            $query->bindParam(':id', $userId);
-            $query->execute();
-
-            $db->commit();
-            $error = $this->getError($db);
-            if (!$error) {
-                $this->close($userId);
+                $error = $this->close($db, $userId);
+                if (!$error) {
+                    $db->commit();
+                }
             }
             return $error;
         }
@@ -83,12 +58,8 @@ abstract class UserRepository extends Repository {
 	 *
 	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
-	public function close($userId) {
-		$db = $this->db_wrapper->get();
-		$userId = (int)$userId;
+	public function close($db, $userId) {
 		$statement = "UPDATE " . $this->table_name . " SET IS_CLOSED = 1 WHERE ID= :userId";
-
-		$db->beginTransaction();
 
 		/* create a prepared statement */
 		if ($query = $db->prepare($statement)) {
@@ -96,8 +67,7 @@ abstract class UserRepository extends Repository {
 			$query->bindParam(':userId', $userId);
 			$query->execute();
 
-			$db->commit();
-			$error = $this->getError($db);
+			$error = $this->getError($db, true);
 			return $error;
 		}
 	}
@@ -111,7 +81,6 @@ abstract class UserRepository extends Repository {
 	 */
 	public function isClosed($userId) {
 		$db = $this->db_wrapper->get();
-		$userId = (int)$userId;
 		$statement = "SELECT IS_CLOSED FROM " . $this->table_name . " WHERE ID = :userId";
 
 		/* create a prepared statement */

@@ -4,6 +4,7 @@ namespace Model;
  * Repository class for the Transaction model
  *
  * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
+ * @author Vivek Sethia<vivek.sethia@tum.de>
  */
 class TransactionRepository extends Repository {
 	/**
@@ -32,21 +33,29 @@ class TransactionRepository extends Repository {
 	 * Approve Transaction for the customer with particular transaction id
 	 *
 	 * @param integer $transactionId Id of the transaction
+	 * @param string $action Action to perform on the transaction
 	 *
 	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
-	public function approveTransaction($transactionId) {
-		$db = $this->db_wrapper->get();
+	 public function actOnTransaction($transactionId, $action) {
+	 	$db = $this->db_wrapper->get();
 		$transactionId = (int)$transactionId;
-		$statement = "UPDATE
-						TBL_TRANSACTION
-						SET IS_ON_HOLD = 0 WHERE ID= :transactionId";
 
 		if ($this->isClosed($transactionId)) {
 			$error = _ERROR_TRANSACTION_CLOSED;
 			return $error;
 		}
-		/* set autocommit to off */
+
+	 	switch ($action) {
+	 		case _ACTION_APPROVE:
+				$statement = "UPDATE TBL_TRANSACTION SET IS_ON_HOLD = 0 WHERE ID= :transactionId";
+	 			break;
+	 		case _ACTION_REJECT:
+				$statement = "UPDATE TBL_TRANSACTION SET IS_REJECTED = 1, IS_ON_HOLD = 0 WHERE ID= :transactionId";
+	 			break;
+		}
+
+		/* begin the transaction */
 		$db->beginTransaction();
 
 		/* create a prepared statement */
@@ -55,49 +64,16 @@ class TransactionRepository extends Repository {
 			$query->bindParam(':transactionId', $transactionId);
 			$query->execute();
 
-			$db->commit();
 			$error = $this->getError($db, true);
 			if (!$error) {
-				$this->close($transactionId);
+				$error = $this->close($db, $transactionId);
+				if (!$error) {
+					$db->commit();
+				}
 			}
 			return $error;
 		}
-	}
-	/**
-	 * Reject Transaction for the customer with particular transaction id
-	 *
-	 * @param integer $transactionId Id of the transaction
-	 *
-	 * @return string|boolean $error|true Error if there is a failure and true otherwise
-	 */
-	public function rejectTransaction($transactionId) {
-		$db = $this->db_wrapper->get();
-		$transactionId = (int)$transactionId;
-
-		if ($this->isClosed($transactionId)) {
-			$error = _ERROR_TRANSACTION_CLOSED;
-			return $error;
-		}
-		$statement = "UPDATE
-						TBL_TRANSACTION
-						SET IS_REJECTED = 1, IS_ON_HOLD = 0 WHERE ID= :transactionId";
-
-		$db->beginTransaction();
-
-		/* create a prepared statement */
-		if ($query = $db->prepare($statement)) {
-			/* bind parameters for markers */
-			$query->bindParam(':transactionId', $transactionId);
-			$query->execute();
-
-			$db->commit();
-			$error = $this->getError($db, true);
-			if (!$error) {
-				$this->close($transactionId);
-			}
-			return $error;
-		}
-	}
+	 }
 	/**
 	 * Closes the transaction indicating that actions have already been performed on it.
 	 *
@@ -105,14 +81,10 @@ class TransactionRepository extends Repository {
 	 *
 	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
-	public function close($transactionId) {
-		$db = $this->db_wrapper->get();
-		$transactionId = (int)$transactionId;
+	public function close($db, $transactionId) {
 		$statement = "UPDATE
 						TBL_TRANSACTION
 						SET IS_CLOSED = 1 WHERE ID= :transactionId";
-
-		$db->beginTransaction();
 
 		/* create a prepared statement */
 		if ($query = $db->prepare($statement)) {
@@ -120,8 +92,7 @@ class TransactionRepository extends Repository {
 			$query->bindParam(':transactionId', $transactionId);
 			$query->execute();
 
-			$db->commit();
-			$error = $this->getError($db);
+			$error = $this->getError($db, true);
 			return $error;
 		}
 	}
@@ -135,7 +106,6 @@ class TransactionRepository extends Repository {
 	 */
 	public function isClosed($transactionId) {
 		$db = $this->db_wrapper->get();
-		$transactionId = (int)$transactionId;
 		$statement = "SELECT IS_CLOSED FROM
 						TBL_TRANSACTION
 						WHERE ID= :transactionId";
