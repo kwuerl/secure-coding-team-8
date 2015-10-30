@@ -10,6 +10,8 @@ namespace Controller;
 class LoginController extends Controller {
 
 	public function processLogin ($request) {
+		if($this->get("auth")->redirectCurrentUserToUserHome()) return;
+
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("form_login");
 

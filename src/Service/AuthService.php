@@ -15,6 +15,7 @@ class AuthService {
 	private $user_providers = array();
 	private $current_user;
 	private $login_route_name;
+	private $last_message;
 	/**
 	 * Constructor
 	 */
@@ -38,6 +39,38 @@ class AuthService {
 	 */
 	public function getCurrentUser() {
 		return $this->current_user;
+	}
+	/**
+	 * If User is logged in then redirect user to his home
+	 *
+	 * @return Model\User
+	 */
+	public function redirectCurrentUserToUserHome() {
+		if($this->isLoggedIn()) {
+			$this->routing_service->redirect($this->current_user->getProvider()->getAfterLoginRouteName(), array());
+			return true;
+		}
+		return false;
+		
+	}
+	/**
+	 * Returns true if there is any user logged in
+	 *
+	 * @return boolean
+	 */
+	public function isLoggedIn() {
+		if($this->session_service->has("current_user")) {
+			$user = $this->session_service->get("current_user");
+			if($user = $this->verify($user)) {
+				$this->current_user = $user;
+				return true;
+			} else {
+				$this->session_service->del("current_user");
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	/**
 	 * Tries to login a User  
@@ -89,6 +122,7 @@ class AuthService {
 			$this->routing_service->redirect($redirect_name, $redirect_params);
 			return true;
 		} else {
+			$this->session_service->del("current_user");
 			return false;
 		}
 	}
@@ -112,18 +146,19 @@ class AuthService {
 					$this->current_user = $user;
 					return $this->current_user;
 				} else {
-					$msg = "Not in group ".$group_expr;
+					$msg = "You don't have the permission to do this";
 				}
 			} else {
-				$msg = "Could not Verify current User";
+				$this->session_service->del("current_user");
+				$msg = "Could not be logged in";
 			}
 		} else {
-			$msg = "No Current User";
+			$msg = "You have to be logged in to see this";
 		}
-		//$request = $this->routing_service->getRequest();
-		//$prev_url = array($request->getRouteName(), $request->getRouteParams());
-		//$this->session_service->set("redirect_after_login", $prev_url);
-		//$this->routing_service->redirect($this->login_route_name, array());
+		$request = $this->routing_service->getRequest();
+		$prev_url = array($request->getRouteName(), $request->getRouteParams());
+		$this->session_service->set("redirect_after_login", $prev_url);
+		$this->routing_service->redirect($this->login_route_name, array());
 		throw new \Exception($msg);
 
 	}
