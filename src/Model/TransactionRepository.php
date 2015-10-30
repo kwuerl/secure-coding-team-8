@@ -34,10 +34,13 @@ class TransactionRepository extends Repository {
 	 *
 	 * @param Model $model Transaction Instance
 	 * @param string $action Action to perform on the registration
+	 * @param Repository $accountRepo Account Repository
+	 * @param Model $fromAccount Account Instance
+	 * @param Model $toAccount Account Instance
 	 *
 	 * @return string|boolean $error|true Error if there is a failure and true otherwise
 	 */
-	public function actOnTransaction($model, $action) {
+	public function actOnTransaction($model, $action, $accountRepo = null, $fromAccount = null, $toAccount = null) {
 
 		$db = $this->db_wrapper->get();
 		$transaction_id = $model->getId();
@@ -48,9 +51,36 @@ class TransactionRepository extends Repository {
 		}
 		switch($action) {
 			case _ACTION_APPROVE:
+
+				$db->beginTransaction();
+
 				$model->setIsOnHold(0);
 				$model->setIsClosed(1);
 				$result = $this->update($model, array("is_on_hold", "is_closed"), array("id" => $transaction_id));
+
+				if ($result == 1) {
+					if ($fromAccount) {
+						$new_balance = $fromAccount->getBalance() - $model->getAmount();
+						$fromAccount->setBalance((float)$new_balance);
+						$result = $accountRepo->update($fromAccount, array("balance"), array("account_id" => $fromAccount->getAccountId()));
+						if (!$result) {
+							$db->rollBack();
+							return $result;
+						}
+					}
+					if ($toAccount) {
+						$new_balance = $toAccount->getBalance() + $model->getAmount();
+						$toAccount->setBalance((float)$new_balance);
+						$result = $accountRepo->update($toAccount, array("balance"), array("account_id" => $toAccount->getAccountId()));
+						if (!$result) {
+							$db->rollBack();
+							return $result;
+						}
+					}
+					$db->commit();
+				} else {
+					$db->rollBack();
+				}
 				break;
 			case _ACTION_REJECT:
 				$model->setIsOnHold(0);

@@ -98,7 +98,14 @@ class EmployeeController extends UserController {
         /*perform appropriate actions on the transaction based on the specified action.*/
         switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action);
+                /*Fetch the account details from the transaction*/
+                $account_repo = $this->get('account_repository');
+                $from_account_id = $transaction_model->getFromAccountId();
+                $to_account_id = $transaction_model->getToAccountId();
+                $from_account = $account_repo->findOne(array("account_id"=>$from_account_id));
+                $to_account = $account_repo->findOne(array("account_id"=>$to_account_id));
+
+                $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action, $account_repo, $from_account, $to_account);
                 $success = 'Transaction was approved successfully.';
                 break;
             case _ACTION_REJECT:
