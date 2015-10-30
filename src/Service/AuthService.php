@@ -41,14 +41,37 @@ class AuthService {
 		return $this->current_user;
 	}
 	/**
+	 * Returns the current User. If there is none, a blank User is returned.
+	 *
+	 * @return Model\User
+	 */
+	public function getLastMessage() {
+		if($this->session_service->has("auth_last_message")) {
+			$msg = $this->session_service->get("auth_last_message");
+			$this->session_service->del("auth_last_message");
+			return $msg;
+		}
+		return false;
+	}
+	/**
+	 * Returns the current User. If there is none, a blank User is returned.
+	 *
+	 * @param string $message
+	 */
+	public function setLastMessage($message) {
+		$this->session_service->set("auth_last_message",$message);
+	}
+	/**
 	 * If User is logged in then redirect user to his home
 	 *
 	 * @return Model\User
 	 */
 	public function redirectCurrentUserToUserHome() {
 		if($this->isLoggedIn()) {
-			$this->routing_service->redirect($this->current_user->getProvider()->getAfterLoginRouteName(), array());
-			return true;
+			if (!$this->session_service->has("redirect_after_login")) {
+				$this->routing_service->redirect($this->current_user->getProvider()->getAfterLoginRouteName(), array());
+				return true;
+			}
 		}
 		return false;
 		
@@ -155,6 +178,7 @@ class AuthService {
 		} else {
 			$msg = "You have to be logged in to see this";
 		}
+		$this->setLastMessage($msg);
 		$request = $this->routing_service->getRequest();
 		$prev_url = array($request->getRouteName(), $request->getRouteParams());
 		$this->session_service->set("redirect_after_login", $prev_url);

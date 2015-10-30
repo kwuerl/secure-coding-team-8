@@ -11,7 +11,7 @@ class LoginController extends Controller {
 
 	public function processLogin ($request) {
 		if($this->get("auth")->redirectCurrentUserToUserHome()) return;
-
+		if($msg = $this->get("auth")->getLastMessage()) $this->get("flash_bag")->add("Authentification failed", $msg, "error");
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("form_login");
 
