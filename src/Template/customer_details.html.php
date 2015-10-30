@@ -81,7 +81,7 @@
                                     <?= $t->s($transaction->getToAccountId()); ?>
                                 </td>
                                 <td>
-                                    <?= $t->s($transaction->getTransactionDate()); ?>
+                                    <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                 </td>
                                 <td>
                                     <?= $t->s($transaction->getAmount()); ?>
@@ -137,7 +137,7 @@
                                 <?= $t->s($transaction->getToAccountId()); ?>
                             </td>
                             <td>
-                                <?= $t->s($transaction->getTransactionDate()); ?>
+                                <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getAmount()); ?>

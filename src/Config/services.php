@@ -112,6 +112,10 @@ $service_container->register("customer_controller", "Controller\\CustomerControl
 $service_container->register("employee_controller", "Controller\\EmployeeController", array(
 	array("type"=>"service_container")
 ));
+
+$service_container->register("transaction_controller", "Controller\\TransactionController", array(
+	array("type"=>"service_container")
+));
 // ------------  Repositories  -----------------
 
 $service_container->register("example_repository", "Model\\ExampleRepository", array(

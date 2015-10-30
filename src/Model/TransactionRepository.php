@@ -59,27 +59,15 @@ class TransactionRepository extends Repository {
 				$result = $this->update($model, array("is_on_hold", "is_closed"), array("id" => $transaction_id));
 
 				if ($result == 1) {
-					if ($fromAccount) {
-						$new_balance = $fromAccount->getBalance() - $model->getAmount();
-						$fromAccount->setBalance((float)$new_balance);
-						$result = $accountRepo->update($fromAccount, array("balance"), array("account_id" => $fromAccount->getAccountId()));
-						if (!$result) {
-							$db->rollBack();
-							return $result;
-						}
-					}
-					if ($toAccount) {
-						$new_balance = $toAccount->getBalance() + $model->getAmount();
-						$toAccount->setBalance((float)$new_balance);
-						$result = $accountRepo->update($toAccount, array("balance"), array("account_id" => $toAccount->getAccountId()));
-						if (!$result) {
-							$db->rollBack();
-							return $result;
-						}
+					$result = $this->updateAccountBalance($db, $model, $accountRepo, $fromAccount, $toAccount);
+					if (!$result) {
+						$db->rollBack();
+						return $result;
 					}
 					$db->commit();
 				} else {
 					$db->rollBack();
+					return $result;
 				}
 				break;
 			case _ACTION_REJECT:
@@ -90,5 +78,78 @@ class TransactionRepository extends Repository {
 				break;
 		}
 		return ($result == 1) ? "" : $result;
+	}
+
+	/**
+	 * Handles actions required for performing a transfer/transaction
+	 *
+	 * @param Model $model Transaction Instance
+	 * @param Repository $accountRepo Account Repository
+	 * @param Model $fromAccount Account Instance
+	 * @param Model $toAccount Account Instance
+	 * @param Repository $transactionCodeRepo Transaction Code Repository
+	 * @param Model $transactionCode Transaction Code Instance
+	 *
+	 * @return string|boolean $error|true Error if there is a failure and true otherwise
+	 */
+	public function makeTransfer($model, $accountRepo = null, $fromAccount = null, $toAccount = null, $transactionCodeRepo = null, $transactionCode = null) {
+
+		$db = $this->db_wrapper->get();
+		$db->beginTransaction();
+
+		$result = $this->add($model);
+		if ($result == 1) {
+			if ($model->getIsOnHold() == 0) {
+				$result = $this->updateAccountBalance($db, $model, $accountRepo, $fromAccount, $toAccount);
+				if (!$result) {
+					$db->rollBack();
+					return $result;
+				}
+			}
+			$customer_id = $fromAccount->getCustomerId();
+			$transaction_code_id = $transactionCode->getCode();
+			$transactionCode->setIsUsed(1);
+			$result = $transactionCodeRepo->update($transactionCode, array("is_used"), array("code" => $transaction_code_id, "customer_id" => $customer_id));
+			if (!$result) {
+				$db->rollBack();
+				return $result;
+			}
+			$db->commit();
+		} else {
+			$db->rollBack();
+			return $result;
+		}
+		return ($result == 1) ? true : $result;
+	}
+
+	/**
+	 * Updates the account balance
+	 *
+	 * @param DB Connection $db Database Connection
+	 * @param Model $model Transaction Instance
+	 * @param Repository $accountRepo Account Repository
+	 * @param Model $fromAccount Account Instance
+	 * @param Model $toAccount Account Instance
+	 *
+	 * @return string|boolean $error|true Error if there is a failure and true otherwise
+	 */
+	private function updateAccountBalance($db, $model, $accountRepo = null, $fromAccount = null, $toAccount = null) {
+		if ($fromAccount) {
+			$new_balance = $fromAccount->getBalance() - $model->getAmount();
+			$fromAccount->setBalance((float)$new_balance);
+			$result = $accountRepo->update($fromAccount, array("balance"), array("account_id" => $fromAccount->getAccountId()));
+			if (!$result) {
+				return $result;
+			}
+		}
+		if ($toAccount) {
+			$new_balance = $toAccount->getBalance() + $model->getAmount();
+			$toAccount->setBalance((float)$new_balance);
+			$result = $accountRepo->update($toAccount, array("balance"), array("account_id" => $toAccount->getAccountId()));
+			if (!$result) {
+				return $result;
+			}
+		}
+		return true;
 	}
 }

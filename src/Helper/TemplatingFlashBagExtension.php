@@ -56,6 +56,14 @@ class TemplatingFlashBagExtension extends TemplatingHelperExtension {
 					$html_class = "alert-warning";
 					$html_icon_class = "fa-warning";
 					break;
+				case 'success_notification' :
+				 	$html_class = "app-notification-success";
+					$html_icon_class = "fa-check";
+					break;
+				case 'error_notification' :
+					$html_class = "app-notification-error";
+					$html_icon_class = "fa-ban";
+					break;
 				default:
 					$html_class = "alert-info";
 					$html_icon_class = "fa-info";

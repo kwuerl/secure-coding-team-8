@@ -25,7 +25,8 @@ $routing_service->post("register_employee_post", "/register_employee", "registra
 $routing_service->get("overview", "/overview", "customer_controller:loadOverview");
 $routing_service->get("profile", "/profile", "customer_controller:loadProfile");
 $routing_service->get("transaction_history", "/transaction_history", "customer_controller:loadTransactionHistory");
-$routing_service->get("make_transfer", "/make_transfer", "customer_controller:makeTransfer");
+$routing_service->get("make_transfer_get", "/make_transfer", "transaction_controller:makeTransfer");
+$routing_service->post("make_transfer_post", "/make_transfer", "transaction_controller:makeTransfer");
 $routing_service->post("transaction_history_download", "/transaction_history_download", "customer_controller:generateTransactionPDF");
 /*
  * Employee routes

@@ -37,13 +37,6 @@ class CustomerController extends UserController {
             "transactionList" => $transactionList
         ));
     }
-    public function makeTransfer ($request) {
-        $customer = $this->get("auth")->check(_GROUP_USER);
-        // render the form
-        $this->get("templating")->render("make_transfer.html.php", array(
-            //"form" => $helper
-        ));
-    }
 
     public function generateTransactionPDF($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
