@@ -11,18 +11,7 @@
 	    <link rel="stylesheet" href="/Vendor/theme/AdminLTE.min.css">
 	    <link rel="stylesheet" href="/Vendor/theme/header.css">
 	    <link rel="stylesheet" href="/Vendor/theme/skin.min.css">
-      <style>
-        .login-page {
-          background-image: url("/Vendor/img/login_bg.png");
-          background-size: cover;
-        }
-        .login-page .login-logo a {
-          color:white;
-        }
-        .login-page h1 {
-          color:white;
-        }
-      </style>
+	    <link rel="stylesheet" href="/Style/app.css">
     </head>
     <body class="hold-transition<?= $t->get("is_login")?" login-page":" skin-black sidebar-mini";?>">
       <?php $t->block("body", function ($t) { ?>

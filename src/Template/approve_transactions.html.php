@@ -31,9 +31,9 @@
                 <thead>
                     <tr>
                         <th>Transaction Id</th>
-                        <th>Date of Transaction</th>
+                        <th>Transaction Date</th>
                         <th>Amount</th>
-                        <th>To Account Number</th>
+                        <th>To Account No.</th>
                         <th>To Account Name</th>
                         <th>Remarks</th>
                         <th>Actions</th>
@@ -66,17 +66,6 @@
                     </tr>
                     <?php }?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Transaction Id</th>
-                        <th>Date of Transaction</th>
-                        <th>Amount</th>
-                        <th>To Account Number</th>
-                        <th>To Account Name</th>
-                        <th>Remarks</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box -->
@@ -89,7 +78,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
                     <h4 class="modal-title">Approve Transaction</h4>
                 </div>
                 <div class="modal-body">
@@ -110,7 +99,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
                     <h4 class="modal-title">Reject Transaction</h4>
                 </div>
                 <div class="modal-body">

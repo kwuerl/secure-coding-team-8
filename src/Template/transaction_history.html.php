@@ -1,7 +1,12 @@
 <?php $t->extend("user_overview.html.php"); ?>
 <?php $t->set("menu_active", "transaction_history"); ?>
 <?php $t->block("content", function ($t) {
-    $transactionList = $t->get("transactionList"); ?>
+    $transactionList = $t->get("transactionList");
+    $transactionStatus = array(
+        '0' => 'COMPLETED',
+        '1' => 'ON HOLD'
+     );
+    ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -33,17 +38,20 @@
                         <table id="transaction_history_table" class="table table-bordered table-striped app-data-table">
                             <thead>
                                 <tr>
-                                    <th>Transaction ID</th>
-                                    <th>Date of transaction</th>
-                                    <th>Amount</th>
-                                    <th>Beneficiary Account ID</th>
-                                    <th>Beneficiary Account Name</th>
-                                    <th>Status</th>
-                                    <th>Remarks</th>
+                                    <th class='trans-history-transaction-id'>Transaction ID</th>
+                                    <th class='trans-history-transaction-date'>Date of transaction</th>
+                                    <th class='trans-history-amount'>Amount</th>
+                                    <th class='trans-history-beneficiary-account-id'>Beneficiary Account ID</th>
+                                    <th class='trans-history-beneficiary-name'>Beneficiary Account Name</th>
+                                    <th class='trans-history-status'>Status</th>
+                                    <th class='trans-history-remarks'>Remarks</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($transactionList as $transaction) {?>
+                                <?php foreach($transactionList as $transaction) {
+                                $class = ($transaction->getIsOnHold()) ? 'fa fa-retweet' :  'fa fa-check-circle';
+                                $title = $transactionStatus[$transaction->getIsOnHold()];
+                                ?>
                                 <tr>
                                     <td>
                                         <?= $t->s($transaction->getId()); ?>
@@ -60,8 +68,8 @@
                                     <td>
                                         <?= $t->s($transaction->getToAccountName()); ?>
                                     </td>
-                                    <td>
-                                        <?= $t->s($transaction->getIsOnHold()); ?>
+                                    <td data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
+                                        <i class=<?php echo "'".$class."'></i>" ?>
                                     </td>
                                     <td>
                                         <?= $t->s($transaction->getRemarks()); ?>
@@ -69,19 +77,6 @@
                                 </tr>
                                 <?php }?>
                             </tbody>
-                            <?php if( count($transactionList) != 0 ) {?>
-                            <tfoot>
-                                <tr>
-                                    <th>Transaction ID</th>
-                                    <th>Date of transaction</th>
-                                    <th>Amount</th>
-                                    <th>Beneficiary Account ID</th>
-                                    <th>Beneficiary Account Name</th>
-                                    <th>Status</th>
-                                    <th>Remarks</th>
-                                </tr>
-                            </tfoot>
-                            <?php } ?>
                         </table>
                     </div>
                     <!-- /.box-body -->
