@@ -24,18 +24,13 @@ MYSQL_TIME current_time;
 
 unsigned long int_length[9], result_length;
 
-my_bool addTransaction(MYSQL *connection, int customerId) {
+my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
+		int toAccountId, char* toAccountName, float amount, char* remarks) {
 
 	char* query;
 	MYSQL_STMT *statement;
 	my_bool result;
 
-	/*TODO Get data from external source*/
-	int from_account_id = 1234567890;
-	int to_account_id = 25987456;
-	char* to_account_name = "to dummy account";
-	float amount = 2500.00;
-	char* remarks = "transfer comments";
 	int is_on_hold = (amount > 10000) ? 1 : 0;
 	int is_rejected = 0;
 	int is_closed = 0;
@@ -111,13 +106,13 @@ my_bool addTransaction(MYSQL *connection, int customerId) {
 			result = bindParameters(statement, parameters);
 
 			if (result) {
-				int_data[0] = from_account_id;
-				int_data[1] = to_account_id;
+				int_data[0] = fromAccountId;
+				int_data[1] = toAccountId;
 				int_data[2] = is_on_hold;
 				int_data[3] = is_rejected;
 				int_data[4] = is_closed;
 
-				strcpy(str_data[1], to_account_name);
+				strcpy(str_data[1], toAccountName);
 				int_length[3] = strlen(str_data[1]);
 				float_data[0] = amount;
 				strcpy(str_data[3], remarks);
@@ -139,11 +134,11 @@ my_bool addTransaction(MYSQL *connection, int customerId) {
 						if (result) {
 							if (!is_on_hold) {
 								result = updateAccountBalance(connection,
-										from_account_id, amount, "decrement");
+										fromAccountId, amount, "decrement");
 
 								if (result) {
 									updateAccountBalance(connection,
-											to_account_id, amount, "increment");
+											toAccountId, amount, "increment");
 								} else {
 									printf("Error in adding transaction");
 									return result;
@@ -176,11 +171,12 @@ my_bool addTransaction(MYSQL *connection, int customerId) {
 	return 1;
 }
 
-my_bool makeTransfer(MYSQL* connection, int customerId, char* code) {
+my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAccountId,
+		int toAccountId, char* toAccountName, float amount, char* remarks) {
 	mysql_autocommit(connection, 0);
 	if (isValidTransactionCode(connection, customerId, code)) {
 		if (setIsUsedTransactionCode(connection, customerId, code)) {
-			if (addTransaction(connection, customerId)) {
+			if (addTransaction(connection, customerId, fromAccountId, toAccountId, toAccountName, amount, remarks)) {
 				mysql_commit(connection);
 			} else {
 				printf("Error in adding transaction.");

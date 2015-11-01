@@ -21,17 +21,6 @@ unsigned long int_length[2];
 unsigned long str_length;
 unsigned long result_length;
 
-/*TODO Get data from external source*/
-int getCustomerId() {
-	int customer_id = 1;
-	return customer_id;
-}
-
-char* getTransactionCode() {
-	char *code = "ebWLgO24z9vY/2K";
-	return code;
-}
-
 my_bool isValidTransactionCode(MYSQL *connection, int customerId, char* code) {
 
 	char* query;
