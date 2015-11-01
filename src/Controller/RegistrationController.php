@@ -13,6 +13,7 @@ class RegistrationController extends Controller {
 	 * @param Request $request
 	 */
 	public function processRegistration($request) {
+		if($this->get("auth")->redirectCurrentUserToUserHome()) return;
 		// create the FormHelper
 		$helper = new \Helper\FormHelper("form_registration");
 
