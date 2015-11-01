@@ -97,8 +97,13 @@ class TransactionController extends Controller {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
+				} else if ($file['error'] == 2) {
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file size exceeds the maximum of 1 MB", "error_notification");
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+                    return;
 				}
-				$uploaded_file_name = $upload_dir.basename($file['name']);
+				$random_file_name = \Service\RandomSequenceGeneratorService::getString(10);
+				$uploaded_file_name = $upload_dir.$random_file_name.".txt";
 
 				// rename uploaded file name if already exists
 				$i = 1;
@@ -118,10 +123,14 @@ class TransactionController extends Controller {
 					$customer_id = $customer->getId();
 			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
 					$shell_command = $upload_dir . "textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
-					var_dump(shell_exec($shell_command));
+					if (shell_exec($shell_command) == NULL) {
+						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
+					} else {
+						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error_notification");
+					}
 					unlink($uploaded_file_name);
 				} else {
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.$uploaded_file_name", "error_notification");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error_notification");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
 				}
