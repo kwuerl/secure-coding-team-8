@@ -71,20 +71,65 @@ class TransactionController extends Controller {
 					if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction)) {
 						// after successful transfer , redirect to make_transfer page
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
-						$this->get("routing")->redirect("make_transfer_get", array());
+						$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
 						return;
 					}
 				}
 				else{
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct transaction code.", "error_notification");
-					$this->get("routing")->redirect("make_transfer_get", array());
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
 				}
 			}
 		}
+
+		// make transfer via file upload
+		$helper2 = new \Helper\FormHelper("make_transfer_via_file_upload");
+
+		$helper2->addField("file", "", array(
+		), array("ltrim", "rtrim"), "");
+
+		if ($helper2->processRequest($request)) {
+			if ($helper2->validate()) {
+				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/../textparser/';
+				$file = $request->getFile('make_transfer_via_file_upload', 'file');
+				if ($file['type'] != "text/plain") {
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");var_dump($uploaded_file_name);
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+                    return;
+				}
+				$uploaded_file_name = $upload_dir.basename($file['name']);
+
+				// rename uploaded file name if already exists
+				$i = 1;
+				do {
+					if ($i == 1) {
+						$pos = strrpos($uploaded_file_name, ".txt");
+						$uploaded_file_name = substr_replace($uploaded_file_name, "_".$i, $pos, 0);
+					} else {
+						$pos = strrpos($uploaded_file_name, "_".($i-1).".txt");
+						$uploaded_file_name = substr_replace($uploaded_file_name, "_".$i, $pos, strlen((string)$i)+1);
+					}
+					$i++;
+				} while (file_exists($uploaded_file_name));
+
+				if ($file['tmp_name'] !== "" && move_uploaded_file($file['tmp_name'], $uploaded_file_name)) {
+					// file was uploaded successfully
+					$shell_command = $upload_dir."textparser ".$uploaded_file_name;
+					var_dump(shell_exec($shell_command));
+				} else {
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.$uploaded_file_name", "error_notification");
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+                    return;
+				}
+			}
+		}
+
 		// render the form
 		$this->get("templating")->render("make_transfer.html.php", array(
-			"form" => $helper
+			"form" => $helper,
+			"form2" => $helper2,
+			"currentUser" => $customer
 		));
 	}
 }

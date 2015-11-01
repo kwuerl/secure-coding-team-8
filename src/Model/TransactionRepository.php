@@ -8,7 +8,7 @@ namespace Model;
  */
 class TransactionRepository extends Repository {
 	/**
-	 * Returns all Transaction Instances for customer id $customerId
+	 * Returns all Outgoing Transaction Instances for customer id $customerId
 	 *
 	 * @param integer $customerId Customer ID to match
 	 *
@@ -29,6 +29,32 @@ class TransactionRepository extends Repository {
     		return $transactions;
     	}
 	}
+
+	/**
+     * Returns all Transaction Instances for customer id $customerId
+     *
+     * @param integer $customerId Customer ID to match , $limit no of data to retrieve
+     *
+     * @return array $transactions Instances of the Transaction Model class
+     */
+    public function getAllByCustomerId($customerId, $limit = _NO_LIMIT) {
+        $statement = "SELECT TBL_TRANSACTION.*
+                        FROM TBL_ACCOUNT, TBL_TRANSACTION
+                        WHERE (TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
+                        OR TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.TO_ACCOUNT_ID) AND TBL_TRANSACTION.IS_ON_HOLD = 0
+                        AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
+                        if ($limit)
+                            $statement .= " LIMIT $limit ;";
+
+        /* create a prepared statement */
+        if ($query = $this->db_wrapper->get()->prepare($statement)) {
+            /* bind parameters for markers */
+            $query->bindParam(":customerId", $customerId);
+            $transactions = $this->execute($query);
+
+            return $transactions;
+        }
+    }
 	/**
 	 * Updates the the transaction status to approved or rejected
 	 *

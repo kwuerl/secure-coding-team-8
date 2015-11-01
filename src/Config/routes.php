@@ -28,6 +28,8 @@ $routing_service->get("transaction_history", "/transaction_history", "customer_c
 $routing_service->get("make_transfer_get", "/make_transfer", "transaction_controller:makeTransfer");
 $routing_service->post("make_transfer_post", "/make_transfer", "transaction_controller:makeTransfer");
 $routing_service->post("transaction_history_download", "/transaction_history_download", "customer_controller:generateTransactionPDF");
+$routing_service->get("statement", "/statement", "customer_controller:loadStatement");
+
 /*
  * Employee routes
  */

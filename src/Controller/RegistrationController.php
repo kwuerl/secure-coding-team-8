@@ -71,6 +71,7 @@ class RegistrationController extends Controller {
 				$helper->fillModel($model);
 
 				$model->setGroups(array(_GROUP_USER));
+				$model->setRegistrationDate(date("Y-m-d H:i:s"));
 
 				// if customer with email doesn't exist, add to repository
 				if (!$this->get('customer_repository')->findOne(array("email" => $model->getEmail()))) {
@@ -149,6 +150,7 @@ class RegistrationController extends Controller {
 				$helper->fillModel($model);
 
 				$model->setGroups(array(_GROUP_EMPLOYEE));
+				$model->setRegistrationDate(date("Y-m-d H:i:s"));
 				$model->setIsActive(0);
 				$model->setIsAuthorized(0);
 				$model->setIsClosed(0);

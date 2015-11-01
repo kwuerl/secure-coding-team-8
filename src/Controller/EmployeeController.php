@@ -10,10 +10,10 @@ namespace Controller;
 class EmployeeController extends UserController {
 
 	public function loadOverview ($request) {
-        $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
         $this->get("templating")->render("employee_overview.html.php", array(
-            //"form" => $helper
+            "currentUser" => $employee
         ));
 	}
 	public function loadProfile ($request) {
@@ -34,6 +34,7 @@ class EmployeeController extends UserController {
         // render the form
         $this->get("templating")->render("customers_list.html.php", array(
             "form" => $helper,
+            "currentUser" => $employee,
             "customerList" => $customerList,
             "customerRegistrationList" => $customerRegistrationList
         ));
@@ -58,6 +59,7 @@ class EmployeeController extends UserController {
         // render the form
         $this->get("templating")->render("customer_details.html.php", array(
             "customer" => $customer,
+            "currentUser" => $employee,
             "onHoldTransactionList" => $onHoldTransactionList,
             "approvedTransactionList" => $approvedTransactionList
         ));
@@ -72,6 +74,7 @@ class EmployeeController extends UserController {
         // render the form
         $this->get("templating")->render("employees_list.html.php", array(
             "form" => $helper,
+            "currentUser" => $employee,
             "employeeRegistrationList" => $employeeRegistrationList,
             "employeeList" => $employeeList
         ));
@@ -85,6 +88,7 @@ class EmployeeController extends UserController {
         // render the form
         $this->get("templating")->render("approve_transactions.html.php", array(
             "form" => $helper,
+            "currentUser" => $employee,
             "transactionList" => $transactionList
         ));
     }
