@@ -119,6 +119,7 @@ class TransactionController extends Controller {
 			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
 					$shell_command = $upload_dir . "textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
 					var_dump(shell_exec($shell_command));
+					unlink($uploaded_file_name);
 				} else {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.$uploaded_file_name", "error_notification");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
