@@ -19,16 +19,6 @@
             <li class="active">Transaction History</li>
         </ol>
     </section>
-    <div class="row">
-        <div class="col-xs-12">
-            <?php if( count($transactionList) != 0 ) {?>
-            <form name='download_pdf_form' action="/transaction_history_download" method="post" target='_blank'>
-                <a id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
-                </a>
-            </form>
-            <?php } ?>
-        </div>
-    </div>
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -39,7 +29,7 @@
                             <thead>
                                 <tr>
                                     <th class='trans-history-transaction-id'>Transaction ID</th>
-                                    <th class='trans-history-transaction-date'>Date of transaction</th>
+                                    <th class='trans-history-transaction-date'>Transaction Date</th>
                                     <th class='trans-history-amount'>Amount</th>
                                     <th class='trans-history-beneficiary-account-id'>Beneficiary Account ID</th>
                                     <th class='trans-history-beneficiary-name'>Beneficiary Account Name</th>

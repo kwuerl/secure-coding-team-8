@@ -65,7 +65,7 @@
                             <tr>
                                 <th>Transaction Id</th>
                                 <th>To Account Number</th>
-                                <th>Date of Transaction</th>
+                                <th>Transaction Date</th>
                                 <th>Amount</th>
                                 <th>Actions</th>
                         </thead>
@@ -93,15 +93,6 @@
                             </tr>
                             <?php }?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Transaction Id</th>
-                                <th>To Account Number</th>
-                                <th>Date of Transaction</th>
-                                <th>Amount</th>
-                                <th>Actions</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.box -->
@@ -123,7 +114,7 @@
                         <tr>
                             <th>Transaction Id</th>
                             <th>To Account Number</th>
-                            <th>Date of Transaction</th>
+                            <th>Transaction Date</th>
                             <th>Amount</th>
                             <th>Remarks</th>
                     </thead>
@@ -148,19 +139,10 @@
                         </tr>
                         <?php }?>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Transaction Id</th>
-                            <th>To Account Number</th>
-                            <th>Date of Transaction</th>
-                            <th>Amount</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.box -->
         </div>
 </section>
 </div>
-<?php });
+<?php }); ?>

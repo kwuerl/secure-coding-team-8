@@ -49,3 +49,6 @@ define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed.');
 define('_ERROR_REGISTRATION_CLOSED', 'This registration is already closed.');
 
 define('_TRANSFER_LIMIT_FOR_AUTO_APPROVAL', 10000);
+
+define('_TRANSACTIONS_PER_PAGE', 5);
+define('_NO_LIMIT', 0);

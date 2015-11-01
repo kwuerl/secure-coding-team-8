@@ -11,6 +11,7 @@
 	    <link rel="stylesheet" href="/Vendor/theme/AdminLTE.min.css">
 	    <link rel="stylesheet" href="/Vendor/theme/header.css">
 	    <link rel="stylesheet" href="/Vendor/theme/skin.min.css">
+	    <link rel="stylesheet" href="/Vendor/bootstrap/fonts/glyphicons-halflings-regular.eot">
 	    <link rel="stylesheet" href="/Style/app.css">
     </head>
     <body class="hold-transition<?= $t->get("is_login")?" login-page":" skin-black sidebar-mini";?>">

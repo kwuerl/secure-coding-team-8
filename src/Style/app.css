@@ -15,6 +15,7 @@ textarea{
 th {
     vertical-align : middle !important;
     background-color : #aebfd4;
+    text-align : center;
 }
 
 .login-page {
@@ -53,6 +54,16 @@ form[name='approve_transaction']{
 
 .skin-black .main-header > .navbar .nav > li > a{
     font-weight:bold;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span,
+.pagination>.active>span:focus, .pagination>.active>span:hover{
+    background-color: #5e80aa;
+    border-color: #5e80aa;
+}
+
+.skin-black .sidebar-menu > li:hover > a, .skin-black .sidebar-menu > li.active > a{
+    border-left-color: #5e80aa ;
 }
 
 .modal-header{
@@ -166,4 +177,10 @@ form[name='approve_transaction']{
     background-color: #a1b5cd;
     border-color: #a1b5cd;
     color: #fff;
+}
+
+div >h1{
+    font-size : 20px;
+    margin : 0px;
+    font-weight : bold;
 }

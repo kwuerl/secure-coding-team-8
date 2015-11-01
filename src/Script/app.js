@@ -36,7 +36,7 @@ var secureBank = {
                     "ordering": true,
                     "info": true,
                     "autoWidth": false,
-                    "pageLength": 3,
+                    "pageLength": 10,
                     'aoColumnDefs': [{
                         'bSortable': false,
                         'aTargets': [-1]
