@@ -69,7 +69,7 @@ my_bool updateAccountBalance(MYSQL* connection, int accountId, float amount,
 						if (!result) {
 							printf("Error in updating account balance");
 						}
-						return 0;
+						return result;
 					} else {
 						printf("Error in updating account balance");
 						return 0;
