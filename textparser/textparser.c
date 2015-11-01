@@ -6,15 +6,15 @@
 #include <stdint.h>
 
 int main(int argc, char **argv) {
-    short account_id_size = 16;
+    short account_id_size = 10;
 	char *account_id = malloc(sizeof(char)*(account_id_size+1));
-    short account_name_size = 64;
+    short account_name_size = 30;
 	char *account_name = malloc(sizeof(char)*(account_name_size+1));
-    short amount_size = 32;
+    short amount_size = 8;
 	char *amount = malloc(sizeof(char)*(amount_size+1));
-    short code_size = 16;
+    short code_size = 15;
 	char *code = malloc(sizeof(char)*(code_size+1));
-    short remarks_size = 256;
+    short remarks_size = 128;
 	char *remarks = malloc(sizeof(char)*(remarks_size+1));
 
 	char *input = argv[1];
@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
 	fclose(input_file);
 
 	char json[250];
-	snprintf(json, sizeof(json), "{\"account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", account_id, account_name, strtof(amount, NULL), code, remarks);
+	snprintf(json, sizeof(json), "{from_id:\"%s\",from_account_id:\"%s\",\"to_account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", argv[2], argv[3], account_id, account_name, strtof(amount, NULL), code, remarks);
 	printf("%s", json);
 
 	/*TODO Need to pass the following values to the function in transaction_controller.c

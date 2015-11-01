@@ -115,7 +115,9 @@ class TransactionController extends Controller {
 
 				if ($file['tmp_name'] !== "" && move_uploaded_file($file['tmp_name'], $uploaded_file_name)) {
 					// file was uploaded successfully
-					$shell_command = $upload_dir."textparser ".$uploaded_file_name;
+					$customer_id = $customer->getId();
+			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
+					$shell_command = $upload_dir . "textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
 					var_dump(shell_exec($shell_command));
 				} else {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.$uploaded_file_name", "error_notification");
