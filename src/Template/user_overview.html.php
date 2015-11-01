@@ -115,12 +115,14 @@
                 <span>Customers</span>
                 </a>
             </li>
+            <?php if ($current_user === _GROUP_ADMIN) { ?>
             <li class="treeview<?= $t->get('menu_active')=="employees"?" active":""; ?>">
                 <a href="/employees">
                 <i class="fa fa-users"></i>
                 <span>Employees</span>
                 </a>
             </li>
+            <?php } ?>
             <li class="treeview<?= $t->get('menu_active')=="approve_transactions"?" active":""; ?>">
                 <a href="/transactions">
                 <i class="fa fa-tasks"></i>

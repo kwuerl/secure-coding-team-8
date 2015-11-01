@@ -66,7 +66,7 @@ class EmployeeController extends UserController {
     }
     public function loadEmployeesList ($request) {
         $helper = new \Helper\FormHelper("action_registration_form");
-        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $employee = $this->get("auth")->check(_GROUP_ADMIN);
         /*Fetch the details of all employees*/
         $employeeList = $this->get('employee_repository')->find(array("is_active"=>1));
         /*Fetch all transactions for the selected customer*/
