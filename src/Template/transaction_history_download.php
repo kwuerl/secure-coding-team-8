@@ -6,7 +6,7 @@
     $transactionList = $t->get("transactionList");
     $accountInfo = $t->get("accountInfo");
     $customer = $t->get("customer");
-
+    
     $headers = array('Transaction ID', 'Transaction Date','Debit Amount','Credit Amount','To/From Account ID');
     $colspan = count($headers)+1;
     try {
@@ -30,13 +30,13 @@
         if ($font == 0) {
             die("Error: " . $p->get_errmsg());
         }
-
+    
         $optlist = "fittextline={position=center font=" . $font . " fontsize=14} " .
                 "colspan=".$colspan;
-
+    
         $date = 'Date: '.date('d-m-Y');
         $headertext = 'Statement';
-
+    
         $tbl = $p->add_table_cell($tbl, $col, $row, $headertext, $optlist);
         if ($tbl == 0) {
             die("Error: " . $p->get_errmsg());

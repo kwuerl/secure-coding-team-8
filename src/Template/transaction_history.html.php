@@ -39,9 +39,9 @@
                             </thead>
                             <tbody>
                                 <?php foreach($transactionList as $transaction) {
-                                $class = ($transaction->getIsOnHold()) ? 'fa fa-retweet' :  'fa fa-check-circle';
-                                $title = $transactionStatus[$transaction->getIsOnHold()];
-                                ?>
+                                    $class = ($transaction->getIsOnHold()) ? 'fa fa-retweet' :  'fa fa-check-circle';
+                                    $title = $transactionStatus[$transaction->getIsOnHold()];
+                                    ?>
                                 <tr>
                                     <td>
                                         <?= $t->s($transaction->getId()); ?>
@@ -59,7 +59,7 @@
                                         <?= $t->s($transaction->getToAccountName()); ?>
                                     </td>
                                     <td data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
-                                        <i class=<?php echo "'".$class."'></i>" ?>
+                                    <i class=<?php echo "'".$class."'></i>" ?>
                                     </td>
                                     <td>
                                         <?= $t->s($transaction->getRemarks()); ?>

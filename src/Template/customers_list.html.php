@@ -16,61 +16,60 @@
             <li class="active">Customers</li>
         </ol>
     </section>
-       <?php $t->flash_echo(); ?>
-       <?php $t->formh($t->get("form"), array("action"=>"/customers", "method"=>"post"), function ($t) { ?>
-            <input id='selectedUserId' name='selectedUserId' type='hidden' value=''/>
-            <input id='action_registration' name='action_registration' type='hidden' value=''/>
-        <?php }) ?>
-      <!-- Registration Pending Customers -->
-      <section class="content">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box box-primary">
-                                <div class="box-body">
-                                    <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table">
-                                        <thead>
-                                            <tr>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Email Id</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach($customerRegistrationList as $customer) {?>
-                                            <tr>
-                                                <td>
-                                                    <?= $t->s($customer->getFirstName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($customer->getLastName()); ?>
-                                                </td>
-                                                <td>
-                                                    <?= $t->s($customer->getEmail()); ?>
-                                                </td>
-                                                <td id=<?= "'".$customer->getId()."'>" ?>
-                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
-                                                </td>
-                                            </tr>
-                                            <?php }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                        <!-- /.col -->
+    <?php $t->flash_echo(); ?>
+    <?php $t->formh($t->get("form"), array("action"=>"/customers", "method"=>"post"), function ($t) { ?>
+    <input id='selectedUserId' name='selectedUserId' type='hidden' value=''/>
+    <input id='action_registration' name='action_registration' type='hidden' value=''/>
+    <?php }) ?>
+    <!-- Registration Pending Customers -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Id</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($customerRegistrationList as $customer) {?>
+                                <tr>
+                                    <td>
+                                        <?= $t->s($customer->getFirstName()); ?>
+                                    </td>
+                                    <td>
+                                        <?= $t->s($customer->getLastName()); ?>
+                                    </td>
+                                    <td>
+                                        <?= $t->s($customer->getEmail()); ?>
+                                    </td>
+                                    <td id=<?= "'".$customer->getId()."'>" ?>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
+                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                    </td>
+                                </tr>
+                                <?php }?>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.row -->
-                </section>
-
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
     <!-- Registered Customers -->
     <section class="content-header">
-            <h1>
-                Registered Customers
-            </h1>
+        <h1>
+            Registered Customers
+        </h1>
     </section>
     <section class="content">
         <div class="row">
@@ -116,8 +115,8 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
- <!-- Approve Registration Modal -->
-    <div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
+<!-- Approve Registration Modal -->
+<div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -127,16 +126,17 @@
             </div>
             <div class="modal-body">
                 Are you sure you want to approve the registration?
-                </div><!-- /.box-body -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Approve</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Approve</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    <!-- Reject Registration Modal -->
-    <div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
+</div>
+<!-- Reject Registration Modal -->
+<div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -146,13 +146,13 @@
             </div>
             <div class="modal-body">
                 Are you sure you want to reject the registration?
-                </div><!-- /.box-body -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Reject</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Reject</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-
+</div>
 <?php });
