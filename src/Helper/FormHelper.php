@@ -65,6 +65,7 @@ class FormHelper {
 		// fetch GET or POST data
 		if($this->method == "POST") {
 			$data = $request->getData($this->uniq_name);
+			if ($data == null) $data = $request->getFile($this->uniq_name);
 		} else if ($this->method == "GET") {
 			$data = $request->getQuery($this->uniq_name);
 		}

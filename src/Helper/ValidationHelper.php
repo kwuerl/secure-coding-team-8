@@ -26,7 +26,7 @@ class ValidationHelper {
 	 *
 	 * @return boolean
 	 */
-	public static function required(FormHelper $helper, $input) {
+	public static function required(FormHelper $helper, $input) {var_dump($input);
 		return !empty($input);
 	}
 	/**
