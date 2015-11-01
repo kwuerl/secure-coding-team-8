@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdint.h>
+#include "../db/transaction_controller.h"
 
 int main(int argc, char **argv) {
     short account_id_size = 10;
@@ -81,10 +82,13 @@ int main(int argc, char **argv) {
 	}
 	fclose(input_file);
 
+	/*
 	char json[250];
 	snprintf(json, sizeof(json), "{from_id:\"%s\",from_account_id:\"%s\",\"to_account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", argv[2], argv[3], account_id, account_name, strtof(amount, NULL), code, remarks);
 	printf("%s", json);
+	*/
 
+	processTransfer(atoi(argv[2]), code, atoi(argv[3]), atoi(account_id), account_name, strtof(amount, NULL), remarks);
 	/*TODO Need to pass the following values to the function in transaction_controller.c
 		int customer_id (Ex: 1)
 		int from_account_id (Ex: 1234567890)

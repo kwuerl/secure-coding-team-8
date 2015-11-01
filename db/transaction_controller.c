@@ -8,6 +8,7 @@
  * Performs required operations to process a customer transaction
  */
 #include "repository.h"
+#include "transaction_repo.h"
 
 static char *opt_host_name = "127.0.0.1"; /*server host*/
 static char *opt_user_name = "root"; /*user name*/
