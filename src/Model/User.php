@@ -15,6 +15,7 @@ class User {
 	protected $_password_plain = "";
 	protected $password = "";
 	protected $groups_plain = "";
+	protected $registration_date = "";
 	protected $is_closed = 0;
 	protected $is_rejected = 0;
 	protected $_provider;
@@ -211,5 +212,21 @@ class User {
 	 */
 	public function setIsRejected($isRejected) {
 		$this->is_rejected = $isRejected;
+	}
+	/**
+	 * Gets the registration date
+	 *
+	 * @return timestamp
+	 */
+	public function getRegistrationDate() {
+		return $this->registration_date;
+	}
+	/**
+	 * Sets the registration date
+	 *
+	 * @param timestamp $registrationDate
+	 */
+	public function setRegistrationDate($registrationDate) {
+		$this->registration_date = $registrationDate;
 	}
 }
