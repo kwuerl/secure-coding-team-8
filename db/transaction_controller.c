@@ -17,10 +17,9 @@ static char *opt_db_name = "BANK_DETAILS"; /*database name*/
 
 static MYSQL *db_connection; /*pointer to the database connection handler*/
 
-my_bool processTransfer() {
+my_bool processTransfer(int customerId, char* code, int fromAccountId,
+		int toAccountId, char* toAccountName, float amount, char* remarks) {
 
-	int customer_id;
-	char *code;
 	my_bool result;
 
 	/*initialize connection handler*/
@@ -30,10 +29,7 @@ my_bool processTransfer() {
 	connectToDB(db_connection, opt_host_name, opt_user_name, opt_password,
 			opt_db_name, opt_port_num);
 
-	customer_id = getCustomerId();
-	code = getTransactionCode();
-
-	result = makeTransfer(db_connection, customer_id, code);
+	result = makeTransfer(db_connection, customerId, code, fromAccountId, toAccountId, toAccountName, amount, remarks);
 
 	/*close the database connection*/
 	closeDB(db_connection);
