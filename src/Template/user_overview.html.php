@@ -3,10 +3,13 @@
 <?php
     $t->block("body", function ($t) {
         $current_user = $t->get("currentUser")->getGroupsPlain();
+        if (strpos($current_user, ",")) $current_user = explode(",", $current_user)[0];
         switch($current_user) {
             case _GROUP_USER : $profile_href = '/profile';
                                 break;
             case _GROUP_EMPLOYEE : $profile_href = '/employee_profile';
+                                break;
+            case _GROUP_ADMIN : $profile_href = '/employee_profile';
                                 break;
             default : break;
         }
@@ -92,6 +95,7 @@
                 </a>
             </li>
             <?php break;
+                case _GROUP_ADMIN :
                 case _GROUP_EMPLOYEE : ?>
             <li class="treeview<?= $t->get('menu_active')=="employee_overview"?" active":""; ?>">
                 <a href="/employee_overview">
