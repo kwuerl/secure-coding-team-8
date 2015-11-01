@@ -176,7 +176,7 @@ my_bool addTransaction(MYSQL *connection, int customerId) {
 	return 1;
 }
 
-void makeTransfer(MYSQL* connection, int customerId, char* code) {
+my_bool makeTransfer(MYSQL* connection, int customerId, char* code) {
 	mysql_autocommit(connection, 0);
 	if (isValidTransactionCode(connection, customerId, code)) {
 		if (setIsUsedTransactionCode(connection, customerId, code)) {
@@ -185,16 +185,17 @@ void makeTransfer(MYSQL* connection, int customerId, char* code) {
 			} else {
 				printf("Error in adding transaction.");
 				mysql_rollback(connection);
-				exit(EXIT_FAILURE);
+				return 0;
 			}
 		} else {
 			printf("Error in updating transaction code.");
 			mysql_rollback(connection);
-			exit(EXIT_FAILURE);
+			return 0;
 		}
 	} else {
 		printf("Incorrect transaction code.");
 		mysql_rollback(connection);
-		exit(EXIT_FAILURE);
+		return 0;
 	}
+	return 1;
 }

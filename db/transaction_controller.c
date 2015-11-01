@@ -17,10 +17,11 @@ static char *opt_db_name = "BANK_DETAILS"; /*database name*/
 
 static MYSQL *db_connection; /*pointer to the database connection handler*/
 
-int main(int argc, char *argv[]) {
+my_bool processTransfer() {
 
 	int customer_id;
 	char *code;
+	my_bool result;
 
 	/*initialize connection handler*/
 	db_connection = initializeDB();
@@ -32,11 +33,10 @@ int main(int argc, char *argv[]) {
 	customer_id = getCustomerId();
 	code = getTransactionCode();
 
-	makeTransfer(db_connection, customer_id, code);
+	result = makeTransfer(db_connection, customer_id, code);
 
 	/*close the database connection*/
 	closeDB(db_connection);
 
-	/*exit from the program*/
-	exit(EXIT_SUCCESS);
+	return result;
 }
