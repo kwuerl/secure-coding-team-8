@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
 	fclose(input_file);
 
 	char json[250];
-	snprintf(json, sizeof(json), "{\"account_id\":%s,\"account_name\":\"%s\",\"amount\":%s,\"code\":\"%s\",\"remarks\":\"%s\"}", account_id, account_name, amount, code, remarks);
+	snprintf(json, sizeof(json), "{\"account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", account_id, account_name, strtof(amount, NULL), code, remarks);
 	printf("%s", json);
 
 	/*TODO Need to pass the following values to the function in transaction_controller.c
