@@ -9,6 +9,7 @@ namespace Helper;
 class Request {
 	private $query = array();
 	private $data = array();
+	private $file = array();
 	private $server = array();
 	private $route_name = "";
 	private $route_params = array();
@@ -18,6 +19,7 @@ class Request {
 	function __construct() {
 		$this->query = $_GET;
 		$this->data = $_POST;
+		$this->file = $_FILES;
 		$this->server = $_SERVER;
 	}
 	/**
@@ -47,6 +49,35 @@ class Request {
 		} else {
 			return null;
 		}
+	}
+	/**
+	 * Returns the file ($_FILES) parameter for a given key
+	 *
+	 * @param string $formName
+	 * @param string $name	Key
+	 *
+	 * @return mixed
+	 */
+	public function getFile($formName="", $name) {
+		if ($formName !== "") {
+			if (isset($this->file[$formName])) {
+				$file_container = $this->file[$formName];
+				if (isset($file_container['name'][$name])) {
+					$result = array();
+					$result['name'] = $file_container['name'][$name];
+					$result['type'] = $file_container['type'][$name];
+					$result['tmp_name'] = $file_container['tmp_name'][$name];
+					$result['error'] = $file_container['error'][$name];
+					$result['size'] = $file_container['size'][$name];
+					return $result;
+				}
+			}
+		} else {
+			if (isset($this->file[$name])) {
+				return $this->file[$name];
+			}
+		}
+		return null;
 	}
 	/**
 	 * Returns the server parameter for a given key
