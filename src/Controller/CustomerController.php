@@ -39,6 +39,7 @@ class CustomerController extends UserController {
         // render the form
         $this->get("templating")->render("transaction_history.html.php", array(
             //"form" => $helper,
+            "currentUser" => $customer,
             "transactionList" => $transactionList
         ));
     }
@@ -72,6 +73,7 @@ class CustomerController extends UserController {
         // render the form
         $this->get("templating")->render("statement.html.php", array(
             "form" => $helper,
+            "currentUser" => $customer,
             "accountInfo" => $accountInfo,
             "transactionList" => $transactionList
         ));

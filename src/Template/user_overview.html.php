@@ -2,9 +2,7 @@
 <?php $t->set("menu_active", "home"); ?>
 <?php
     $t->block("body", function ($t) {
-        // TODO : Remove hard coding of the current user type
-        // This belogs to Controller
-        $current_user = _GROUP_EMPLOYEE;
+        $current_user = $t->get("currentUser")->getGroupsPlain();
         switch($current_user) {
             case _GROUP_USER : $profile_href = '/profile';
                                 break;
@@ -36,7 +34,7 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="hidden-xs">Alexander Pierce</span>
+                    <span class="hidden-xs"><?= $t->s($t->get("currentUser")->getFirstName())." ".$t->s($t->get("currentUser")->getLastName()); ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- Menu Footer-->

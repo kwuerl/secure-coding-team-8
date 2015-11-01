@@ -1,5 +1,5 @@
 <?php $t->extend("user_overview.html.php"); ?>
-<?php $t->set("menu_active", "approve_registrations"); ?>
+<?php $t->set("menu_active", "employees"); ?>
 <?php $t->block("content", function ($t) {
     $employeeList = $t->get("employeeList");
     $employeeRegistrationList = $t->get("employeeRegistrationList");
