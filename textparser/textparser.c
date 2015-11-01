@@ -85,5 +85,14 @@ int main(int argc, char **argv) {
 	snprintf(json, sizeof(json), "{\"account_id\":%s,\"account_name\":\"%s\",\"amount\":%s,\"code\":\"%s\",\"remarks\":\"%s\"}", account_id, account_name, amount, code, remarks);
 	printf("%s", json);
 
+	/*TODO Need to pass the following values to the function in transaction_controller.c
+		int customer_id (Ex: 1)
+		int from_account_id (Ex: 1234567890)
+		int to_account_id (Ex: 25987456)
+		char* to_account_name (Ex: "TUM Admission Office")
+		float amount (Ex: 2500.00)
+		char* code (Ex: "ebWLgO24z9vY/2K")
+		char* remarks (Ex: "Payment of fees") */
+
 	return 0;
 }
