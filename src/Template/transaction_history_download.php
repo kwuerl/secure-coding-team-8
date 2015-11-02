@@ -3,17 +3,21 @@
     $tbl=0;
     $total_amount = 0;
     $llx= 50; $lly=50; $urx=550; $ury=800;
-    $accountInfo = $t->get("accountInfo");
     $invokedFrom = $t->get("invokedFrom");
-    $customer = $t->get("customer");
+
     switch( $invokedFrom) {
-        case _STATEMENT            :     $headers = array('Transaction ID', 'Transaction Date','Debit Amount','Credit Amount',
+        case _STATEMENT            :     $accountInfo = $t->get("accountInfo");
+                                         $customer = $t->get("customer");
+                                         $transactionList = $t->get("transactionList");
+                                         $headers = array('Transaction ID', 'Transaction Date','Debit Amount','Credit Amount',
                                                'To/From Account ID');
                                          $pdfTitle ='Statement';
                                          $filename = 'Statement_'.time().'.pdf';
-                                         $transactionList = $t->get("transactionList");
                                           break;
-        case _TRANSACTION_HISTORY :      $headers = array('Transaction ID', 'Transaction Date','Amount','Beneficiary Account ID',
+        case _TRANSACTION_HISTORY :       $accountInfo = $t->get("accountInfo");
+                                          $customer = $t->get("customer");
+                                          $transactionList = $t->get("transactionList");
+                                          $headers = array('Transaction ID', 'Transaction Date','Amount','Beneficiary Account ID',
                                                       'Beneficiary Account Name', 'Status');
                                           $pdfTitle ='Transaction History';
                                           $filename = 'Transaction_History_'.time().'.pdf';
@@ -21,19 +25,28 @@
                                                                         '0' => 'COMPLETED',
                                                                         '1' => 'ON HOLD'
                                                                 );
-                                          $transactionList = $t->get("transactionList");
                                           break;
-        case _CUSTOMER_DETAILS_PENDING_TRANSACTION :      $transactionList = $t->get("onHoldTransactionList");
+        case _CUSTOMER_DETAILS_PENDING_TRANSACTION :      $accountInfo = $t->get("accountInfo");
+                                                          $customer = $t->get("customer");
+                                                          $transactionList = $t->get("onHoldTransactionList");
                                                           $headers = array('Transaction ID', 'To Account Number',
                                                           'Transaction Date','Amount');
-                                                          $pdfTitle ='Customer Pending Transaction';
-                                                          $filename = 'Customer_Pending_transaction'.time().'.pdf';
+                                                          $pdfTitle ="Customer's Pending Transaction";
+                                                          $filename ='Customer_Pending_transaction'.time().'.pdf';
                                                           break;
-        case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :      $transactionList = $t->get("approvedTransactionList");
+        case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :    $accountInfo = $t->get("accountInfo");
+                                                          $customer = $t->get("customer");
+                                                          $transactionList = $t->get("approvedTransactionList");
                                                           $headers = array('Transaction ID', 'To Account Number',
                                                           'Transaction Date','Amount');
-                                                          $pdfTitle ='Customer Completed Transaction';
+                                                          $pdfTitle ="Customer's Completed Transaction";
                                                           $filename = 'Customer_Completed_transaction'.time().'.pdf';
+                                                          break;
+        case _PENDING_TRANSACTIONS                   :    $transactionList = $t->get("transactionList");
+                                                          $headers = array('Transaction ID', 'Transaction Date','Amount','Beneficiary Account ID',
+                                                                        'Beneficiary Account Name');
+                                                          $pdfTitle ='Pending Transactions';
+                                                          $filename = 'Pending_Transactions_'.time().'.pdf';
                                                           break;
 
     }
@@ -72,20 +85,23 @@
             die("Error: " . $p->get_errmsg());
         }
         $row++;
-    
-        $optlist = "fittextline={position={left center} font=" . $font . " fontsize=12} " .
-        "colspan=".$colspan;
-    
-        $accountNo = 'Account No.  '.$accountInfo->getAccountId();
-        $customer_name ='Customer Name : '.$customer->getFirstName().' '.$customer->getLastName();
-        $date = 'Date: '.date('d-m-Y');
-        $headertext = $accountNo.'             '.$customer_name.'               '.$date;
-    
-        $tbl = $p->add_table_cell($tbl, $col, $row, $headertext, $optlist);
-        if ($tbl == 0) {
-            die("Error: " . $p->get_errmsg());
+
+        if( $invokedFrom != _PENDING_TRANSACTIONS ){
+            $optlist = "fittextline={position={left center} font=" . $font . " fontsize=12} " .
+                    "colspan=".$colspan;
+
+            $accountNo = 'Account No.  '.$accountInfo->getAccountId();
+            $customer_name ='Customer Name : '.$customer->getFirstName().' '.$customer->getLastName();
+            $date = 'Date: '.date('d-m-Y');
+            $headertext = $accountNo.'             '.$customer_name.'               '.$date;
+
+            $tbl = $p->add_table_cell($tbl, $col, $row, $headertext, $optlist);
+            if ($tbl == 0) {
+                die("Error: " . $p->get_errmsg());
+            }
+            $row++;
         }
-        $row++;
+
     
         /* ---------- Table Headers -----------------*/
             $col =1;
@@ -115,14 +131,15 @@
         foreach($transactionList as $transaction) {
                 $col=1;
                 $optlist = "colwidth=20% fittextline={font=" . $font . " fontsize=10}";
+                $amount_field_optlist = "colwidth=20%  fittextline={position={right center} font=" . $font . " fontsize=10} ";
                 switch ($invokedFrom){
                      case _STATEMENT :      $credit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? $transaction->getAmount() :  '--';
                                             $debit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? '--': $transaction->getAmount();
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getId(), $optlist);
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, date('d.m.Y',strtotime($transaction->getTransactionDate() ) ), $optlist);
 
-                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $debit_amount, $optlist);
-                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $credit_amount, $optlist);
+                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $debit_amount, $amount_field_optlist);
+                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $credit_amount, $amount_field_optlist);
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountID(), $optlist);
                                             $optlist = "fontname=Times-Roman encoding=unicode fontsize=10 ";
                                             $tf = $p->add_textflow(0,$transaction->getRemarks(), $optlist);
@@ -140,7 +157,7 @@
                                                   $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getId(), $optlist);
                                                   $tbl = $p->add_table_cell($tbl, $col++, $row, date('d.m.Y',strtotime($transaction->getTransactionDate() ) ), $optlist);
 
-                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getAmount(), $optlist);
+                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getAmount(), $amount_field_optlist);
                                                   $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountID(), $optlist);
                                                   $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountName(), $optlist);
                                                   $status = $transactionStatus[$transaction->getIsOnHold()];
@@ -161,7 +178,7 @@
                                                     $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getId(), $optlist);
                                                     $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountID(), $optlist);
                                                     $tbl = $p->add_table_cell($tbl, $col++, $row, date('d.m.Y',strtotime($transaction->getTransactionDate() ) ), $optlist);
-                                                    $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getAmount(), $optlist);
+                                                    $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getAmount(), $amount_field_optlist);
                                                     $optlist = "fontname=Times-Roman encoding=unicode fontsize=10 ";
                                                      $tf = $p->add_textflow(0,$transaction->getRemarks(), $optlist);
                                                       if ($tf == 0) {
@@ -173,6 +190,23 @@
                                                           die("Error: " . $p->get_errmsg());
                                                       }
                                                     break;
+                     case _PENDING_TRANSACTIONS : $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getId(), $optlist);
+                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, date('d.m.Y',strtotime($transaction->getTransactionDate() ) ), $optlist);
+                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getAmount(), $amount_field_optlist);
+                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountID(), $optlist);
+                                                  $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountName(), $optlist);
+
+                                                  $optlist = "fontname=Times-Roman encoding=unicode fontsize=10 ";
+                                                   $tf = $p->add_textflow(0,$transaction->getRemarks(), $optlist);
+                                                    if ($tf == 0) {
+                                                        die("Error: " . $p->get_errmsg());
+                                                    }
+                                                    $optlist = "margin=2 textflow=" . $tf;
+                                                    $tbl = $p->add_table_cell($tbl, $col++, $row, "", $optlist);
+                                                    if ($tbl == 0) {
+                                                        die("Error: " . $p->get_errmsg());
+                                                    }
+                                                  break;
                 }
 
                 $row++;

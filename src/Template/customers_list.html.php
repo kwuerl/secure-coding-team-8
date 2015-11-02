@@ -27,7 +27,7 @@
                 <?php $t->flash_echo(); ?>
                 <div class="box box-primary">
                     <div class="box-body">
-                        <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table">
+                        <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table-small">
                             <thead>
                                 <tr>
                                     <th>First Name</th>
@@ -76,7 +76,7 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <table id="cust_list_table" class="table table-bordered table-striped app-data-table">
+                        <table id="cust_list_table" class="table table-bordered table-striped aapp-data-table-small">
                             <thead>
                                 <tr>
                                     <th>First Name</th>

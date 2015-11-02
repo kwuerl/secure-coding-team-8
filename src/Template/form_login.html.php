@@ -6,7 +6,6 @@
         <a><b>Secure</b>Bank</a>
     </div>
     <!-- /.login-logo -->
-    <h1>Login</h1>
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your banking session</p>
         <?php $t->flash_echo(); ?>
@@ -36,8 +35,8 @@
             <!-- /.col -->
         </div>
         <?php }); ?>
-        <!--a href="#">Forgot password?</a><br-->
-        <a href="register" class="text-center">Register for a new account</a>
+        <a href="register" class="text-center row">Register for a new account</a>
+        <a href="register_employee" class="text-center row">Register as an employee</a>
     </div>
     <!-- /.login-box-body -->
 </div>

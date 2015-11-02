@@ -74,7 +74,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="cust_details_table1" class="table table-bordered table-striped app-data-table">
+                    <table id="cust_details_table1" class="table table-bordered table-striped app-data-table-small">
                         <thead>
                             <tr>
                                 <th>Transaction Id</th>
@@ -94,7 +94,7 @@
                                 <td>
                                     <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     <?= $t->s($transaction->getAmount()); ?>
                                 </td>
                             </tr>
@@ -127,7 +127,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table id="cust_details_table2" class="table table-bordered table-striped app-data-table">
+                <table id="cust_details_table2" class="table table-bordered table-striped app-data-table-small">
                     <thead>
                         <tr>
                             <th>Transaction Id</th>
@@ -148,7 +148,7 @@
                             <td>
                                 <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <?= $t->s($transaction->getAmount()); ?>
                             </td>
                             <td>
