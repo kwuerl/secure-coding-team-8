@@ -168,6 +168,7 @@ class EmployeeController extends UserController {
                 $account_model->setCustomerId($user_id);
                 $account_model->setType("SAVINGS");
                 $account_model->setIsActive(1);
+                $account_model->setBalance(10000);
 
                 $error = $this->get('customer_repository')->actOnRegistration($user_model, $action, $account_repo, $account_model);
                 $success = 'Customer registration was approved successfully.';
