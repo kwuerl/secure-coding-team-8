@@ -65,7 +65,8 @@ class TransactionController extends Controller {
 					$model->setFromAccountId($from_account_id);
 
 					// check whether the amount > 10000
-					if( $request->getData('make_transfer')['amount'] > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
+					$trans = $request->getData('make_transfer');
+					if( $trans['amount'] > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
 						$model->setIsOnHold(1);
 					}
 
