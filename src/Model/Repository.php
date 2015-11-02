@@ -20,6 +20,14 @@ class Repository {
 		$this->table_name = $table_name;
 		$this->model_class_name = $model_class_name;
 	}
+	public function beginDBTransaction() {
+		$this->db_wrapper->get()->beginTransaction();
+		return;
+	}
+	public function commitDB() {
+		$this->db_wrapper->get()->commit();
+		return;
+	}
 	/**
 	 * Returns a array of Model Instances that fit for the $filter criteria
 	 *
@@ -27,7 +35,7 @@ class Repository {
 	 *
 	 * @return array|boolean
 	 */
-	public function find($filter) {
+	public function find($filter, $sort = NULL) {
 		$db = $this->db_wrapper->get();
 		$query = "SELECT * FROM ".$this->table_name." WHERE ";
 		$type_array = array();
@@ -37,11 +45,17 @@ class Repository {
 			$query .= $db_field_name . " = :" . $db_field_name . " AND ";
 
 			array_push($type_array, ":" . $db_field_name);
-
 			array_push($value_array, $value);
 		}
 		$query = preg_replace('/ AND $/', '', $query);
 
+		if (is_array($sort)) {
+			$query = $query . " ORDER BY " ;
+			foreach ($sort as $column => $order) {
+				$query = $query . strtoupper($column) ." ". $order . ",";
+			}
+		}
+		$query = rtrim($query, ",");
 		if ($stmt = $db->prepare($query)) {
 			foreach ($type_array as $key => $type) {
 				$stmt->bindParam($type, $value_array[$key]);

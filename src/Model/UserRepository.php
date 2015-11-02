@@ -16,7 +16,7 @@ abstract class UserRepository extends Repository {
      *
      * @return string|boolean $error|true Error if there is a failure and true otherwise
      */
-    public function actOnRegistration($model, $action) {
+    public function actOnRegistration($model, $action, $accountRepo = NULL, $accountModel = NULL) {
 
         $db = $this->db_wrapper->get();
         $user_id = $model->getId();
@@ -27,9 +27,30 @@ abstract class UserRepository extends Repository {
         }
         switch($action) {
             case _ACTION_APPROVE:
-                $model->setIsActive(1);
-                $model->setIsClosed(1);
-                $result = $this->update($model, array("is_active", "is_closed"), array("id" => $user_id));
+
+                if ($accountModel) {
+                    $db->beginTransaction();
+                    $model->setIsActive(1);
+                    $model->setIsClosed(1);
+                    $result = $this->update($model, array("is_active", "is_closed"), array("id" => $user_id));
+
+                    if ($result == 1) {
+                        $result = $accountRepo->add($accountModel);
+                        if (!$result) {
+                            $db->rollBack();
+                            return $result;
+                        }
+                        $db->commit();
+                    } else {
+                        $db->rollBack();
+                        return $result;
+                    }
+                } else {
+                    $model->setIsActive(1);
+                    $model->setIsClosed(1);
+                    $result = $this->update($model, array("is_active", "is_closed"), array("id" => $user_id));
+                }
+
                 break;
             case _ACTION_REJECT:
                 $model->setIsActive(0);
