@@ -16,6 +16,20 @@
         <li class="active">Customer Details</li>
     </ol>
 </section>
+<section>
+     <?php if( count($onHoldTransactionList) != 0 ) { ?>
+    <div class="row">
+       <!-- left column -->
+            <div class="col-md-12">
+                  <a href=<?= $t->s("/customer_pending_transaction_download/" . $customer->getId() . ""); ?>
+                  id='downloadPDF' target='_blank' class="pull-right">
+                  <i class="fa fa-download"></i> Download as PDF
+                  </a>
+              </div>
+        </div>
+    <?php } ?>
+     </section>
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -67,15 +81,12 @@
                                 <th>To Account Number</th>
                                 <th>Transaction Date</th>
                                 <th>Amount</th>
-                                <th>Actions</th>
                         </thead>
                         <tbody>
                             <?php foreach($onHoldTransactionList as $transaction) {?>
                             <tr>
                                 <td>
-                                    <a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">
                                     <?= $t->s($transaction->getId()); ?>
-                                    </a>
                                 </td>
                                 <td>
                                     <?= $t->s($transaction->getToAccountId()); ?>
@@ -86,10 +97,6 @@
                                 <td>
                                     <?= $t->s($transaction->getAmount()); ?>
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
-                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
-                                </td>
                             </tr>
                             <?php }?>
                         </tbody>
@@ -99,6 +106,17 @@
             </div>
         </div>
     </div>
+     <?php if( count($approvedTransactionList) != 0 ) { ?>
+    <div class="row">
+       <!-- left column -->
+        <div class="col-md-12">
+              <a href=<?= $t->s("/customer_completed_transaction_download/" . $customer->getId() . ""); ?>
+               id='downloadPDF' target='_blank' class="pull-right">
+              <i class="fa fa-download"></i> Download as PDF
+              </a>
+          </div>
+    </div>
+    <?php } ?>
     <div class="row">
     <!-- left column -->
     <div class="col-md-12">

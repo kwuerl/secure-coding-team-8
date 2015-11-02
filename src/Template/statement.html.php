@@ -19,8 +19,7 @@
     <div class="row">
         <div class="col-xs-12">
             <?php if( count($transactionList) != 0 )
-                $t->formh($t->get("form"), array("action"=>"/transaction_history_download", "method"=>"post","target" => "_blank"), function ($t) { ?>
-            <form name='download_pdf_form' action="/transaction_history_download" method="post" target='_blank'>
+                $t->formh($t->get("form"), array("action"=>"/statement_download", "method"=>"post","target" => "_blank"), function ($t) { ?>
             <a id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
             </a>
             <?php }) ?>

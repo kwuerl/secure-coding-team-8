@@ -90,8 +90,8 @@
             </li>
             <li class="treeview<?= $t->get('menu_active')=="statement"?" active":""; ?>">
                 <a href="/statement">
-                <i class="fa fa-tasks"></i>
-                <span>Statement</span>
+                    <i class="fa fa-tasks"></i>
+                    <span>Statement</span>
                 </a>
             </li>
             <?php break;

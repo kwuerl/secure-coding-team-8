@@ -44,24 +44,13 @@ class EmployeeController extends UserController {
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
         /*Fetch all transactions for the selected customer*/
-        $transactionList = $this->get('transaction_repository')->getByCustomerId($customerId);
-
-        /*Separate the transactions into completed and on-hold transactions.*/
-        $onHoldTransactionList = array();
-        $approvedTransactionList = array();
-        foreach ($transactionList as $transaction) {
-            $onHold = $transaction->getIsOnHold();
-            if ($onHold)
-                $onHoldTransactionList[] = $transaction;
-            else
-                $approvedTransactionList[] = $transaction;
-        }
+        $result = $this->getTransactions($customerId);
         // render the form
         $this->get("templating")->render("customer_details.html.php", array(
             "customer" => $customer,
             "currentUser" => $employee,
-            "onHoldTransactionList" => $onHoldTransactionList,
-            "approvedTransactionList" => $approvedTransactionList
+            "onHoldTransactionList" => $result['onHoldTransactionList'],
+            "approvedTransactionList" => $result['approvedTransactionList']
         ));
     }
     public function loadEmployeesList ($request) {
@@ -176,6 +165,44 @@ class EmployeeController extends UserController {
         $this->notify($success, $error);
         $this->get('routing')->redirect('customers_get',array());
     }
+
+    public function generateCustomerPendingTransactionPDF($request, $customerId) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $customer = $this->get('customer_repository')->get($customerId);
+        // Fetch the account details for corresponding customer
+        $accountInfo = $this->get('account_repository')->findOne(array("customer_id"=>$customerId));
+        /*Fetch the transaction details for the corresponding customer */
+        $transactions = $this->getTransactions($customerId);
+        // render the form
+        $this->get("templating")->render("transaction_history_download.php", array(
+            //"form" => $helper
+            "accountInfo" => $accountInfo,
+            "customer" => $customer,
+            "invokedFrom" => _CUSTOMER_DETAILS_PENDING_TRANSACTION,
+            "onHoldTransactionList" => $transactions['onHoldTransactionList'],
+            "currentUser" => $employee
+        ));
+    }
+
+     public function generateCustomerCompletedTransactionPDF($request, $customerId) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $customer = $this->get('customer_repository')->get($customerId);
+       // Fetch the account details for corresponding customer
+        $accountInfo = $this->get('account_repository')->findOne(array("customer_id"=>$customerId));
+        /*Fetch the transaction details for the corresponding customer */
+        $transactions = $this->getTransactions($customerId);
+        // render the form
+        $this->get("templating")->render("transaction_history_download.php", array(
+            //"form" => $helper
+            "transactionList" => $transactionList,
+            "accountInfo" => $accountInfo,
+            "customer" => $customer,
+            "invokedFrom" => _CUSTOMER_DETAILS_COMPLETED_TRANSACTION,
+            "approvedTransactionList" => $transactions['approvedTransactionList'],
+            "currentUser" => $employee
+        ));
+    }
+
     private function notify($success, $error) {
         if (!$error) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, $success, "success");
@@ -183,4 +210,23 @@ class EmployeeController extends UserController {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error");
         }
     }
+
+    private function getTransactions($customerId){
+        $transactionList = $this->get('transaction_repository')->getByCustomerId($customerId);
+        /*Separate the transactions into completed and on-hold transactions.*/
+        $onHoldTransactionList = array();
+        $approvedTransactionList = array();
+        foreach ($transactionList as $transaction) {
+            $onHold = $transaction->getIsOnHold();
+            if ($onHold)
+                $onHoldTransactionList[] = $transaction;
+            else
+                $approvedTransactionList[] = $transaction;
+        }
+        return [
+            'onHoldTransactionList' => $onHoldTransactionList,
+            'approvedTransactionList' => $approvedTransactionList
+            ];
+    }
+
 }
