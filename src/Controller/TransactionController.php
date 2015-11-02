@@ -102,7 +102,7 @@ class TransactionController extends Controller {
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
 				}
-				$random_file_name = \Service\RandomSequenceGeneratorService::getString(10);
+				$random_file_name = str_replace("/", "", \Service\RandomSequenceGeneratorService::getString(10));
 				$uploaded_file_name = $upload_dir.$random_file_name.".txt";
 
 				// rename uploaded file name if already exists
