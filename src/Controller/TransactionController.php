@@ -95,11 +95,11 @@ class TransactionController extends Controller {
 				$file = $request->getFile('make_transfer_via_file_upload', 'file');
 				if ($file['type'] != "text/plain") {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");
-					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
 				} else if ($file['error'] == 2) {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file size exceeds the maximum of 1 MB", "error_notification");
-					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
 				}
 				$random_file_name = \Service\RandomSequenceGeneratorService::getString(10);
@@ -129,6 +129,8 @@ class TransactionController extends Controller {
 						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error_notification");
 					}
 					unlink($uploaded_file_name);
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                	return;
 				} else {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error_notification");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
