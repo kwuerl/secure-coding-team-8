@@ -5,7 +5,7 @@ We hid a hint in this pages source!
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>dreams Website Template | Home :: w3layouts</title>
+		<title>SecureBank</title>
 		<link href="/Vendor/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 		<link href="/Vendor/theme/style.css" rel='stylesheet' type='text/css' />
