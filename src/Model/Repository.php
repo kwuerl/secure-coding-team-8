@@ -160,8 +160,8 @@ class Repository {
 		}
 		$query = preg_replace('/ AND $/', '', $query);
 		if ($stmt = $db->prepare($query)) {
-
-			foreach (array_merge($values, $filter_array) as $key => &$value) {
+			$m = array_merge($values, $filter_array);
+			foreach ($m as $key => &$value) {
 				call_user_func_array(array($stmt, "bindParam"), array($key, &$value));
 			}
 

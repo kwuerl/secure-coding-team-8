@@ -229,10 +229,10 @@ class EmployeeController extends UserController {
             else
                 $approvedTransactionList[] = $transaction;
         }
-        return [
+        return array(
             'onHoldTransactionList' => $onHoldTransactionList,
             'approvedTransactionList' => $approvedTransactionList
-            ];
+            );
     }
 
 }
