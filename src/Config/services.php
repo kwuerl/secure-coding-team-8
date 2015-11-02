@@ -36,6 +36,10 @@ $service_container->register("transaction", "Service\\TransactionService", array
 	array("type"=>"service", "value"=>"random")
 ));
 
+$service_container->register("account", "Service\\AccountService", array(
+	array("type"=>"service", "value"=>"account_repository")
+));
+
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(

@@ -133,7 +133,21 @@ class EmployeeController extends UserController {
 
         switch ($action) {
             case _ACTION_APPROVE:
-                $error = $this->get('customer_repository')->actOnRegistration($user_model, $action);
+
+                $helper = new \Helper\FormHelper("form_account");
+                $account_repo = $this->get('account_repository');
+
+                // fill the model
+                $account_model = new \Model\Account();
+                $helper->fillModel($account_model);
+                $account_id = $this->get("account")->generateAccount($user_id);
+
+                $account_model->setAccountId($account_id);
+                $account_model->setCustomerId($user_id);
+                $account_model->setType("SAVINGS");
+                $account_model->setIsActive(1);
+
+                $error = $this->get('customer_repository')->actOnRegistration($user_model, $action, $account_repo, $account_model);
                 $success = 'Customer registration was approved successfully.';
                 if (!$error) {
                     // send email with transaction codes
