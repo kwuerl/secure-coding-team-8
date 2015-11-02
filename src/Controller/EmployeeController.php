@@ -203,11 +203,25 @@ class EmployeeController extends UserController {
         ));
     }
 
+    public function generatePendingTransactionsPDF($request) {
+            $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+            /*Fetch the transaction details for the corresponding customer */
+            $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
+
+            // render the form
+            $this->get("templating")->render("transaction_history_download.php", array(
+                //"form" => $helper
+                "transactionList" => $transactionList,
+                "invokedFrom" => _PENDING_TRANSACTIONS,
+                "currentUser" => $employee
+            ));
+        }
+
     private function notify($success, $error) {
         if (!$error) {
-            $this->get("flash_bag")->add(_OPERATION_SUCCESS, $success, "success");
+            $this->get("flash_bag")->add(_OPERATION_SUCCESS, $success, "success_notification");
         } else {
-            $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error");
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error_notification");
         }
     }
 

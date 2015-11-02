@@ -58,7 +58,7 @@
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($transaction->getAmount()); ?>
                                     </td>
                                     <td>

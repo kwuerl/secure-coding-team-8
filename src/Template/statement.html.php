@@ -57,10 +57,10 @@
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($debit_amount); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($credit_amount); ?>
                                     </td>
                                     <td>

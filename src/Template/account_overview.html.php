@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label>Account Balance</label>
                                 <div>
-                                    EURO <?= $t->s($accountInfo->getBalance()); ?>
+                                    <i class='fa fa-eur'></i>&nbsp;&nbsp;<?= $t->s($accountInfo->getBalance()); ?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -101,10 +101,10 @@
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($debit_amount); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($credit_amount); ?>
                                     </td>
                                     <td>

@@ -144,11 +144,11 @@ form[name='approve_transaction']{
     font-weight:bold;
 }
 
-.app-data-table tr th {
+.app-data-table tr th , .app-data-table-small tr th{
     font-size : 15px;
 }
 
-.app-data-table tr td {
+.app-data-table tr td , .app-data-table-small tr td{
     font-size : 14px;
 }
 
@@ -162,6 +162,10 @@ form[name='approve_transaction']{
 
 .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>th{
     padding : 6px;
+}
+
+.table .text-right {
+    text-align: right
 }
 .content{
     padding-top : 10px;

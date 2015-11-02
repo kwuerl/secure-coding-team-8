@@ -24,7 +24,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Account Balance</label>
-                                <div>10000 Euros</div>
+                                <div><i class='fa fa-eur'></i>1000</div>
                             </div>
                             <div class="form-group">
                                 <label >Email</label>
