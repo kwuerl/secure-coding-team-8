@@ -19,7 +19,7 @@ th {
 }
 
 .login-page {
-    background-image: url("/Vendor/img/login_bg.png");
+    background-image: url("/Vendor/img/login_bg.jpg");
     background-size: cover;
 }
 .login-page .login-logo a {
