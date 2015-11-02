@@ -11,8 +11,30 @@ class EmployeeController extends UserController {
 
 	public function loadOverview ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        
+        $customer_repo = $this->get('customer_repository');
+        $transaction_repo = $this->get('transaction_repository');
+
+        /*Fetch the details of all customers*/
+        $customerList = $customer_repo->find(array("is_active"=>1));
+        $customerRegistrationList = $customer_repo->find(array("is_active"=>0, "is_rejected"=>0));
+
+        $transactions = $this->getTransactions(1);
+
+        $customerRegistrationsToday = $customer_repo->find(array("registration_date" => date("Y-m-d H:i:s")));
+        $transactionsToday = $transaction_repo->find(array("transaction_date" => date("Y-m-d H:i:s")));
+
+        $latestTransactionList = $transaction_repo->find(array("is_on_hold" => 0, "is_rejected" => 0), array("transaction_date" => "DESC"));
+
         // render the form
         $this->get("templating")->render("Employee/employee_overview.html.php", array(
+            "customerCount" => count($customerList),
+            "pendingCustomerCount" => count($customerRegistrationList),
+            "pendingTransactionsCount" =>  count($transactions['onHoldTransactionList']),
+            "transactionCount" => count($transactions['approvedTransactionList']),
+            "registrationsTodayCount" => count($customerRegistrationsToday),
+            "transactionsTodayCount" => count($transactionsToday),
+            "latestTransactionList" => $latestTransactionList,
             "currentUser" => $employee
         ));
 	}
