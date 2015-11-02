@@ -31,7 +31,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href='
-                                <?= "" . $profile_href . "" ?>'>
+                                <?= "" . $t->get("profile_href") . "" ?>'>
                             Profile
                             </a>
                             <a href="/logout" >
