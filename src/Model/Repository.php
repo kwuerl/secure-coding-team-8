@@ -20,6 +20,14 @@ class Repository {
 		$this->table_name = $table_name;
 		$this->model_class_name = $model_class_name;
 	}
+	public function beginDBTransaction() {
+		$this->db_wrapper->get()->beginTransaction();
+		return;
+	}
+	public function commitDB() {
+		$this->db_wrapper->get()->commit();
+		return;
+	}
 	/**
 	 * Returns a array of Model Instances that fit for the $filter criteria
 	 *

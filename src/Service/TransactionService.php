@@ -25,6 +25,7 @@ class TransactionService {
 	 */
 	public function generateTransactionCodeSet($customer_id) {
 		$set = array();
+		$this->repository->beginDBTransaction();
 		for ($i = 0; $i < 100; $i++) {
 			do {
 				$code = $this->random->getString(15);
@@ -36,6 +37,7 @@ class TransactionService {
 			$this->repository->add($code_instance);
 			$set[] = $code_instance;
 		}
+		$this->repository->commitDB();
 		if (sizeof($set) == 100) {
 			return $set;
 		} else {
