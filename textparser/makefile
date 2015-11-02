@@ -1,7 +1,7 @@
 VERSION = 3.02
 CC      = gcc
-CFLAGS  = $(shell mysql_config --libs)
-LDFLAGS = 
+CFLAGS  = 
+LDFLAGS = $(shell mysql_config --libs)
 OBJ = account_repo.o repository.o  transaction_controller.o  transaction_repo.o transactioncode_repo.o textparser.o
 
 all: clean textparser
