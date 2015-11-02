@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 		do {
 			if((c = fgetc(input_file)) == '\n') {
 				// close line
-				processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+				processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7]);
 				i = 0;
 				row_count++;
 			}
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 	    } while (c != EOF);
 	    
 	    if(i != 0 && row_count != 0) {
-	    	processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+	    	processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7]);
 	    }
 	    destruct_transaction_row(current_row);
 	}
