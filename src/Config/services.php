@@ -78,6 +78,10 @@ $service_container->register("templating_flash_bag_extension", "Helper\\Templati
 	array("type"=>"service", "value"=>"flash_bag")
 ));
 
+$service_container->register("templating_user_extension", "Helper\\TemplatingUserExtension", array(
+	array("type"=>"service", "value"=>"auth")
+));
+
 $service_container->register("templating", "Service\\TemplatingService", array(
 ), array(
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
@@ -85,6 +89,9 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 	)),
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
 		array("type"=>"service", "value"=>"templating_flash_bag_extension")
+	)),
+	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
+		array("type"=>"service", "value"=>"templating_user_extension")
 	))
 ));
 

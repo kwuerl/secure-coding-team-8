@@ -1,7 +1,7 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Customer/customer_base.html.php"); ?>
 <?php $t->set("menu_active", "home"); ?>
 <?php $t->block("content", function ($t) {
-    $currentUser = $t->get("currentUser");
+    $currentUser = $t->current_user();
     $accountInfo = $t->get("accountInfo");
     $transactionList = $t->get("transactionList");?>
 <div class="content-wrapper">

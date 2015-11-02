@@ -1,4 +1,4 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->set("menu_active", "transaction_history"); ?>
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList");
@@ -51,29 +51,29 @@
                                     $class = ($transaction->getIsOnHold()) ? 'fa fa-retweet' :  'fa fa-check-circle';
                                     $title = $transactionStatus[$transaction->getIsOnHold()];
                                     ?>
-                                <tr>
-                                    <td>
-                                        <?= $t->s($transaction->getId()); ?>
-                                    </td>
-                                    <td>
-                                        <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
-                                    </td>
-                                    <td class="text-right">
-                                        <?= $t->s($transaction->getAmount()); ?>
-                                    </td>
-                                    <td>
-                                        <?= $t->s($transaction->getToAccountId()); ?>
-                                    </td>
-                                    <td>
-                                        <?= $t->s($transaction->getToAccountName()); ?>
-                                    </td>
-                                    <td data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
-                                    <i class=<?php echo "'".$class."'></i>" ?>
-                                    </td>
-                                    <td>
-                                        <?= $t->s($transaction->getRemarks()); ?>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <?= $t->s($transaction->getId()); ?>
+                                        </td>
+                                        <td>
+                                            <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                                        </td>
+                                        <td class="text-right">
+                                            <?= $t->s($transaction->getAmount()); ?>
+                                        </td>
+                                        <td>
+                                            <?= $t->s($transaction->getToAccountId()); ?>
+                                        </td>
+                                        <td>
+                                            <?= $t->s($transaction->getToAccountName()); ?>
+                                        </td>
+                                        <td data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
+                                        <i class=<?php echo "'".$class."'></i>" ?>
+                                        </td>
+                                        <td>
+                                            <?= $t->s($transaction->getRemarks()); ?>
+                                        </td>
+                                    </tr>
                                 <?php }?>
                             </tbody>
                         </table>

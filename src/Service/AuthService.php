@@ -38,7 +38,28 @@ class AuthService {
 	 * @return Model\User
 	 */
 	public function getCurrentUser() {
-		return $this->current_user;
+		if($this->isLoggedIn()) {
+			return $this->current_user;
+		}
+		return null;
+	}
+	/**
+	 * Returns true if the current user has the right gorups
+	 *
+	 * @param string $group
+	 *
+	 * @return Model\User
+	 */
+	public function currentUserHasGroup($group) {
+		$user = $this->getCurrentUser();
+		if($user != null) {
+			$groups = $user->getGroups();
+			if(in_array($group, $groups)) {
+				return true;
+			}		
+		}
+		return false;
+		
 	}
 	/**
 	 * Returns the current User. If there is none, a blank User is returned.
@@ -188,16 +209,6 @@ class AuthService {
 		$this->routing_service->redirect($this->login_route_name, array());
 		throw new \Exception($msg);
 
-	}
-	/**
-	 * Registers a user and returns true, if the registration was successful and returns false, if the registration failed.
-	 *
-	 * @param User $user	User to register
-	 *
-	 * @return boolean
-	 */
-	public function register(User $user) {
-		
 	}
 	/**
 	 * Registers a user and returns true, if the registration was successful and returns false, if the registration failed.

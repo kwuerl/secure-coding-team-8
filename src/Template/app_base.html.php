@@ -13,24 +13,25 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Tasks: style can be found in dropdown.less -->
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="hidden-xs">Alexander Pierce</span>
+                    <span class="hidden-xs"><?= $t->s($t->current_user()->getFirstName())." ".$t->s($t->current_user()->getLastName()); ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href='<?= $t->get("profile_href") ?>'>
+                            <a href='
+                                <?= "" . $profile_href . "" ?>'>
                             Profile
                             </a>
                             <a href="/logout" >

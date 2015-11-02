@@ -1,4 +1,4 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Customer/customer_base.html.php"); ?>
 <?php $t->set("menu_active", "make_transfer"); ?>
 <?php $t->block("content", function ($t) { ?>
 <!-- Content Wrapper. Contains page content -->

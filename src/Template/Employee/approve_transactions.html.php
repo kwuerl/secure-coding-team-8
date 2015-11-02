@@ -1,4 +1,4 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->set("menu_active", "approve_transactions"); ?>
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList"); ?>

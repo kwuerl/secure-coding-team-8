@@ -17,9 +17,8 @@ class CustomerController extends UserController {
         $transactionList = $this->get('transaction_repository')->getAllByCustomerId($customer_id, _TRANSACTIONS_PER_PAGE);
 
         // render the form
-        $this->get("templating")->render("account_overview.html.php", array(
+        $this->get("templating")->render("Customer/account_overview.html.php", array(
             //"form" => $helper
-            "currentUser" => $customer,
             "accountInfo" => $accountInfo,
             "transactionList" => $transactionList
         ));
@@ -27,7 +26,7 @@ class CustomerController extends UserController {
 	public function loadProfile ($request) {
         $customer = $this->get("auth")->check(_GROUP_USER);
         // render the form
-        $this->get("templating")->render("customer_profile_view.html.php", array(
+        $this->get("templating")->render("Customer/customer_profile_view.html.php", array(
             //"form" => $helper,
             "currentUser" => $customer
         ));
@@ -41,9 +40,8 @@ class CustomerController extends UserController {
         /*Fetch the transaction details for the current user */
         $transactionList = $this->get('transaction_repository')->getByCustomerId($customer_id);
         // render the form
-        $this->get("templating")->render("transaction_history.html.php", array(
+        $this->get("templating")->render("Customer/transaction_history.html.php", array(
             "form" => $helper,
-            "currentUser" => $customer,
             "transactionList" => $transactionList,
             "accountInfo" => $accountInfo
         ));
@@ -96,12 +94,11 @@ class CustomerController extends UserController {
         $transactionList = $this->get('transaction_repository')->getAllByCustomerId($customer_id);
 
         // render the form
-        $this->get("templating")->render("statement.html.php", array(
+        $this->get("templating")->render("Customer/statement.html.php", array(
             "form" => $helper,
             "accountInfo" => $accountInfo,
             "transactionList" => $transactionList,
             "invokedFrom" => _STATEMENT,
-            "currentUser" => $customer
         ));
     }
 }

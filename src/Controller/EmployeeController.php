@@ -12,16 +12,15 @@ class EmployeeController extends UserController {
 	public function loadOverview ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
-        $this->get("templating")->render("employee_overview.html.php", array(
+        $this->get("templating")->render("Employee/employee_overview.html.php", array(
             "currentUser" => $employee
         ));
 	}
 	public function loadProfile ($request) {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         // render the form
-        $this->get("templating")->render("employee_profile_view.html.php", array(
+        $this->get("templating")->render("Employee/employee_profile_view.html.php", array(
             //"form" => $helper,
-            "currentUser" => $employee
         ));
     }
     public function loadCustomersList ($request) {
@@ -32,9 +31,8 @@ class EmployeeController extends UserController {
         $customerRegistrationList = $this->get('customer_repository')->find(array("is_active"=>0, "is_rejected"=>0));
 
         // render the form
-        $this->get("templating")->render("customers_list.html.php", array(
+        $this->get("templating")->render("Employee/customers_list.html.php", array(
             "form" => $helper,
-            "currentUser" => $employee,
             "customerList" => $customerList,
             "customerRegistrationList" => $customerRegistrationList
         ));
@@ -46,9 +44,8 @@ class EmployeeController extends UserController {
         /*Fetch all transactions for the selected customer*/
         $result = $this->getTransactions($customerId);
         // render the form
-        $this->get("templating")->render("customer_details.html.php", array(
+        $this->get("templating")->render("Employee/customer_details.html.php", array(
             "customer" => $customer,
-            "currentUser" => $employee,
             "onHoldTransactionList" => $result['onHoldTransactionList'],
             "approvedTransactionList" => $result['approvedTransactionList']
         ));
@@ -61,9 +58,8 @@ class EmployeeController extends UserController {
         /*Fetch all transactions for the selected customer*/
         $employeeRegistrationList = $this->get('employee_repository')->find(array("is_active"=>0, "is_rejected"=>0));
         // render the form
-        $this->get("templating")->render("employees_list.html.php", array(
+        $this->get("templating")->render("Employee/employees_list.html.php", array(
             "form" => $helper,
-            "currentUser" => $employee,
             "employeeRegistrationList" => $employeeRegistrationList,
             "employeeList" => $employeeList
         ));
@@ -75,9 +71,8 @@ class EmployeeController extends UserController {
         /*Fetch all transactions that are on-hold.*/
         $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
         // render the form
-        $this->get("templating")->render("approve_transactions.html.php", array(
+        $this->get("templating")->render("Employee/approve_transactions.html.php", array(
             "form" => $helper,
-            "currentUser" => $employee,
             "transactionList" => $transactionList
         ));
     }
@@ -174,13 +169,12 @@ class EmployeeController extends UserController {
         /*Fetch the transaction details for the corresponding customer */
         $transactions = $this->getTransactions($customerId);
         // render the form
-        $this->get("templating")->render("transaction_history_download.php", array(
+        $this->get("templating")->render("Employee/transaction_history_download.php", array(
             //"form" => $helper
             "accountInfo" => $accountInfo,
             "customer" => $customer,
             "invokedFrom" => _CUSTOMER_DETAILS_PENDING_TRANSACTION,
             "onHoldTransactionList" => $transactions['onHoldTransactionList'],
-            "currentUser" => $employee
         ));
     }
 
@@ -192,14 +186,13 @@ class EmployeeController extends UserController {
         /*Fetch the transaction details for the corresponding customer */
         $transactions = $this->getTransactions($customerId);
         // render the form
-        $this->get("templating")->render("transaction_history_download.php", array(
+        $this->get("templating")->render("Employee/transaction_history_download.php", array(
             //"form" => $helper
             "transactionList" => $transactionList,
             "accountInfo" => $accountInfo,
             "customer" => $customer,
             "invokedFrom" => _CUSTOMER_DETAILS_COMPLETED_TRANSACTION,
             "approvedTransactionList" => $transactions['approvedTransactionList'],
-            "currentUser" => $employee
         ));
     }
 
@@ -213,7 +206,6 @@ class EmployeeController extends UserController {
                 //"form" => $helper
                 "transactionList" => $transactionList,
                 "invokedFrom" => _PENDING_TRANSACTIONS,
-                "currentUser" => $employee
             ));
         }
 
