@@ -32,7 +32,8 @@ $service_container->register("email", "Service\\EmailService", array(
 ));
 
 $service_container->register("transaction", "Service\\TransactionService", array(
-	array("type"=>"service", "value"=>"transaction_code_repository")
+	array("type"=>"service", "value"=>"transaction_code_repository"),
+	array("type"=>"service", "value"=>"random")
 ));
 
 // ------------  Auth  -----------------
@@ -77,6 +78,10 @@ $service_container->register("templating_flash_bag_extension", "Helper\\Templati
 	array("type"=>"service", "value"=>"flash_bag")
 ));
 
+$service_container->register("templating_user_extension", "Helper\\TemplatingUserExtension", array(
+	array("type"=>"service", "value"=>"auth")
+));
+
 $service_container->register("templating", "Service\\TemplatingService", array(
 ), array(
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
@@ -84,12 +89,15 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 	)),
 	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
 		array("type"=>"service", "value"=>"templating_flash_bag_extension")
+	)),
+	array("function"=>"addTemplateHelperExtension", "parameters"=>array(
+		array("type"=>"service", "value"=>"templating_user_extension")
 	))
 ));
 
 // ------------  Controllers  -----------------
 
-$service_container->register("example_controller", "Controller\\ExampleController", array(
+$service_container->register("default_controller", "Controller\\DefaultController", array(
 	array("type"=>"service_container")
 ));
 

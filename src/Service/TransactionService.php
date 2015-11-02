@@ -8,11 +8,13 @@ use Model\TransactionCodeRepository;
  */
 class TransactionService {
 	private $repository;
+	private $random;
 	/**
 	 * Constructor
 	 */
-	function __construct(TransactionCodeRepository $repository) {
+	function __construct(TransactionCodeRepository $repository, RandomSequenceGeneratorService $random) {
 		$this->repository = $repository;
+		$this->random = $random;
 	}
 	/**
 	 * Returns an array with 100 unique transaction codes
@@ -25,7 +27,7 @@ class TransactionService {
 		$set = array();
 		for ($i = 0; $i < 100; $i++) {
 			do {
-				$code = RandomSequenceGeneratorService::getString(15);
+				$code = $this->random->getString(15);
 			} while (in_array($code, $set) && $this->repository->findOne(array("code" => $code)));
 			$code_instance = new TransactionCode();
 			$code_instance->setCustomerId($customer_id);

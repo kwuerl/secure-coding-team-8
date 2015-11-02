@@ -38,7 +38,28 @@ class AuthService {
 	 * @return Model\User
 	 */
 	public function getCurrentUser() {
-		return $this->current_user;
+		if($this->isLoggedIn()) {
+			return $this->current_user;
+		}
+		return null;
+	}
+	/**
+	 * Returns true if the current user has the right gorups
+	 *
+	 * @param string $group
+	 *
+	 * @return Model\User
+	 */
+	public function currentUserHasGroup($group) {
+		$user = $this->getCurrentUser();
+		if($user != null) {
+			$groups = $user->getGroups();
+			if(in_array($group, $groups)) {
+				return true;
+			}		
+		}
+		return false;
+		
 	}
 	/**
 	 * Returns the current User. If there is none, a blank User is returned.
@@ -146,6 +167,9 @@ class AuthService {
 			return true;
 		} else {
 			$this->session_service->del("current_user");
+			if ($this->session_service->has("redirect_after_login")) {
+				$this->session_service->del("redirect_after_login");
+			}
 			return false;
 		}
 	}
@@ -169,7 +193,7 @@ class AuthService {
 					$this->current_user = $user;
 					return $this->current_user;
 				} else {
-					$msg = "You don't have the permission to do this";
+					$msg = "You don't have the permission to do this.<br> Either log in as a permitted user or <br> <a href='javascript:history.back()'>Go Back</a>";
 				}
 			} else {
 				$this->session_service->del("current_user");
@@ -177,24 +201,14 @@ class AuthService {
 			}
 		} else {
 			$msg = "You have to be logged in to see this";
+			$request = $this->routing_service->getRequest();
+			$prev_url = array($request->getRouteName(), $request->getRouteParams());
+			$this->session_service->set("redirect_after_login", $prev_url);
 		}
 		$this->setLastMessage($msg);
-		$request = $this->routing_service->getRequest();
-		$prev_url = array($request->getRouteName(), $request->getRouteParams());
-		$this->session_service->set("redirect_after_login", $prev_url);
 		$this->routing_service->redirect($this->login_route_name, array());
 		throw new \Exception($msg);
 
-	}
-	/**
-	 * Registers a user and returns true, if the registration was successful and returns false, if the registration failed.
-	 *
-	 * @param User $user	User to register
-	 *
-	 * @return boolean
-	 */
-	public function register(User $user) {
-		
 	}
 	/**
 	 * Registers a user and returns true, if the registration was successful and returns false, if the registration failed.

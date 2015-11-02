@@ -1,7 +1,13 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->set("menu_active", "employee_overview"); ?>
 <?php $t->block("content", function ($t) { ?>
 <div class="content-wrapper">
+    
+    <section>
+        <div class="row">
+            <?php $t->flash_echo(); ?>
+        </div>
+    </section>
     <!-- Content Header (Page header) -->
     <section class="content-header">
     <h1>
@@ -18,7 +24,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Account Balance</label>
-                                <div>10000 Euros</div>
+                                <div><i class='fa fa-eur'></i>1000</div>
                             </div>
                             <div class="form-group">
                                 <label >Email</label>

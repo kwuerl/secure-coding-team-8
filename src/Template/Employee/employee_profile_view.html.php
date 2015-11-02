@@ -1,7 +1,8 @@
-<?php $t->extend("user_overview.html.php"); ?>
-<?php $t->set("menu_active", "profile"); ?>
+<?php $t->extend("Employee/employee_base.html.php"); ?>
+<?php $t->set("menu_active", "employee_profile"); ?>
+
 <?php $t->block("content", function ($t) {
-    $currentUser = $t->get("currentUser"); ?>
+    $currentUser = $t->current_user(); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,7 +43,6 @@
                                     <?= $t->s($currentUser->getEmail()); ?>
                                 </div>
                             </div>
-                            <?= $t->block("profile_details", function () {}); ?>
                         </div>
                         <!-- /.box-body -->
                     </form>

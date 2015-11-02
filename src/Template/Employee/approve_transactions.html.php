@@ -1,4 +1,4 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->set("menu_active", "approve_transactions"); ?>
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList"); ?>
@@ -19,6 +19,14 @@
 <input id='selectedTransactionId' name='selectedTransactionId' type='hidden' value=''/>
 <input id='action_transaction' name='action_transaction' type='hidden' value=''/>
 <?php }) ?>
+<div class="row">
+    <div class="col-xs-12">
+        <?php if( count($transactionList) != 0 ) { ?>
+        <a href='/transactions_pending_download' id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
+        </a>
+        <?php } ?>
+    </div>
+</div>
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -47,7 +55,7 @@
                         <td>
                             <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                         </td>
-                        <td>
+                        <td class="text-right">
                             <?= $t->s($transaction->getAmount()); ?>
                         </td>
                         <td>

@@ -138,10 +138,9 @@ class TransactionController extends Controller {
 		}
 
 		// render the form
-		$this->get("templating")->render("make_transfer.html.php", array(
+		$this->get("templating")->render("Customer/make_transfer.html.php", array(
 			"form" => $helper,
 			"form2" => $helper2,
-			"currentUser" => $customer
 		));
 	}
 }

@@ -1,38 +1,81 @@
-<?php $t->extend("user_overview.html.php"); ?>
-<?php $t->set("menu_active", "statement"); ?>
+<?php $t->extend("Customer/customer_base.html.php"); ?>
+<?php $t->set("menu_active", "home"); ?>
 <?php $t->block("content", function ($t) {
-    $transactionList = $t->get("transactionList");
+    $currentUser = $t->current_user();
     $accountInfo = $t->get("accountInfo");
-    ?>
-<!-- Content Wrapper. Contains page content -->
+    $transactionList = $t->get("transactionList");?>
 <div class="content-wrapper">
+    <section>
+        <div class="row">
+            <?php $t->flash_echo(); ?>
+        </div>
+    </section>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Statement
+            Account Overview
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
-            <li class="active">Statement</li>
-        </ol>
     </section>
-    <div class="row">
-        <div class="col-xs-12">
-            <?php if( count($transactionList) != 0 )
-                $t->formh($t->get("form"), array("action"=>"/transaction_history_download", "method"=>"post","target" => "_blank"), function ($t) { ?>
-            <form name='download_pdf_form' action="/transaction_history_download" method="post" target='_blank'>
-            <a id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
-            </a>
-            <?php }) ?>
-        </div>
-    </div>
-    <!-- Main content -->
     <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Account Balance</label>
+                                <div>
+                                    <i class='fa fa-eur'></i>&nbsp;&nbsp;<?= $t->s($accountInfo->getBalance()); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label >Email</label>
+                                <div>
+                                    <?= $t->s($currentUser->getEmail()); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Account No.</label>
+                                <div>
+                                    <?= $t->s($accountInfo->getAccountId()); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Type</label>
+                                <div>
+                                    <?= $t->s($accountInfo->getType()); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+    <section class='content-header'>
+        <div class="row">
+            <div class="col-xs-7">
+                <h1>Last 5 Transactions</h1>
+            </div>
+            <div class="col-xs-5">
+                <?php if( count($transactionList) != 0 ) {?>
+                <a href='/statement' class='pull-right'><i class="glyphicon glyphicon-share-alt"></i>&nbsp;View More</i>
+                </a>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+    <section class='content'>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <table id="statement_table" class="table table-bordered table-striped app-data-table">
+                        <table id="customer_transactions_table" class="table table-bordered table-striped app-data-table">
                             <thead>
                                 <tr>
                                     <th class='trans-history-transaction-id' rowspan='2'>Transaction ID</th>
@@ -58,10 +101,10 @@
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($debit_amount); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($credit_amount); ?>
                                     </td>
                                     <td>
@@ -83,8 +126,5 @@
         </div>
         <!-- /.row -->
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-<script></script>
 <?php });

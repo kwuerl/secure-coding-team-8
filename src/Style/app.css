@@ -14,7 +14,7 @@ textarea{
 
 th {
     vertical-align : middle !important;
-    background-color : #aebfd4;
+    /*background-color : #aebfd4;*/
     text-align : center;
 }
 
@@ -38,7 +38,7 @@ form[name='approve_transaction']{
 }
 
 .box.box-primary{
-    border-top-color :#86a0bf;
+    /*border-top-color :#86a0bf;*/
 }
 
 .content-header > .breadcrumb{
@@ -48,8 +48,8 @@ form[name='approve_transaction']{
 }
 
 .btn-info, .btn-info:hover, .btn-info:active,.btn-info:focus {
-   background-color: #5e80aa;
-    border-color : #5e80aa;
+   /*background-color: #5e80aa;
+   border-color : #5e80aa;*/
 }
 
 .skin-black .main-header > .navbar .nav > li > a{
@@ -58,16 +58,16 @@ form[name='approve_transaction']{
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span,
 .pagination>.active>span:focus, .pagination>.active>span:hover{
-    background-color: #5e80aa;
-    border-color: #5e80aa;
+    /*background-color: #5e80aa;
+    border-color: #5e80aa;*/
 }
 
 .skin-black .sidebar-menu > li:hover > a, .skin-black .sidebar-menu > li.active > a{
-    border-left-color: #5e80aa ;
+    /*border-left-color: #5e80aa ;*/
 }
 
 .modal-header{
-    background-color : #aebfd4;
+    /*background-color : #aebfd4;*/
     color : #fff;
 }
 .modal-title{
@@ -79,7 +79,7 @@ form[name='approve_transaction']{
 }
 
 #customer_reg_pending .btn-reject, #employee_regsitrations_table .btn-reject, #approve_trans_table .btn-reject{
-    background-color :#a1b5cd;
+    /*background-color :#a1b5cd;*/
     color : #fff;
 }
 
@@ -144,11 +144,11 @@ form[name='approve_transaction']{
     font-weight:bold;
 }
 
-.app-data-table tr th {
+.app-data-table tr th , .app-data-table-small tr th{
     font-size : 15px;
 }
 
-.app-data-table tr td {
+.app-data-table tr td , .app-data-table-small tr td{
     font-size : 14px;
 }
 
@@ -163,19 +163,23 @@ form[name='approve_transaction']{
 .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>th{
     padding : 6px;
 }
+
+.table .text-right {
+    text-align: right
+}
 .content{
     padding-top : 10px;
     padding-bottom : 10px;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active,.btn-primary:focus{
-    background-color: #5e80aa;
-    border-color: #5e80aa;
+    /*background-color: #5e80aa;
+    border-color: #5e80aa;*/
 }
 
 .btn-default, .btn-default:hover, .btn-default:active,.btn-default:focus{
-    background-color: #a1b5cd;
-    border-color: #a1b5cd;
+    /*background-color: #a1b5cd;
+    border-color: #a1b5cd;*/
     color: #fff;
 }
 

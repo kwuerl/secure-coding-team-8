@@ -9,6 +9,7 @@
     <h1>Apply for a job</h1>
     <div class="login-box-body">
         <?php $t->flash_echo(); ?>
+        Please register an applicant account!<br><br>
         <?php $t->formh($t->get("form"), array("action"=>"/register_employee", "method"=>"post"), function ($t) { ?>
         <?php
             $first_name_errors = $t->get("form")->getError("first_name");

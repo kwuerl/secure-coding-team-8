@@ -1,4 +1,4 @@
-<?php $t->extend("user_overview.html.php"); ?>
+<?php $t->extend("Customer/customer_base.html.php"); ?>
 <?php $t->set("menu_active", "transaction_history"); ?>
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList");
@@ -19,6 +19,15 @@
             <li class="active">Transaction History</li>
         </ol>
     </section>
+    <div class="row">
+        <div class="col-xs-12">
+            <?php if( count($transactionList) != 0 )
+                $t->formh($t->get("form"), array("action"=>"/transaction_history_download", "method"=>"post","target" => "_blank"), function ($t) { ?>
+            <a id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
+            </a>
+            <?php }) ?>
+        </div>
+    </div>
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -49,7 +58,7 @@
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <?= $t->s($transaction->getAmount()); ?>
                                     </td>
                                     <td>
