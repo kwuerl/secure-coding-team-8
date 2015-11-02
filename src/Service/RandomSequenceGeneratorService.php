@@ -13,7 +13,7 @@ class RandomSequenceGeneratorService {
 	 *
 	 * @return string
 	 */
-	public function getString($length) {
+	public static function getString($length) {
 	    /*Use random_bytes() if it is defined. Else, use openssl_random_pseudo_bytes*/
 	    if (function_exists('random_bytes'))
 			$bytes = random_bytes($length);
@@ -28,7 +28,7 @@ class RandomSequenceGeneratorService {
 	 *
 	 * @return string
 	 */
-	public function getHash() {
+	public static function getHash() {
 		return sha1($this->getString(40));
 	}
 }

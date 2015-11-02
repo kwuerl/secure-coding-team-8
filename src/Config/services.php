@@ -32,7 +32,8 @@ $service_container->register("email", "Service\\EmailService", array(
 ));
 
 $service_container->register("transaction", "Service\\TransactionService", array(
-	array("type"=>"service", "value"=>"transaction_code_repository")
+	array("type"=>"service", "value"=>"transaction_code_repository"),
+	array("type"=>"service", "value"=>"random")
 ));
 
 // ------------  Auth  -----------------
@@ -89,7 +90,7 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 
 // ------------  Controllers  -----------------
 
-$service_container->register("example_controller", "Controller\\ExampleController", array(
+$service_container->register("default_controller", "Controller\\DefaultController", array(
 	array("type"=>"service_container")
 ));
 

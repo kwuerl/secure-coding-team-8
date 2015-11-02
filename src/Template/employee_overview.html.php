@@ -2,6 +2,12 @@
 <?php $t->set("menu_active", "employee_overview"); ?>
 <?php $t->block("content", function ($t) { ?>
 <div class="content-wrapper">
+    
+    <section>
+        <div class="row">
+            <?php $t->flash_echo(); ?>
+        </div>
+    </section>
     <!-- Content Header (Page header) -->
     <section class="content-header">
     <h1>

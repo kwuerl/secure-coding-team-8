@@ -2,6 +2,7 @@
 /**
  *	$routing_service is instance of Service\RoutingService
  */
+$routing_service->get("default", "/", "default_controller:landingFunction");
 
 $routing_service->get("test_route", "/test/(:all)/(:all)/(:any)", "example_controller:testFunction");
 $routing_service->get("form_example_get", "/form_example", "example_controller:formtest");

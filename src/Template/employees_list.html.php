@@ -16,7 +16,6 @@
             <li class="active">Employees</li>
         </ol>
     </section>
-    <?php $t->flash_echo(); ?>
     <?php $t->formh($t->get("form"), array("action"=>"/employees", "method"=>"post"), function ($t) { ?>
     <input id='selectedUserId' name='selectedUserId' type='hidden' value=''/>
     <input id='action_registration' name='action_registration' type='hidden' value=''/>
@@ -25,6 +24,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
+                <?php $t->flash_echo(); ?>
                 <div class="box box-primary">
                     <div class="box-body">
                         <table id="employee_regsitrations_table" class="table table-bordered table-striped app-data-table">
