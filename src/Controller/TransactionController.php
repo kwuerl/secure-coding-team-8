@@ -45,7 +45,8 @@ class TransactionController extends Controller {
 		if ($helper->processRequest($request)) {
 			//try to validate
 			if ($helper->validate()) {
-			    $transaction_code = $request->getData('make_transfer')['transaction_code'];
+				$transact = $request->getData('make_transfer');
+			    $transaction_code = $transact['transaction_code'];
 			    $customer_id = $customer->getId();
 			    $account_repo = $this->get('account_repository');
 			    $transaction_code_repo = $this->get('transaction_code_repository');
