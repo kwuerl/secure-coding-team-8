@@ -4,19 +4,42 @@
 #include <string.h>
 #include <math.h>
 #include <stdint.h>
-#include "../db/transaction_controller.h"
+#include "transaction_controller.h"
+
+
+static short account_id_size = 10;
+static short account_name_size = 30;
+static short amount_size = 8;
+static short code_size = 15;
+static short remarks_size = 128;
+
+struct transaction_row {
+	char *account_id;
+	char *account_name;
+	char *amount;
+	char *code;
+	char *remarks;
+};
+
+struct transaction_row construct_transaction_row() {
+	struct transaction_row ret;
+	ret.account_id = malloc(sizeof(char)*(account_id_size+1));
+	ret.account_name = malloc(sizeof(char)*(account_name_size+1));
+	ret.amount = malloc(sizeof(char)*(amount_size+1));
+	ret.code = malloc(sizeof(char)*(code_size+1));
+	ret.remarks = malloc(sizeof(char)*(remarks_size+1));
+	return ret;
+}
+
+void destruct_transaction_row(struct transaction_row row) {
+	free(row.account_id);
+	free(row.account_name);
+	free(row.amount);
+	free(row.code);
+	free(row.remarks);
+}
 
 int main(int argc, char **argv) {
-    short account_id_size = 10;
-	char *account_id = malloc(sizeof(char)*(account_id_size+1));
-    short account_name_size = 30;
-	char *account_name = malloc(sizeof(char)*(account_name_size+1));
-    short amount_size = 8;
-	char *amount = malloc(sizeof(char)*(amount_size+1));
-    short code_size = 15;
-	char *code = malloc(sizeof(char)*(code_size+1));
-    short remarks_size = 128;
-	char *remarks = malloc(sizeof(char)*(remarks_size+1));
 
 	char *input = argv[1];
 	FILE *input_file;
@@ -28,48 +51,57 @@ int main(int argc, char **argv) {
         return(-1);
 	} else {
 		int i = 0;
+		int row_count = 0;
 		uint32_t j = 0;
-		char c;
+		char c = 0;
+		char prev_c = 0;
+		struct transaction_row current_row = construct_transaction_row();
 		do {
-			if ((c = fgetc(input_file)) != '\n') {
+			if((c = fgetc(input_file)) == '\n') {
+				// close line
+				processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+				i = 0;
+				row_count++;
+			}
+			if ((c = fgetc(input_file)) != ';' || prev_c == '\\') {
 				if (i == 0) {
 					if (j < account_id_size) {
-						account_id[j] = c;
+						current_row.account_id[j] = c;
 						j++;
                     } else if (j == account_id_size) {
-                        account_id[j] = 0;
+                        current_row.account_id[j] = 0;
                         j++;
                     }
 				} else if (i == 1) {
 					if (j < account_name_size) {
-						account_name[j] = c;
+						current_row.account_name[j] = c;
 						j++;
                     } else if (j == account_id_size) {
-                        account_name[j] = 0;
+                        current_row.account_name[j] = 0;
                         j++;
                     }
 				} else if (i == 2) {
 					if (j < amount_size) {
-						amount[j] = c;
+						current_row.amount[j] = c;
 						j++;
                     } else if (j == account_id_size) {
-                        amount[j] = 0;
+                        current_row.amount[j] = 0;
                         j++;
                     }
 				} else if (i == 3) {
 					if (j < code_size) {
-						code[j] = c;
+						current_row.code[j] = c;
 						j++;
                     } else if (j == account_id_size) {
-                        code[j] = 0;
+                        current_row.code[j] = 0;
                         j++;
                     }
 				} else if (i == 4) {
 					if (j < remarks_size) {
-						remarks[j] = c;
+						current_row.remarks[j] = c;
 						j++;
                     } else if (j == account_id_size) {
-                        remarks[j] = 0;
+                        current_row.remarks[j] = 0;
                         j++;
                     }
 				}
@@ -77,8 +109,13 @@ int main(int argc, char **argv) {
 				i++;
 				j = 0;
 			}
+			prev_c = c;
 
 	    } while (c != EOF);
+	    if(i != 0 && row_count != 0) {
+	    	processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+	    }
+	    destruct_transaction_row(current_row);
 	}
 	fclose(input_file);
 
@@ -87,8 +124,6 @@ int main(int argc, char **argv) {
 	snprintf(json, sizeof(json), "{from_id:\"%s\",from_account_id:\"%s\",\"to_account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", argv[2], argv[3], account_id, account_name, strtof(amount, NULL), code, remarks);
 	printf("%s", json);
 	*/
-
-	processTransfer(atoi(argv[2]), code, atoi(argv[3]), atoi(account_id), account_name, strtof(amount, NULL), remarks);
 	/*TODO Need to pass the following values to the function in transaction_controller.c
 		int customer_id (Ex: 1)
 		int from_account_id (Ex: 1234567890)

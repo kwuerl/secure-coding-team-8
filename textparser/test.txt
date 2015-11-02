@@ -1,5 +1,2 @@
-2
-vorname nachname
-12345.67
-2W33VghH13Fz0qo
-thank you for your purchase. have a nice day.
+2;vorname nachname;12345.67;2W33VghH13Fz0qo;thank you for your purchase\; have a nice day.
+2;vorname nachname;12345.67;2W33VghH13Fz0qo;thank you for your purchase\; have a nice day.
