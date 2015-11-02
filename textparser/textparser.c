@@ -44,6 +44,8 @@ int main(int argc, char **argv) {
 	char *input = argv[1];
 	FILE *input_file;
 
+	int success = 0;
+
 	input_file = fopen(input, "r");
 
 	if (input_file == NULL) {
@@ -59,7 +61,11 @@ int main(int argc, char **argv) {
 		do {
 			if((c = fgetc(input_file)) == '\n') {
 				// close line
-				processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+				if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks)) {
+					success = 1;
+				} else {
+					success = 0;
+				}
 				i = 0;
 				row_count++;
 			}
@@ -116,11 +122,19 @@ int main(int argc, char **argv) {
 	    } while (c != EOF);
 	    
 	    if(i != 0 && row_count != 0) {
-	    	processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
+	    	if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks)) {
+	    		success = 1;
+	    	} else {
+	    		success = 0;
+	    	}
 	    }
 	    destruct_transaction_row(current_row);
 	}
 	fclose(input_file);
 
-	return 0;
+	if (success == 1) {
+		return 0; // everything works
+	} else {
+		return 1; // there was an error
+	}
 }

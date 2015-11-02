@@ -14,7 +14,7 @@
 MYSQL* initializeDB() {
 	MYSQL *connection = mysql_init(NULL);
 	if (connection == NULL) {
-		fprintf(stderr, "Error in connecting to the database.\n");
+		printf("Error in connecting to the database.\n");
 		exit(EXIT_FAILURE);
 	}
 	return connection;
@@ -25,7 +25,7 @@ void connectToDB(MYSQL *connection, char* host, char* user, char* password,
 	/* connect to server */
 	if (mysql_real_connect(connection, host, user, password, dbName, port, NULL,
 			0) == NULL) {
-		fprintf(stderr, "Error in connecting to the database.\n");
+		printf("Error in connecting to the database.\n");
 		mysql_close(connection);
 		exit(EXIT_FAILURE);
 	}

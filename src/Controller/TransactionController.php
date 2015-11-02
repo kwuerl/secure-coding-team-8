@@ -94,7 +94,7 @@ class TransactionController extends Controller {
 
 		if ($helper2->processRequest($request)) {
 			if ($helper2->validate()) {
-				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'tmp/';
+				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/tmp/';
 				$file = $request->getFile('make_transfer_via_file_upload', 'file');
 				if ($file['type'] != "text/plain") {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");
@@ -125,11 +125,18 @@ class TransactionController extends Controller {
 					// file was uploaded successfully
 					$customer_id = $customer->getId();
 			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
-					$shell_command = $upload_dir . "textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
-					if (shell_exec($shell_command) == NULL) {
+					$shell_command = $upload_dir . "/../../textparser/textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
+					exec($shell_command, $output, $return_var);
+					if ($return_var == 0) {
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
 					} else {
-						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error_notification");
+						if (in_array("Incorrect transaction code.", $output)) {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect transaction code(s).", "error_notification");
+						} else if (in_array("Error in connecting to the database.", $output)) {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with connecting to the database. Please try again later.", "error_notification");
+						} else {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error_notification");
+						}
 					}
 					unlink($uploaded_file_name);
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
