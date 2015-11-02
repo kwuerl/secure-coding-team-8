@@ -90,7 +90,7 @@ class User {
 	 */
 	public function setPasswordPlain($password) {
 		$this->_password_plain = $password;
-		$encrypted_password = password_hash($password, PASSWORD_BCRYPT);
+		$encrypted_password = crypt($password);
 		$this->password = $encrypted_password;
 	}
 	/**

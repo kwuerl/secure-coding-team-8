@@ -59,7 +59,9 @@ class Psr4ClassLoader
     public function findFile($class)
     {
         $class = ltrim($class, '\\');
-        foreach ($this->prefixes as list($currentPrefix, $currentBaseDir)) {
+        foreach ($this->prefixes as $l) {
+            $currentPrefix = $l[0];
+            $currentBaseDir = $l[1];
             if (0 === strpos($class, $currentPrefix)) {
                 $classWithoutPrefix = substr($class, strlen($currentPrefix));
                 $file = $currentBaseDir.str_replace('\\', DIRECTORY_SEPARATOR, $classWithoutPrefix).'.php';

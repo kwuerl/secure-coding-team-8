@@ -18,7 +18,7 @@ class StaticAuthProvider extends AuthProvider {
 	 */
 	public function verify(User $user) {
 		if($user->getEmail() == "admin@admin.de" 
-		&& password_verify ( "admin" , $user->getPassword() )) {
+		&& crypt("admin", $user->getPassword()) == $user->getPassword()) {
 			$admin = new Employee();
 			$admin->setEmail($user->getEmail());
 			$admin->setFirstName("Mr.");
@@ -27,26 +27,6 @@ class StaticAuthProvider extends AuthProvider {
 			$admin->setPassword($user->getPassword());
 			$admin->setGroups(array(_GROUP_ADMIN, _GROUP_EMPLOYEE));
 			return $admin;
-		} else if ($user->getEmail() == "employee@employee.de" 
-		&& password_verify ( "employee" , $user->getPassword() )) {
-			$employee = new Employee();
-			$employee->setEmail($employee->getEmail());
-			$employee->setFirstName("Mr.");
-			$employee->setLastName("Employee");
-			$employee->setIsActive(1);
-			$employee->setPassword($employee->getPassword());
-			$employee->setGroups(array(_GROUP_EMPLOYEE));
-			return $employee;
-		} else if ($user->getEmail() == "user@user.de" 
-		&& password_verify ( "user" , $user->getPassword() )) {
-			$user = new User();
-			$user->setEmail($user->getEmail());
-			$user->setFirstName("Mr.");
-			$user->setLastName("User");
-			$user->setIsActive(1);
-			$user->setPassword($user->getPassword());
-			$user->setGroups(array(_GROUP_USER));
-			return $user;
 		}
 		return false;
 	}
