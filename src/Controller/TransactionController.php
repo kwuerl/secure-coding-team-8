@@ -5,6 +5,7 @@ namespace Controller;
  * Transaction Controller class that extends Controller. Gets ServiceContainer injected.
  *
  * @author Vivek Sethia <vivek.sethia@tum.de>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class TransactionController extends Controller {
 

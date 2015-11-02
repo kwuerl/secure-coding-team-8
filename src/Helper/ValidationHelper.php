@@ -38,7 +38,7 @@ class ValidationHelper {
 	 * @return boolean
 	 */
 	public static function name(FormHelper $helper, $input) {
-		return preg_match("/^[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\-\s]+$/", $input);
+		return preg_match("/^[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\-\s]+$/u", $input);
 	}
 	/**
 	 * Checks if $input is a valid password
