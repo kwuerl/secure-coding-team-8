@@ -24,7 +24,7 @@ class AccountService {
 	 */
 	public function generateAccount($customer_id) {
         do {
-            $account_id = rand(1234567890, 9876543210);
+            $account_id = rand(1234567890, 2147483647);
         } while ($this->repository->findOne(array("account_id" => $account_id)));
         return $account_id;
 	}
