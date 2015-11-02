@@ -10,16 +10,13 @@
 #include "repository.h"
 #include "transaction_repo.h"
 
-static char *opt_host_name = "127.0.0.1"; /*server host*/
-static char *opt_user_name = "root"; /*user name*/
-static char *opt_password = "root"; /*password*/
+
 static unsigned int opt_port_num = 3306; /*port number*/
-static char *opt_db_name = "BANK_DETAILS"; /*database name*/
 
 static MYSQL *db_connection; /*pointer to the database connection handler*/
 
 my_bool processTransfer(int customerId, char* code, int fromAccountId,
-		int toAccountId, char* toAccountName, float amount, char* remarks) {
+		int toAccountId, char* toAccountName, float amount, char* remarks, char *opt_host_name, char *opt_user_name, char *opt_password, char *opt_db_name ) {
 
 	my_bool result;
 

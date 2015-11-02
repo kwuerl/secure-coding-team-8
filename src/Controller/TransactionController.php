@@ -125,7 +125,7 @@ class TransactionController extends Controller {
 					// file was uploaded successfully
 					$customer_id = $customer->getId();
 			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
-					$shell_command = $upload_dir . "/../../textparser/textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id;
+					$shell_command = $_SERVER['DOCUMENT_ROOT'] . "/../textparser/textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id . " " . _MYSQL_HOST . " " . _MYSQL_USER . " " . _MYSQL_PASSWORD . " " . _MYSQL_DATABASE;
 					exec($shell_command, $output, $return_var);
 					if ($return_var == 0) {
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");

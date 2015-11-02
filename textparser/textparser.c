@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
 		do {
 			if((c = fgetc(input_file)) == '\n') {
 				// close line
-				if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks)) {
+				if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7])) {
 					success = 1;
 				} else {
 					success = 0;
@@ -122,7 +122,7 @@ int main(int argc, char **argv) {
 	    } while (c != EOF);
 	    
 	    if(i != 0 && row_count != 0) {
-	    	if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks)) {
+	    	if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7])) {
 	    		success = 1;
 	    	} else {
 	    		success = 0;
