@@ -16,6 +16,20 @@
         <li class="active">Customer Details</li>
     </ol>
 </section>
+<section>
+     <?php if( count($onHoldTransactionList) != 0 ) { ?>
+    <div class="row">
+       <!-- left column -->
+            <div class="col-md-12">
+                  <a href=<?= $t->s("/customer_pending_transaction_download/" . $customer->getId() . ""); ?>
+                  id='downloadPDF' target='_blank' class="pull-right">
+                  <i class="fa fa-download"></i> Download as PDF
+                  </a>
+              </div>
+        </div>
+    <?php } ?>
+     </section>
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -60,54 +74,49 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="cust_details_table1" class="table table-bordered table-striped app-data-table">
+                    <table id="cust_details_table1" class="table table-bordered table-striped app-data-table-small">
                         <thead>
                             <tr>
                                 <th>Transaction Id</th>
                                 <th>To Account Number</th>
-                                <th>Date of Transaction</th>
+                                <th>Transaction Date</th>
                                 <th>Amount</th>
-                                <th>Actions</th>
                         </thead>
                         <tbody>
                             <?php foreach($onHoldTransactionList as $transaction) {?>
                             <tr>
                                 <td>
-                                    <a href="javascript:void(0);" data-toggle="modal"  data-target="#approveTransModal">
                                     <?= $t->s($transaction->getId()); ?>
-                                    </a>
                                 </td>
                                 <td>
                                     <?= $t->s($transaction->getToAccountId()); ?>
                                 </td>
                                 <td>
-                                    <?= $t->s($transaction->getTransactionDate()); ?>
+                                    <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     <?= $t->s($transaction->getAmount()); ?>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
-                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
                                 </td>
                             </tr>
                             <?php }?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Transaction Id</th>
-                                <th>To Account Number</th>
-                                <th>Date of Transaction</th>
-                                <th>Amount</th>
-                                <th>Actions</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.box -->
             </div>
         </div>
     </div>
+     <?php if( count($approvedTransactionList) != 0 ) { ?>
+    <div class="row">
+       <!-- left column -->
+        <div class="col-md-12">
+              <a href=<?= $t->s("/customer_completed_transaction_download/" . $customer->getId() . ""); ?>
+               id='downloadPDF' target='_blank' class="pull-right">
+              <i class="fa fa-download"></i> Download as PDF
+              </a>
+          </div>
+    </div>
+    <?php } ?>
     <div class="row">
     <!-- left column -->
     <div class="col-md-12">
@@ -118,12 +127,12 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table id="cust_details_table2" class="table table-bordered table-striped app-data-table">
+                <table id="cust_details_table2" class="table table-bordered table-striped app-data-table-small">
                     <thead>
                         <tr>
                             <th>Transaction Id</th>
                             <th>To Account Number</th>
-                            <th>Date of Transaction</th>
+                            <th>Transaction Date</th>
                             <th>Amount</th>
                             <th>Remarks</th>
                     </thead>
@@ -137,9 +146,9 @@
                                 <?= $t->s($transaction->getToAccountId()); ?>
                             </td>
                             <td>
-                                <?= $t->s($transaction->getTransactionDate()); ?>
+                                <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <?= $t->s($transaction->getAmount()); ?>
                             </td>
                             <td>
@@ -148,19 +157,10 @@
                         </tr>
                         <?php }?>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Transaction Id</th>
-                            <th>To Account Number</th>
-                            <th>Date of Transaction</th>
-                            <th>Amount</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.box -->
         </div>
 </section>
 </div>
-<?php });
+<?php }); ?>

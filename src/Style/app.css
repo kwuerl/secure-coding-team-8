@@ -1,0 +1,190 @@
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+}
+
+table {
+    width : 100%;
+    table-layout: fixed;
+}
+
+textarea{
+    resize: none;
+    width : 100%;
+}
+
+th {
+    vertical-align : middle !important;
+    /*background-color : #aebfd4;*/
+    text-align : center;
+}
+
+.login-page {
+    background-image: url("/Vendor/img/login_bg.png");
+    background-size: cover;
+}
+.login-page .login-logo a {
+    color:white;
+}
+.login-page h1 {
+    color:white;
+}
+
+form[name='approve_transaction']{
+    display: none;
+}
+
+.app-section-min-height{
+    min-height:368px;
+}
+
+.box.box-primary{
+    /*border-top-color :#86a0bf;*/
+}
+
+.content-header > .breadcrumb{
+  padding-top : 4px;
+  padding-bottom: 4px;
+    font-weight: bold;
+}
+
+.btn-info, .btn-info:hover, .btn-info:active,.btn-info:focus {
+   /*background-color: #5e80aa;
+   border-color : #5e80aa;*/
+}
+
+.skin-black .main-header > .navbar .nav > li > a{
+    font-weight:bold;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span,
+.pagination>.active>span:focus, .pagination>.active>span:hover{
+    /*background-color: #5e80aa;
+    border-color: #5e80aa;*/
+}
+
+.skin-black .sidebar-menu > li:hover > a, .skin-black .sidebar-menu > li.active > a{
+    /*border-left-color: #5e80aa ;*/
+}
+
+.modal-header{
+    /*background-color : #aebfd4;*/
+    color : #fff;
+}
+.modal-title{
+    font-weight:bold;
+}
+
+#customer_reg_pending .btn, #employee_regsitrations_table .btn,#cust_details_table1 .btn, #approve_trans_table .btn{
+    padding :1px 6px;
+}
+
+#customer_reg_pending .btn-reject, #employee_regsitrations_table .btn-reject, #approve_trans_table .btn-reject{
+    /*background-color :#a1b5cd;*/
+    color : #fff;
+}
+
+#downloadPDF{
+    margin-right : 20px;
+    margin-top : 10px;
+    cursor: pointer;
+}
+
+.app-notification-success{
+    color : #fff;
+    border-color: #008d4c;
+    background-color: #00a65a;
+    position: absolute;
+    width:80%;
+    z-index:10;
+}
+
+.app-notification-error{
+    color : #fff;
+    border-color: #d73925;
+    background-color: #dd4b39;
+    position: absolute;
+    width:80%;
+    z-index:10;
+}
+#transaction_history_table td:nth-last-child(2){
+    text-align : center;
+}
+
+.trans-history-transaction-id{
+    width : 12%;
+}
+
+
+.trans-history-transaction-date{
+    width : 15%;
+}
+
+.trans-history-amount{
+    width : 13%;
+}
+
+.trans-history-beneficiary-account-id{
+    width : 15%;
+}
+
+.trans-history-beneficiary-name{
+    width : 18%;
+}
+
+.trans-history-status{
+    width : 8%;
+}
+
+.trans-history-remarks{
+    width : 19%;
+}
+
+.content-header > h1{
+    font-size : 20px;
+    font-weight:bold;
+}
+
+.app-data-table tr th , .app-data-table-small tr th{
+    font-size : 15px;
+}
+
+.app-data-table tr td , .app-data-table-small tr td{
+    font-size : 14px;
+}
+
+.pagination>li>a, .pagination>li>span{
+    padding : 3px 12px;
+}
+
+.table>tbody>tr>td, .table>tfoot>tr>td, .table>thead>tr>td{
+    padding : 4px;
+}
+
+.table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>th{
+    padding : 6px;
+}
+
+.table .text-right {
+    text-align: right
+}
+.content{
+    padding-top : 10px;
+    padding-bottom : 10px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active,.btn-primary:focus{
+    /*background-color: #5e80aa;
+    border-color: #5e80aa;*/
+}
+
+.btn-default, .btn-default:hover, .btn-default:active,.btn-default:focus{
+    /*background-color: #a1b5cd;
+    border-color: #a1b5cd;*/
+    color: #fff;
+}
+
+div >h1{
+    font-size : 20px;
+    margin : 0px;
+    font-weight : bold;
+}

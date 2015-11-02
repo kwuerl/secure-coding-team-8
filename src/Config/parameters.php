@@ -4,6 +4,7 @@
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
+ * @author Vivek Sethia <vivek.sethia@tum.de>
  */
 
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
@@ -30,9 +31,32 @@ define('_CLASS_MODEL_CUSTOMER', "\Model\Customer");
 define('_CLASS_MODEL_EMPLOYEE', "\Model\Employee");
 define('_CLASS_MODEL_ACCOUNT', "\Model\Account");
 define('_CLASS_MODEL_TRANSACTION', "\Model\Transaction");
+define('_CLASS_MODEL_TRANSACTION_CODE', "\Model\TransactionCode");
 
 define('_LOGIN_ROUTE_NAME', 'login_get');
 define('_EMPLOYEE_START_PAGE', 'employee_overview');
 define('_CUSTOMER_START_PAGE', 'overview');
 
-define('_EMAIL', 'info@securebank.de');
+define('_EMAIL', 'securebank15@gmail.com');
+
+define('_ACTION_APPROVE', 1);
+define('_ACTION_REJECT', 2);
+
+define('_OPERATION_SUCCESS', 'Operation successful');
+define('_OPERATION_FAILURE', 'Operation failed!');
+
+define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed.');
+define('_ERROR_REGISTRATION_CLOSED', 'This registration is already closed.');
+
+define('_TRANSFER_LIMIT_FOR_AUTO_APPROVAL', 10000);
+
+define('_TRANSACTIONS_PER_PAGE', 5);
+define('_NO_LIMIT', 0);
+define('_TRANSACTION_HISTORY', 100);
+define('_STATEMENT', 101);
+define('_CUSTOMER_DETAILS_PENDING_TRANSACTION', 102);
+define('_CUSTOMER_DETAILS_COMPLETED_TRANSACTION', 103);
+define('_PENDING_TRANSACTIONS', 104);
+
+
+

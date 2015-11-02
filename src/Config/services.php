@@ -31,6 +31,11 @@ $service_container->register("email", "Service\\EmailService", array(
 	_EMAIL
 ));
 
+$service_container->register("transaction", "Service\\TransactionService", array(
+	array("type"=>"service", "value"=>"transaction_code_repository"),
+	array("type"=>"service", "value"=>"random")
+));
+
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(
@@ -85,7 +90,7 @@ $service_container->register("templating", "Service\\TemplatingService", array(
 
 // ------------  Controllers  -----------------
 
-$service_container->register("example_controller", "Controller\\ExampleController", array(
+$service_container->register("default_controller", "Controller\\DefaultController", array(
 	array("type"=>"service_container")
 ));
 
@@ -108,10 +113,20 @@ $service_container->register("customer_controller", "Controller\\CustomerControl
 $service_container->register("employee_controller", "Controller\\EmployeeController", array(
 	array("type"=>"service_container")
 ));
+
+$service_container->register("transaction_controller", "Controller\\TransactionController", array(
+	array("type"=>"service_container")
+));
 // ------------  Repositories  -----------------
 
 $service_container->register("example_repository", "Model\\ExampleRepository", array(
 	array("type"=>"service", "value"=>"db_wrapper")
+));
+
+$service_container->register("user_repository", "Model\\UserRepository", array(
+	array("type"=>"service", "value"=>"db_wrapper"),
+	"",
+	_CLASS_MODEL_USER
 ));
 
 $service_container->register("customer_repository", "Model\\CustomerRepository", array(
@@ -136,4 +151,10 @@ $service_container->register("transaction_repository", "Model\\TransactionReposi
 	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_TRANSACTION,
 	_CLASS_MODEL_TRANSACTION
+));
+
+$service_container->register("transaction_code_repository", "Model\\TransactionCodeRepository", array(
+	array("type"=>"service", "value"=>"db_wrapper"),
+	_TBL_TRANSACTION_CODE,
+	_CLASS_MODEL_TRANSACTION_CODE
 ));

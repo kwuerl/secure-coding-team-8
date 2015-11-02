@@ -14,6 +14,8 @@ class Transaction {
 	private $transaction_date = "";
 	private $remarks = "";
 	private $is_on_hold = 0;
+	private $is_closed = 0;
+	private $is_rejected = 0;
 	/**
 	 * Gets the transaction id
 	 *
@@ -141,5 +143,37 @@ class Transaction {
 	 */
 	public function setIsOnHold($isOnHold) {
 		$this->is_on_hold = $isOnHold;
+	}
+	/**
+	 * Gets the closed status of the transaction
+	 *
+	 * @return integer
+	 */
+	public function getIsClosed() {
+		return $this->is_closed;
+	}
+	/**
+	 * Sets the closed status of the transaction
+	 *
+	 * @param integer $isClosed
+	 */
+	public function setIsClosed($isClosed) {
+		$this->is_closed = $isClosed;
+	}
+	/**
+	 * Gets the rejected status of the transaction
+	 *
+	 * @return integer
+	 */
+	public function getIsRejected() {
+		return $this->is_rejected;
+	}
+	/**
+	 * Sets the rejected status of the transaction
+	 *
+	 * @param integer $isRejected
+	 */
+	public function setIsRejected($isRejected) {
+		$this->is_rejected = $isRejected;
 	}
 }

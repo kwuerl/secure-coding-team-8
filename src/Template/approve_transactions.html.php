@@ -14,6 +14,19 @@
         <li class='active'>Pending Transactions</a></li>
     </ol>
 </section>
+<?php $t->flash_echo(); ?>
+<?php $t->formh($t->get("form"), array("action"=>"/transactions", "method"=>"post"), function ($t) { ?>
+<input id='selectedTransactionId' name='selectedTransactionId' type='hidden' value=''/>
+<input id='action_transaction' name='action_transaction' type='hidden' value=''/>
+<?php }) ?>
+<div class="row">
+    <div class="col-xs-12">
+        <?php if( count($transactionList) != 0 ) { ?>
+        <a href='/transactions_pending_download' id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
+        </a>
+        <?php } ?>
+    </div>
+</div>
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -26,9 +39,9 @@
                 <thead>
                     <tr>
                         <th>Transaction Id</th>
-                        <th>Date of Transaction</th>
+                        <th>Transaction Date</th>
                         <th>Amount</th>
-                        <th>To Account Number</th>
+                        <th>To Account No.</th>
                         <th>To Account Name</th>
                         <th>Remarks</th>
                         <th>Actions</th>
@@ -36,13 +49,13 @@
                 <tbody>
                     <?php foreach ($transactionList as $transaction) {?>
                     <tr>
-                        <td>
+                        <td class='app-transaction-id'>
                             <?= $t->s($transaction->getId()); ?>
                         </td>
                         <td>
-                            <?= $t->s($transaction->getTransactionDate()); ?>
+                            <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                         </td>
-                        <td>
+                        <td class="text-right">
                             <?= $t->s($transaction->getAmount()); ?>
                         </td>
                         <td>
@@ -61,20 +74,49 @@
                     </tr>
                     <?php }?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Transaction Id</th>
-                        <th>Date of Transaction</th>
-                        <th>Amount</th>
-                        <th>To Account Number</th>
-                        <th>To Account Name</th>
-                        <th>Remarks</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box -->
     </div>
 </section>
+<!-- Approve Transaction Modal -->
+<div id="approveTransModal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
+                <h4 class="modal-title">Approve Transaction</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to approve the transaction?
+            </div>
+            <!-- /.box-body -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Reject Transaction Modal -->
+<div id="rejectTransModal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
+                <h4 class="modal-title">Reject Transaction</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to reject the transaction?
+            </div>
+            <!-- /.box-body -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php }); ?>

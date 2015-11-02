@@ -9,6 +9,8 @@ class Account {
 	private $id = 0;
 	private $account_id = 0;
 	private $customer_id = 0;
+	private $type = "";
+	private $balance = 0;
 	private $is_active = 0;
 	/**
 	 * Gets the id
@@ -57,6 +59,38 @@ class Account {
 	 */
 	public function setCustomerId($customerId) {
 		$this->customer_id = $customerId;
+	}
+	/**
+	 * Gets the account type
+	 *
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+	/**
+	 * Sets the account type
+	 *
+	 * @param string $accountType
+	 */
+	public function setType($accountType) {
+		$this->type = $accountType;
+	}
+	/**
+	 * Gets the account balance
+	 *
+	 * @return float
+	 */
+	public function getBalance() {
+		return $this->balance;
+	}
+	/**
+	 * Sets the account balance
+	 *
+	 * @param float $balance
+	 */
+	public function setBalance($balance) {
+		$this->balance = $balance;
 	}
 	/**
 	 * Gets the active status of the account

@@ -15,6 +15,7 @@ class AuthService {
 	private $user_providers = array();
 	private $current_user;
 	private $login_route_name;
+	private $last_message;
 	/**
 	 * Constructor
 	 */
@@ -38,6 +39,61 @@ class AuthService {
 	 */
 	public function getCurrentUser() {
 		return $this->current_user;
+	}
+	/**
+	 * Returns the current User. If there is none, a blank User is returned.
+	 *
+	 * @return Model\User
+	 */
+	public function getLastMessage() {
+		if($this->session_service->has("auth_last_message")) {
+			$msg = $this->session_service->get("auth_last_message");
+			$this->session_service->del("auth_last_message");
+			return $msg;
+		}
+		return false;
+	}
+	/**
+	 * Returns the current User. If there is none, a blank User is returned.
+	 *
+	 * @param string $message
+	 */
+	public function setLastMessage($message) {
+		$this->session_service->set("auth_last_message",$message);
+	}
+	/**
+	 * If User is logged in then redirect user to his home
+	 *
+	 * @return Model\User
+	 */
+	public function redirectCurrentUserToUserHome() {
+		if($this->isLoggedIn()) {
+			if (!$this->session_service->has("redirect_after_login")) {
+				$this->routing_service->redirect($this->current_user->getProvider()->getAfterLoginRouteName(), array());
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	/**
+	 * Returns true if there is any user logged in
+	 *
+	 * @return boolean
+	 */
+	public function isLoggedIn() {
+		if($this->session_service->has("current_user")) {
+			$user = $this->session_service->get("current_user");
+			if($user = $this->verify($user)) {
+				$this->current_user = $user;
+				return true;
+			} else {
+				$this->session_service->del("current_user");
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	/**
 	 * Tries to login a User  
@@ -89,6 +145,10 @@ class AuthService {
 			$this->routing_service->redirect($redirect_name, $redirect_params);
 			return true;
 		} else {
+			$this->session_service->del("current_user");
+			if ($this->session_service->has("redirect_after_login")) {
+				$this->session_service->del("redirect_after_login");
+			}
 			return false;
 		}
 	}
@@ -103,6 +163,7 @@ class AuthService {
 	 * @throws PermissionDeniedException
 	 */
 	public function check($group_expr) {
+		$msg = "";
 		if($this->session_service->has("current_user")) {
 			$user = $this->session_service->get("current_user");
 			if($user = $this->verify($user)) {
@@ -110,14 +171,22 @@ class AuthService {
 				if(in_array($group_expr, $groups)) {
 					$this->current_user = $user;
 					return $this->current_user;
+				} else {
+					$msg = "You don't have the permission to do this.<br> Either log in as a permitted user or <br> <a href='javascript:history.back()'>Go Back</a>";
 				}
+			} else {
+				$this->session_service->del("current_user");
+				$msg = "Could not be logged in";
 			}
+		} else {
+			$msg = "You have to be logged in to see this";
+			$request = $this->routing_service->getRequest();
+			$prev_url = array($request->getRouteName(), $request->getRouteParams());
+			$this->session_service->set("redirect_after_login", $prev_url);
 		}
-		$request = $this->routing_service->getRequest();
-		$prev_url = array($request->getRouteName(), $request->getRouteParams());
-		$this->session_service->set("redirect_after_login", $prev_url);
+		$this->setLastMessage($msg);
 		$this->routing_service->redirect($this->login_route_name, array());
-		throw new \Exception\PermissionDeniedException();
+		throw new \Exception($msg);
 
 	}
 	/**

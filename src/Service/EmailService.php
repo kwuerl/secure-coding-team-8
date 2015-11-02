@@ -27,7 +27,7 @@ class EmailService {
 		if (\Helper\ValidationHelper::email(new \Helper\FormHelper("helper"), $recipient)) {
 			$header = "MIME-Version: 1.0\r\n";
 		    $header .= "Content-type: text/html; charset=utf-8\r\n";
-		    $header .= "From: ".$this->sender_email."\r\n";
+		    $header .= "From: Secure Bank <".$this->sender_email.">\r\n";
 		    $header .= "Reply-To: ".$this->sender_email."\r\n";
 		    $header .= "X-Mailer: PHP ". phpversion();
 

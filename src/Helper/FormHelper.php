@@ -55,9 +55,9 @@ class FormHelper {
 		return $this;
 	}
 	/**
-	 * Runs all validations and sanitizations on the Request
+	 * Runs all sanitizations on the Request
 	 *
-	 * @param string $name  Name of the form field. If you want to use this helper to later fill a model this should have the same name as the model property
+	 * @param Request $request
 	 *
 	 * @return boolean
 	 */
@@ -65,6 +65,7 @@ class FormHelper {
 		// fetch GET or POST data
 		if($this->method == "POST") {
 			$data = $request->getData($this->uniq_name);
+			if ($data == null) $data = $request->getFile($this->uniq_name);
 		} else if ($this->method == "GET") {
 			$data = $request->getQuery($this->uniq_name);
 		}
@@ -107,9 +108,7 @@ class FormHelper {
 		return true;
 	}
 	/**
-	 * Runs all validations and sanitizations on the Request
-	 *
-	 * @param string $name  Name of the form field. If you want to use this helper to later fill a model this should have the same name as the model property
+	 * Runs all validations on the Request
 	 *
 	 * @return boolean
 	 */
