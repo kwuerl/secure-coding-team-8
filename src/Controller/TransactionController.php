@@ -94,7 +94,7 @@ class TransactionController extends Controller {
 
 		if ($helper2->processRequest($request)) {
 			if ($helper2->validate()) {
-				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/../textparser/';
+				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/tmp/';
 				$file = $request->getFile('make_transfer_via_file_upload', 'file');
 				if ($file['type'] != "text/plain") {
 					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");
