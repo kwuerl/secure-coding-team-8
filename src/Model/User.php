@@ -14,6 +14,7 @@ class User {
 	protected $is_active = false;
 	protected $_password_plain = "";
 	protected $password = "";
+	protected $salt = "";
 	protected $groups_plain = "";
 	protected $registration_date = "";
 	protected $is_closed = 0;
@@ -90,8 +91,6 @@ class User {
 	 */
 	public function setPasswordPlain($password) {
 		$this->_password_plain = $password;
-		$encrypted_password = crypt($password);
-		$this->password = $encrypted_password;
 	}
 	/**
 	 * Gets the plain password
@@ -116,6 +115,22 @@ class User {
 	 */
 	public function setPassword($password) {
 		$this->password = $password;
+	}
+	/**
+	 * Gets the salt
+	 *
+	 * @return string
+	 */
+	public function getSalt() {
+		return $this->salt;
+	}
+	/**
+	 * Gets the salt
+	 *
+	 * @return string
+	 */
+	public function setSalt($salt) {
+		$this->salt = $salt;
 	}
 	/**
 	 * Gets the active status
