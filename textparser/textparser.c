@@ -63,47 +63,49 @@ int main(int argc, char **argv) {
 				i = 0;
 				row_count++;
 			}
-			if ((c = fgetc(input_file)) != ';' || prev_c == '\\') {
-				if (i == 0) {
-					if (j < account_id_size) {
-						current_row.account_id[j] = c;
-						j++;
-                    } else if (j == account_id_size) {
-                        current_row.account_id[j] = 0;
-                        j++;
-                    }
-				} else if (i == 1) {
-					if (j < account_name_size) {
-						current_row.account_name[j] = c;
-						j++;
-                    } else if (j == account_id_size) {
-                        current_row.account_name[j] = 0;
-                        j++;
-                    }
-				} else if (i == 2) {
-					if (j < amount_size) {
-						current_row.amount[j] = c;
-						j++;
-                    } else if (j == account_id_size) {
-                        current_row.amount[j] = 0;
-                        j++;
-                    }
-				} else if (i == 3) {
-					if (j < code_size) {
-						current_row.code[j] = c;
-						j++;
-                    } else if (j == account_id_size) {
-                        current_row.code[j] = 0;
-                        j++;
-                    }
-				} else if (i == 4) {
-					if (j < remarks_size) {
-						current_row.remarks[j] = c;
-						j++;
-                    } else if (j == account_id_size) {
-                        current_row.remarks[j] = 0;
-                        j++;
-                    }
+			if (c != ';' || prev_c == '\\') {
+				if (c != '\\') {
+					if (i == 0) {
+						if (j < account_id_size) {
+							current_row.account_id[j] = c;
+							j++;
+	                    } else if (j == account_id_size) {
+	                        current_row.account_id[j] = 0;
+	                        j++;
+	                    }
+					} else if (i == 1) {
+						if (j < account_name_size) {
+							current_row.account_name[j] = c;
+							j++;
+	                    } else if (j == account_name_size) {
+	                        current_row.account_name[j] = 0;
+	                        j++;
+	                    }
+					} else if (i == 2) {
+						if (j < amount_size) {
+							current_row.amount[j] = c;
+							j++;
+	                    } else if (j == amount_size) {
+	                        current_row.amount[j] = 0;
+	                        j++;
+	                    }
+					} else if (i == 3) {
+						if (j < code_size) {
+							current_row.code[j] = c;
+							j++;
+	                    } else if (j == code_size) {
+	                        current_row.code[j] = 0;
+	                        j++;
+	                    }
+					} else if (i == 4) {
+						if (j < remarks_size) {
+							current_row.remarks[j] = c;
+							j++;
+	                    } else if (j == remarks_size) {
+	                        current_row.remarks[j] = 0;
+	                        j++;
+	                    }
+					}
 				}
 			} else {
 				i++;
@@ -112,26 +114,13 @@ int main(int argc, char **argv) {
 			prev_c = c;
 
 	    } while (c != EOF);
+	    
 	    if(i != 0 && row_count != 0) {
 	    	processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks);
 	    }
 	    destruct_transaction_row(current_row);
 	}
 	fclose(input_file);
-
-	/*
-	char json[250];
-	snprintf(json, sizeof(json), "{from_id:\"%s\",from_account_id:\"%s\",\"to_account_id\":%s,\"account_name\":\"%s\",\"amount\":%.2f,\"code\":\"%s\",\"remarks\":\"%s\"}", argv[2], argv[3], account_id, account_name, strtof(amount, NULL), code, remarks);
-	printf("%s", json);
-	*/
-	/*TODO Need to pass the following values to the function in transaction_controller.c
-		int customer_id (Ex: 1)
-		int from_account_id (Ex: 1234567890)
-		int to_account_id (Ex: 25987456)
-		char* to_account_name (Ex: "TUM Admission Office")
-		float amount (Ex: 2500.00)
-		char* code (Ex: "ebWLgO24z9vY/2K")
-		char* remarks (Ex: "Payment of fees") */
 
 	return 0;
 }
