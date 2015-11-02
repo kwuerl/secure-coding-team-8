@@ -73,6 +73,11 @@ class RegistrationController extends Controller {
 				$model->setGroups(array(_GROUP_USER));
 				$model->setRegistrationDate(date("Y-m-d H:i:s"));
 
+				// encrypt password and save it
+				$salt = $this->get("random")->getString(16);
+				$model->setSalt($salt);
+				$model->setPassword(crypt($model->getPasswordPlain(), $salt));
+
 				// if customer with email doesn't exist, add to repository
 				if (!$this->get('customer_repository')->findOne(array("email" => $model->getEmail()))) {
 
@@ -155,6 +160,11 @@ class RegistrationController extends Controller {
 				$model->setIsAuthorized(0);
 				$model->setIsClosed(0);
 				$model->setIsRejected(0);
+
+				// encrypt password and save it
+				$salt = $this->get("random")->getString(16);
+				$model->setSalt($salt);
+				$model->setPassword(crypt($model->getPasswordPlain(), $salt));
 
 				// if customer with email doesn't exist, add to repository
 				if (!$this->get('employee_repository')->findOne(array("email" => $model->getEmail()))) {

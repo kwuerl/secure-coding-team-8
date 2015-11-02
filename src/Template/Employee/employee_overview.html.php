@@ -21,10 +21,12 @@
             <div class="row">
                         <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
-                          <div class="small-box bg-black">
+                          <div class="small-box bg-aqua">
                             <div class="inner">
-                              <h3><?= $t->s($customerCount.'<span class="red">('.$pendingCustomerCount.')</span>'); ?></h3>
+                              <h3><?= $t->s($customerCount + $pendingCustomerCount); ?></h3>
                               <p>Customer Registrations</p>
+                            </div>
+                            <div class="icon"><i class="fa fa-user"></i>
                             </div>
                             <a href="/customers" class="small-box-footer">
                               More info <i class="fa fa-arrow-circle-right"></i>
@@ -33,10 +35,12 @@
                         </div><!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
-                          <div class="small-box bg-black">
+                          <div class="small-box bg-green">
                             <div class="inner">
                               <h3><?= $t->s($pendingTransactionsCount); ?></h3>
                               <p>Pending Transactions</p>
+                            </div>
+                            <div class="icon"><i class="fa fa-tasks"></i>
                             </div>
                             <a href="/transactions" class="small-box-footer">
                               More info <i class="fa fa-arrow-circle-right"></i>
@@ -45,21 +49,24 @@
                         </div><!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
-                          <div class="small-box bg-black">
+                          <div class="small-box bg-yellow">
                             <div class="inner">
                               <h3><?= $t->s($transactionsTodayCount); ?></h3>
                               <p>Transactions Today</p>
                             </div>
+                            <div class="icon"><i class="fa fa-tasks"></i>
+                             </div>
                           </div>
                         </div><!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
-                          <div class="small-box bg-black">
+                          <div class="small-box bg-red">
                             <div class="inner">
                               <h3><?= $t->s($registrationsTodayCount); ?></h3>
                               <p>Registrations Today</p>
                             </div>
-
+                            <div class="icon"><i class="fa fa-user-plus"></i>
+                            </div>
                           </div>
                         </div><!-- ./col -->
                       </div><!-- /.row -->

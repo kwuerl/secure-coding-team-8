@@ -176,7 +176,6 @@ class AuthService {
 	/**
 	 * Checks if the current user has certain user groups. If the User does not have the desired Group, this function starts a redirect and throws an exception
 	 *
-	 * @param User $user	User to check
 	 * @param string $group_expr	Group to check
 	 *
 	 * @return boolean

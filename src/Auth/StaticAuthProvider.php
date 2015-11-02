@@ -17,14 +17,16 @@ class StaticAuthProvider extends AuthProvider {
 	 * @return User|boolean
 	 */
 	public function verify(User $user) {
+		$salt = "salt";
 		if($user->getEmail() == "admin@admin.de" 
-		&& crypt("admin", $user->getPassword()) == $user->getPassword()) {
+		&& ($user->getPasswordPlain() == "admin" || $user->getPassword() == crypt("admin", $salt))) {
 			$admin = new Employee();
 			$admin->setEmail($user->getEmail());
 			$admin->setFirstName("Mr.");
 			$admin->setLastName("Admin");
 			$admin->setIsActive(1);
-			$admin->setPassword($user->getPassword());
+			$admin->setSalt($salt);
+			$admin->setPassword(crypt($user->getPasswordPlain(), $salt));
 			$admin->setGroups(array(_GROUP_ADMIN, _GROUP_EMPLOYEE));
 			return $admin;
 		}
