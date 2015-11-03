@@ -28,7 +28,9 @@ class CustomerAuthProvider extends AuthProvider {
 		if($user_db = $this->customer_repository->findOne(array("email"=>$user->getEmail()))) {
 			if( crypt($user->getPasswordPlain(), $user_db->getSalt()) == $user_db->getPassword()
 			|| $user->getPassword() == $user_db->getPassword()) {
-				return $user_db;
+				if($user_db->getIsActive()) {
+					return $user_db;
+				}
 			}
 		}
 		return false;
