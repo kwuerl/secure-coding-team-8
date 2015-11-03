@@ -251,6 +251,10 @@ class Repository {
 				$model_instance->setId($db->lastInsertId());
 				$stmt->closeCursor();
 				return true;
+			} else {
+				$stmt_error = $stmt->errorInfo();
+				throw new \Exception("Database error: ".$stmt_error[2]);
+				return false;
 			}
 		}
 		throw new \Exception("Database error: ".$this->getError($db));

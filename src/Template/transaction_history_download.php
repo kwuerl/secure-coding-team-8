@@ -133,14 +133,22 @@
                 $optlist = "colwidth=20% fittextline={font=" . $font . " fontsize=10}";
                 $amount_field_optlist = "colwidth=20%  fittextline={position={right center} font=" . $font . " fontsize=10} ";
                 switch ($invokedFrom){
-                     case _STATEMENT :      $credit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? $transaction->getAmount() :  '--';
-                                            $debit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? '--': $transaction->getAmount();
+                     case _STATEMENT :      if ($accountInfo->getAccountId() != $transaction->getFromAccountId()) {
+                                                $credit_amount = $transaction->getAmount();
+                                                $debit_amount = '--';
+                                                $accountId = $transaction->getFromAccountId();
+                                            } else {
+                                                $debit_amount = $transaction->getAmount();
+                                                $credit_amount = '--';
+                                                $accountId = $transaction->getToAccountId();
+                                            }
+
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getId(), $optlist);
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, date('d.m.Y',strtotime($transaction->getTransactionDate() ) ), $optlist);
 
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, $debit_amount, $amount_field_optlist);
                                             $tbl = $p->add_table_cell($tbl, $col++, $row, $credit_amount, $amount_field_optlist);
-                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $transaction->getToAccountID(), $optlist);
+                                            $tbl = $p->add_table_cell($tbl, $col++, $row, $accountId, $optlist);
                                             $optlist = "fontname=Times-Roman encoding=unicode fontsize=10 ";
                                             $tf = $p->add_textflow(0,$transaction->getRemarks(), $optlist);
                                             if ($tf == 0) {
