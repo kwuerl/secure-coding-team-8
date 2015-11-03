@@ -3,7 +3,9 @@
 <?php $t->block("content", function ($t) { ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<div class="flash-echo">
 <?php $t->flash_echo(); ?>
+</div>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
