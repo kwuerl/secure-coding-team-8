@@ -19,7 +19,7 @@ class EmployeeController extends UserController {
         $customerList = $customer_repo->find(array("is_active"=>1));
         $customerRegistrationList = $customer_repo->find(array("is_active"=>0, "is_rejected"=>0));
 
-        $transactions = $this->getTransactions(1);
+        $pendingTransactions = $transaction_repo->find(array("is_on_hold"=>1));
 
         $customerRegistrationsToday = $customer_repo->find(array("registration_date" => date("Y-m-d H:i:s")));
         $transactionsToday = $transaction_repo->find(array("transaction_date" => date("Y-m-d H:i:s")));
@@ -30,8 +30,7 @@ class EmployeeController extends UserController {
         $this->get("templating")->render("Employee/employee_overview.html.php", array(
             "customerCount" => count($customerList),
             "pendingCustomerCount" => count($customerRegistrationList),
-            "pendingTransactionsCount" =>  count($transactions['onHoldTransactionList']),
-            "transactionCount" => count($transactions['approvedTransactionList']),
+            "pendingTransactionsCount" =>  count($pendingTransactions),
             "registrationsTodayCount" => count($customerRegistrationsToday),
             "transactionsTodayCount" => count($transactionsToday),
             "latestTransactionList" => $latestTransactionList,
