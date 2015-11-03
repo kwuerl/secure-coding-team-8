@@ -6,6 +6,9 @@
      ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<div class="flash-echo">
+<?php $t->flash_echo(); ?>
+</div>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -24,7 +27,6 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <?php $t->flash_echo(); ?>
                 <div class="box box-primary">
                     <div class="box-body">
                         <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table-small">
