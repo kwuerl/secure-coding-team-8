@@ -5,7 +5,6 @@
  $pendingCustomerCount = $t->get('pendingCustomerCount');
  $registrationsTodayCount = $t->get('registrationsTodayCount');
  $pendingTransactionsCount = $t->get('pendingTransactionsCount');
- $transactionCount = $t->get('transactionCount');
  $transactionsTodayCount = $t->get('transactionsTodayCount');
  $latestTransactionList = $t->get('latestTransactionList');
  ?>
