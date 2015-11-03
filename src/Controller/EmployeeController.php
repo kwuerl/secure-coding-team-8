@@ -21,8 +21,8 @@ class EmployeeController extends UserController {
 
         $pendingTransactions = $transaction_repo->find(array("is_on_hold"=>1));
 
-        $customerRegistrationsToday = $customer_repo->find(array("registration_date" => date("Y-m-d H:i:s")));
-        $transactionsToday = $transaction_repo->find(array("transaction_date" => date("Y-m-d H:i:s")));
+        $customerRegistrationsToday = $customer_repo->find(array("registration_date" => date("Y-m-d") . "%"));
+        $transactionsToday = $transaction_repo->find(array("transaction_date" => date("Y-m-d") . "%"));
 
         $latestTransactionList = $transaction_repo->find(array("is_on_hold" => 0, "is_rejected" => 0), array("transaction_date" => "DESC"));
 
