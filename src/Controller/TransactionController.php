@@ -143,7 +143,6 @@ class TransactionController extends Controller {
 					if ($return_var == 0) {
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
 					} else {
-						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error");
 						if (in_array("Incorrect transaction code.", $output)) {
 							$this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect transaction code(s).", "error");
 						} else if (in_array("Error in connecting to the database.", $output)) {
