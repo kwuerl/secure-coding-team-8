@@ -206,7 +206,7 @@ class EmployeeController extends UserController {
         /*Fetch the transaction details for the corresponding customer */
         $transactions = $this->getTransactions($customerId);
         // render the form
-        $this->get("templating")->render("Employee/transaction_history_download.php", array(
+        $this->get("templating")->render("transaction_history_download.php", array(
             //"form" => $helper
             "accountInfo" => $accountInfo,
             "customer" => $customer,
@@ -223,7 +223,7 @@ class EmployeeController extends UserController {
         /*Fetch the transaction details for the corresponding customer */
         $transactions = $this->getTransactions($customerId);
         // render the form
-        $this->get("templating")->render("Employee/transaction_history_download.php", array(
+        $this->get("templating")->render("transaction_history_download.php", array(
             //"form" => $helper
             "transactionList" => $transactionList,
             "accountInfo" => $accountInfo,
