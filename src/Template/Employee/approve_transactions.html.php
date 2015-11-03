@@ -14,7 +14,9 @@
         <li class='active'>Pending Transactions</a></li>
     </ol>
 </section>
+<div class="flash-echo">
 <?php $t->flash_echo(); ?>
+</div>
 <?php $t->formh($t->get("form"), array("action"=>"/transactions", "method"=>"post"), function ($t) { ?>
 <input id='selectedTransactionId' name='selectedTransactionId' type='hidden' value=''/>
 <input id='action_transaction' name='action_transaction' type='hidden' value=''/>
