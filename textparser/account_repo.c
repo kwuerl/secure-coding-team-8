@@ -67,27 +67,27 @@ my_bool updateAccountBalance(MYSQL* connection, int accountId, float amount,
 						/*close the statement*/
 						result = closeStatement(statement);
 						if (!result) {
-							printf("Error in updating account balance");
+							printf("Error in updating account balance.\n");
 						}
 						return result;
 					} else {
-						printf("Error in updating account balance");
+						printf("Error in updating account balance.\n");
 						return 0;
 					}
 				} else {
-					printf("Error in updating account balance");
+					printf("Error in updating account balance.\n");
 					return 0;
 				}
 			} else {
-				printf("Error in updating account balance");
+				printf("Error in updating account balance.\n");
 				return 0;
 			}
 		} else {
-			printf("Error in updating account balance");
+			printf("Error in updating account balance.\n");
 			return 0;
 		}
 	} else {
-		printf("Error in updating account balance");
+		printf("Error in updating account balance.\n");
 		return 0;
 	}
 	return 1;

@@ -45,8 +45,14 @@ class TransactionController extends Controller {
 		if ($helper->processRequest($request)) {
 			//try to validate
 			if ($helper->validate()) {
-				$transact = $request->getData('make_transfer');
-			    $transaction_code = $transact['transaction_code'];
+			    $requestVar = $request->getData('make_transfer');
+			    $transaction_code = $requestVar['transaction_code'];
+			    $amount = $requestVar['amount'];
+			    if( $amount < 0 ){
+			    	$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct amount.", "error");
+					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+					return;
+			    }
 			    $customer_id = $customer->getId();
 			    $account_repo = $this->get('account_repository');
 			    $transaction_code_repo = $this->get('transaction_code_repository');
@@ -65,8 +71,7 @@ class TransactionController extends Controller {
 					$model->setFromAccountId($from_account_id);
 
 					// check whether the amount > 10000
-					$trans = $request->getData('make_transfer');
-					if( $trans['amount'] > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
+					if ($amount > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
 						$model->setIsOnHold(1);
 					}
 
@@ -79,7 +84,7 @@ class TransactionController extends Controller {
 					}
 				}
 				else{
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct transaction code.", "error_notification");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct transaction code.", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
 				}
@@ -94,14 +99,14 @@ class TransactionController extends Controller {
 
 		if ($helper2->processRequest($request)) {
 			if ($helper2->validate()) {
-				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'tmp/';
+				$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/tmp/';
 				$file = $request->getFile('make_transfer_via_file_upload', 'file');
 				if ($file['type'] != "text/plain") {
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error_notification");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file must be a plain text file", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
 				} else if ($file['error'] == 2) {
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file size exceeds the maximum of 1 MB", "error_notification");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file size exceeds the maximum of 1 MB", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
 				}
@@ -125,17 +130,33 @@ class TransactionController extends Controller {
 					// file was uploaded successfully
 					$customer_id = $customer->getId();
 			    	$customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
-					$shell_command = $_SERVER['DOCUMENT_ROOT'] . "textparser ". $uploaded_file_name . " " . $customer_id . " " . $customer_account_id . " " . _MYSQL_HOST . " " . _MYSQL_USER . " " . _MYSQL_PASSWORD . " " . _MYSQL_DATABASE;
-					if (shell_exec($shell_command) == NULL) {
+					$shell_command = $_SERVER['DOCUMENT_ROOT'] .
+						"/../textparser/textparser " .
+						escapeshellarg($uploaded_file_name) . " " .
+						escapeshellarg($customer_id) . " " .
+						escapeshellarg($customer_account_id) . " " .
+						escapeshellarg(_MYSQL_HOST) . " " .
+						escapeshellarg(_MYSQL_USER) . " " .
+						escapeshellarg(_MYSQL_PASSWORD) . " " .
+						escapeshellarg(_MYSQL_DATABASE);
+					exec($shell_command, $output, $return_var);
+					if ($return_var == 0) {
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
 					} else {
-						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error_notification");
+						$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error");
+						if (in_array("Incorrect transaction code.", $output)) {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect transaction code(s).", "error");
+						} else if (in_array("Error in connecting to the database.", $output)) {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with connecting to the database. Please try again later.", "error");
+						} else {
+							$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error");
+						}
 					}
 					unlink($uploaded_file_name);
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                 	return;
 				} else {
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error_notification");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
 				}

@@ -250,7 +250,7 @@ class EmployeeController extends UserController {
         if (!$error) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, $success, "success_notification");
         } else {
-            $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error_notification");
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $error, "error");
         }
     }
 

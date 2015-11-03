@@ -179,17 +179,17 @@ my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAcco
 			if (addTransaction(connection, customerId, fromAccountId, toAccountId, toAccountName, amount, remarks)) {
 				mysql_commit(connection);
 			} else {
-				printf("Error in adding transaction.");
+				printf("Error in adding transaction.\n");
 				mysql_rollback(connection);
 				return 0;
 			}
 		} else {
-			printf("Error in updating transaction code.");
+			printf("Error in updating transaction code.\n");
 			mysql_rollback(connection);
 			return 0;
 		}
 	} else {
-		printf("Incorrect transaction code.");
+		printf("Incorrect transaction code.\n");
 		mysql_rollback(connection);
 		return 0;
 	}

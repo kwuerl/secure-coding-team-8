@@ -154,27 +154,27 @@ my_bool setIsUsedTransactionCode(MYSQL *connection, int customerId, char* code) 
 						/*close the statement*/
 						result = closeStatement(statement);
 						if (!result) {
-							printf("Error in updating transaction code");
+							printf("Error in updating transaction code\n");
 						}
 						return result;
 					} else {
-						printf("Error in updating transaction code");
+						printf("Error in updating transaction code\n");
 						return result;
 					}
 				} else {
-					printf("Error in updating transaction code");
+					printf("Error in updating transaction code\n");
 					return result;
 				}
 			} else {
-				printf("Error in updating transaction code");
+				printf("Error in updating transaction code\n");
 				return result;
 			}
 		} else {
-			printf("Error in updating transaction code");
+			printf("Error in updating transaction code\n");
 			return result;
 		}
 	} else {
-		printf("Error in updating transaction code");
+		printf("Error in updating transaction code\n");
 		return 0;
 	}
 }
