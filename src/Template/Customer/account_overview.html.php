@@ -91,8 +91,15 @@
                             </thead>
                             <tbody>
                                 <?php foreach($transactionList as $transaction) {
-                                    $credit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? $transaction->getAmount() :  '--';
-                                    $debit_amount = ( $accountInfo->getAccountId() != $transaction->getFromAccountId() ) ? '--': $transaction->getAmount();
+                                    if ($accountInfo->getAccountId() != $transaction->getFromAccountId()) {
+                                        $credit_amount = $transaction->getAmount();
+                                        $debit_amount = '--';
+                                        $accountId = $transaction->getFromAccountId();
+                                    } else {
+                                        $debit_amount = $transaction->getAmount();
+                                        $credit_amount = '--';
+                                        $accountId = $transaction->getToAccountId();
+                                    }
                                     ?>
                                 <tr>
                                     <td>
@@ -108,7 +115,7 @@
                                         <?= $t->s($credit_amount); ?>
                                     </td>
                                     <td>
-                                        <?= $t->s($transaction->getToAccountId()); ?>
+                                        <?= $t->s($accountId); ?>
                                     </td>
                                     <td>
                                         <?= $t->s($transaction->getRemarks()); ?>

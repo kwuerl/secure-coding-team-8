@@ -42,7 +42,12 @@ class Repository {
 		$value_array = array();
 		foreach ($filter as $name => $value) {
 			$db_field_name = strtoupper($name);
-			$query .= $db_field_name . " = :" . $db_field_name . " AND ";
+			$index = strpos($value, '%');
+			if (($index !== false) && ($index === 0 || $index === strlen($value) - 1)) {
+				$query .= $db_field_name . " LIKE :" . $db_field_name . " AND ";
+			} else {
+				$query .= $db_field_name . " = :" . $db_field_name . " AND ";
+			}
 
 			array_push($type_array, ":" . $db_field_name);
 			array_push($value_array, $value);
