@@ -20,12 +20,25 @@ class Repository {
 		$this->table_name = $table_name;
 		$this->model_class_name = $model_class_name;
 	}
+	/**
+	 * Uses PDO::beginTransaction() to initiate a transaction
+	 */
 	public function beginDBTransaction() {
 		$this->db_wrapper->get()->beginTransaction();
 		return;
 	}
+	/**
+	 * Uses PDO::commit() to commit a transaction
+	 */
 	public function commitDB() {
 		$this->db_wrapper->get()->commit();
+		return;
+	}
+	/**
+	 * Uses PDO::rollBack() to roll back a transaction
+	 */
+	public function rollBackDB() {
+		$this->db_wrapper->get()->rollBack();
 		return;
 	}
 	/**

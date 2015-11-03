@@ -21,11 +21,12 @@ class TransactionService {
 	 *
 	 * @param id $customer_id    The customer id to generate the set for
 	 *
-	 * @return array    Array with TransactionCode models
+	 * @return array|boolean    Returns array with TransactionCode models or false if there was an error
 	 */
 	public function generateTransactionCodeSet($customer_id) {
 		$set = array();
 		$this->repository->beginDBTransaction();
+		$success = false;
 		for ($i = 0; $i < 100; $i++) {
 			do {
 				$code = $this->random->getString(15);
@@ -34,14 +35,20 @@ class TransactionService {
 			$code_instance->setCustomerId($customer_id);
 			$code_instance->setCode($code);
 			$code_instance->setIsUsed(false);
-			$this->repository->add($code_instance);
+			if ($this->repository->add($code_instance)) {
+				$success = true;
+			} else {
+				$success = false;
+			}
 			$set[] = $code_instance;
 		}
-		$this->repository->commitDB();
-		if (sizeof($set) == 100) {
+		if ($success == true && sizeof($set) == 100) {
+			$this->repository->commitDB();
 			return $set;
 		} else {
+			$this->repository->rollBackDB();
 			throw new \Exception("There was an error with generating a set of transaction codes.");
+			return false;
 		}
 	}
 	/**
