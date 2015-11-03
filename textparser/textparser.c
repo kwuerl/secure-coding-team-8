@@ -108,6 +108,27 @@ int main(int argc, char **argv) {
 					}
 				}
 			} else {
+				if (i == 0) {
+					if (j < account_id_size) {
+						current_row.account_id[j] = 0;
+	                }
+				} else if (i == 1) {
+					if (j < account_name_size) {
+						current_row.account_name[j] = 0;
+	                }
+				} else if (i == 2) {
+					if (j < amount_size) {
+						current_row.amount[j] = 0;
+	                }
+				} else if (i == 3) {
+					if (j < code_size) {
+						current_row.code[j] = 0;
+	                }
+				} else if (i == 4) {
+					if (j < remarks_size) {
+						current_row.remarks[j] = 0;
+	                }
+				}
 				i++;
 				j = 0;
 			}
