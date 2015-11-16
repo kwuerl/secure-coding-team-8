@@ -1,9 +1,9 @@
-\section{Cracking weak passwords - OTG-AUTHN-007}
+\subsection{Testing for Weak password policy - OTG-AUTHN-007}
 
-\subsection{Observation}
+\subsubsection{Observation}
 It has been observed that there is no restriction on the choice of passwords during registration. This reveals that passwords of users can be cracked and this vulnerability has been observed in the Login page.
 
-\subsection{Discovery}
+\subsubsection{Discovery}
 This vulnerability has been exposed using the THC Hydra login hacking tool. \\
 Steps: 
 1. Open the THC Hydra terminal and enter the command in the following format. \\
@@ -12,14 +12,14 @@ In our case, the command looks like - \\
 \textit{hydra -L user1@in.tum.de -p Top500.txt <IP-address> http-post-form \\ "/secure-coding/public/login.php:email=user1@in.tum.de\&password=\^PASS\^ \\ \&submit=:Invalid login credentials"}. \\
 2. After running the exploit with the list of Top 500 passwords, the password was found in 3 secs.
 
-\subsection{Likelihood}
+\subsubsection{Likelihood}
 Likelihood is high.
 The attacker can use Brute Force to crack the passwords. As there is no restriction enforced on passwords, it is quite vulnerable. In addition, with the knowledge of THC Hydra or other password cracking tools, an attacker can easily get access to user credentials. 
 
-\subsection{Impact}
+\subsubsection{Impact}
 After gaining access to the credentials, the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. 
 
-\subsection{CVSS}
+\subsubsection{CVSS}
 \begin{tabular}{l | l}
 Attack Vector		& Network \\
 Attack Complexity	& High \\
@@ -31,6 +31,6 @@ Integrity			& High \\
 Availability		& High
 \end{tabular}
 
-\subsection{Comparison with our application}
+\subsubsection{Comparison with our application}
 This vulnerability exists in our application as well, as passwords are not enforced to follow any strict rules. Passwords should require to be a combination of lower \& upper case letters, numerals and special characters along with adhering to a minimum length.
 \clearpage

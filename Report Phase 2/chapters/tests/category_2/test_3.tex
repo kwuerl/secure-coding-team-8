@@ -1,9 +1,9 @@
-\section{Approval/Rejection of users by unauthorized customer - OTG-IDENT-003}
+\subsection{Test Account Provisioning Process - OTG-IDENT-003}
 
-\subsection{Observation}
+\subsubsection{Observation}
 A customer can approve or reject pending registrations from other customers and employees. This operation is authorized to be performed only by employees, but it has been exposed to all logged-in users. 
 
-\subsection{Discovery}
+\subsubsection{Discovery}
 This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability.\\
 Steps: \\
 1. Login as a Customer. \\
@@ -33,14 +33,14 @@ Name		& accept \\
 Value 		& 
 \end{tabular}
 
-\subsection{Likelihood}
+\subsubsection{Likelihood}
 Likelihood is low.
 The attacker does need to have knowledge about proxy or interception tools such as Burp to exploit this vulnerability. However, any user who is logged in to the bank can perform this action, without the need for any other privileges.
 
-\subsection{Impact}
+\subsubsection{Impact}
 A customer can approve or reject registration requests from all other customers and employees. Since rejection also removes the user from the database, there will be no trace of such a registration in the system. So it will be difficult for the actual employees or administrators to track down such actions.
 
-\subsection{CVSS}
+\subsubsection{CVSS}
 \begin{tabular}{l | l}
 Attack Vector		& Network \\
 Attack Complexity	& High \\
@@ -52,6 +52,6 @@ Integrity			& High \\
 Availability		& None
 \end{tabular}
 
-\subsection{Comparison with our application}
+\subsubsection{Comparison with our application}
 In our application, the list of all users is not available for customers and is accessible only by authorized employees. Hence, it is difficult to get the details of unregistered users. In addition, approval and rejection of users is restricted to be performed by authorized employees only. So, even if the attacker manages to send a request for approval/rejection, it will not be successful. Thus our application is more secure, in this aspect.
 \clearpage

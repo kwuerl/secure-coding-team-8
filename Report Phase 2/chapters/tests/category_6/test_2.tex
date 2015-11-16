@@ -1,9 +1,9 @@
-\section{Auto-logout of Employee via Registration - OTG-INPVAL-002}
+\subsection{Testing for Stored Cross Site Scripting - OTG-INPVAL-002}
 
-\subsection{Observation}
+\subsubsection{Observation}
 It was found that it is possible to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page.
 
-\subsection{Discovery}
+\subsubsection{Discovery}
 No specific tool was required to discover this vulnerability, it was encountered by manually testing.\\
 Steps: \\
 1. Click on the Register button. \\
@@ -13,14 +13,14 @@ A message is displayed for successful registration.
 
 Now when an Employee logs in to his/her account and clicks on User button at the top of the page, the list of users is displayed. Upon refresh of this page, the Employee is logged out and is redirected to the Login page.
 
-\subsection{Likelihood}
+\subsubsection{Likelihood}
 Likelihood is high as it does not even require a user to be logged in.
 Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
 
-\subsection{Impact}
+\subsubsection{Impact}
 After a successful attack, none of the employees will be able to perform any operations after opening the Users page. This results in a Denial of Service attack.
 
-\subsection{CVSS}
+\subsubsection{CVSS}
 \begin{tabular}{l | l}
 Attack Vector		& Network \\
 Attack Complexity	& Low \\
@@ -32,6 +32,6 @@ Integrity			& None \\
 Availability		& High
 \end{tabular}
 
-\subsection{Comparison with our application}
+\subsubsection{Comparison with our application}
 In our application, this attack has been restricted by disallowing any characters other than letters, '-' and white space. This has been enforced on the server-side through appropriate validation checks. Hence there is no possibility of injecting the above HTML code, thus making our application more secure, in this aspect.
 \clearpage
