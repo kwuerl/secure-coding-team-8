@@ -1,7 +1,7 @@
 \subsection{Testing for Account Enumeration and Guessable User Account - OTG-IDENT-004}
 
 \subsubsection{Observation}
-It was found that the application responds with the same error messages to different incorrect requests. This has been tested in the Login page.
+It was found that the application responds with the same error messages for every client request that produces a failed authentication. This has been tested in the Login page.
 
 \subsubsection{Discovery}
 This test was performed manually by trying various combinations of email and password. \\
@@ -24,7 +24,7 @@ Likelihood is high since this does not require any additional knowledge and can 
 It is also exploitable remotely.
 
 \subsubsection{Impact}
-If this vulnerability existed, the responses to various incorrect requests would be different - similiar to "Incorrect password for user-xxx" or "User xxx does not exist" etc. This would have made it possible for the attacker to draw conclusions that a particular user does not exist, or that a user exists but with a different password. This could further lead to the attacker guessing the login credentials for an existing user.
+If this vulnerability existed, the responses to various incorrect requests would be different - similiar to "Incorrect password for user-xxx" or "User xxx does not exist" etc. This would have made it possible for the attacker to draw conclusions that a particular user does not exist, or that a user exists but with a different password. This could further lead to the attacker to enumerate existing users by guessing the login credentials.
 
 \subsubsection{CVSS}
 \begin{tabular}{l | l}
