@@ -1,2 +1,44 @@
 \subsection{Testing for bypassing authorization schema - OTG-AUTHZ-002}
+
+\subsubsection{Observation 1}
+It has been noted that it is possible to access administrative data if the tester is logged in as a user ordinary privileges. A normal user can access the list of all users and this
+vulnerability was found in the Users page.
+
+\subsubsection{Discovery}
+No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL.\\
+Steps: \\
+1. Login as a Customer. \\
+2. Click on the Customer name next to the Logout button. \\
+3. The profile and account details of the logged in customer are shown. \\
+4. The URL in the address bar is of the form \\ \textit{"<IP-address>/secure-coding/public/view\_user.php?id=7"}. \\
+5. Edit the URL to \textit{"<IP-address>/secure-coding/public/view\_users.php"}. \\
+6. The list of all users is now visible.
+
+
+\subsubsection{Likelihood}
+Likelihood is high.
+The attacker need not have any specialized skills to exploit this vulnerability. Any customer who is logged in to the bank can perform this action. Also, guessing the URL for the list of users is not difficult as it is similar to the URL for a specific user and a Brute-force method yields successful result quite fast.
+
+\subsubsection{Impact}
+A customer can get hold of details pertaining to other users and even perform action on the pending registrations.
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& Low \\
+Privileges Required & Low \\
+User Interaction	& None \\
+Scope				& Changed \\
+Confidentiality		& High \\
+Integrity			& None \\
+Availability		& None
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+In our application, the page containing the list of users is accessible only to employees and administrators. There is no possibility of attack from any user with ordinary privileges, thus making our application more secure, in this aspect.
+
+\subsubsection{Observation 2}
+It is possible to perform certain authorized operations as a normal user. A normal user can perform approval/rejection on pending registrations.
+This vulnerability was detected in the Users page and has been described in section \ref{OTG-IDENT-003}.
+
 \clearpage
