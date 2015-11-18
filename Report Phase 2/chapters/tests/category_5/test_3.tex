@@ -1,2 +1,67 @@
 \subsection{Testing for Session Fixation - OTG-SESS-003}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It has been observed that this vulnerability exists since the cookie PHPSESSID was set without setting the HttpOnly Flag. The same PHPSESSID was used after successful authentication of the user. Thus the session is prone to attack.
+    \\\\
+    \textbf{Discovery} &
+        We used the Cookie extensions in Firefox \& Chrome and EditThisCookie in Chrome for executing this attack.
+        Steps:
+        1. Login with Administrator credentials into to the application on Chrome. 2. Now click on the Cookie extension of Chrome and observe that the PHPSESSID cookie  is set to some value. Copy this value for future use. Note that the HostOnly and Session checkboxes are enabled while Secure and HttpOnly are not. This tells us the session can be hijacked by client-side manipulation of the cookie. 3. Now we open the Login page in Firefox. 4. Then open the Cookie extension through Tool tab in Firefox. 5. Add the PHPSESSID cookie manually and set it to the previously copied value. 6. Open the link <IP-address>/secure-coding/public/view\_transactions.php page.
+        Verify that we are now signed in as Administrator without entering valid credentials.
+    \\\\
+    \textbf{Likelihood} &
+        The attacker requires knowledge about tools or browser extensions for analyzing and modifying cookies. Hence likelihood of the attack is low.
+    \\\\
+    \textbf{Impact} &
+        Exploiting this vulnerability, it is possible to impersonate any user, including Administrator. The attacker could then perform privileged operations such as rejection of customers, other employees or transactions. Hence this could lead to Denial of Service attack. By impersonating a customer, it is possible to perform illicit transactions.
+    \\\\
+    \textbf{CVSS} &
+      \begin{tabular}{| l | l |}
+      \hline
+      Attack Vector		& \textit{Network}\\
+      \hline
+      Attack Complexity	& \textit{High} \\
+      \hline
+      Privileges Required & \textit{None} \\
+      \hline
+      User Interaction	& \textit{None} \\
+      \hline
+      Scope		& \textit{Changed} \\
+      \hline
+      Confidentiality	& \textit{High} \\
+      \hline
+      Integrity		& \textit{High} \\
+      \hline
+      Availability		& \textit{High} \\
+      \hline
+      \end{tabular}
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+       It has been verified that this vulnerability does not exist as the HttpOnly flag is set for the cookie PHPSESSID, thus eliminating the possibility of setting the cookie from client side.
+    \\\\
+    \textbf{Discovery} &
+    We used Cookie extensions on Firefox and Chrome, along with the EditThisCookie extension in Chrome for testing this vulnerability and followed the same steps performed on BANK-APP. However, we were unable to login as administrator without entering valid credentials.
+    \\\\
+    \textbf{Likelihood} &
+        NA
+    \\\\
+    \textbf{Impact} &
+        NA
+    \\\\
+    \textbf{CVSS} &
+        NA
+    \\
+    \hline
+\end{longtable*}
 \clearpage
