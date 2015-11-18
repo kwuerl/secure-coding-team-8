@@ -1,2 +1,84 @@
 \subsection{Test Business Logic Data Validation - OTG-BUSLOGIC-001}
+
+\subsubsection{Observation 1}
+It has been found that it is possible to enter valid data and cause the application to behave differently due to a deviation in the business logic. One such vulnerabilities has been found in the Transaction page where it is possible to perform a transfer with amount 0.00.
+
+\subsubsection{Discovery}
+This vulnerability has been exposed through manual testing.\\
+Steps: \\
+1. Login as a Customer. \\
+2. Click on the New Transaction button at the top. \\
+3. In the form, enter the following values: \\
+\begin{tabular}{l | l}
+Recipient Account 	& Valid Account Number\\
+TAN			& Valid TAN \\
+Amount		& 0.00
+\end{tabular} \\
+4. Click on the Submit button. \\
+5. The transaction is successful, as indicated by a message. \\
+6. Click on the Transaction button on top to view the list of all transactions. \\
+7. The last transaction of amount 0.00 is shown.
+
+\subsubsection{Likelihood}
+Likelihood is low.
+The attacker need not have any technical knowledge to perform this action.
+
+\subsubsection{Impact}
+The recipient account shows a transaction of 0.00. This could lead him/her to think that it was a fake transaction. Additionally, it is possible to enter -0.00. This would lead the recipient to believe that his/her account has been hacked.
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& Low \\
+Privileges Required & Low \\
+User Interaction	& None \\
+Scope				& Unchanged \\
+Confidentiality		& Low \\
+Integrity			& Low \\
+Availability		& None
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+In our application, it is possible to enter 0.00 in the amount and perform a successful transfer. However, entering negative values is not allowed.
+
+\subsubsection{Recommendation}
+All invalid values such as negative and 0 amounts need to be restricted both on the client and server side of the application.
+
+\subsubsection{Observation 2}
+A similar vulnerability has been found in the Registration page where it is possible to register with any Email address. It is possible to successfully register and become a user without a valid email address, with the only exception of not being able to receive the TAN numbers.
+
+\subsubsection{Discovery}
+This vulnerability has been exposed through manual testing.\\
+Steps: \\
+1. Open the Registration page. \\
+2. In the form, fill all the details and provide a non-existent email address, but adhering to the pattern of a valid email address. \\
+3. Click on the Submit button. \\
+4. Registration is successful, as indicated by a message. \\
+Once the registration is approved by another user, it is possible to login to the account.
+
+\subsubsection{Likelihood}
+Likelihood is high.
+The attacker need not have any technical knowledge to perform this action and can register with any random email address.
+
+\subsubsection{Impact}
+It is possible to gain access to the system with no valid email address. Once logged in, the user can take advantage to exploit other vulnerabilities with a few of them described in sections \ref{OTG-AUTHZ-002} and \ref{OTG-IDENT-003}.
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& Low \\
+Privileges Required & Low \\
+User Interaction	& None \\
+Scope				& Unchanged \\
+Confidentiality		& Low \\
+Integrity			& Low \\
+Availability		& None
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+The same behavior is reflected in our application too, where there is no check on the authenticity of the email address entered.
+
+\subsubsection{Recommendation}
+It would be better to have an activation link sent to the email address and only upon clicking of the link, registration could be considered as successful. Such a mechanism should be enforced to tackle the above vulnerability.
+
 \clearpage

@@ -1,2 +1,45 @@
 \subsection{Testing for Browser cache weakness - OTG-AUTHN-006}
+
+\subsubsection{Observation}
+It is found that sensitive data is not saved anywhere throughout the application. This is achieved with the header \\
+\textit{"Cache-Control: must-revalidate, pre-check=0, post-check=0, no-store, no-cache"}. \\
+The Back button of the browser neither re-logs the user in nor shows the last opened view.
+
+\subsubsection{Discovery}
+This vulnerability was detected using the Burp Suite, About Cache feature of the Firefox browser and manual testing. \\
+\\Steps:\\
+\underline{\textbf{Detecting cache headers}}\\
+\\The response headers were observed through the Burp Suite tool.\\
+1. In the browser, under Tools - set the Foxy Proxy Standard to use Burp Suite for all URLs.\\
+2. Now open the Burp Suite tool.\\
+3. Open the site in the browser and login with credentials.\\
+Browser Cache was further inspected with Mozilla's built in tool (about:cache). \\
+\\\underline{\textbf{Testing cache weakness}} \\
+\\1. Open the application in the browser and login with valid credentials.\\
+2. The Transactions page is displayed. Click on the logout button.\\
+3. User is redirected to the Login page. Click on the Back button of the browser.\\
+There is no redirection to the Transactions page, because of the Cache Control header that states that the cache should be revalidated. Hence user remains on the login page.
+\subsubsection{Likelihood}
+Likelihood of the vulnerability is low since the attacker needs to change Cache Control header of the application, which requires technical knowledge about analyzing requests and how to modify them.
+
+\subsubsection{Impact}
+If the browser caches sensitive data, then it is possible to perform attacks such as session hijacking and Denial of Service.
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& High \\
+Privileges Required & None \\
+User Interaction	& None \\
+Scope				& Unchanged \\
+Confidentiality		& High \\
+Integrity			& None \\
+Availability		& None
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+In our application, a similar header is set for Cache control thereby preventing sensitive data from being saved in the browser cache.
+
+\subsubsection{Recommendation}
+NA
 \clearpage
