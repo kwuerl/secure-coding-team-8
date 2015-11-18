@@ -1,2 +1,44 @@
 \subsection{Testing for CSS Injection - OTG-CLIENT-005}
+
+\subsubsection{Observation}
+It has been observed that CSS injections can be performed as the user inputs are not sanitized. Hence we can inject html tags which could be used to execute scripts indirectly.
+
+\subsubsection{Discovery}
+No specific tools were used to identify the injection points. The user inputs are not sanitized and hence the attacker can inject any html tags. For instance, injection of the anchor tag(<a>) with the src attribute pointing to attacker's CSS file.\\
+\\The attacker's CSS File might have this line: \\
+body \{\\
+  behavior:url(/user/uploadedfiles/evil-uploaded-component.htc); \\
+\}
+\\\\The htc file could be :\\
+<public:attach event="onload" for="window" onevent="initialise()" />\\
+<script language="javascript">\\
+    function initialise() \{ \\
+        alert(document.cookie);\\
+    \} \\
+</script>\\
+\\In this way, the attacker can get any  sensitive data such as cookies or put in some event listeners to forge the victim’s action. This vulnerability can be used only in Internet Explorer (IE9 and earlier versions).
+
+\subsubsection{Likelihood}
+Though the user only needs to inject tags through user inputs, the vulnerability cannot be easily exploited as this is a browser specific action that also requires some additional technical knowledge and hence likelihood is low.
+
+\subsubsection{Impact}
+Impact is high since attacker gets control of the application through the remote script. The attacker can then launch different types of attack remotely(such as Denial of Service, data \& password retrievals, resource manipulations etc.).
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& Low \\
+Privileges Required & None \\
+User Interaction	& None \\
+Scope				& Unchanged \\
+Confidentiality		& High \\
+Integrity			& None \\
+Availability		& High
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+The user input in our application has been sanitized and hence this vulnerability does not exist in our application.
+
+\subsubsection{Recommendation}
+User inputs should always be sanitized before being processed. Special characters (like <,/>) should be ignored.
 \clearpage
