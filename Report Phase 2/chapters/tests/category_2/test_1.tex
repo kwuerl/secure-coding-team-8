@@ -1,2 +1,117 @@
 \subsection{Test Role Definitions - OTG-IDENT-001}
+We identified four different role definitions: \textbf{Admin}, \textbf{Employee}, \textbf{Customer}, \textbf{Anyone}.
+Possibly the \textbf{Admin} and the \textbf{Employee} can be combined.
+According to the specification the four roles should have the following permissions:
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l |}
+    \hline
+    \textbf{Functionality} 			& \textbf{Admin} & \textbf{Employee} & \textbf{Customer} & \textbf{Anyone} \\ \hline
+    View own transactions 			& \xmark  	& \xmark  	& \cmark 	& \xmark \\ \hline
+    View other users transactions 	& \cmark  	& \cmark 	& \xmark	& \xmark \\ \hline
+    Make transaction 				& \xmark  	& \xmark 	& \cmark 	& \xmark \\ \hline
+    Approve own transaction 		& \xmark  	& \xmark 	& \xmark 	& \xmark \\ \hline
+    Approve other users transaction & \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+    View user list 					& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+    View own user profile 			& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+    View other users profiles 		& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+    Login 							& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+    Logout 							& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+    Register as Employee 			& \xmark  	& \xmark 	& \xmark 	& \cmark \\ \hline
+    Register as Customer 			& \xmark  	& \xmark 	& \xmark 	& \cmark \\ \hline
+    Approve/Disapprove Customer 	& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+    Approve/Disapprove Employee 	& \cmark  	& \xmark 	& \xmark 	& \xmark \\ \hline
+    \end{tabular}
+\end{center}
+
+\clearpage
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\ 
+    \hline
+    \textbf{Observation} &
+    	BANK-APP only uses three role definitions: \textbf{Employee (E)}, \textbf{Customer(E)}, \textbf{Anyone(N)}
+		For BANK-APP according to our thests the resulting access rights where:
+		\begin{center}
+		    \begin{tabular}{ | l | l | l | l |}
+		    \hline
+		    \textbf{Functionality} 			& \textbf{E} & \textbf{C} & \textbf{N} \\ \hline
+		    View own transactions 			& \cmark  	& \cmark 	& \xmark \\ \hline
+		    View other users transactions 	& \cmark 	& \xmark	& \xmark \\ \hline
+		    Make transaction 				& \cmark 	& \cmark 	& \xmark \\ \hline
+		    Approve own transaction 		& \cmark 	& \xmark 	& \xmark \\ \hline
+		    Approve other users transaction & \cmark 	& \xmark 	& \xmark \\ \hline
+		    View user list 					& \cmark 	& \xmark 	& \xmark \\ \hline
+		    View own user profile 			& \cmark 	& \cmark 	& \xmark \\ \hline
+		    View other users profiles 		& \cmark 	& \xmark 	& \xmark \\ \hline
+		    Login 							& \cmark 	& \cmark 	& \xmark \\ \hline
+		    Logout 							& \cmark 	& \cmark 	& \xmark \\ \hline
+		    Register as Employee 			& \cmark 	& \cmark 	& \cmark \\ \hline
+		    Register as Customer 			& \cmark 	& \cmark 	& \cmark \\ \hline
+		    Approve/Disapprove Customer 	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    Approve/Disapprove Employee 	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    \end{tabular}
+		\end{center}
+		We Observed, that Employees are capable of all actions, that users are allowed to perform.
+		This leads to a state where Employees acting as Customers are able to approve their own transactions.
+    \\\\
+    \textbf{Discovery} &
+    	We examined the Application by manually following the provided links and UI elements
+    \\\\
+    \textbf{Likelihood} &
+    	As the Customer functionalities can be freely used by Employees the likelihood of abuse is higher than it would be if employees had to use seperate user accounts for their private transactions.
+    \\\\
+    \textbf{Impact} &
+    	The impact of the availability of customer functionality for employees includes the possibility of unsupervised transfers of large sums issued employees.
+    	This increases the risk of money laundering.
+    \\\\
+    \textbf{CVSS} &
+    	N/A
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\ 
+    \hline
+    \textbf{Observation} &
+    	SecureBank only uses four role definitions: \textbf{Admin (A)}, \textbf{Employee (E)}, \textbf{Customer (C)}, \textbf{Anyone (N)}.
+		For SecureBank according to our thests the resulting access rights where:
+		\begin{center}
+		    \begin{tabular}{ | l | l | l | l | l |}
+		    \hline
+		    \textbf{Functionality} 			& \textbf{A} & \textbf{E} & \textbf{C} & \textbf{N} \\ \hline
+		    View own transactions 			& \xmark  	& \xmark  	& \cmark 	& \xmark \\ \hline
+		    View other users transactions 	& \cmark  	& \cmark 	& \xmark	& \xmark \\ \hline
+		    Make transaction 				& \xmark  	& \xmark 	& \cmark 	& \xmark \\ \hline
+		    Approve own transaction 		& \xmark  	& \xmark 	& \xmark 	& \xmark \\ \hline
+		    Approve other users transaction & \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    View user list 					& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    View own user profile 			& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+		    View other users profiles 		& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    Login 							& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+		    Logout 							& \cmark  	& \cmark 	& \cmark 	& \xmark \\ \hline
+		    Register as Employee 			& \xmark  	& \xmark 	& \xmark 	& \cmark \\ \hline
+		    Register as Customer 			& \xmark  	& \xmark 	& \xmark 	& \cmark \\ \hline
+		    Approve/Disapprove Customer 	& \cmark  	& \cmark 	& \xmark 	& \xmark \\ \hline
+		    Approve/Disapprove Employee 	& \cmark  	& \xmark 	& \xmark 	& \xmark \\ \hline
+		    \end{tabular}
+		\end{center}
+		No Abnormalities could be determined.
+    \\\\
+    \textbf{Discovery} &
+    	We examined the Application by manually following the provided links and UI elements
+    \\\\
+    \textbf{Likelihood} &
+    	N/A
+    \\\\
+    \textbf{Impact} &
+    	N/A
+    \\\\
+    \textbf{CVSS} &
+    	N/A
+    \\
+    \hline
+\end{longtable*}
 \clearpage
