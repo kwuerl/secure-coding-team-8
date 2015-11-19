@@ -1,2 +1,76 @@
 \subsection{Test User Registration Process - OTG-IDENT-002}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\ 
+    \hline
+    \textbf{Observation} &
+        User Registration proccess and constraints:
+		\begin{itemize}
+		  \item Anyone can register as Employee or Customer in the same form
+		  \item Identification Requirements are \enquote{First name}, \enquote{Last Name}, \enquote{Email}, \enquote{Password} for Employee as well as Customers
+		  \item Employees and Customers have to be verified by an Employee
+		  \item The same Email address cannot be used twice, neither for Employee nor Customer
+		  \item Email adresses are not checked for identity
+		\end{itemize}
+		Problematic:
+		\begin{itemize}
+		  \item Email adresses are not checked for identity
+		  \item Identification Requirements only \enquote{First name}, \enquote{Last Name}, \enquote{Email}, \enquote{Password} for Employee as well as Customers
+		\end{itemize}
+    \\\\
+    \textbf{Discovery} &
+        To test the Registration proccess we manually registered some customer and employee accounts with different and same email addresses.
+    \\\\
+    \textbf{Likelihood} &
+        There is the possibillity that a Person registers with a foreign identity. To prohibit this the manual verification proccess has to ensure that idientities are properly verified. As there is not much information provided about the applicant this can be difficult
+    \\\\
+    \textbf{Impact} &
+       If someone registers as a other person he can possibly use his account to commit crimes and the actions could not be traced back to him or would be blamed on the persion that the account was registered on.
+    \\\\
+    \textbf{CVSS} &
+        
+    \\
+    \hline
+\end{longtable*}
+\clearpage
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\ 
+    \hline
+    \textbf{Observation} &
+        User Registration proccess and constraints:
+		\begin{itemize}
+		  \item Anyone can register as Employee or Customer. The Registration forms are seperated
+		  \item Identification Requirements are \enquote{First name}, \enquote{Last Name}, \enquote{Email}, \enquote{Password} for Employee
+		  \item Identification Requirements are \enquote{First name}, \enquote{Last Name}, \enquote{Address}, \enquote{Postal code}, \enquote{City}, \enquote{Email}, \enquote{Password} for Customer
+		  \item Customers have to be verified by an Employee
+		  \item Employees have to be verified by an Admin
+		  \item The same Email address cannot be used twice for a user and cannot be used twice for a employee. The same email can be used for a customer account and a employee account
+		  \item When the same email is used for an employee and a customer one allways get logged in as Customer
+		  \item Email adresses are not checked for identity
+		  \item Address, City and Postal code are not verified
+		\end{itemize}
+		Problematic:
+		\begin{itemize}
+		  \item When the same email is used for an employee and a customer one allways get logged in as Customer
+		  \item Email adresses are not checked for identity
+		  \item Address, City and Postal code are not verified
+		\end{itemize}
+    \\\\
+    \textbf{Discovery} &
+    	To test the Registration proccess we manually registered some customer and employee accounts with different and same email addresses.
+    \\\\
+    \textbf{Likelihood} &
+        There is the possibillity that a Person registers with a foreign identity. To prohibit this the manual verification proccess has to ensure that idientities are properly verified. This is a lot easier with the additionally provided informations address, city, postal code, but as these values are not automatically verified it has be done by a human.
+    \\\\
+    \textbf{Impact} &
+        If someone registers as a other person he can possibly use his account to commit crimes and the actions could not be traced back to him or would be blamed on the persion that the account was registered on.
+    \\\\
+    \textbf{CVSS} &
+        
+    \\
+    \hline
+\end{longtable*}
 \clearpage
