@@ -1,2 +1,71 @@
-\subsection{Test File Extensions Handling for Sensitive Information}
+\subsection{Test File Extensions Handling for Sensitive Information - OTG-CONFIG-003} \label{OTG-CONFIG-003}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It was found that most of the file extensions that we tried were accepted by the application. We tried with files with extensions .php, .pdf, .tar.gz, .doc, .js, .jpeg etc. All of the above file types were accepted by the application as indicated by success messages.
+    \\\\
+    \textbf{Discovery} &
+        This vulnerability was discovered in "New Transaction" page. Steps are as follows:
+        \begin{itemize}
+         \item \textbf{Scenario 1} - We first tried to upload some file "xxx.pdf". But the transaction was unsuccessful and the application returned the error message. 
+         The error messages returned were in the format - "Transaction failed with error code: <Code>". This returned code took multiple values like -1, -4, -8, -10 etc. We tried to investigate into this, suspecting that a specific error code could be due to incorrect file type or unexpected text in the file. However, it was not consistent. 
+
+         \item \textbf{Scenario 2} - When the file name contains paranthesis(e.g. "xxx(1).pdf"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
+
+         \item \textbf{Scenario 3} - When the file name double extensions(e.g. "xxx.png.txt"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
+        \end{itemize}
+
+    \\\\
+    \textbf{Impact} &
+        The messages shown by the application are inconsistent with the view. It is unclear as to what actions took place in the background, making the application clearly vulnerable. Transactions are not reflected under "View Transactions" page. Hence the user gets a wrong impression of his transactions. These messages are returned from server, so chances of these files actually getting uploaded are high. So an attacker could upload any malicious script files('.php') to manipulate the server and retrieve/corrupt sensitive data.
+    \\\\
+    \textbf{CVSS} &
+       \begin{tabular}{| l | l |}
+             \hline
+             Attack Vector		& \textit{Network}\\
+             \hline
+             Attack Complexity	& \textit{Low} \\
+             \hline
+             Privileges Required & \textit{None} \\
+             \hline
+             User Interaction	& \textit{None} \\
+             \hline
+             Scope		& \textit{Changed} \\
+             \hline
+             Confidentiality	& \textit{High} \\
+             \hline
+             Integrity		& \textit{High} \\
+             \hline
+             Availability		& \textit{High} \\
+             \hline
+             \end{tabular}
+           \\
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        It was found that the application allowed only text files. No other files were accepted.
+    \\\\
+    \textbf{Discovery} &
+	    The series of above steps were repeated but the application did not allow any files other than plain text.
+    \\\\
+    \textbf{Likelihood} &
+        NA
+    \\\\
+    \textbf{Impact} &
+		NA
+    \\\\
+    \textbf{CVSS} &
+        NA
+    \\
+    \hline
+\end{longtable*}
 \clearpage
