@@ -1,20 +1,33 @@
 \subsubsection{BANK-APP}
-\begin{tabular*}{\textwidth}{ l | p{.70\textwidth} }\hline
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
     & \textbf{BANK-APP} \\ \hline
-    \textbf{Observation} & Observation \\
-    \textbf{Discovery} & Discovery \\
-    \textbf{Likelihood} & Likelihood \\
-    \textbf{Implication} & Implication \\
-    \textbf{Recommendations} & Recommendations
+    \textbf{Observation} & describe which part of the application is vulnerable and why? \\
+    \textbf{Discovery} & how was this vulnerability exactly discovered? Which tools were used and which steps were performed? Which inputs did you give to the tools? Which were the outputs? \\
+    \textbf{Likelihood} & what is the likelihood that this vulnerability is exploited? Which assumptions must hold and which skills must an attacker have? \\
+    \textbf{Impact} & what is the potential impact of an exploit of this vulnerability? What could happen? \\
+    \textbf{CVSS} & 
 \end{tabular*}
 
 \subsubsection{SecureBank}
-\begin{tabular*}{\textwidth}{ l | p{.70\textwidth} }\hline
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & Observation \\
     \textbf{Discovery} & Discovery \\
     \textbf{Likelihood} & Likelihood \\
-    \textbf{Implication} & Implication \\
-    \textbf{Recommendations} & Recommendations
+    \textbf{Impact} & Impact \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular}
 \end{tabular*}
+
+\subsubsection{Comparison}
+how and why is your app better/worse
 \clearpage
