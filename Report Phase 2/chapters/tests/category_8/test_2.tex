@@ -1,2 +1,43 @@
 \subsection{Testing for Padding Oracle - OTG-CRYPST-002}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+	\hline
+	& \textbf{BANK-APP} \\
+	\hline
+	\textbf{Observation} &
+	It has been found that the application does not encrypt data used in requests. The only random values observed are the generated TAN codes, received through Email. However, they are not encrypted and are the actual values of the Transaction codes. Hence there is no possibility of padding oracle vulnerability and we did not perform testing for it. 
+	\\\\
+	\textbf{Discovery} &
+	NA
+	\\\\
+	\textbf{Impact} &
+	NA
+	\\\\
+	\textbf{CVSS} &
+	NA
+	\\
+	\hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+	\hline
+	& \textbf{SecureBank} \\
+	\hline
+	\textbf{Observation} &
+	It has been found that the application does not encrypt data used in requests. The only random values observed are the generated TAN codes, received through Email and Customer Account numbers. However, they are not encrypted and are the actual values of the Transaction codes and Account Numbers. Hence there is no possibility of padding oracle vulnerability and we did not perform testing for it. 
+	\\\\
+	\textbf{Discovery} &
+	NA
+	\\\\ 
+	\textbf{Likelihood} &
+	NA
+	\\\\
+	\textbf{Impact} &
+	NA
+	\\\\
+	\textbf{CVSS} &
+	NA
+	\\
+	\hline
+\end{longtable*}
 \clearpage
