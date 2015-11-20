@@ -5,7 +5,18 @@
     \textbf{Discovery} & how was this vulnerability exactly discovered? Which tools were used and which steps were performed? Which inputs did you give to the tools? Which were the outputs? \\
     \textbf{Likelihood} & what is the likelihood that this vulnerability is exploited? Which assumptions must hold and which skills must an attacker have? \\
     \textbf{Impact} & what is the potential impact of an exploit of this vulnerability? What could happen? \\
-    \textbf{CVSS} & 
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
 \end{tabular*}
 
 \subsubsection{SecureBank}
@@ -26,6 +37,7 @@
             Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
             Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
         \end{tabular}
+    \\ \hline
 \end{tabular*}
 
 \subsubsection{Comparison}

@@ -1,3 +1,19 @@
 \subsection{Testing for default credentials - OTG-AUTHN-002}
-Since the bank applications are both custom made there are no default credentials. When registering an account the user chooses a custom password.
+Since the bank applications are both custom made there are no default credentials. When registering an account the user chooses a his/her e-mail address and a custom password. Figure~\ref{fig:registration} shows the registration forms for both banks. It is obvious that there are no default credentials. Therefore there is no vulnerability regarding default credentials.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/OTG-AUTHN-002_1.png}
+		\caption{BANK-APP registration form with no default credentials}
+	\end{subfigure}\hfill%
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-AUTHN-002_2.png}
+		\caption{SecureBank registration form with no default credentials}
+	\end{subfigure}
+	\caption{No default credentials for registration}
+	\label{fig:registration}
+\end{figure}
 \clearpage
