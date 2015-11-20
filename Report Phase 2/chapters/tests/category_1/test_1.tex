@@ -10,12 +10,12 @@
     \textbf{Discovery} &
         This vulnerability was discovered in "New Transaction" page. Steps are as follows:
         \begin{itemize}
-         \item \textbf{Scenario 1} - We first tried to upload some file "xxx.pdf". But the transaction was unsuccessful and the application returned the error message. 
+         \item \textbf{Scenario 1} - We first tried to upload some file "xxx.pdf". But the transaction was unsuccessful and the application returned the error message. Files with extensions .php, .tar.gz, .doc, .js, .jpeg were also tested.
          The error messages returned were in the format - "Transaction failed with error code: <Code>". This returned code took multiple values like -1, -4, -8, -10 etc. We tried to investigate into this, suspecting that a specific error code could be due to incorrect file type or unexpected text in the file. However, it was not consistent. 
 
-         \item \textbf{Scenario 2} - When the file name contains paranthesis(e.g. "xxx(1).pdf"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
+         \item \textbf{Scenario 2} - When the file name contains parenthesis(e.g. "xxx(1).pdf"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
 
-         \item \textbf{Scenario 3} - When the file name double extensions(e.g. "xxx.png.txt"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
+         \item \textbf{Scenario 3} - When the file names with double extensions(e.g. "xxx.png.txt") were tested, the behavior was noted to be the same as in Scenario 1 above.
         \end{itemize}
 
     \\\\
@@ -58,13 +58,13 @@
 	    The series of above steps were repeated but the application did not allow any files other than plain text.
     \\\\
     \textbf{Likelihood} &
-        NA
+        N/A
     \\\\
     \textbf{Impact} &
-		NA
+		N/A
     \\\\
     \textbf{CVSS} &
-        NA
+        N/A
     \\
     \hline
 \end{longtable*}
