@@ -1,0 +1,85 @@
+\subsection{Test Defenses Against Application Mis-use (OTG-BUSLOGIC-007)}
+
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+	  It is observed that, since the application does not respond in any way and the attacker can continue to abuse functionality and submit malicious content at the application, this vulnerability exists.
+	  It has been found that the application can be misused by the attacker with various attacks at different pages. Whether these attacks are monitored or not cannot be determined by using the application, since attacks were performed multiple times; with no change in server responses or actions like auto-logout etc.
+    \\\\
+    \textbf{Discovery} &
+      Different tools can be used for this vulnerability as this is an aggregation of all the other vulnerabilities.Steps are as follows:
+      \begin{itemize}
+	      \item \underline{\textbf{Mis-use in Login}} - There is no restriction on the number of failed login attempts and hence the attacker can make infinite attempts in trying to login to the application.This has been further described in the section \ref{OTG-AUTHN-007}.
+	      
+	      \item \underline{\textbf{Mis-use in performing Transactions}} -
+	      	\begin{itemize}
+	      		\item  Login as a Customer and click on New Transaction at the top.
+	      		
+	      		\item Fill the form with all the details and click on the Submit button OR use the File Upload feature to perform a transaction. In both cases, the action can be replicated multiple times even with incorrect details. The Firefox extension FormFuzzer, Fuzz feature of ZAProxy or a similar tool can be used for filling the forms.
+	      	\end{itemize}
+	      	
+      \end{itemize}
+    \\\\
+    \textbf{Likelihood} &
+        This vulnerability does not require any technical skills. Logging into the web application through Brute-force methods is possible since there is no policy on strong passwords. Any customer who is logged in to the bank can perform transactions. It is exploitable remotely via the
+        web interface and via the batch file functionality.
+        Hence, likelihood is high.
+    \\\\
+    \textbf{Impact} &
+        The lack of active defenses allows an attacker to hunt for vulnerabilities without any recourse. The owner of the application will thus not know that the application is under attack.
+       
+    \\\\
+    \textbf{CVSS} &
+      \begin{tabular}{| l | l |}
+           \hline
+           Attack Vector		& \textit{Network}\\
+           \hline
+           Attack Complexity	& \textit{Low} \\
+           \hline
+           Privileges Required & \textit{Low} \\
+           \hline
+           User Interaction	& \textit{None} \\
+           \hline
+           Scope		& \textit{Unchanged} \\
+           \hline
+           Confidentiality	& \textit{High} \\
+           \hline
+           Integrity		& \textit{High} \\
+           \hline
+           Availability		& \textit{High} \\
+           \hline
+           \end{tabular}
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+       Same observation can be seen in our application since we have not restricted thee number of incorrect attempts by the user across any from throughout the application.
+    \\\\
+    \textbf{Discovery} &
+	    Same as observed for BANK-APP.
+    \\\\
+    \textbf{Likelihood} &
+     Same as observed for BANK-APP.
+    \\\\
+    \textbf{Impact} &
+      Same as observed for BANK-APP.
+    \\\\
+    \textbf{CVSS} &
+     Same as observed for BANK-APP.
+    \\\\
+    \textbf{Recommendations} &
+     1. The application should restrict or lock out the user after he exceeds a certain number of the failed attempts while performing any operation. 
+     2. Logs of suspected actions should be maintained in database/file so as to monitor attempts for attacks.
+     \\
+    \\
+    \hline
+\end{longtable*}
+\clearpage

@@ -1,0 +1,44 @@
+\subsection{Testing for Weak lock out mechanism - OTG-AUTHN-003}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & Logging in with a false password can be repeated numerous times without being logged out. \\
+    \textbf{Discovery} & With ZAP the password for an existing account was fuzzed. Although the password was false in 99\%, the bank did not lock the account. \\
+    \textbf{Likelihood} & Since there is no lock out mechanism an attacker could bruteforce the password. \\
+    \textbf{Impact} & If an attacker gains access to an account, he could also gain access to private information. Furthermore, if he can find out the transaction codes, he could also make transactions. Since there is no possibility of changing account data or deleting the account, there is no impact on integrity and availability. \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Logging in with a false password can be repeated numerous times without being logged out. \\
+    \textbf{Discovery} & With ZAP the password for an existing account was fuzzed. Although the password was false in 99\%, the bank did not lock the account. \\
+    \textbf{Likelihood} & Since there is no lock out mechanism an attacker could bruteforce the password. \\
+    \textbf{Impact} & If an attacker gains access to an account, he could also gain access to private information. Furthermore, if he can find out the transaction codes, he could also make transactions. Since there is no possibility of changing account data or deleting the account, there is no impact on integrity and availability. \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+\end{tabular*}
+
+\subsubsection{Comparison}
+Both banks do not have any lock out mechanisms, which is a high vulnerability for bruteforce attacks.
+\clearpage

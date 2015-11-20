@@ -1,0 +1,55 @@
+\subsection{Analysis of Stack Traces - OTG-ERR-002}
+\subsubsection{BANK-APP}
+\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & 
+    	We could not detect stack traces in this application.
+    \\
+    \textbf{Discovery} &
+    	See OTG-ERR-001.
+    \\
+    \textbf{Likelihood} &
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{CVSS} &
+        N/A
+    \\ \hline
+\end{longtable*}
+\subsubsection{SecureBank}
+\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    	The Application outputs a php exception with stack trace if a page is accessed unauthorized. See~\ref{fig:OTG_ERR_001_3}.
+    \\
+    \textbf{Discovery} &
+    	\textbf{Web server error Messages:}\newline
+    	See above.\newline
+    	\textbf{Application Errors:} \newline
+    	See OTG-AUTHN-004.
+    \\
+    \textbf{Likelihood} & 
+    	An Atacker can use the informations presented by the error messages to validate further atacks. This results in a higher likelihood for other atacks.
+    \\
+    \textbf{Impact} & 
+    	An atacker can use the application errors to estimate application internas like file and include structures. The knowledge that there is a router involved can lead to specific atacks for routing components.
+    \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable*}
+
+\subsubsection{Comparison}
+how and why is your app better/worse
+\clearpage

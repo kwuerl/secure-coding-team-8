@@ -1,0 +1,66 @@
+\subsection{Testing for Reflected Cross Site Scripting - OTG-INPVAL-001} \label{OTG-INPVAL-001}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It has been found that Reflected Cross Site Scripting is possible in the application. None of the URLs that we tried to append script tags to; were successful and the corresponding page was not displayed properly. However, when HTML was appended to the URL, injection was successful. This has been observed in the User page.
+    \\\\
+    \textbf{Discovery} &
+        No tools were needed to discover this vulnerability. The URLs need to be modified and parameters set to HTML tags.
+        Steps:
+        1. Login as employee or administrator and click on "User" button on the top.
+        2. Open any pending registration and note that the URL is of the form \textit{"<IP-address>/secure-coding/public/view\_user.php?id=7"}.
+        3. Append the string at the end of the URL - \code{"><span>hi</span><br}. The text "hi" appears before the Approve button in the page.
+    \\\\
+    \textbf{Impact} &
+        By injecting html tags, it is possible to manipulate the page and lead the user into performing undesirable actions.
+        This does not require advanced technical skills, though basic knowledge of HTML is necessary for exploiting the vulnerability.
+    \\\\
+    \textbf{CVSS} &
+      \begin{tabular}{| l | l |}
+      \hline
+      Attack Vector		& \textit{Network}\\
+      \hline
+      Attack Complexity	& \textit{Low} \\
+      \hline
+      Privileges Required & \textit{None} \\
+      \hline
+      User Interaction	& \textit{None} \\
+      \hline
+      Scope		& \textit{Unchanged} \\
+      \hline
+      Confidentiality	& \textit{High} \\
+      \hline
+      Integrity		& \textit{High} \\
+      \hline
+      Availability		& \textit{High} \\
+      \hline
+      \end{tabular}
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        It has been verified that Reflected Cross Site Scripting is not possible. All the URLs where we tried to append script and HTML tags returned the response as 404.
+    \\\\
+    \textbf{Discovery} &
+    	Same as described for BANK-APP.
+    \\\\ 
+    \textbf{Likelihood} &
+        Same as described for BANK-APP.
+    \\\\
+    \textbf{Impact} &
+        Same as described for BANK-APP.
+    \\\\
+    \textbf{CVSS} &
+        Same as described for BANK-APP.
+    \\
+    \hline
+\end{longtable*}
+\clearpage

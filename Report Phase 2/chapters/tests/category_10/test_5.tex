@@ -1,0 +1,73 @@
+\subsection{Testing for CSS Injection - OTG-CLIENT-005}
+
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+     It has been observed that CSS injections can be performed as user inputs are not sanitized. Hence we can inject html tags which could be used to execute scripts indirectly.
+     
+    \\\\
+    \textbf{Discovery} &
+        No specific tools were used to identify the injection points. The user inputs are not sanitized and hence the attacker can inject any html tags. For instance, injection of the anchor tag(<a>) with the src attribute pointing to attacker's CSS file. The attacker's CSS File might have this line:
+        In this way, the attacker can get any  sensitive data such as cookies or put in some event listeners to forge the victim’s action. This vulnerability can be used only in Internet Explorer (IE9 and earlier versions).
+    \\\\
+    \textbf{Likelihood} &
+    Though the user only needs to inject tags through user inputs, the vulnerability cannot be easily exploited as this is a browser specific action that also requires some additional technical knowledge and hence likelihood is low.
+    \\\\
+    \textbf{Impact} &
+       Impact is high since attacker gets control of the application through the remote script. The attacker can then launch different types of attack remotely(such as Denial of Service, data \& password retrievals, resource manipulations etc.). 
+    \\\\
+    \textbf{CVSS} &
+       \begin{tabular}{| l | l |}
+             \hline
+             Attack Vector		& \textit{Network}\\
+             \hline
+             Attack Complexity	& \textit{Low} \\
+             \hline
+             Privileges Required & \textit{None} \\
+             \hline
+             User Interaction	& \textit{None} \\
+             \hline
+             Scope		& \textit{Unchanged} \\
+             \hline
+             Confidentiality	& \textit{High} \\
+             \hline
+             Integrity		& \textit{None} \\
+             \hline
+             Availability		& \textit{High} \\
+             \hline
+             \end{tabular}
+    \\\\
+    \textbf{Recommendations} &
+       User inputs should always be sanitized before being processed. Special characters (like <,/>) should be ignored.
+       \\
+    \hline
+\end{longtable*}
+\clearpage
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        Same as described for BANK-APP.
+    \\\\
+    \textbf{Discovery} &
+    	Same as described for BANK-APP.
+    \\\\
+    \textbf{Likelihood} &
+       N/A
+    \\\\
+    \textbf{Impact} &
+       N/A
+    \\\\
+    \textbf{CVSS} &
+       N/A
+     \\\\
+     \textbf{Recommendations} &
+      N/A\\
+    \hline
+\end{longtable*}
+\clearpage

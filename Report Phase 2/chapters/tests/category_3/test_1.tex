@@ -1,0 +1,56 @@
+\subsection{Testing for Credentials Transported over an Encrypted Channel - OTG-AUTHN-001} \label{OTG-AUTHN-001}
+
+
+\subsubsection{Observation}
+After scanning the application with the Vega tool, it was found that the forms in the Registration, Login and Create Transaction pages submit to an insecure HTTP target. Parameters such as User name, Password, TAN number, Account ID are not encrypted. 
+
+\subsubsection{Discovery}
+Three tools Vega, Burp Suite and cURL were used to discover this vulnerability.\\\\
+Steps: \\
+\underline{\textbf{Vega}}\\
+1. Click on the Scan tab. \\
+2. Enter the URL to be tested. In our case, it was "\textit{http://<IP-address>/secure-coding/public/login.php}" .\\
+3. Click on the Finish button. \\
+4. A report is generated which has three sections - High, Low, Info. This vulnerability is termed as "Clear Password over HTTP" and falls under the High section.\\
+After detection, one more tool-the Burp Suite was used to delve deeper into it.\\ \\
+\underline{\textbf{Burp Suite}}\\
+1. Open Burp Suite Tool.\\
+2. Click on Proxy tab and set  interception to on. This will enable us to observe all the requests to be monitored before being served. \\
+2. Now open the browser and under tools set Foxy Proxy standard to use Burp Suite for all URLs .\\
+3. On the Login page, enter the details and click on Submit.\\
+4. Now click  on the Proxy tab in the Burp Suite. The requested URL data which contains Username and password can be seen in the Raw tab as plain text; revealing that the request was not encrypted. \\
+This could be used by the attacker to impersonate as the victim. \\
+To verify whether the application works on HTTP or HTTPS, cURL was used. \\
+\underline{\textbf{cURL}}\\
+1. Open the terminal and type curl https://<IP-address>.
+The response states unknown protocol. \\
+2. To get a detailed response, use curl --verbose https://<IP-address>. \\
+3. Now try with curl http://<IP-address>.
+The response indicates a successful connection and the output of the request. \\
+It can be concluded that the application works only on HTTP and does not support transmission over HTTPS.
+
+\subsubsection{Likelihood}
+Likelihood is high since this takes place over the network.
+Exploitation of this vulnerability requires basic knowledge of any monitoring tools to view the format and details of the server requests. It is exploitable remotely.
+
+\subsubsection{Impact}
+A successful attack might lead to serious consequences. The request parameters can be tampered with, as they are not excrypted. This may lead to the victim not being able to login  or transactions being hijacked. This could result in a Denial of Service attack as well.
+
+\subsubsection{CVSS}
+\begin{tabular}{l | l}
+Attack Vector		& Network \\
+Attack Complexity	& Low \\
+Privileges Required & None \\
+User Interaction	& None \\
+Scope				& None \\
+Confidentiality		& High \\
+Integrity			& High \\
+Availability		& High
+\end{tabular}
+
+\subsubsection{Comparison with our application}
+The same vulnerability exists in our application as well; since the channel over which the communication takes place is not encrypted.
+
+\subsubsection{Recommendation}
+This vulnerability can be avoided by using HTTPS protocol for communication over the network.
+\clearpage

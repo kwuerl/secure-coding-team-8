@@ -1,0 +1,46 @@
+\subsection{Test Ability to Forge Requests - OTG-BUSLOGIC-002}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & Section~\ref{exposed_session_variables} and section~\ref{csrf} have already shown that copying the session cookie from BANK-APP allows the attacker to gain access to the logged in user. If the attacker is logged in, he/she can forge requests. Furthermore, there are no CSRF tokens. \\
+    \textbf{Discovery} & Section~\ref{exposed_session_variables} and section~\ref{csrf} describe the discovery of the vulnerability. \\
+    \textbf{Likelihood} & Refer to sections~\ref{exposed_session_variables} and \ref{csrf}. \\
+    \textbf{Impact} & Refer to sections~\ref{exposed_session_variables} and \ref{csrf}. \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Section~\ref{csrf} has already shown that no CSRF tokens are used and therefore forging requests are possible. \\
+    \textbf{Discovery} & Section~\ref{csrf} describe the discovery of the vulnerability. \\
+    \textbf{Likelihood} & Refer to section~\ref{csrf}. \\
+    \textbf{Impact} & Refer to section~\ref{csrf}. \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{tabular*}
+
+\subsubsection{Comparison}
+Although with both bank applications forging requests is possible, the risk with BANK-APP is higher since two vulnerabilities lead to the ability to forge requests, whereas SecureBank only has one.
+\clearpage

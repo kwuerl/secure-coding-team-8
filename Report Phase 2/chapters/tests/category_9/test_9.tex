@@ -1,0 +1,75 @@
+\subsection{Test Upload of Malicious Files - OTG-BUSLOGIC-009}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It was found that the application does not restrict the type of file that is uploaded. This has further been analyzed in section \ref{OTG-BUSLOGIC-008}. In addition to this, there is no restriction on file names and this can be exploited for shell command injections.
+    \\\\
+    \textbf{Discovery} &
+        No tools were used to discover this vulnerability. A manual testing was conducted by changing the file names to inject shell commands.
+        \begin{itemize}
+        \item Example:
+                Name a file as "test;touch myfile.txt;.txt".
+                When this file is uploaded, transaction fails as indicated by the error message and also confirmed in the Transaction history. However, shell command injection is successful which can be observed by verifying that a file with the name myfile.txt is created in
+                \code{http://xxx.xxx.xxx.xxx/secure-coding/app/}.
+                This URL was revealed in the Directory traversal of the application and we verified that this is target directory for the uploaded files.
+        \end{itemize}
+    \\\\
+    \textbf{Likelihood} &
+	File names can be easily manipulated without the use of any tools which makes this vulnerability easy to be exploited.
+    \\\\
+    \textbf{Impact} &
+       With this attack, any command can be executed which may be harmful for the system hosting the application. Severe actions like directory deletion, root operations etc. can be performed and may lead to Denial of Service attacks.
+    \\\\
+    \textbf{CVSS} &
+      \begin{tabular}{| l | l |}
+      \hline
+      Attack Vector		& \textit{Network}\\
+      \hline
+      Attack Complexity	& \textit{Low} \\
+      \hline
+      Privileges Required & \textit{None} \\
+      \hline
+      User Interaction	& \textit{None} \\
+      \hline
+      Scope		& \textit{Changed} \\
+      \hline
+      Confidentiality	& \textit{Low} \\
+      \hline
+      Integrity		& \textit{Low} \\
+      \hline
+      Availability		& \textit{High} \\
+      \hline
+      \end{tabular}
+    \\\\
+    \textbf{Recommendations} &
+    File names passed to the shell need to be validated and sanitized before command execution so as to avoid such attacks. In this case, we could remove unwanted characters from the file (such as ; or ||). This would prevent command piping which creates a leverage for such attacks.\\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+      It was observed that the application restricts upload of files to text type only. Additionally, file names are sanitized and the above vulnerability was not discovered.
+    \\\\
+    \textbf{Discovery} &
+     The above mentioned steps were replicated but found that shell injection was not successful and there was no creation of the attempted file "myfile.txt".
+    \\\\
+    \textbf{Likelihood} &
+        N/A
+    \\\\
+    \textbf{Impact} &
+        N/A
+    \\\\
+    \textbf{CVSS} &
+        N/A
+    \\\\
+    \textbf{Recommendations} &
+     N/A\\
+     \hline
+\end{longtable*}
+\clearpage

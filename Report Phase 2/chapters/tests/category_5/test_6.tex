@@ -1,0 +1,80 @@
+\subsection{Testing for logout functionality - OTG-SESS-006}
+\subsubsection{BANK-APP}
+\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & 
+    	Logout functionality requirements:
+    	 \begin{itemize}
+		  \item \textbf{Testing for log out user interface:} A logout button is clearly visible at the top right corner of the app
+		  \item \textbf{Testing for server-side session termination:} The Session is not terminated on server and client side but continued. It seems only the variable that stores the user is reseted.
+		  \item \textbf{Testing for session timeout:} The Session is terminated by PHP after the standart value of 1440s inactivity.
+		\end{itemize}
+    \\
+    \textbf{Discovery} & 
+    	Test of the logout functionality requirements:
+    	\begin{itemize}
+		  \item \textbf{Testing for server-side session termination:} After Logout the PHPSESSID cookie remains unchanged in the Chrome resource inspector.
+		  \item \textbf{Testing for session timeout:} See OTG-SESS-007
+		\end{itemize}
+    \\
+    \textbf{Likelihood} & 
+    	The fact that the session is not cleared properly makes the application more vulnerable to session hijacking atacks.
+    \\
+    \textbf{Impact} & 
+    	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
+    \\
+    \textbf{CVSS} & 
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular} \\
+   	\hline
+\end{longtable*}
+
+\subsubsection{SecureBank}
+\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    	Logout functionality requirements:
+    	 \begin{itemize}
+		  \item \textbf{Testing for log out user interface:} The logout button can be reached after using the context menu in the top right corner.
+		  \item \textbf{Testing for server-side session termination:} The Session is not terminated on server and client side but continued. It seems only the variable that stores the user is reseted.
+		  \item \textbf{Testing for session timeout:} The Session is automatically terminated by PHP after the standart value of 1440s inactivity.
+		\end{itemize}
+    \\
+    \textbf{Discovery} & 
+    	Test of the logout functionality requirements:
+       	\begin{itemize}
+		  \item \textbf{Testing for server-side session termination:} After Logout the PHPSESSID cookie remains unchanged in the Chrome resource inspector.
+		  \item \textbf{Testing for session timeout:} See OTG-SESS-007
+		\end{itemize}
+		\\
+     \textbf{Likelihood} & 
+    	The fact that the session is not cleared properly makes the application more vulnerable to session hijacking atacks.
+    \\
+    \textbf{Impact} & 
+    	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
+    \\
+    \textbf{CVSS} & 
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular} \\
+   	\hline
+\end{longtable*}
+
+\subsubsection{Comparison}
+how and why is your app better/worse
+\clearpage

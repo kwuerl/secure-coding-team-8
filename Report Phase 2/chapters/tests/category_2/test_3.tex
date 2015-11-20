@@ -1,0 +1,95 @@
+\subsection{Test Account Provisioning Process - OTG-IDENT-003} \label{OTG-IDENT-003}
+
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+     A customer can approve or reject pending registrations from other customers and employees. This operation is authorized to be performed only by employees, but it has been exposed to all logged-in users. 
+    \\\\
+    \textbf{Discovery} &
+       This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability.Steps are as follows:
+       \begin{itemize}
+       \item  Login as a Customer and enter the URL -  \textit{"<IP-address>/secure-coding/public/view\_users.php"}. The details of all registered users are shown. 
+       
+       \item Note the ID (value in the first column - \#) of one of the users whose registration is pending. This can be identified by any rows that do not have values in "Account ID" and "Approved By" columns.Consider this value is xyz.
+       
+       \item  Configure the browser to use BURP Suite as the proxy. Open Burp Suite and navigate to the Proxy tab.
+       
+       \item In the Intercept tab, click on "intercept is off" to turn it on.
+       
+       \item In the browser, enter the URL :
+              \textit{"<IP-address>/secure-coding/public/view\_user.php?id=xyz"}.
+       
+       \item Go back to Burp and in the Options tab, check the option "intercept if" for client requests. Move the "HTTP method" to the top by clicking on the "Up" button. Modify it to match (get|post).
+       
+       \item Navigate back to the Intercept tab. The Request details are visible in the "raw" tab in the below format. Edit the method at the beginning of the request from "GET" to "POST".
+       
+       \item In the "params" tab, click on "new" button and add the following parameters.
+       \end{itemize}
+       
+       \begin{tabular}{l | l}
+       Type		& body \\
+       Name		& userid \\
+       Value 		& xyz
+       \end{tabular}
+       \begin{tabular}{l | l}
+       Type		& body \\
+       Name		& accept \\
+       Value 		&
+       \end{tabular}
+    \\\\
+    \textbf{Likelihood} &
+        Likelihood is low.
+        The attacker does need to have knowledge about proxy or interception tools such as Burp to exploit this vulnerability. However, any user who is logged in to the bank can perform this action, without the need for any other privileges.
+    \\\\
+    \textbf{Impact} &
+        A customer can approve or reject registration requests from all other customers and employees. Since rejection also removes the user from the database, there will be no trace of such a registration in the system. So it will be difficult for the actual employees or administrators to track down such actions.
+    \\\\
+    \textbf{CVSS} &
+      \begin{tabular}{| l | l |}
+      \hline
+      Attack Vector		& \textit{Network}\\
+      \hline
+      Attack Complexity	& \textit{High} \\
+      \hline
+      Privileges Required & \textit{Low} \\
+      \hline
+      User Interaction	& \textit{None} \\
+      \hline
+      Scope		& \textit{Changed} \\
+      \hline
+      Confidentiality	& \textit{Low} \\
+      \hline
+      Integrity		& \textit{High} \\
+      \hline
+      Availability		& \textit{Noe} \\
+      \hline
+      \end{tabular}
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+       A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employee in our application and is not exposed to other users. 
+    \\\\
+    \textbf{Discovery} &
+    In our application, the list of all users is not available for customers and is accessible only by authorized employees. Hence, it is difficult to get the details of unregistered users. In addition, approval and rejection of users is restricted to be performed by authorized employees only. So, even if the attacker manages to send a request for approval/rejection, it will not be successful. Thus our application is more secure, in this aspect.
+    \\\\
+    \textbf{Likelihood} &
+        N/A
+    \\\\
+    \textbf{Impact} &
+        N/A
+    \\\\
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable*}
+\clearpage

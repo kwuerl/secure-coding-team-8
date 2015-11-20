@@ -1,0 +1,24 @@
+\subsection{Test HTTP Strict Transport Security - OTG-CONFIG-007}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+	& \textbf{BANK-APP} \\ \hline
+	\textbf{Observation} & BANK-APP does not use HTTPS and therefore does not implement HSTS. \\
+	\textbf{Discovery} & Accessing the site with \code{https://IP\_ADDRESS/secure-coding/\allowbreak public/login.php} gives a SSL connection error, i.e. that the site does not use HTTPS. Furthermore, using the command \code{curl -s -D- http://\allowbreak IP\_ADDRESS/\allowbreak secure-\allowbreak coding/\allowbreak public/ | grep Strict} did not yield any results and therefore the header for \code{Strict-Transport-Security} is not set. \\
+	\textbf{Likelihood} & N/A \\
+	\textbf{Impact} & N/A \\
+	\textbf{CVSS} & N/A
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & SecureBank does not use HTTPS and therefore does not implement HSTS. \\
+    \textbf{Discovery} & Accessing the site with \code{https://IP\_ADDRESS/secure-coding/\allowbreak public/login.php} gives a SSL connection error, i.e. that the site does not use HTTPS. Furthermore, using the command \code{curl -s -D- http://\allowbreak IP\_ADDRESS/\allowbreak secure-\allowbreak coding/\allowbreak public/ | grep Strict} did not yield any results and therefore the header for \code{Strict-Transport-Security} is not set. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{CVSS} & N/A
+\end{tabular*}
+
+\subsubsection{Comparison}
+In comparison both banks should use HTTPS for a secure communication. If using HTTPS, the HSTS header for \code{Strict-Transport-Security} has to be set to \code{max-age=\allowbreak 60000; includeSubDomains}.
+\clearpage
