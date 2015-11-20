@@ -1,2 +1,71 @@
 \subsection{Test Number of Times a Function Can be Used Limits - OTG-BUSLOGIC-005}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & 
+    	The Transaction functionality could only be used 100 times. After that all TANs are used and no new tans are supplied.\newline
+    	Users can be denied even if they where approved before and otherwise. Emails are also resent.
+    	Transactions can be approved more than once resulting in repeated transfer of money.
+    \\
+    \textbf{Discovery} & 
+    	We wrote a custom script to determine the behaviour of the transaction functionality.
+    	\begin{lstlisting}
+    	bomb_transaction.sh tans.txt \
+    	[sessionid] [recipient] [amount]
+    	\end{lstlisting}
+    	\code{tans.txt} contains a list of newline seperated tans.\newline
+    	For approve/deny user vulnerability see OTG-AUTHZ-003. \newline
+    	For approve/deny transaction vulnerability we could simply hit the refresh button in the browser after approving a transaction.
+    \\
+    \textbf{Likelihood} & 
+    	The approve/deny user functionality can be atacked relatively easy via forced browsing.
+    	The approve/deny transaction functionality can be abused by simply hitting the refresh button repeatedly.
+    \\
+    \textbf{Impact} & 
+    	Atackers can use OTG-AUTHZ-003 and this vulnerability to get themselves an infinite amount of transaction codes.
+    	Atackers can also use the approve transaction functionality multiple times to transfer more money than intended by the sender.
+    \\
+    \textbf{CVSS} &
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network}/\textcolor{Maroon}{Adjacent Network}/\textcolor{BurntOrange}{Local}/\textcolor{Green}{Physical} \\
+            Attack Complexity       & \textcolor{red}{Low}/\textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None}/\textcolor{Green}{R} \\
+            Scope                   & \textcolor{red}{Unchanged}/\textcolor{Green}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}/\textcolor{BurntOrange}{Low}/\textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    The Transaction functionality could only be used 100 times. After that all TANs are used and no new tans are supplied.
+    User approval and transaction approvel could not be repeated.
+    \\
+    \textbf{Discovery} & 
+    	We used an adaption of similar custom script to determine the behaviour of the transaction functionality.
+    	\begin{lstlisting}
+    	bomb_transaction2.sh tans.txt
+    	\end{lstlisting}
+    	\code{tans.txt} contains a list of newline seperated tans.\newline
+    	The Approve/Deny was tested by exporting the request as curl command with Google Chrome Developer Tools and then removing the session header as well as modifying the user id in the form and in the query string to the desired value.
+    \\
+    \textbf{Likelihood} &
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{CVSS} &
+    	N/A
+    \\ \hline
+\end{tabular*}
+
+\subsubsection{Comparison}
+how and why is your app better/worse
+\clearpage
 \clearpage

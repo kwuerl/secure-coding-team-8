@@ -7,23 +7,36 @@
     \textbf{Observation} &
         We where able to perform the following actions without originally having the permission to do so: \newline
         \textbf{Anyone}\newline
-        Please refer to TODO\newline
-        \textbf{Customer}\newline
-        \begin{itemize}
-		  \item Approve/Deny other users and employees
-		  \item List all users
-		  \item View single (other) user
-		  \item View single (other) transaction
-		\end{itemize}
+            Please also refer to OTG-AUTHN-004\newline
+            \begin{itemize}
+            \item Create Transaction
+              \item List all users
+              \item View all transactions
+              \item View single User
+              \item View single Transaction
+    		  \item Approve/Deny other users and employees (this also work multiple times, e.g. you can accept a user that was denied before)
+    		\end{itemize}
     \\\\
     \textbf{Discovery} &
-        
+        Please also refer to OTG-AUTHN-004\newline
+        The Approve/Deny vulnerability was tested by exporting the request as curl command with Google Chrome Developer Tools and then removing the session header as well as modifying the user id in the form and in the query string to the desired value.\newline
+        Example:\newline
+        \begin{lstlisting}
+        curl 'http://<ip>/secure-coding/public/
+            view_user.php?id=14' 
+            -H 'Content-Type: application/x-www-form-urlencoded' 
+            -H 'Connection: keep-alive' 
+            --data 'userid=14&approve=' 
+            --compressed
+        \end{lstlisting}
+        (remove the newline characters before testing)
     \\\\
     \textbf{Likelihood} &
-        
+        Please also refer to OTG-AUTHN-004\newline
+        An atacker only has to know the \code{view_user.php} endpoint and the right form parameters to start an atack.
     \\\\
     \textbf{Impact} &
-       
+        An atacker can register and login without being approved by an admin.
     \\\\
     \textbf{CVSS} &
         
@@ -36,19 +49,19 @@
     & \textbf{SecureBank} \\ 
     \hline
     \textbf{Observation} &
-       
+       We could not detect any possibilities of privilege escalation.
     \\\\
     \textbf{Discovery} &
-       
+       We manually checked all GET & POST endpoints found by the ZAP spider functionality using either no or an active customer session but could not detect any vulnerabilities.
     \\\\
     \textbf{Likelihood} &
-       
+       N/A
     \\\\
     \textbf{Impact} &
-        
+        N/A
     \\\\
     \textbf{CVSS} &
-        
+        N/A
     \\
     \hline
 \end{longtable*}
