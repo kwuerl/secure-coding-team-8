@@ -18,6 +18,7 @@
 	       
 	       \item Edit the id at the end to any other number.If a transaction with that id exists, then the complete details are displayed, thus revealing the Account IDs of the sender \& recipient, TAN numbers etc. 
        \end{itemize}
+       A test for this vulnerability was also performed in the User page by editing the URL \textit{"<IP-address>/secure-coding/public/view\_user.php?id=5"} and no vulnerability has been found.
     \\\\
     \textbf{Likelihood} &
         Likelihood is high.
@@ -56,8 +57,8 @@
     & \textbf{SecureBank} \\
     \hline
     \textbf{Observation} &
-       In our application, there is no URL to view a specific transaction. All transactions of a customer are visible in Transaction history under the static URL :
-       \textit{"<IP>/transaction\_history"} that does not contain a parameter. Hence there is no possibility of modifying the URL, thus making our application more secure, in this aspect.
+       In the application, there is no URL to view a specific transaction. All transactions of a customer are visible in Transaction history under the static URL:
+       \textit{"<IP>/transaction\_history"} that does not contain a parameter. Hence there is no possibility of modifying the URL, thus making the application more secure, in this aspect.
     \\\\
     \textbf{Discovery} &
    		N/A
