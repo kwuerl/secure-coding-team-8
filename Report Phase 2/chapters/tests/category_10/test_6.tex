@@ -1,40 +1,80 @@
 \subsection{Testing for Client Side Resource Manipulation - OTG-CLIENT-006}
 
-\subsubsection{Observation}
-It has been noted that injection points required for resource manipulation by the user were found. But these were found to be not vulnerable to attack owing to their proper usage in the application.
-
-\subsubsection{Discovery}
-Firebug tool of the Firefox browser was used to identify the different injection points.\\
-The Injection points present in the application are :\\
-\begin{tabular}{l | l | l}
-Link & a  & href \\
-CSS & Link	& href \\
-Script & script & src \\
-\end{tabular}
-\\\\However, these tags pointed to static resources and are hence not based on user-input.
-The URL parameters visible in the Transaction and User pages (i.e., /view\_transaction.php?id=xxx and /view\_user.php?id=xxx) are only being used in queries for retrieval of data from the database and not as targets of any resources.
-
-\subsubsection{Likelihood}
-An understanding of the resources being used from the client side is needed, and this requires inspection of code in the browser. Hence likelihood can be considered as low.
-
-\subsubsection{Impact}
-Mis-use of resources from the attacker could lead to compromise of sensitive data or even Denial Of Service (DOS) attacks. Hence the impact of such attacks are high.
-
-\subsubsection{CVSS}
-\begin{tabular}{l | l}
-Attack Vector		& Network \\
-Attack Complexity	& High \\
-Privileges Required & None \\
-User Interaction	& None \\
-Scope				& Changed \\
-Confidentiality		& High \\
-Integrity			& High \\
-Availability		& High
-\end{tabular}
-
-\subsubsection{Comparison with our application}
-Same behavior is observed in our application.
-
-\subsubsection{Recommendation}
-NA
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.75\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It has been noted that injection points required for resource manipulation by the user were found. But these were found to be not vulnerable to attack owing to their proper usage in the application.
+    \\\\
+    \textbf{Discovery} &
+        Firebug tool of the Firefox browser was used to identify the different injection points.The Injection points present in the application are :
+        \begin{tabular}{l | l | l}
+        Link & a  & href \\
+        CSS & Link	& href \\
+        Script & script & src \\
+        \end{tabular}
+        However, these tags pointed to static resources and are hence not based on user-input.
+        The URL parameters visible in the Transaction and User pages (i.e., /view\_transaction.php?id=xxx and /view\_user.php?id=xxx) are only being used in queries for retrieval of data from the database and not as targets of any resources.           
+    \\\\
+     \textbf{Likelihood} &
+     An understanding of the resources being used from the client side is needed, and this requires inspection of code in the browser. Hence likelihood can be considered as low.
+     \\\\
+    \textbf{Impact} &
+        Mis-use of resources from the attacker could lead to compromise of sensitive data or even Denial Of Service (DOS) attacks. Hence the impact of such attacks are high.
+    \\\\
+    \textbf{CVSS} &
+       \begin{tabular}{| l | l |}
+             \hline
+             Attack Vector		& \textit{Network}\\
+             \hline
+             Attack Complexity	& \textit{High} \\
+             \hline
+             Privileges Required & \textit{None} \\
+             \hline
+             User Interaction	& \textit{None} \\
+             \hline
+             Scope		& \textit{Changed} \\
+             \hline
+             Confidentiality	& \textit{High} \\
+             \hline
+             Integrity		& \textit{High} \\
+             \hline
+             Availability		& \textit{High} \\
+             \hline
+             \end{tabular}
+           \\
+    \\\\
+    \textbf{Recommendations} &
+       NA
+    \\
+    \hline
+\end{longtable*}
+\clearpage
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.75\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        The same behavior is depicted in the application since none of the possible injection points mentioned above have their attributes coming from user input.
+    \\\\
+    \textbf{Discovery} &
+    	Same as described for BANK-APP.
+    \\\\
+    \textbf{Likelihood} &
+        N/A
+    \\\\
+    \textbf{Impact} &
+		N/A
+    \\\\
+    \textbf{CVSS} &
+		Same as described for BANK-APP.
+    \\\\
+    \textbf{Recommendations} &
+    	N/A
+    \\
+    \hline
+\end{longtable*}
 \clearpage

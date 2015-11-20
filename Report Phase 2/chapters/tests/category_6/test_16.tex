@@ -1,2 +1,24 @@
 \subsection{Testing for HTTP Splitting/Smuggling - OTG-INPVAL-016}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & The application does not use the \code{Location} header with GET parameters. \\
+    \textbf{Discovery} & With ZAP all HTTP headers were examined. The results showed that no \code{Location} header was used in conjunction with GET parameters. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{CVSS} & N/A \\ \hline
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & The application does not use the \code{Location} header with GET parameters. \\
+    \textbf{Discovery} & With ZAP all HTTP headers were examined. The results showed that no \code{Location} header was used in conjunction with GET parameters. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{CVSS} & N/A \\ \hline
+\end{tabular*}
+
+\subsubsection{Comparison}
+Both applications do not use 302 requests with the \code{Location} header in conjunction with GET parameters. Therefore HTTP splitting/smuggling is not possible.
 \clearpage
