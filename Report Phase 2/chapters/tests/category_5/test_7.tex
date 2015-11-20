@@ -1,2 +1,50 @@
 \subsection{Test Session Timeout - OTG-SESS-007}
+\subsubsection{BANK-APP}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & 
+    	The Session is terminated by PHP after the standart value of 1440s inactivity.
+    \\
+    \textbf{Discovery} & 
+    	We guessed that the Session timeout was not changed and tried if the session was still active after 23 and 25 minutes.
+    	The results lead to the conclusion that the Session is automatically terminated by PHP after the standart value of 1440s inactivity.
+    	No timeout value is specified in the cookie.
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{CVSS} & 
+        N/A
+    \\
+   	\hline
+\end{tabular*}
+
+\subsubsection{SecureBank}
+\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    	The Session is terminated by PHP after the standart value of 1440s inactivity.
+    \\
+    \textbf{Discovery} & 
+    	We guessed that the Session timeout was not changed and tried if the session was still active after 23 and 25 minutes.
+    	The results lead to the conclusion that the Session is automatically terminated by PHP after the standart value of 1440s inactivity.
+    	No timeout value is specified in the cookie.
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{CVSS} & 
+        N/A
+    \\
+   	\hline
+\end{tabular*}
+
+\subsubsection{Comparison}
+The results where equal.
 \clearpage
