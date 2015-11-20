@@ -31,5 +31,22 @@
 \end{tabular*}
 
 \subsubsection{Comparison}
-Since simply specifying another transaction ID in the GET parameter in BANK-APP can reveal transactions, which do not belong to the user account, it is a high confidentiality breach. SecureBank is immune regarding HTTP parameter pollution.
+Since simply specifying another transaction ID in the GET parameter in BANK-APP can reveal transactions, which do not belong to the user account, it is a high confidentiality breach. SecureBank is immune regarding HTTP parameter pollution. Figure~\ref{fig:trans_pollut} shows an example for gaining access to a transaction which does not belong to the client.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/OTG-INPVAL-004_1.png}
+		\caption{Client transaction overview}
+	\end{subfigure}
+	\begin{subfigure}{.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/OTG-INPVAL-004_2.png}
+		\caption{Transaction with ID 17, which was not visible in transaction overview}
+	\end{subfigure}
+	\caption{BANK-APP HTTP parameter pollution: client can view transaction, which does not belong to his/her account}
+	\label{fig:trans_pollut}
+\end{figure}
+
 \clearpage
