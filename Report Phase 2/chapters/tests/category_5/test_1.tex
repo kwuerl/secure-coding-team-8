@@ -1,2 +1,60 @@
 \subsection{Testing for Bypassing Session Management Schema - OTG-SESS-001}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+     Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie.
+    \\\\
+    \textbf{Discovery} &
+       We used EditThisCookie extension of Chrome to look into the cookies present in the application. Steps are as follows:
+       \begin{itemize}
+       	\item Go to the login page of the application. Check the cookies with the extension, which shows that there is no cookie.
+       	
+       	\item Login with valid credentials. Upon checking the cookies now, a cookie PHPSESSID can be seen with some value.
+       	
+       	\item The cookie remains persistent throughout the application,. If the application is not idle the cookie remains set, otherwise the user is logged out using cookie "expires" attribute.
+       \end{itemize}
+       
+       No other cookie is generated throughout the application. The cookie is set to HostOnly, Session and Secure; HttpOnly is not set. Since the cookie is not set to HttpOnly, it can be modified from client side(via Javascript). Hence session hijacking can be done. For details refer the Discovery subsection of section \ref{OTG-SESS-003}.
+    \\\\
+    \textbf{Likelihood} &
+        Likelihood is high since cookie manipulation can easily be done.
+    \\\\
+    \textbf{Impact} &
+      Impact of this attack is high since session hijacking would lead to Denial of Service Attack, data compromise(illegal transactions).
+    \\\\
+    \textbf{CVSS} &
+       N/A
+    \\\\
+    \textbf{Recommendations} &
+      Cookie should be set to HttpOnly as it would restrict manipulations from client side. Cookies should be used over encrypted channel (HTTPS) so as to prevent data compromise.\\
+    	\hline
+\end{longtable*}
+
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+      Same as described for BANK-APP, with the only difference that the cookie attribute is also set to HttpOnly. Hence it restricts client side manipulations of the cookie. But the cookie attribute is not set to secure as we are not using https. 
+    \\\\
+    \textbf{Discovery} &
+      Same as described for BANK-APP , but session hijacking is not possible since cookie cannot be manipulated through client side.
+    \\\\
+    \textbf{Likelihood} &
+        N/A
+    \\\\
+    \textbf{Impact} &
+        N/A
+    \\\\
+    \textbf{CVSS} &
+        N/A
+    \\\\
+    \textbf{Recommendations} &
+     N/A\\
+     \hline
+\end{longtable*}
 \clearpage
