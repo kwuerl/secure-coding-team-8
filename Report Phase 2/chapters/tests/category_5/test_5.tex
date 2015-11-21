@@ -1,13 +1,13 @@
 \subsection{Testing for Cross Site Request Forgery - OTG-SESS-005}\label{csrf}
 \subsubsection{BANK-APP}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & No CSRF tokens were used for HTML forms. \\
     \textbf{Discovery} & Using the developer tools of Chrome or Firefox the HTML forms were examined. The results showed that no CSRF tokens were used. \\
     \textbf{Likelihood} & The hacker needs to know the structure of a request and has to find a way to make the user use the fake request. \\
     \textbf{Impact} & The attacker could force the user to execute the requests on the user account. \\
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
@@ -18,17 +18,17 @@
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{SecureBank}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & No CSRF tokens were used for HTML forms. \\
     \textbf{Discovery} & Using the developer tools of Chrome or Firefox the HTML forms were examined. The results showed that no CSRF tokens were used. \\
     \textbf{Likelihood} & The hacker needs to know the structure of a request and has to find a way to make the user use the fake request. \\
     \textbf{Impact} & The attacker could force the user to execute the requests on the user account. \\
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
@@ -39,7 +39,7 @@
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{Comparison}
 Both bank applications do not use any mechanisms against CSRF and are therefore both vulnerable to CSRF.
