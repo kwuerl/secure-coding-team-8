@@ -5,23 +5,24 @@
     & \textbf{BANK-APP} \\
     \hline
     \textbf{Observation} &
-      It was found that the application does not restrict the type of file that is uploaded. This has further been analyzed in section \ref{OTG-BUSLOGIC-008}. In addition to this, there is no restriction on file names and this can be exploited for shell command injections.
+      Though the application restricts the user from uploading files other than text, but it has no restriction on filenames which can be exploited for shell command injections.
     \\\\
     \textbf{Discovery} &
-        No tools were used to discover this vulnerability. A manual testing was conducted by changing the file names to inject shell commands.
+        No tools were used to discover this vulnerability. We manually changed the filename to inject shell commands.
         \begin{itemize}
-        \item Example:
-                Name a file as "test;touch myfile.txt;.txt".
-                When this file is uploaded, transaction fails as indicated by the error message and also confirmed in the Transaction history. However, shell command injection is successful which can be observed by verifying that a file with the name myfile.txt is created in
-                \code{http://xxx.xxx.xxx.xxx/secure-coding/app/}.
-                This URL was revealed in the Directory traversal of the application and we verified that this is target directory for the uploaded files.
-        \end{itemize}
+        \item Steps:
+                1. Name a file as "test;touch myfile.txt;.txt".
+                2. Login as a customer and go to the "New Transaction" interface. When above file is uploaded, transaction fails.
+                However, shell command injection is successful which can be observed by verifying the creation of a file with the same name under
+                \code{http://xxx.xxx.xxx.xxx/secure-coding/app/}. 
+                Our command "touch myfile.txt" has created an empty text file called "myfile.txt".
+        \end{itemize}        
     \\\\
     \textbf{Likelihood} &
-	File names can be easily manipulated without the use of any tools which makes this vulnerability easy to be exploited.
+        Filenames can be easily manipulated without the use of any tools which makes this vulnerability easy to be exploited.
     \\\\
     \textbf{Impact} &
-       With this attack, any command can be executed which may be harmful for the system hosting the application. Severe actions like directory deletion, root operations etc. can be performed and may lead to Denial of Service attacks.
+       With this attack, any command can be executed which may be harmful for the system hosting the application. Directories can be deleted which may lead to Denial Of Service attack.
     \\\\
     \textbf{CVSS} &
       \begin{tabular}{| l | l |}
@@ -45,8 +46,8 @@
       \end{tabular}
     \\\\
     \textbf{Recommendations} &
-    File names passed to the shell need to be validated and sanitized before command execution so as to avoid such attacks. In this case, we could remove unwanted characters from the file (such as ; or ||). This would prevent command piping which creates a leverage for such attacks.\\
-    \hline
+    	Filenames should be validated before the execution of shell commands to avoid such attacks. In this case, we could remove unwanted characters from the file name (such as ; or ||). This would prevent command piping which creates a leverage for such attacks.\\
+    	\hline
 \end{longtable*}
 \paragraph{SecureBank} \mbox{}
 \begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
@@ -54,10 +55,10 @@
     & \textbf{SecureBank} \\
     \hline
     \textbf{Observation} &
-      It was observed that the application restricts upload of files to text type only. Additionally, file names are sanitized and the above vulnerability was not discovered.
+      In the application we observed that upload of malicious files is not possible since file names are sanitized. Also, upload is restricted to files of plain text only.
     \\\\
     \textbf{Discovery} &
-     The above mentioned steps were replicated but found that shell injection was not successful and there was no creation of the attempted file "myfile.txt".
+     Same steps as described above were followed but shell injection was not successful and the file "myfile.txt" was not created.
     \\\\
     \textbf{Likelihood} &
         N/A
@@ -70,6 +71,6 @@
     \\\\
     \textbf{Recommendations} &
      N/A\\
-     \hline
+     \hline	
 \end{longtable*}
 \clearpage
