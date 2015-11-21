@@ -9,7 +9,8 @@
     \\\\
     \textbf{Discovery} &
         Though a Javascript code snippet was written to test for CORS support, we were not able to simulate cross site requests directly. Following is the code: 
-        Hence we used test-cors.org site to make a request to the application and it failed with the error that the header "Access-Control-Allow-Origin" was missing. The header should have been set to * or some domain in order to serve cross domain requests.               
+        Hence we used test-cors.org site to make a request to the application and it failed with the error that the header "Access-Control-Allow-Origin" was missing. See Figure \ref{fig:test_cors}.
+        The header should have been set to * or some domain in order to serve cross domain requests.               
     \\\\
      \textbf{Likelihood} &
      NA
@@ -44,6 +45,14 @@
     \\
     \hline
 \end{longtable*}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-CLIENT-007.png}
+		\caption{Test for Cross Origin Resource Sharing}
+	\label{fig:test_cors}
+\end{figure}
+
 \clearpage
 \paragraph{SecureBank} \mbox{}
 \begin{longtable*}{p{.20\textwidth} | p{.75\textwidth}}

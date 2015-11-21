@@ -15,7 +15,7 @@
        		\begin{itemize}
        			\item Click on the Scan tab and enter the URL to be tested. In our case, it was "\textit{http://<IP-address>/secure-coding/public/login.php}".
        			
-       			\item Click on the Finish button. A report is generated which has three sections - High, Low, Info. This vulnerability is termed as "Clear Password over HTTP" and falls under the High section.
+       			\item Click on the Finish button. A report is generated which has three sections - High, Low, Info. This vulnerability is termed as "Clear Password over HTTP" and falls under the High section. See Figure \ref{fig:password_over_http}
        		\end{itemize}
        	\item After detection, one more tool-the Burp Suite was used to delve deeper into it.\underline{\textbf{Burp Suite}}
        		\begin{itemize}
@@ -30,11 +30,11 @@
        	\item To verify whether the application works on HTTP or HTTPS, cURL was used. \underline{\textbf{cURL}}
        		\begin{itemize}
        		  \item Open the terminal and type curl https://<IP-address>.
-       		         The response states unknown protocol.
+       		         The response states unknown protocol. 
        		 \item  To get a detailed response, use curl --verbose https://<IP-address>.
        		 
        		 \item Now try with curl http://<IP-address>.
-       		        The response indicates a successful connection and the output of the request.
+       		        The response indicates a successful connection and the output of the request. See Figure \ref{fig:curl_https}.
        		        It can be concluded that the application works only on HTTP and does not support transmission over HTTPS.
        		\end{itemize}
        \end{itemize} 
@@ -69,6 +69,20 @@
     \\
     \hline
 \end{longtable*}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-AUTHN-001_1.png}
+		\caption{Vega Report-Clear password over HTTP}
+	\label{fig:password_over_http}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-AUTHN-001_2.png}
+		\caption{cURL - Check for HTTPS}
+	\label{fig:curl_https}
+\end{figure}
+
 \paragraph{SecureBank} \mbox{}
 \begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
     \hline
