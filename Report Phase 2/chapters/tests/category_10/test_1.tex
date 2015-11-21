@@ -1,2 +1,53 @@
 \subsection{Testing for DOM based Cross Site Scripting - OTG-CLIENT-001}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      DOM based XSS uses the DOM present in the source as injection points. We tried to manipulate URLs to explore this vulnerability. However, criticality was detected.
+    \\\\
+    \textbf{Discovery} &
+        No tools were needed to discover this vulnerability. The URLs need to be modified and parameters set to some script tag. But the response from the server did not reflect changes based on script tag. Steps are as follows:
+        \begin{itemize}
+        \item  Go to the view transactions URL \code{http://xxx.xxx.xxx.xxx/secure-coding/public/view\_transactions.php}
+        
+        \item Append \code{\#<script>alert('hi')</script>} after the URL. After refreshing this page with this value, no change can be observed. Hence we can conclude that DOM based XSS is not found.
+        \end{itemize}
+    \\\\
+    \textbf{Impact} &
+        N/A
+    \\\\
+    \textbf{CVSS} &
+       N/A
+    \\\\
+    \textbf{Recommendations} &
+       N/A\\
+    \hline
+\end{longtable*}
+\clearpage
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        Same as described for BANK-APP.
+    \\\\
+    \textbf{Discovery} &
+    	Same as described for BANK-APP.
+    \\\\
+    \textbf{Likelihood} &
+       N/A
+    \\\\
+    \textbf{Impact} &
+       N/A
+    \\\\
+    \textbf{CVSS} &
+       N/A
+     \\\\
+     \textbf{Recommendations} &
+      N/A\\
+    \hline
+\end{longtable*}
 \clearpage
