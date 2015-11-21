@@ -1,3 +1,43 @@
 \chapter{Overview of most important observations}
+\section{Vulnerabilities of BANK-APP}
+\subsection{Weak Authorization Mechanism}
+All pages of the application can be accessed via direct browsing and ignoring redirects.\\
+The application processes POST data without authorization.\\
+There is the possibility to approve/disapprove arbitrary Customers and Employees (even if they where approved/disapproved before) without being logged in.\\
+There is the possibility to upload files without being logged in.\\
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-AUTHN-004, OTG-AUTHZ-003, OTG-BUSLOGIC-005
+\end{itemize}
+\subsection{Static Session ID}
+The Session ID remains the same even after Logout.
+This leads to a high likelihood for phishing atacks.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-SESS-006
+\end{itemize}
+\subsection{Command injection}
+There is the possibility to inject arbitrary shell commands while using the transaction upload functionality.
+This can lead to total controll over the Server.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-013, OTG-ERR-001
+\end{itemize}
+\section{Vulnerabilities of SecureBank}
+\subsection{Static Session ID}
+The Session ID remains the same even after Logout.
+This leads to a high likelihood for phishing atacks.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-SESS-006
+\end{itemize}
 overview of most important observations with impacts, likelihood and risk
 estimation. If necessary add a table with a legend for special symbols or abbreviations used in the document
