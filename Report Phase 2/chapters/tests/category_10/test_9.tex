@@ -1,6 +1,9 @@
 \subsection{Testing for Clickjacking - OTG-CLIENT-009}
+\subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 5.3 \progressbar[filledcolor=BurntOrange]{0.53}
+    \\ \hline
     \textbf{Observation} & Creating an HTML iframe with the bank application as source shows the website. Furthermore, the HTTP header option \code{X-Frame-Options} is not set. \\
     \textbf{Discovery} & Creating a simple HTML site with an iframe with the bank application URL as \code{src} showed the website in the iframe. Looking at the HTTP header with ZAP it can be seen that the option \code{X-Frame-Options} is not set. \\
     \textbf{Likelihood} & Testing whether a URL can be loaded within an iframe is not difficult. An attacker can easily create a malicious website with a hidden iframe. \\
@@ -22,7 +25,9 @@
 
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.75\linewidth} }\hline
-    & \textbf{SecureBank} \\ \hline
+    & \textbf{SecureBank}
+    \hfill CVSS Score: 5.3 \progressbar[filledcolor=BurntOrange]{0.53}
+    \\ \hline
     \textbf{Observation} & Creating an HTML iframe with the bank application as source shows the website. Furthermore, the HTTP header option \code{X-Frame-Options} is not set. \\
     \textbf{Discovery} & Creating a simple HTML site with an iframe with the bank application URL as \code{src} showed the website in the iframe. Looking at the HTTP header with ZAP it can be seen that the option \code{X-Frame-Options} is not set. \\
     \textbf{Likelihood} & Testing whether a URL can be loaded within an iframe is not difficult. An attacker can easily create a malicious website with a hidden iframe. \\
