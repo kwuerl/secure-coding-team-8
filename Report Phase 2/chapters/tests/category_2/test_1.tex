@@ -64,9 +64,19 @@ According to the specification the four roles should have the following permissi
     \textbf{Impact} &
     	The impact of the availability of customer functionality for employees includes the possibility of unsupervised transfers of large sums issued employees.
     	This increases the risk of money laundering.
+        Additionally there is the risk of employees bringing in unauthoirized persons with employee privileges without supervision.
     \\\\
     \textbf{CVSS} &
-    	N/A
+    	 \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{Green}{High} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
     \\
     \hline
 \end{longtable*}
@@ -114,4 +124,6 @@ According to the specification the four roles should have the following permissi
     \\
     \hline
 \end{longtable*}
+\subsubsection{Comparison}
+In comparison to BANK-APP SecureBank has a finer differenciation of roles for employee users as well es a complete seperation of employee and customer accounts. This leads to a limitation of the possibility to abuse given powers.
 \clearpage

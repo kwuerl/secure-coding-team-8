@@ -36,10 +36,22 @@
         An atacker only has to know the \code{view\_user.php} endpoint and the right form parameters to start an atack.
     \\\\
     \textbf{Impact} &
-        An atacker can register and login without being approved by an admin.
+        Please also refer to OTG-AUTHN-004\newline
+        An attacker can register and login as customer or employee without being approved by an employee.
+        This is the highest privilege escalation possible.
+        An attacker can lock out all users/employees.
     \\\\
     \textbf{CVSS} &
-        
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
     \\
     \hline
 \end{longtable*}
@@ -65,4 +77,7 @@
     \\
     \hline
 \end{longtable*}
+\subsubsection{Comparison}
+BANK-APP has a very weak authentification mechanism. An Atacker can become Employee without even being approved.
+With SecureBank this is implossible.
 \clearpage
