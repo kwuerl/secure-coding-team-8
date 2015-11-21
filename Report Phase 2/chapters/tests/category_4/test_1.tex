@@ -13,18 +13,17 @@
     \textbf{Discovery} & The command \code{nikto -h http://IP\_ADDRESS/secure-coding} lists information about the server and its vulnerabilities. It also lists paths for which directory indexing is activated. \\
     \textbf{Likelihood} & Accessing the directory listing does not require any extra skill. It can be directly accessed through the browser. \\
     \textbf{Impact} & Since there is a database dump with entries for an employee and a client account, a hacker only needs to bruteforce the password. Moreover, it is easier to inject SQL, if the database structure is known. With the directory listing in the \code{public} folder a hacker also knows all possible URLs. \\
-    \textbf{Recommen\-dations} & Disable directory listing for hiding sensitive information. \\
+    \textbf{Recommen\-dations} & Disable directory listing for hiding sensitive information. \\ \hline
     \textbf{CVSS} &
-        \setlength{\intextsep}{0cm}
-        \begin{tabular}[t]{ | l | l |}\hline
-            Attack Vector           & \textcolor{red}{Network} \\ \hline
-            Attack Complexity       & \textcolor{red}{Low} \\ \hline
-            Privileges Required     & \textcolor{red}{None} \\ \hline
-            User Interaction        & \textcolor{red}{None} \\ \hline
-            Scope                   & \textcolor{Green}{Unchanged} \\ \hline
-            Confidentiality Impact  & \textcolor{red}{High} \\ \hline
-            Integrity Impact        & \textcolor{Green}{None} \\ \hline
-            Availability Impact     & \textcolor{Green}{None} \\ \hline
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
 \end{longtable}

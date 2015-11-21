@@ -6,8 +6,9 @@
     \textbf{Discovery} & Using the developer tools of Chrome or Firefox the cookies set can be seen. Furthermore, with ZAP the traffic was scanned for session cookies and session variables. \\
     \textbf{Likelihood} & To read the cookies a hacker only needs to read out the HTTP headers. Executing the JavaScript code \code{document.cookie = "PHPSESSID\allowbreak =SESSION\_COOKIE\_VALUE"} in the browser while on the website sets the cookie. Manually accessing an URL, which usually only a logged in user can see, the hacker is now also logged in. \\
     \textbf{Impact} & Since copying the session cookie grants access to a logged in user there are many risks. \\
+    \textbf{Recommen\-dations} & Session cookies should only be valid for the current browser and IP address. \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}[t]{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
@@ -17,8 +18,7 @@
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
-    \\
-    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \\ \hline
 \end{longtable}
 
 \subsubsection{SecureBank}
@@ -28,8 +28,8 @@
     \textbf{Discovery} & Using the developer tools of Chrome or Firefox the cookies set can be seen. Furthermore, with ZAP the traffic was scanned for session cookies and session variables. \\
     \textbf{Likelihood} & N/A \\
     \textbf{Impact} & N/A \\
-    \textbf{CVSS} & N/A \\
     \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
 \end{longtable}
 
 \subsubsection{Comparison}
