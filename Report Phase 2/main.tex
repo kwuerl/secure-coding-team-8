@@ -8,10 +8,6 @@
 \input{settings/settings}
 \input{settings/commands}
 
-% TODO: remove if glossary not needed
-\input{glossary/terms}
-\input{glossary/acronyms}
-
 \begin{document}
 
 \frontmatter{}
@@ -29,16 +25,5 @@
 \input{chapters/tools}
 \input{chapters/tests}
 % TODO: add more chapters here
-
-\appendix{}
-
- % TODO: remove if glossary not needed
-\glsaddall{} % add all defined terms to glossary, even if not referenced in text
-\printglossaries{}
-
-\microtypesetup{protrusion=false}
-\listoftables{}
-\microtypesetup{protrusion=true}
-\printbibliography{}
 
 \end{document}
