@@ -1,50 +1,73 @@
 \subsection{Testing for HTTP Verb Tampering - OTG-INPVAL-003}
 
-\subsubsection{Observation}
-It was observed that Verb Tampering could be done with HTTP requests but no critical vulnerability was exposed with it.\\
-\\Methods that were allowed :\\
-1. GET \\
-2. POST \\
-3. PUT \\
-4. HEAD \\
-5. OPTIONS \\
-6. DELETE \\
-\\Methods that were rejected \\
-1. TRACE \\
-2. CONNECT \\
-\\With HEAD requests, there were no response data shown. In case of TRACE and CONNECT , the requests were rejected because of Same Origin Security restriction.
-
-
-\subsubsection{Discovery}
-Advanced Rest Client, an extension for the Google Chrome browser, was used to perform HTTP Verb Tampering.\\
-\\Steps: \\
-1. Open the extension in Chrome.\\
-2. Enter the URL to be tested.\\
-3. Then one select the type of request (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS). Based on the type of HTTP request other details can be filled.\\
-4. Click on the Send button.\\
-\\Response can be seen in the lower section which helps in determining the criticality of the tampering done.
-
-\subsubsection{Likelihood}
-The exploitation of this vulnerability requires knowledge of basic tools to modify the server requests and the likelihood is low.
-
-\subsubsection{Impact}
-NA
-
-\subsubsection{CVSS}
-\begin{tabular}{l | l}
-Attack Vector		& Network \\
-Attack Complexity	& Low \\
-Privileges Required & None \\
-User Interaction	& None \\
-Scope				& Unchanged \\
-Confidentiality		& None \\
-Integrity			& None \\
-Availability		& None
-\end{tabular}
-
-\subsubsection{Comparison with our application}
-Verb Tampering in our application is also possible but without any vulnerability being exposed to the attacker.
-
-\subsubsection{Recommendation}
-The server settings should be modified to cater only to request types that are used in the application; in this case - GET and POST.
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It was observed that Verb Tampering could be done with HTTP requests but no critical vulnerability was exposed with it. Methods that were allowed :
+      \begin{itemize}
+	      \item  GET
+	      \item  POST
+	      \item  HEAD
+	      \item OPTIONS
+	      
+      \end{itemize}
+      Methods that were rejected:
+      \begin{itemize}
+  	      \item  TRACE
+  	      \item  CONNECT    
+      \end{itemize}
+      \\\
+      With HEAD requests, there were no response data shown. In case of TRACE and CONNECT , the requests were rejected because of Same Origin Security restriction.
+      
+    \\\\
+    \textbf{Discovery} &
+      Advanced Rest Client, an extension for the Google Chrome browser, was used to perform HTTP Verb Tampering.Steps are as follows: 
+      \begin{itemize}
+	      \item Open the extension in Chrome and enter the URL to be tested.
+	      \item Then one select the type of request (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS). Based on the type of HTTP request other details can be filled.
+	      \item Click on the Send button. Response can be seen in the lower section which helps in determining the criticality of the tampering done.
+      \end{itemize}  
+    \\\\
+     \textbf{Likelihood} &
+    The exploitation of this vulnerability requires knowledge of basic tools to modify the server requests and the likelihood is low.
+    \\\\
+    \textbf{Impact} &
+       N/A
+    \\\\
+    \textbf{CVSS} &
+        N/A
+    \\\\
+    \textbf{Recommendations} &
+        N/A
+    \\ 
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+       Verb Tampering in our application is also possible but without any vulnerability being exposed to the attacker.
+    \\\\
+    \textbf{Discovery} &
+    	Same as described for BANK-APP.
+    \\\\ 
+    \textbf{Likelihood} &
+		Same as described for BANK-APP.
+    \\\\
+    \textbf{Impact} &
+      N/A
+    \\\\
+    \textbf{CVSS} &
+      N/A
+     \\\\
+     \textbf{Recommendations} &
+     N/A
+     \\
+    \hline
+\end{longtable*}
 \clearpage
