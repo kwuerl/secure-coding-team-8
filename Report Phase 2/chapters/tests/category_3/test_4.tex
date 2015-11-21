@@ -30,7 +30,7 @@
 			-s 10
 		\end{lstlisting}
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
-        For SQL Injection please refer to --TODO-- \newline
+        For SQL Injection please refer to OTG-INPVAL-005 \newline
         Direct page request was performed by first spidering the app with ZED as logged in user and then scanning the urls as logged out user again. \newline
         Example curl request that shows the vulnerability
         \begin{lstlisting}
@@ -44,7 +44,16 @@
        The impact is severe: Atackers can gain all informations stored within the application without being logged in.
     \\\\
     \textbf{CVSS} &
-        
+        \begin{tabular}{l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
     \\
     \hline
 \end{longtable*}
@@ -64,8 +73,8 @@
     \textbf{Discovery} &
     	Session ID Prediction was tested with the same custom python script used before. \newline
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
-        For SQL Injection please refer to --TODO-- \newline
-        Direct page request was performed by first spidering the app with ZED as logged in user and then scanning the urls as logged out user again. \newline
+        For SQL Injection please refer to OTG-INPVAL-005 \newline
+        For direct page access we used curl to mannually revisit pages without an active session. \newline
     \\\\
     \textbf{Likelihood} &
        N/A
@@ -78,6 +87,10 @@
     \\
     \hline
 \end{longtable*}
+\subsubsection{Comparison}
+BANK-APP contains a very weak authentification mechanism as direct page access is possible for almost every page.
+SecureBank does not seem to have this security flaws.
+
 \begin{figure}[p]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/OTG-AUTHN-004-1.jpg}
