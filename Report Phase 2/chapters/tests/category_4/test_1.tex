@@ -1,6 +1,6 @@
 \subsection{Testing Directory traversal/file include - OTG-AUTHZ-001}
 \subsubsection{BANK-APP}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ l | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} &
     	Directory indexing is activated for
@@ -14,7 +14,7 @@
     \textbf{Likelihood} & Accessing the directory listing does not require any extra skill. It can be directly accessed through the browser. \\
     \textbf{Impact} & Since there is a database dump with entries for an employee and a client account, a hacker only needs to bruteforce the password. Moreover, it is easier to inject SQL, if the database structure is known. With the directory listing in the \code{public} folder a hacker also knows all possible URLs. \\
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
@@ -24,11 +24,12 @@
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
-    \\ \hline
-\end{tabular*}
+    \\
+    \pbox{2cm}{\vspace{1.3\baselineskip}\textbf{Recommen\-dations}\vspace{.5\baselineskip}} & Disable directory listing for hiding sensitive information. \\ \hline
+\end{longtable}
 
 \subsubsection{SecureBank}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ l | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} &
     	Directory indexing is activated for
@@ -43,7 +44,7 @@
     \textbf{Likelihood} & Accessing the directory listing does not require any extra skill. It can be directly accessed through the browser. The challenge in this case is to find out the URLs for which directory indexing is activated. \\
     \textbf{Impact} & Although a hacker can access some directory listing, there are no confidential files, which he could access. \\
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
@@ -53,8 +54,9 @@
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
-    \\ \hline
-\end{tabular*}
+    \\
+    \pbox{2cm}{\vspace{1.3\baselineskip}\textbf{Recommen\-dations}\vspace{.5\baselineskip}} & Disable directory listing for hiding sensitive information. \\ \hline
+\end{longtable}
 
 \subsubsection{Comparison}
 Although both bank applications have (partly) directory indexing enabled, the vulnerability for BANK-APP is much higher since a hacker can access confidential information. Downloading the database dump file and looking at it in a text editor it can be seen there are three accounts. Figure~\ref{fig:db_dump} shows the SQL for the \code{users} table. Aside from the e-mails used for the accounts it is also visible that the accounts probably all use the same password since the hash is the same for all of them. Furthermore, for the employee and client account there are transaction codes in the dump file.
