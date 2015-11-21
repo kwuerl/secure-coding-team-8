@@ -18,6 +18,7 @@
 	5. The response does not contain the "WWW-Authenticate" header indicating that the server does not use Basic Authentication.
 	\underline{\textbf{Test for SSL services: }}
 	1. Open the terminal and type nmap -sV --reason -PN -n --top-ports 100 <IP-address>.
+	2. To also check typical ports with SSL support, type nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995 <IP-address>. See Figure \ref{nmap_ssl_ports}.
 	Observing the output, it can be concluded that none of the ports on the virtual machine support SSL service.
 	\\\\
 	\textbf{Impact} &
@@ -28,6 +29,22 @@
 	\\
 	\hline
 \end{longtable*}
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/OTG-CRYPST-001_1.png}
+		\caption{Nmap - Generic check for ports with SSL support}
+	\end{subfigure}\hfill%
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/OTG-CRYPST-001_2.png}
+		\caption{Nmap - Check for typical ports with SSL configuration}
+	\end{subfigure}
+	\caption{Testing for ports with SSL configuration}
+	\label{fig:nmap_ssl_ports}
+\end{figure}
+
 \paragraph{SecureBank} \mbox{}
 \begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
 	\hline
