@@ -7,16 +7,16 @@
     \hline
     \textbf{Observation} &
 	The value of a parameter is used directly to retrieve a database record and this vulnerability has been observed in the Transactions page.
-	A customer can gain unauthorized access to transactions of all other customers. This data is intended for access only by authorized employees, but it has been exposed to all logged-in users. 
+	A customer can gain unauthorized access to transactions of all other customers. This data is intended for access only by authorized employees, but it has been exposed to all logged-in users.
     \\\\
     \textbf{Discovery} &
-       No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows: 
+       No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows:
        \begin{itemize}
 	       \item  Login as a Customer. Click on “Open” corresponding to any of the completed transactions. The details of the specific transaction are shown.
-	       
-	       \item The URL in the address bar is of the form : \textit{"<IP-address>/secure-coding/public/view\_transaction.php?id=17"}. 
-	       
-	       \item Edit the id at the end to any other number.If a transaction with that id exists, then the complete details are displayed, thus revealing the Account IDs of the sender \& recipient, TAN numbers etc. 
+
+	       \item The URL in the address bar is of the form : \textit{"<IP-address>/secure-coding/public/view\_transaction.php?id=17"}.
+
+	       \item Edit the id at the end to any other number.If a transaction with that id exists, then the complete details are displayed, thus revealing the Account IDs of the sender \& recipient, TAN numbers etc.
        \end{itemize}
        A test for this vulnerability was also performed in the User page by editing the URL \textit{"<IP-address>/secure-coding/public/view\_user.php?id=5"} and no vulnerability has been found.
     \\\\
