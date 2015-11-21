@@ -1,37 +1,80 @@
-\subsection{Testing for Stored Cross Site Scripting - OTG-INPVAL-002}\label{stored_xss}
+\subsection{Testing for Stored Cross Site Scripting - OTG-INPVAL-002} \label{OTG-INPVAL-002}
 
-\subsubsection{Observation}
-It was found that it is possible to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page.
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+       It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful.
+       It was possible also to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page.
+    \\\\
+    \textbf{Discovery} &
+      No specific tool was required to discover this vulnerability, it was encountered by manually testing. Steps are as follows:
+       \begin{itemize}
+	       \item Click on the Register button.
 
-\subsubsection{Discovery}
-No specific tool was required to discover this vulnerability, it was encountered by manually testing.\\
-Steps: \\
-1. Click on the Register button. \\
-2. Fill the form with the details and enter \textit{"<img src='logout.php'/>"} in either First Name or Last Name fields. The text to be injected is just 23 characters long and hence can be easily inserted.\\
-3. Click on the Submit button. \\
-A message is displayed for successful registration.
+	       \item Fill the form with the details and enter \textit{"<img src='logout.php'/>"} in either First Name or Last Name fields. The text to be injected is just 23 characters long and hence can be easily inserted.
 
-Now when an Employee logs in to his/her account and clicks on User button at the top of the page, the list of users is displayed. Upon refresh of this page, the Employee is logged out and is redirected to the Login page.
+	       \item Click on the Submit button. A message is displayed for successful registration.
 
-\subsubsection{Likelihood}
-Likelihood is high as it does not even require a user to be logged in.
-Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
-
-\subsubsection{Impact}
-After a successful attack, none of the employees will be able to perform any operations after opening the Users page. This results in a Denial of Service attack.
-
-\subsubsection{CVSS}
-\begin{tabular}{l | l}
-Attack Vector		& Network \\
-Attack Complexity	& Low \\
-Privileges Required & None \\
-User Interaction	& None \\
-Scope				& Changed \\
-Confidentiality		& None \\
-Integrity			& None \\
-Availability		& High
-\end{tabular}
-
-\subsubsection{Comparison with our application}
-In our application, this attack has been restricted by disallowing any characters other than letters, '-' and white space. This has been enforced on the server-side through appropriate validation checks. Hence there is no possibility of injecting the above HTML code, thus making our application more secure, in this aspect.
+	       \item Now when an Employee logs in to his/her account and clicks on User button at the top of the page, the list of users is displayed. Upon refresh of this page, the Employee is logged out and is redirected to the Login page.
+       \end{itemize}
+    \\\\
+     \textbf{Likelihood} &
+    Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
+    \\\\
+    \textbf{Impact} &
+       After a successful attack, none of the employees will be able to perform any operations after opening the Users page. This results in a Denial of Service attack.
+    \\\\
+    \textbf{CVSS} &
+        \begin{tabular}{| l | l |}
+                  \hline
+                  Attack Vector		& \textit{Network}\\
+                  \hline
+                  Attack Complexity	& \textit{Low} \\
+                  \hline
+                  Privileges Required & \textit{None} \\
+                  \hline
+                  User Interaction	& \textit{None} \\
+                  \hline
+                  Scope		& \textit{Changed} \\
+                  \hline
+                  Confidentiality	& \textit{None} \\
+                  \hline
+                  Integrity		& \textit{None} \\
+                  \hline
+                  Availability		& \textit{High} \\
+                  \hline
+                  \end{tabular}
+    \\\\
+    \textbf{Recommendations} &
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        In the application, this attack has been restricted by disallowing any characters other than letters, '-' and white space in the Registration form.
+        This has been enforced on both, the client and server-side through appropriate validation checks. Hence there is no possibility of injecting the above HTML code, thus making the application more secure, in this aspect.
+    \\\\
+    \textbf{Discovery} &
+    	N/A
+    \\\\
+    \textbf{Likelihood} &
+		N/A
+    \\\\
+    \textbf{Impact} &
+      N/A
+    \\\\
+    \textbf{CVSS} &
+      N/A
+     \\\\
+     \textbf{Recommendations} &
+     \\
+    \hline
+\end{longtable*}
 \clearpage
