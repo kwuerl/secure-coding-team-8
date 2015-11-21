@@ -8,18 +8,18 @@
     \textbf{Observation} &
    \begin {itemize}
    	\item It has been noted that it is possible to access administrative data though the tester is logged in as a user ordinary privileges. A normal user can access the list of all users and this vulnerability was found in the Users page.
-   
+
    \item It is also possible to perform certain authorized operations as a normal user. A normal user can perform approval/rejection on pending registrations.This vulnerability was detected in the Users page and has been described in section \ref{OTG-IDENT-003}.
-   
+
    \end{itemize}
     \\\\
     \textbf{Discovery} &
        No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows:
           \begin{itemize}
       	    \item Login as a Customer. Click on the Customer name next to the Logout button. The profile and account details of the logged in customer are shown.
-      	    
+
       	    \item The URL in the address bar is of the form : \textit{"<IP-address>/secure-coding/public/view\_user.php?id=7"}.
-      	    
+
       	    \item Edit the URL to \textit{"<IP-address>/secure-coding/public/view\_users.php"}. The list of all users is now visible.
           \end{itemize}
     \\\\
@@ -59,7 +59,7 @@
     & \textbf{SecureBank} \\
     \hline
     \textbf{Observation} &
-       In the application, the page containing the list of users is accessible only to employees and administrators. There is no possibility of attack from any user with ordinary privileges, thus making the application more secure, in this aspect. 
+       In the application, the page containing the list of users is accessible only to employees and administrators. There is no possibility of attack from any user with ordinary privileges, thus making the application more secure, in this aspect.
     \\\\
     \textbf{Discovery} &
    		N/A
