@@ -1,71 +1,53 @@
 \subsection{Test File Extensions Handling for Sensitive Information - OTG-CONFIG-003} \label{OTG-CONFIG-003}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-      It was found that most of the file extensions that we tried were accepted by the application. We tried with files with extensions .php, .pdf, .tar.gz, .doc, .js, .jpeg etc. All of the above file types were accepted by the application as indicated by success messages.
-    \\\\
+
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & It was found that most of the file extensions that we tried were accepted by the application. We tried with files with extensions .php, .pdf, .tar.gz, .doc, .js, .jpeg etc. All of the above file types were accepted by the application as indicated by success messages. \\
     \textbf{Discovery} &
-        This vulnerability was discovered in "New Transaction" page. Steps are as follows:
+        This vulnerability was discovered in \enquote{New Transaction} page. Steps are as follows:
         \begin{itemize}
-         \item \textbf{Scenario 1} - We first tried to upload some file "xxx.pdf". But the transaction was unsuccessful and the application returned the error message. Files with extensions .php, .tar.gz, .doc, .js, .jpeg were also tested.
-         The error messages returned were in the format - "Transaction failed with error code: <Code>". This returned code took multiple values like -1, -4, -8, -10 etc. We tried to investigate into this, suspecting that a specific error code could be due to incorrect file type or unexpected text in the file. However, it was not consistent. 
+            \item \textbf{Scenario 1} - We first tried to upload some file \enquote{xxx.pdf}. But the transaction was unsuccessful and the application returned the error message. Files with extensions .php, .tar.gz, .doc, .js, .jpeg were also tested.
+            The error messages returned were in the format - \enquote{Transaction failed with error code: <Code>}. This error code took multiple values like -1, -4, -8, -10 etc. We tried to investigate into this, suspecting that a specific error code could be due to incorrect file type or unexpected text in the file. However, it was not consistent.
 
-         \item \textbf{Scenario 2} - When the file name contains parenthesis(e.g. "xxx(1).pdf"), then the application returned a success message, though the transaction was not reflected under "View Transactions". This was tried with other file extensions and the output was the same.
+            \item \textbf{Scenario 2} - When the file name contains parenthesis like \enquote{xxx(1).pdf}, then the application returned a success message, though the transaction was not reflected under \enquote{View Transactions}. This was tried with other file extensions and the output was the same.
 
-         \item \textbf{Scenario 3} - When the file names with double extensions(e.g. "xxx.png.txt") were tested, the behavior was noted to be the same as in Scenario 1 above.
+            \end{itemize}
+            \\ &
+            \begin{itemize}
+
+            \item \textbf{Scenario 3} - When the file names with double extensions like \enquote{xxx.png.txt} were tested, the behavior was noted to be the same as in Scenario 1 above.
         \end{itemize}
+    \\
+    \textbf{Likelihood} & Likelihood is high as there are no technical skills required for the attacker. A Brute force approach could yield results in a short time.\\
+    \textbf{Impact} & The messages shown by the application are inconsistent with the view. It is unclear as to what actions took place in the background, making the application clearly vulnerable. Transactions are not reflected under \enquote{View Transactions} page. Hence the user gets a wrong impression of his transactions. These messages are returned from server, so chances of these files actually getting uploaded are high. So an attacker could upload any malicious script files(\enquote{.php}) to manipulate the server and retrieve/corrupt sensitive data. \\
+    \textbf{Recommen\-dations} & Based on the requirements of the application, irrelevant file types should be restricted, both from client-side and server-side. Additionally, messages should always be consistent and reflect the right behavior.\\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & It was found that the application allowed only text files. No other files were accepted. \\
+    \textbf{Discovery} & The series of above steps were repeated but the application did not allow any files other than plain text. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
 
-    \\\\
-    \textbf{Impact} &
-        The messages shown by the application are inconsistent with the view. It is unclear as to what actions took place in the background, making the application clearly vulnerable. Transactions are not reflected under "View Transactions" page. Hence the user gets a wrong impression of his transactions. These messages are returned from server, so chances of these files actually getting uploaded are high. So an attacker could upload any malicious script files('.php') to manipulate the server and retrieve/corrupt sensitive data.
-    \\\\
-    \textbf{CVSS} &
-       \begin{tabular}{| l | l |}
-             \hline
-             Attack Vector		& \textcolor{red}{Network}\\
-             \hline
-             Attack Complexity	& \textcolor{red}{Low} \\
-             \hline
-             Privileges Required & \textcolor{red}{None} \\
-             \hline
-             User Interaction	& \textcolor{red}{None} \\
-             \hline
-             Scope		& \textcolor{red}{Changed} \\
-             \hline
-             Confidentiality Impact	& \textcolor{red}{High} \\
-             \hline
-             Integrity Impact		& \textcolor{red}{High} \\
-             \hline
-             Availability Impact		& \textcolor{red}{High} \\
-             \hline
-             \end{tabular}
-           \\
-    \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-        It was found that the application allowed only text files. No other files were accepted.
-    \\\\
-    \textbf{Discovery} &
-	    The series of above steps were repeated but the application did not allow any files other than plain text.
-    \\\\
-    \textbf{Likelihood} &
-        N/A
-    \\\\
-    \textbf{Impact} &
-		N/A
-    \\\\
-    \textbf{CVSS} &
-        N/A
-    \\
-    \hline
-\end{longtable*}
+\subsubsection{Comparison}
+Our application, SecureApp handles this use-case better, by restricting the type of files uploaded, thus being more secure.
 \clearpage

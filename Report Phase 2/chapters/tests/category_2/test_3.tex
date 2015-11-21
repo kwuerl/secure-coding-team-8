@@ -1,95 +1,54 @@
 \subsection{Test Account Provisioning Process - OTG-IDENT-003} \label{OTG-IDENT-003}
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & A customer can approve or reject pending registrations from other customers and employees. This operation is authorized to be performed only by employees, but it has been exposed to all logged-in users. \\
+    \textbf{Discovery} &
+     This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability.Steps are as follows:
+            \begin{itemize}
+            \item  Login as a Customer and enter the URL - \code{http:// \allowbreak <IP-address>/secure-coding/public/view\_users.php}. The details of all registered users are shown.
 
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-     A customer can approve or reject pending registrations from other customers and employees. This operation is authorized to be performed only by employees, but it has been exposed to all logged-in users. 
-    \\\\
-    \textbf{Discovery} &
-       This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability.Steps are as follows:
-       \begin{itemize}
-       \item  Login as a Customer and enter the URL -  \textit{"<IP-address>/secure-coding/public/view\_users.php"}. The details of all registered users are shown. 
-       
-       \item Note the ID (value in the first column - \#) of one of the users whose registration is pending. This can be identified by any rows that do not have values in "Account ID" and "Approved By" columns.Consider this value is xyz.
-       
-       \item  Configure the browser to use BURP Suite as the proxy. Open Burp Suite and navigate to the Proxy tab.
-       
-       \item In the Intercept tab, click on "intercept is off" to turn it on.
-       
-       \item In the browser, enter the URL :
-              \textit{"<IP-address>/secure-coding/public/view\_user.php?id=xyz"}.
-       
-       \item Go back to Burp and in the Options tab, check the option "intercept if" for client requests. Move the "HTTP method" to the top by clicking on the "Up" button. Modify it to match (get|post).
-       
-       \item Navigate back to the Intercept tab. The Request details are visible in the "raw" tab in the below format. Edit the method at the beginning of the request from "GET" to "POST".
-       
-       \item In the "params" tab, click on "new" button and add the following parameters.
-       \end{itemize}
-       
-       \begin{tabular}{l | l}
-       Type		& body \\
-       Name		& userid \\
-       Value 		& xyz
-       \end{tabular}
-       \begin{tabular}{l | l}
-       Type		& body \\
-       Name		& accept \\
-       Value 		&
-       \end{tabular}
-    \\\\
-    \textbf{Likelihood} &
-        Likelihood is low.
-        The attacker does need to have knowledge about proxy or interception tools such as Burp to exploit this vulnerability. However, any user who is logged in to the bank can perform this action, without the need for any other privileges.
-    \\\\
-    \textbf{Impact} &
-        A customer can approve or reject registration requests from all other customers and employees. Since rejection also removes the user from the database, there will be no trace of such a registration in the system. So it will be difficult for the actual employees or administrators to track down such actions.
-    \\\\
-    \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-      \hline
-      Attack Vector		& \textcolor{red}{Network}\\
-      \hline
-      Attack Complexity	& \textcolor{Green}{High} \\
-      \hline
-      Privileges Required & \textcolor{red}{Low} \\
-      \hline
-      User Interaction	& \textcolor{red}{None} \\
-      \hline
-      Scope		& \textcolor{red}{Changed} \\
-      \hline
-      Confidentiality Impact	& \textcolor{BurntOrange}{Low} \\
-      \hline
-      Integrity Impact		& \textcolor{red}{High} \\
-      \hline
-      Availability Impact		& \textcolor{Green}{None} \\
-      \hline
-      \end{tabular}
+            \item Note the ID (value in the first column - \#) of one of the users whose registration is pending. This can be identified by any rows that do not have values in \enquote{Account ID}" and \enquote{Approved By} columns. Consider this value is \code{xyz}.
+
+            \item Configure the browser to use BURP Suite as the proxy. Open Burp Suite and navigate to the Proxy tab. In the Intercept tab, turn the intercept to off.
+
+            \item In the browser, enter the URL - \code{http://<IP-address>/ \allowbreak secure-coding/public/view\_user.php?id=xyz}.
+
+            \item Go back to Burp and in the Options tab, check the option \enquote{intercept if} for client requests. Move the \enquote{HTTP method} to the top and modify it to match (get|post).
+
+            \item Navigate back to the Intercept tab. The Request details are visible in the \enquote{raw} tab in the below format. Edit the method at the beginning of the request from \enquote{GET}" to \enquote{POST}. Also add \code{userid=xyz\&approve=} at the end of the request.
+            \end{itemize}
     \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-       A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employee in our application and is not exposed to other users. 
-    \\\\
-    \textbf{Discovery} &
-    In our application, the list of all users is not available for customers and is accessible only by authorized employees. Hence, it is difficult to get the details of unregistered users. In addition, approval and rejection of users is restricted to be performed by authorized employees only. So, even if the attacker manages to send a request for approval/rejection, it will not be successful. Thus our application is more secure, in this aspect.
-    \\\\
-    \textbf{Likelihood} &
-        N/A
-    \\\\
-    \textbf{Impact} &
-        N/A
-    \\\\
+    \textbf{Likelihood} & Likelihood is low. The attacker does need to have knowledge about proxy or interception tools such as Burp to exploit this vulnerability. However, any user who is logged in to the bank can perform this action, without the need for any other privileges. \\
+    \textbf{Impact} & A customer can approve or reject registration requests from all other customers and employees. If the attacker rejects registration, it could result in Denial of Service for the victims. Since rejection also removes the user from the database, there will be no trace of such a registration in the system. So it will be difficult for the actual employees or administrators to track down such actions. \\
+    \textbf{Recommen\-dations} & Account provisioning privileges should only lie with authorized users and not accessible to all users. \\ \hline
     \textbf{CVSS} &
-        N/A
-    \\
-    \hline
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged}/ \\
+            Confidentiality Impact  & \textcolor{red}{High}/ \\
+            Integrity Impact        & \textcolor{red}{High}/ \\
+            Availability Impact     & \textcolor{BurntOrange}{Low}/
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employee in our application and is not exposed to other users. \\
+    \textbf{Discovery} & In our application, the list of all users is not available for customers and is accessible only by authorized employees. Hence, it is difficult to get the details of unregistered users. In addition, approval and rejection of users is restricted to be performed by authorized employees only. So, even if the attacker manages to send a request for approval/rejection, it will not be successful. Thus our application is more secure, in this aspect. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+In the case of SecureBank, as the privilege to act on registrations lies solely with employees and administrators, it is vulnerable only when they themselves turn into attackers.
+However, for BANK-APP, any customer can become an attacker and launch attacks against other users. Thus, our application is more secure in this regard.
 \clearpage
