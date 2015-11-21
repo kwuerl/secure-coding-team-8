@@ -1,0 +1,51 @@
+\subsection{Testing Batch Transactions}
+\paragraph{BANK-APP} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{BANK-APP} \\
+    \hline
+    \textbf{Observation} &
+      It was found that the Batch transactions feature does not work as expected.
+      Irrespective of the number of transaction entries provided in the batch file, only the last transaction is always performed.
+    \\\\
+    \textbf{Discovery} &
+        This vulnerability was discovered in "New Transaction" page. Steps are as follows:
+        \begin{itemize}
+         \item Login as a customer and go to the "New Transaction" page. Upload a file with multiple valid transaction entries.
+
+         \item After clicking on Submit, a success message is displayed. Go to the Transactions page and note that only the last transaction is displayed.
+        \end{itemize}
+
+    \\\\
+    \textbf{Impact} &
+        It is not at all possible for the user to perform batch transactions. The file upload feature, hence becomes equivalent to the HTML form.
+    \\\\
+    \textbf{CVSS} &
+        N/A
+       \\
+    \\
+    \hline
+\end{longtable*}
+\paragraph{SecureBank} \mbox{}
+\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+    \hline
+    & \textbf{SecureBank} \\
+    \hline
+    \textbf{Observation} &
+        It was found that batch upload feature works as expected, and performs multiple transactions successfully.
+    \\\\
+    \textbf{Discovery} &
+	    The same steps were performed and found that all the transactions provided in the uploaded file were displayed in the Transaction history.
+    \\\\
+    \textbf{Likelihood} &
+        N/A
+    \\\\
+    \textbf{Impact} &
+		N/A
+    \\\\
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable*}
+\clearpage
