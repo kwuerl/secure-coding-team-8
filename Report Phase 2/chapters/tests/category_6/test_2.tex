@@ -31,21 +31,21 @@
     \textbf{CVSS} &
         \begin{tabular}{| l | l |}
                   \hline
-                  Attack Vector		& \textit{Network}\\
+                  Attack Vector		& \textcolor{red}{Network}\\
                   \hline
-                  Attack Complexity	& \textit{Low} \\
+                  Attack Complexity	& \textcolor{red}{Low} \\
                   \hline
-                  Privileges Required & \textit{None} \\
+                  Privileges Required & \textcolor{red}{None} \\
                   \hline
-                  User Interaction	& \textit{None} \\
+                  User Interaction	& \textcolor{red}{None} \\
                   \hline
-                  Scope		& \textit{Unchanged} \\
+                  Scope		& \textcolor{Green}{Unchanged} \\
                   \hline
-                  Confidentiality	& \textit{None} \\
+                  Confidentiality Impact	& \textcolor{Green}{None} \\
                   \hline
-                  Integrity		& \textit{None} \\
+                  Integrity Impact		& \textcolor{Green}{None} \\
                   \hline
-                  Availability		& \textit{High} \\
+                  Availability Impact		& \textcolor{red}{High} \\
                   \hline
                   \end{tabular}
     \\\\
@@ -73,6 +73,7 @@
 	       \item Click on the Submit button. A message is displayed for successful registration.
 
 	       \item After the user is approved by an employee, when he/she logs in and opens the "Profile" page, an image is displayed in the Address field. Upon refresh of this page, the user is logged out and is redirected to the Login page.
+	       \item A similar attack can be executed from the "Remarks" field in the Transaction page. This affects the user him/herself as well as all employees and administrators.
        \end{itemize}
 
     \\\\
@@ -80,27 +81,29 @@
 		    Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
     \\\\
     \textbf{Impact} &
-            After a successful attack, the victim will be unable to perform any operations after opening the Profile page. This results in a Denial of Service attack.
+            After a successful attack from the Registration form, the victim will be unable to perform any operations after opening the Profile page. This results in a Denial of Service attack.
             Though critical, the severity is less than in BANK-APP as only the registered user is attacked. This happens because the Address field is not displayed in the Users page and hence, employees are safe from this attack.
+            However, after a successful attack in the Transaction page, none of the users will be able to perform any operations after opening the Transactions/Profile page. This results in a Denial of Service attack for all users.
+            The impact is severe as it affects all employees and administrators that open the Transactions page.
     \\\\
     \textbf{CVSS} &
       \begin{tabular}{| l | l |}
                         \hline
-                        Attack Vector		& \textit{Network}\\
+                        Attack Vector		& \textcolor{red}{Network}\\
                         \hline
-                        Attack Complexity	& \textit{Low} \\
+                        Attack Complexity	& \textcolor{red}{Low} \\
                         \hline
-                        Privileges Required & \textit{None} \\
+                        Privileges Required & \textcolor{red}{None} \\
                         \hline
-                        User Interaction	& \textit{None} \\
+                        User Interaction	& \textcolor{red}{None} \\
                         \hline
-                        Scope		& \textit{Unchanged} \\
+                        Scope		& \textcolor{Green}{Unchanged} \\
                         \hline
-                        Confidentiality	& \textit{None} \\
+                        Confidentiality Impact	& \textcolor{Green}{None} \\
                         \hline
-                        Integrity		& \textit{None} \\
+                        Integrity Impact		& \textcolor{Green}{None} \\
                         \hline
-                        Availability		& \textit{High} \\
+                        Availability Impact		& \textcolor{red}{High} \\
                         \hline
                         \end{tabular}
      \\\\

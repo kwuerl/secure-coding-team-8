@@ -20,7 +20,7 @@
 	      
 	      \begin{itemize}
 		      \item In the browser, under Tools - set the Foxy Proxy Standard to use Burp Suite for all URLs. Open the Burp Suite tool.		      
-		      \item  Open the site in the browser and login with credentials. Observe the response headers in Burp Suite to consist of the cache header as stated above.
+		      \item  Open the site in the browser and login with credentials. Observe the response headers in Burp Suite to consist of the cache header as stated above. See Figure \ref{fig:burp_cache_header}
 		      \item  Browser Cache was further inspected with Mozilla's built in tool (about:cache).
 	      \end{itemize}
 	   \item \underline{\textbf{Testing cache weakness -}}
@@ -42,26 +42,32 @@
     \textbf{CVSS} &
       \begin{tabular}{| l | l |}
       \hline
-      Attack Vector		& \textit{Network}\\
+      Attack Vector		& \textcolor{red}{Network}\\
       \hline
-      Attack Complexity	& \textit{High} \\
+      Attack Complexity	& \textcolor{Green}{High} \\
       \hline
-      Privileges Required & \textit{None} \\
+      Privileges Required & \textcolor{red}{None} \\
       \hline
-      User Interaction	& \textit{None} \\
+      User Interaction	& \textcolor{red}{None} \\
       \hline
-      Scope		& \textit{Unchanged} \\
+      Scope		& \textcolor{Green}{Unchanged} \\
       \hline
-      Confidentiality	& \textit{High} \\
+      Confidentiality Impact	& \textcolor{red}{High} \\
       \hline
-      Integrity		& \textit{None} \\
+      Integrity Impact		& \textcolor{Green}{None} \\
       \hline
-      Availability		& \textit{None} \\
+      Availability Impact		& \textcolor{Green}{None} \\
       \hline
       \end{tabular}
     \\
     \hline
 \end{longtable*}
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-AUTHN-006.png}
+		\caption{BURP - Checking for cache headers}
+	\label{fig:burp_cache_header}
+\end{figure}
 \paragraph{SecureBank} \mbox{}
 \begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
     \hline
