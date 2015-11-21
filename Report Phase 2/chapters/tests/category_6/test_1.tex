@@ -11,7 +11,7 @@
         No tools were needed to discover this vulnerability. The URLs need to be modified and parameters set to HTML tags.
         Steps:
         1. Login as employee or administrator and click on "User" button on the top.
-        2. Open any pending registration and note that the URL is of the form \textit{"<IP-address>/secure-coding/public/view\_user.php?id=7"}.
+        2. Open any pending registration and note that the URL is of the form \textit{"http://<IP-address>/secure-coding/public/view\_user.php?id=7"}.
         3. Append the string at the end of the URL - \code{"><span>hi</span><br}. The text "hi" appears before the Approve button in the page.
     \\\\
     \textbf{Impact} &

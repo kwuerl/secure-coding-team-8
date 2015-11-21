@@ -10,7 +10,7 @@
     \textbf{Discovery} &
         We used the Cookie extensions in Firefox \& Chrome and EditThisCookie in Chrome for executing this attack.
         Steps:
-        1. Login with Administrator credentials into to the application on Chrome. 2. Now click on the Cookie extension of Chrome and observe that the PHPSESSID cookie  is set to some value. Copy this value for future use. Note that the HostOnly and Session checkboxes are enabled while Secure and HttpOnly are not. This tells us the session can be hijacked by client-side manipulation of the cookie. 3. Now we open the Login page in Firefox. 4. Then open the Cookie extension through Tool tab in Firefox. 5. Add the PHPSESSID cookie manually and set it to the previously copied value. 6. Open the link <IP-address>/secure-coding/public/view\_transactions.php page.
+        1. Login with Administrator credentials into to the application on Chrome. 2. Now click on the Cookie extension of Chrome and observe that the PHPSESSID cookie  is set to some value. Copy this value for future use. Note that the HostOnly and Session checkboxes are enabled while Secure and HttpOnly are not. This tells us the session can be hijacked by client-side manipulation of the cookie. 3. Now we open the Login page in Firefox. 4. Then open the Cookie extension through Tool tab in Firefox. 5. Add the PHPSESSID cookie manually and set it to the previously copied value. 6. Open the link http://<IP-address>/secure-coding/public/view\_transactions.php page.
         Verify that we are now signed in as Administrator without entering valid credentials.
     \\\\
     \textbf{Likelihood} &
