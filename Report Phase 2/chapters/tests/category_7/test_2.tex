@@ -1,6 +1,6 @@
 \subsection{Analysis of Stack Traces - OTG-ERR-002}
 \subsubsection{BANK-APP}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & 
     	We could not detect stack traces in this application.
@@ -14,12 +14,14 @@
     \textbf{Impact} & 
     	N/A
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
         N/A
     \\ \hline
-\end{longtable*}
+\end{longtable}
+
 \subsubsection{SecureBank}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
     	The Application outputs a php exception with stack trace if a page is accessed unauthorized. See~\ref{fig:OTG_ERR_001_3}. \newline
@@ -40,19 +42,20 @@
     \textbf{Impact} & 
     	An atacker can use the application errors to estimate application internas like file and include structures. The knowledge that there is a router involved can lead to specific atacks for routing components.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{Green}{None} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{longtable*}
+\end{longtable}
 
 \subsubsection{Comparison}
 BANK-APP does not disclose Stack Traces but SecureBank returns a Stack Trace for unauthorized access.

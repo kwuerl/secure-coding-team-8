@@ -1,6 +1,6 @@
 \subsection{Testing for Command Injection - OTG-INPVAL-013}
 \subsubsection{BANK-APP}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & 
     	The batch transaction functionality allows Command Injection via the file upload. Due to a vulnerability mentioned in OTG-AUTHN-004 it is possible to inject commands even without being logged in.
@@ -25,22 +25,23 @@
     \textbf{Impact} & 
     	An atacker can inject a remote shell and basically gain controll over the whole server.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} & 
-    	\begin{tabular}{l | l}
+    	\begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{red}{High} \\
             Availability Impact     & \textcolor{red}{High}
         \end{tabular}
 	\\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{SecureBank}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
     	We could not detect a Command Injection vulnerability.
@@ -55,10 +56,11 @@
     \textbf{Impact} & 
     	N/A
 	\\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
         N/A
 	\\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{Comparison}
 BANK-APP has no protection against command injection.

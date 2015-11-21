@@ -1,6 +1,6 @@
 \subsection{Testing for logout functionality - OTG-SESS-006}
 \subsubsection{BANK-APP}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & 
     	Logout functionality requirements:
@@ -23,22 +23,23 @@
     \textbf{Impact} & 
     	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} & 
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{Maroon}{Adjacent Network} \\
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
-            User Interaction        & \textcolor{Green}{R} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular} \\
    	\hline
-\end{longtable*}
+\end{longtable}
 
 \subsubsection{SecureBank}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
     	Logout functionality requirements:
@@ -61,19 +62,20 @@
     \textbf{Impact} & 
     	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{Maroon}{Adjacent Network} \\
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
-            User Interaction        & \textcolor{Green}{R} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular} \\
    	\hline
-\end{longtable*}
+\end{longtable}
 
 \subsubsection{Comparison}
 SecureBank and BANK-APP have the same flaws here.

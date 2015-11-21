@@ -1,6 +1,6 @@
 \subsection{Analysis of Error Codes - OTG-ERR-001}
 \subsubsection{BANK-APP}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & 
     	Error messages:
@@ -18,7 +18,7 @@
     \textbf{Discovery} &
     	\textbf{Web server error Messages:}\newline
     	We used ErrorMint (see Fig.~\ref{fig:OTG_ERR_001_1} and Fig.~\ref{fig:OTG_ERR_001_2})to scan for the web server error messages on the web servers base url. The outputs where all similar to this:
-    	\begin{lstlisting}
+    	\begin{lstlisting}[language=HTML, basicstyle=\footnotesize]
 		<!DOCTYPE html>
 		<html>
 		<head><title>404 Not Found</title></head>
@@ -66,22 +66,24 @@
     	The Mysql errors can be used by an atacker to directly verify the success of his actions and help him to correct errors.
     	The Shell exit code error can help an atacker to retrieve viable information about the system if he manages to inject a command anywhere.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{None} \\
             Privileges Required     & \textcolor{BurntOrange}{Low} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{longtable*}
-\clearpage 
+\end{longtable}
+\clearpage
+
 \subsubsection{SecureBank}
-\begin{longtable*}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
     	Error messages:
@@ -106,19 +108,20 @@
     \textbf{Impact} & 
     	An atacker can use the application errors to estimate application internas like file and include structures. The knowledge that there is a router involved can lead to specific atacks for routing components.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{Green}{None} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{longtable*}
+\end{longtable}
 
 \subsubsection{Comparison}
 While some of BANK-APPs error messages contian direct feedback of the success of an attack, SecureBank only discloses a bit of its internal structure.

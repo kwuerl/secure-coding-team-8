@@ -1,6 +1,6 @@
 \subsection{Testing for bypassing authentication schema - OTG-AUTHN-004}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{BANK-APP} \\ 
     \hline
@@ -20,7 +20,7 @@
 		  \item \path{/secure-coding/public/view_user.php?id=<id>}
 		\end{itemize}
 		The Server tries to initiate a 302 redirect for this pages but also delivers the complete output as if one where logged in.
-    \\\\
+    \\
     \textbf{Discovery} &
         Session ID Prediction was tested with a custom python script. See Fig. \ref{fig:OTG_AUTHN_004_1}. Example command:
         \begin{lstlisting}
@@ -29,64 +29,69 @@
 			-d 'email=example%40example.com&password=asd&submit=' \ 
 			-s 10
 		\end{lstlisting}
+    \\ &
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
         For SQL Injection please refer to OTG-INPVAL-005 \newline
         Direct page request was performed by first spidering the app with ZED as logged in user and then scanning the urls as logged out user again. \newline
-        Example curl request that shows the vulnerability
-        \begin{lstlisting}
-			curl 'http://<ip>/secure-coding/public/view_transaction.php?id=8'
-		\end{lstlisting}
-    \\\\
+        Example curl request that shows the vulnerability\newline
+        \code{curl "http://<ip>/secure-coding/public/view\_transaction.\allowbreak php?\allowbreak id=8"}
+    \\
     \textbf{Likelihood} &
         Considering the authentication can be completely circumvented for reading operations using direct page request atackers can gain all user and transaction informations. Additionally atackers are able to other atack patterns without even being logged in.
-    \\\\
+    \\
     \textbf{Impact} &
        The impact is severe: Atackers can gain all informations stored within the application without being logged in.
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\
     \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+\end{longtable}
+\clearpage
+
+\subsubsection{SecureBank}
+\begin{longtable}{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{SecureBank} \\ 
     \hline
     \textbf{Observation} &
+        There were several observations:
         \begin{itemize}
 		  \item Direct Page access is not possible
-		  \item Parameter modification is not possibla
+		  \item Parameter modification is not possible
 		  \item Session ID Prediction is not possible
 		  \item SQL Injection is not possible in the Login form
 		\end{itemize}
-    \\\\
+    \\
     \textbf{Discovery} &
     	Session ID Prediction was tested with the same custom python script used before. \newline
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
         For SQL Injection please refer to OTG-INPVAL-005 \newline
         For direct page access we used curl to mannually revisit pages without an active session. \newline
-    \\\\
+    \\
     \textbf{Likelihood} &
        N/A
-    \\\\
+    \\
     \textbf{Impact} &
         N/A
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
         N/A
     \\
     \hline
-\end{longtable*}
+\end{longtable}
+
 \subsubsection{Comparison}
 BANK-APP contains a very weak authentification mechanism as direct page access is possible for almost every page.
 SecureBank does not seem to have this security flaws.

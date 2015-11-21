@@ -1,6 +1,6 @@
 \subsection{Test Number of Times a Function Can be Used Limits - OTG-BUSLOGIC-005}
 \subsubsection{BANK-APP}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & 
     	The Transaction functionality could only be used 100 times. After that all TANs are used and no new tans are supplied.\newline
@@ -25,22 +25,23 @@
     	Atackers can use OTG-AUTHZ-003 and this vulnerability to get themselves an infinite amount of transaction codes.
     	Atackers can also use the approve transaction functionality multiple times to transfer more money than intended by the sender.
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-        \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{Green}{None} \\
             Integrity Impact        & \textcolor{BurntOrange}{Low} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{SecureBank}
-\begin{tabular*}{\textwidth}{ p{.20\textwidth} | p{.75\textwidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
     The Transaction functionality could only be used 100 times. After that all TANs are used and no new tans are supplied.
@@ -60,13 +61,13 @@
     \textbf{Impact} & 
     	N/A
     \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
     	N/A
     \\ \hline
-\end{tabular*}
+\end{longtable}
 
 \subsubsection{Comparison}
 In comparison to BANK-APP SecureBank properly checks that Functions can be called not more often than excpected.
 Both apps do not take care about re-sending transaction codes.
-\clearpage
 \clearpage

@@ -1,6 +1,6 @@
 \subsection{Test User Registration Process - OTG-IDENT-002}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{BANK-APP} \\ 
     \hline
@@ -18,34 +18,36 @@
 		  \item Email adresses are not checked for identity
 		  \item Identification Requirements only \enquote{First name}, \enquote{Last Name}, \enquote{Email}, \enquote{Password} for Employee as well as Customers
 		\end{itemize}
-    \\\\
+    \\
     \textbf{Discovery} &
         To test the Registration proccess we manually registered some customer and employee accounts with different and same email addresses.
-    \\\\
+    \\
     \textbf{Likelihood} &
         There is the possibillity that a Person registers with a foreign identity. To prohibit this the manual verification proccess has to ensure that idientities are properly verified. As there is not much information provided about the applicant this can be difficult.
         Therefore the Likelihood of an atack is increased.
-    \\\\
+    \\
     \textbf{Impact} &
        If someone registers as a other person he can possibly use his account to commit crimes and the actions could not be traced back to him or would be blamed on the persion that the account was registered on.
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-         \begin{tabular}{l | l}
+        \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
-            User Interaction        & \textcolor{Green}{R} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\
     \hline
-\end{longtable*}
+\end{longtable}
 \clearpage
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+
+\subsubsection{SecureBank}
+\begin{longtable}{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{SecureBank} \\ 
     \hline
@@ -68,31 +70,33 @@
 		  \item Email adresses are not checked for identity
 		  \item Address, City and Postal code are not verified
 		\end{itemize}
-    \\\\
+    \\
     \textbf{Discovery} &
     	To test the Registration proccess we manually registered some customer and employee accounts with different and same email addresses.
-    \\\\
+    \\
     \textbf{Likelihood} &
         There is the possibillity that a Person registers with a foreign identity. To prohibit this the manual verification proccess has to ensure that idientities are properly verified. This is a lot easier with the additionally provided informations address, city, postal code, but as these values are not automatically verified it has be done by a human.
         This fact increases the likelihood of an atack.
-    \\\\
+    \\
     \textbf{Impact} &
         If someone registers as a other person he can possibly use his account to commit crimes and the actions could not be traced back to him or would be blamed on the persion that the account was registered on.
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
-         \begin{tabular}{l | l}
+         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{red}{None} \\
-            User Interaction        & \textcolor{Green}{R} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
             Integrity Impact        & \textcolor{Green}{None} \\
             Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\
     \hline
-\end{longtable*}
+\end{longtable}
+
 \subsubsection{Comparison}
 In comparison to BANK-APP SecureBank asks more informations on user registration but as the informations are not properly verified by the system this advantage is only superficial.
 \clearpage

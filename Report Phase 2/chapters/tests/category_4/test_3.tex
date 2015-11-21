@@ -1,13 +1,13 @@
 \subsection{Testing for Privilege Escalation - OTG-AUTHZ-003}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{BANK-APP} \\ 
     \hline
     \textbf{Observation} &
-        We where able to perform the following actions without originally having the permission to do so: \newline
+        We were able to perform the following actions without originally having the permission to do so: \newline
         \textbf{Anyone}\newline
-            Please also refer to OTG-AUTHN-004\newline
+            Please also refer to OTG-AUTHN-004
             \begin{itemize}
             \item Create Transaction
               \item List all users
@@ -16,11 +16,11 @@
               \item View single Transaction
     		  \item Approve/Deny other users and employees (this also work multiple times, e.g. you can accept a user that was denied before)
     		\end{itemize}
-    \\\\
+    \\
     \textbf{Discovery} &
         Please also refer to OTG-AUTHN-004\newline
         The Approve/Deny vulnerability was tested by exporting the request as curl command with Google Chrome Developer Tools and then removing the session header as well as modifying the user id in the form and in the query string to the desired value.\newline
-        Example:\newline
+        Example:
         \begin{lstlisting}
         curl 'http://<ip>/secure-coding/public/
             view_user.php?id=14' 
@@ -30,53 +30,57 @@
             --compressed
         \end{lstlisting}
         (remove the newline characters before testing)
-    \\\\
+    \\
     \textbf{Likelihood} &
         Please also refer to OTG-AUTHN-004\newline
         An atacker only has to know the \code{view\_user.php} endpoint and the right form parameters to start an atack.
-    \\\\
+    \\
     \textbf{Impact} &
         Please also refer to OTG-AUTHN-004\newline
         An attacker can register and login as customer or employee without being approved by an employee.
         This is the highest privilege escalation possible.
         An attacker can lock out all users/employees.
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
         \begin{tabular}{l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{red}{High} \\
             Availability Impact     & \textcolor{red}{High}
         \end{tabular}
     \\
     \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
     \hline
     & \textbf{SecureBank} \\ 
     \hline
     \textbf{Observation} &
        We could not detect any possibilities of privilege escalation.
-    \\\\
+    \\
     \textbf{Discovery} &
        We manually checked all GET \& POST endpoints found by the ZAP spider functionality using either no or an active customer session but could not detect any vulnerabilities.
-    \\\\
+    \\
     \textbf{Likelihood} &
        N/A
-    \\\\
+    \\
     \textbf{Impact} &
         N/A
-    \\\\
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
     \textbf{CVSS} &
         N/A
     \\
     \hline
-\end{longtable*}
+\end{longtable}
+
 \subsubsection{Comparison}
 BANK-APP has a very weak authentification mechanism. An Atacker can become Employee without even being approved.
 With SecureBank this is implossible.
