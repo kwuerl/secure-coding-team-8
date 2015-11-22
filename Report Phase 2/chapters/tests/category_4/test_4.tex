@@ -1,77 +1,49 @@
 \subsection{Testing for Insecure Direct Object References - OTG-AUTHZ-004}
-
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-	The value of a parameter is used directly to retrieve a database record and this vulnerability has been observed in the Transactions page.
-	A customer can gain unauthorized access to transactions of all other customers. This data is intended for access only by authorized employees, but it has been exposed to all logged-in users.
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & The value of a parameter is used directly to retrieve a database record and this vulnerability has been observed in the Transactions page. A customer can gain unauthorized access to transactions of all other customers. This data is intended for access only by authorized employees, but it has been exposed to all logged-in users. \\
     \textbf{Discovery} &
-       No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows:
-       \begin{itemize}
-	       \item  Login as a Customer. Click on “Open” corresponding to any of the completed transactions. The details of the specific transaction are shown.
+         No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows:
+            \begin{itemize}
+     	       \item  Login as a Customer. Click on \enquote{Open} corresponding to any of the completed transactions. The details of the specific transaction are shown.
 
-	       \item The URL in the address bar is of the form : \textit{"http://<IP-address>/secure-coding/public/view\_transaction.php?id=17"}.
+     	       \item The URL in the address bar is of the form : \code{http://<IP-address>/secure-coding/public/view\_ \allowbreak transaction.php?id=17}.
 
-	       \item Edit the id at the end to any other number.If a transaction with that id exists, then the complete details are displayed, thus revealing the Account IDs of the sender \& recipient, TAN numbers etc.
-       \end{itemize}
-       A test for this vulnerability was also performed in the User page by editing the URL \textit{"http://<IP-address>/secure-coding/public/view\_user.php?id=5"} and no vulnerability has been found.
-    \\\\
-    \textbf{Likelihood} &
-        Likelihood is high.
-        The attacker need not have any specialized skills to exploit this vulnerability. Any customer who is logged in to the bank can perform this action. Also, guessing the transaction id to enter at the end of the URL is not difficult either, as they are sequential and a Brute-force method is quite easy.
-    \\\\
-    \textbf{Impact} &
-           A customer can get hold of details pertaining to other customers such as Account numbers, TAN numbers etc. Using the Account numbers, he/she can make infinite transactions with negative amounts, thus transferring money from the victim's account to his/her own.
-           Also, it may be possible to make guesses about the TAN generation by observing the nature of numerous TANs being generated.
-    \\\\
-    \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-           \hline
-           Attack Vector		& \textcolor{red}{Network}\\
-           \hline
-           Attack Complexity	& \textcolor{red}{Low} \\
-           \hline
-           Privileges Required & \textcolor{BurntOrange}{Low} \\
-           \hline
-           User Interaction	& \textcolor{red}{None} \\
-           \hline
-           Scope		& \textcolor{red}{Changed} \\
-           \hline
-           Confidentiality Impact	& \textcolor{red}{High} \\
-           \hline
-           Integrity Impact		& \textcolor{Green}{None} \\
-           \hline
-           Availability Impact		& \textcolor{Green}{None} \\
-           \hline
-           \end{tabular}
+     	       \item Edit the id at the end to any other number. If a transaction with that id exists, then the complete details are displayed, thus revealing the Account IDs of the sender \& recipient, TAN numbers etc.
+            \end{itemize}
+            A test for this vulnerability was also performed in the User page by editing the URL \code{http://<IP-address>/secure-coding/ \allowbreak public/view\_user.php?id=5} and no vulnerability has been found.
     \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-       In the application, there is no URL to view a specific transaction. All transactions of a customer are visible in Transaction history under the static URL:
-       \textit{"<IP>/transaction\_history"} that does not contain a parameter. Hence there is no possibility of modifying the URL, thus making the application more secure, in this aspect.
-    \\\\
-    \textbf{Discovery} &
-   		N/A
-    \\\\
-    \textbf{Likelihood} &
-	   N/A
-    \\\\
-    \textbf{Impact} &
-  		N/A
-    \\\\
+    \textbf{Likelihood} & Likelihood is high. The attacker need not have any specialized skills to exploit this vulnerability. Any customer who is logged in to the bank can perform this action. Also, guessing the transaction id to enter at the end of the URL is not difficult either, as they are sequential and a Brute-force method is quite easy. \\
+    \textbf{Impact} & A customer can get hold of details pertaining to other customers such as Account numbers, TAN numbers etc. Using the Account numbers, he/she can make infinite transactions with negative amounts, thus transferring money from the victim's account to his/her own. Also, it may be possible to make guesses about the TAN generation by observing the nature of numerous TANs being generated. \\
+    \textbf{Recommen\-dations} &  \\ \hline
     \textbf{CVSS} &
-       N/A.
-    \\
-    \hline
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & In the application, there is no URL to view a specific transaction. All transactions of a customer are visible in Transaction history under the static URL: \code{http://<IP-address>/transaction\_history} that does not contain a parameter.\\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+In case of SecureBank, there is no possibility of modifying the URL to view individual transactions or users, thus making the application more secure, in this aspect.
 \clearpage
