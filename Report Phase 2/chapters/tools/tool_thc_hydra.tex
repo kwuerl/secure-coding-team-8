@@ -1,1 +1,10 @@
 \subsection{THC Hydra}
+THC Hydra is a password cracking tool which implements brute force attack on Network Login. It performs a dictionary attack and supports more than 50 protocols such as telnet, ftp, http, https, smb, pop3, imap etc. The program reads a dictionary(may be file) and launches an attack to guess the password. Depending upon the network speed, internet connection and dictionary, passwords can be retrieved within few minutes or hours or days. Thus the accuracy and speed of this tool largely depends on the dictionary since other factors like network connection and processing speed are not big issues anymore. \\
+Example:
+
+\begin{lstlisting}
+hydra -L testuser@test.com -p Top500.txt
+    <IP-address> http-post-form
+    'secure-coding/public/login.php:email=testuser@test.com
+    \&password=\^PASS\^ \&submit=:Invalid login credentials'
+\end{lstlisting}

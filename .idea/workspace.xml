@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b4fc2281-9abc-409a-9419-9b39f3bb9175" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_burp.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_burp.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_chrome_dev_tools.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_chrome_dev_tools.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_thc_hydra.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_thc_hydra.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_vega.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_vega.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_analysis.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_analysis.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_distribution.tex" afterPath="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_distribution.tex" />
+    </list>
+    <list id="7fd85b72-8a08-455b-8c13-7042db00737a" name="mailed" comment="" />
+    <ignored path="secure-coding-team-8.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="secure-coding-team-8" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="example_schema.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/example_schema.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tool_curl.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_curl.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="145" selection-start-line="1" selection-start-column="145" selection-end-line="1" selection-end-column="145" />
+              <folding>
+                <element signature="e#173#414#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tool_vega.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_vega.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tool_burp.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_burp.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="495" selection-start-line="1" selection-start-column="495" selection-end-line="1" selection-end-column="495" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tool_chrome_dev_tools.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_chrome_dev_tools.tex">
+          <provider selected="true" editor-type-id="LaTeXFileEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tool_thc_hydra.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_thc_hydra.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_7.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_7.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="434" selection-start-line="9" selection-start-column="434" selection-end-line="9" selection-end-column="434" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_7.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_7.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_14.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_14.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tools_analysis.tex" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_analysis.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_5.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_4.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_4.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_5.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/main.bcf" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_3.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_9.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_9.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/example_schema.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_1/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_2/test_3.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_2/test_4.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_2/test_5.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_11/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_6.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_4/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_8.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_9.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_7.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_4/test_4.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_1/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_3.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_8.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_8/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_8/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_6.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_5.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_7.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_8.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_6.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_7.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_1.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_2.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_3.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_8.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_9.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_10.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_11.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_distribution.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_analysis.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_14.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_vega.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_thc_hydra.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_burp.tex" />
+        <option value="$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_chrome_dev_tools.tex" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1301" />
+    <option name="height" value="772" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Report Phase 2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Report Phase 2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chapters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="secure-coding-team-8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Report Phase 2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chapters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="75" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="95" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="101" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1000" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="75" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="95" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="101" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1000" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Report Phase 2/chapters/tests/category_11" />
+      <recent name="$PROJECT_DIR$/Report Phase 2/chapters/tests" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JsTestDriver-test-runner" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4fc2281-9abc-409a-9419-9b39f3bb9175" name="Default" comment="" />
+      <changelist id="7fd85b72-8a08-455b-8c13-7042db00737a" name="mailed" comment="" />
+      <created>1447765655396</created>
+      <option name="number" value="Default" />
+      <updated>1447765655396</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test for OTG-INPVAL-002">
+      <created>1448087602672</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087602672</updated>
+    </task>
+    <task id="LOCAL-00007" summary="test for OTG-CONFIG-006">
+      <created>1448087632223</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087632223</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test for OTG-AUTHZ-002">
+      <created>1448087649121</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087649121</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test for OTG-INPVAL-003">
+      <created>1448087683677</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087683677</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test for OTG-IDENT-005">
+      <created>1448087759503</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087759503</updated>
+    </task>
+    <task id="LOCAL-00011" summary="test for OTG-AUTHN-008">
+      <created>1448087773799</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087773799</updated>
+    </task>
+    <task id="LOCAL-00012" summary="test for OTG-BUSLOGIC-009">
+      <created>1448087789270</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087789270</updated>
+    </task>
+    <task id="LOCAL-00013" summary="test for OTG-AUTHN-009">
+      <created>1448087808123</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1448087808123</updated>
+    </task>
+    <task id="LOCAL-00014" summary="test for OTG-INPVAL-009">
+      <created>1448089582421</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1448089582461</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added figures">
+      <created>1448099254015</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1448099254015</updated>
+    </task>
+    <task id="LOCAL-00016" summary="images for nmap added">
+      <created>1448102046881</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1448102046881</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feature test added">
+      <created>1448103435859</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1448103435859</updated>
+    </task>
+    <task id="LOCAL-00018" summary="test modified OTG-INPVAL-002">
+      <created>1448104587649</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1448104587649</updated>
+    </task>
+    <task id="LOCAL-00019" summary="test modified OTG-INPVAL-002">
+      <created>1448104923171</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1448104923171</updated>
+    </task>
+    <task id="LOCAL-00020" summary="image added for OTG-AUTHN-006">
+      <created>1448106437266</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1448106437266</updated>
+    </task>
+    <task id="LOCAL-00021" summary="modified cvss table">
+      <created>1448119803733</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1448119803733</updated>
+    </task>
+    <task id="LOCAL-00022" summary="modified cvss table">
+      <created>1448121025136</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1448121025136</updated>
+    </task>
+    <task id="LOCAL-00023" summary="modified terminology in cvss tables">
+      <created>1448122458955</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1448122458955</updated>
+    </task>
+    <task id="LOCAL-00024" summary="minor change in example_schema">
+      <created>1448135011633</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1448135011633</updated>
+    </task>
+    <task id="LOCAL-00025" summary="config tests modified">
+      <created>1448140338291</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1448140338291</updated>
+    </task>
+    <task id="LOCAL-00026" summary="ident tests modified">
+      <created>1448140584933</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1448140584933</updated>
+    </task>
+    <task id="LOCAL-00027" summary="ident tests modified">
+      <created>1448141477263</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1448141477263</updated>
+    </task>
+    <task id="LOCAL-00028" summary="functionality test modified">
+      <created>1448142268550</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1448142268550</updated>
+    </task>
+    <task id="LOCAL-00029" summary="modified OTG-AUTHN-001">
+      <created>1448144655966</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1448144655966</updated>
+    </task>
+    <task id="LOCAL-00030" summary="modified OTG-AUTHZ-002">
+      <created>1448177450610</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1448177450610</updated>
+    </task>
+    <task id="LOCAL-00031" summary="modified OTG-AUTHN-006">
+      <created>1448178331284</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1448178331284</updated>
+    </task>
+    <task id="LOCAL-00032" summary="modified OTG-AUTHN-006&#10;">
+      <created>1448178666855</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1448178666855</updated>
+    </task>
+    <task id="LOCAL-00033" summary="modified OTG-AUTHN-006&#10;">
+      <created>1448178884380</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1448178884380</updated>
+    </task>
+    <task id="LOCAL-00034" summary="modified AUTHN tests and added images">
+      <created>1448183287686</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1448183287686</updated>
+    </task>
+    <task id="LOCAL-00035" summary="modified AUTHN tests and added images">
+      <created>1448183334227</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1448183334227</updated>
+    </task>
+    <task id="LOCAL-00036" summary="modified OTG-AUTHZ-004">
+      <created>1448184284469</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1448184284469</updated>
+    </task>
+    <task id="LOCAL-00037" summary="modified OTG-CONFIG-003 for score bar">
+      <created>1448186986488</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1448186986488</updated>
+    </task>
+    <task id="LOCAL-00038" summary="modified OTG-SESS-001">
+      <created>1448187020272</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1448187020272</updated>
+    </task>
+    <task id="LOCAL-00039" summary="modified OTG-SESS-002">
+      <created>1448187031656</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1448187031656</updated>
+    </task>
+    <task id="LOCAL-00040" summary="modified OTG-SESS-003">
+      <created>1448187043575</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1448187043575</updated>
+    </task>
+    <task id="LOCAL-00041" summary="modified OTG-SESS-008">
+      <created>1448187053509</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1448187053509</updated>
+    </task>
+    <task id="LOCAL-00042" summary="modified CRYPST tests">
+      <created>1448187918231</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1448187918231</updated>
+    </task>
+    <task id="LOCAL-00043" summary="modified OTG-CLIENT-008">
+      <created>1448192388776</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1448192388776</updated>
+    </task>
+    <task id="LOCAL-00044" summary="modified OTG-CLIENT-001">
+      <created>1448192404558</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1448192404558</updated>
+    </task>
+    <task id="LOCAL-00045" summary="modified OTG-CLIENT-005">
+      <created>1448192434447</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1448192434447</updated>
+    </task>
+    <task id="LOCAL-00046" summary="modified OTG-CLIENT-006">
+      <created>1448192444195</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1448192444195</updated>
+    </task>
+    <task id="LOCAL-00047" summary="modified OTG-CLIENT-007">
+      <created>1448192456278</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1448192456278</updated>
+    </task>
+    <task id="LOCAL-00048" summary="modified OTG-BUSLOGIC-006">
+      <created>1448194037690</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1448194037690</updated>
+    </task>
+    <task id="LOCAL-00049" summary="modified OTG-BUSLOGIC-007">
+      <created>1448194048031</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1448194048031</updated>
+    </task>
+    <task id="LOCAL-00050" summary="modified OTG-BUSLOGIC-001">
+      <created>1448195199125</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1448195199134</updated>
+    </task>
+    <task id="LOCAL-00051" summary="modified OTG-INPVAL-001">
+      <created>1448197068741</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1448197068741</updated>
+    </task>
+    <task id="LOCAL-00052" summary="modified OTG-INPVAL-002">
+      <created>1448197078094</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1448197078094</updated>
+    </task>
+    <task id="LOCAL-00053" summary="modified tests">
+      <created>1448198050964</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1448198050964</updated>
+    </task>
+    <task id="LOCAL-00054" summary="tools added">
+      <created>1448216935961</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1448216935962</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22674866" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5529061" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39344263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27272728" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22674866" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3546945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="functionality test modified" />
+    <MESSAGE value="modified OTG-AUTHN-001" />
+    <MESSAGE value="modified OTG-AUTHZ-002" />
+    <MESSAGE value="modified OTG-AUTHN-006" />
+    <MESSAGE value="modified OTG-AUTHN-006&#10;" />
+    <MESSAGE value="modified AUTHN tests and added images" />
+    <MESSAGE value="modified OTG-AUTHZ-004" />
+    <MESSAGE value="modified OTG-CONFIG-003 for score bar" />
+    <MESSAGE value="modified OTG-SESS-001" />
+    <MESSAGE value="modified OTG-SESS-002" />
+    <MESSAGE value="modified OTG-SESS-003" />
+    <MESSAGE value="modified OTG-SESS-008" />
+    <MESSAGE value="modified CRYPST tests" />
+    <MESSAGE value="modified OTG-CLIENT-008" />
+    <MESSAGE value="modified OTG-CLIENT-001" />
+    <MESSAGE value="modified OTG-CLIENT-005" />
+    <MESSAGE value="modified OTG-CLIENT-006" />
+    <MESSAGE value="modified OTG-CLIENT-007" />
+    <MESSAGE value="modified OTG-BUSLOGIC-006" />
+    <MESSAGE value="modified OTG-BUSLOGIC-007" />
+    <MESSAGE value="modified OTG-BUSLOGIC-001" />
+    <MESSAGE value="modified OTG-INPVAL-001" />
+    <MESSAGE value="modified OTG-INPVAL-002" />
+    <MESSAGE value="modified tests" />
+    <MESSAGE value="tools added" />
+    <option name="LAST_COMMIT_MESSAGE" value="tools added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_8/test_3.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_8/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_11/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_8.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_7.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_3.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_2.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_5/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_4.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_2.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_9.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_11.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_12.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_10.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_8.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_5.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_6.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_7/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_7/test_2.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_2.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_3.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_4.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_5.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_8.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_9.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_6.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_7.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_9/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_1.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_2.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_10.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_11.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_3.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_8.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_distribution.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_bomb_transaction.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_zap.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_9.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_1/test_1.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_10/test_7.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/example_schema.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_3/test_7.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="434" selection-start-line="9" selection-start-column="434" selection-end-line="9" selection-end-column="434" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tests/category_6/test_14.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_curl.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="145" selection-start-line="1" selection-start-column="145" selection-end-line="1" selection-end-column="145" />
+          <folding>
+            <element signature="e#173#414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_thc_hydra.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_vega.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/figures/tool_chrome_dev_tools.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_burp.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="495" selection-start-line="1" selection-start-column="495" selection-end-line="1" selection-end-column="495" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tool_chrome_dev_tools.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report Phase 2/chapters/tools/tools_analysis.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,4398 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.12)  22 NOV 2015 19:28
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/nag/nag.sty
+Package: nag 2011/11/25 0.7 warning about old commands (ulmi)
+\c@nag@c=\count79
+\c@nag@sins=\count80
+Package nag Info: Loaded nag-l2tabu.cfg  on input line 552.
+
+(/usr/share/texlive/texmf-dist/tex/latex/nag/nag-l2tabu.cfg
+File: nag-l2tabu.cfg 2010/05/17 v2.11 l2tabu rules for nag.sty (ulmi)
+)
+Package nag Info: Loaded nag-orthodox.cfg  on input line 552.
+
+(/usr/share/texlive/texmf-dist/tex/latex/nag/nag-orthodox.cfg
+File: nag-orthodox.cfg 2006/04/19 v1.8 strict rules for nag.sty (ulmi)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbook.cls
+Document Class: scrbook 2013/12/19 v3.12 KOMA-Script document class (book)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2013/12/19 v3.12 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2013/12/19 v3.12 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2013/12/19 v3.12 KOMA-Script package (loading files)
+
+Package scrlfile, 2013/12/19 v3.12 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+))) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2013/12/19 v3.12 KOMA-Script package (handling toc-files)
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 117.
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 118.
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 119.
+Package tocbasic Info: defining new hook before heading of `' on input line 111
+8.
+Class scrbook Info: You've used standard option `oneside'.
+(scrbook)           This is correct!
+(scrbook)           Internally I'm using `twoside=false'.
+(scrbook)           If you'd like to set the option with \KOMAoptions,
+(scrbook)           you'd have to use `twoside=false' there
+(scrbook)           instead of `oneside', too.
+Package scrbase Info: Unknown processing state.
+(scrbase)             Processing option `twoside=false'
+(scrbase)             of member `.scrbook.cls'
+(scrbase)             of family `KOMA'
+(scrbase)             doesn't set a valid state.
+(scrbase)             This will be interpreted
+(scrbase)             as \FamilyKeyStateProcessed on input line 1269.
+Class scrbook Info: File `scrsize11pt.clo' used to setup font sizes on input li
+ne 1655.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2013/12/19 v3.12 KOMA-Script font size class option (11pt
+)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2013/12/19 v3.12 KOMA-Script package (type area)
+
+Package typearea, 2013/12/19 v3.12 KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+\ta@bcor=\skip41
+\ta@div=\count81
+Package typearea Info: You've used standard option `oneside'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `twoside=false'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `twoside=false' there
+(typearea)             instead of `oneside', too.
+\ta@hblk=\skip42
+\ta@vblk=\skip43
+\ta@temp=\skip44
+\footheight=\skip45
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 555.00024pt
+(typearea)              \topmargin      = 12.2347pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.6pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1330.
+)
+\c@part=\count82
+\c@chapter=\count83
+\c@section=\count84
+\c@subsection=\count85
+\c@subsubsection=\count86
+\c@paragraph=\count87
+\c@subparagraph=\count88
+\abovecaptionskip=\skip46
+\belowcaptionskip=\skip47
+\c@pti@nb@sid@b@x=\box26
+\c@figure=\count89
+\c@table=\count90
+\bibindent=\dimen102
+) (./settings/packages.tex
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathpazo.sty
+Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS) 
+\symupright=\mathgroup4
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2013/12/03 3.9h The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2013/12/03 3.9h Babel common definitions
+\babel@savecnt=\count91
+\U@D=\dimen103
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu
+File: ts1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+))
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2011/10/22 v5.1d context-sensitive quotations
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count92
+)
+\etb@tempcnta=\count93
+)
+\csq@reset=\count94
+\csq@gtype=\count95
+\csq@glevel=\count96
+\csq@qlevel=\count97
+\csq@maxlvl=\count98
+\csq@tshold=\count99
+\csq@ltx@everypar=\toks17
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2011/10/22 v5.1d csquotes generic definitions
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Enabling multilingual quotes.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2013/11/25 v2.8a programmable bibliographies (PK/JW/AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex2.sty
+Package: biblatex2 2013/11/25 v2.8a programmable bibliographies (biber) (PK/JW/
+AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count100
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count101
+\c@listtotal=\count102
+\c@listcount=\count103
+\c@liststart=\count104
+\c@liststop=\count105
+\c@citecount=\count106
+\c@citetotal=\count107
+\c@multicitecount=\count108
+\c@multicitetotal=\count109
+\c@instcount=\count110
+\c@maxnames=\count111
+\c@minnames=\count112
+\c@maxitems=\count113
+\c@minitems=\count114
+\c@citecounter=\count115
+\c@savedcitecounter=\count116
+\c@uniquelist=\count117
+\c@uniquename=\count118
+\c@refsection=\count119
+\c@refsegment=\count120
+\c@maxextratitle=\count121
+\c@maxextratitleyear=\count122
+\c@maxextrayear=\count123
+\c@maxextraalpha=\count124
+\c@abbrvpenalty=\count125
+\c@highnamepenalty=\count126
+\c@lownamepenalty=\count127
+\c@maxparens=\count128
+\c@parenlevel=\count129
+\blx@tempcnta=\count130
+\blx@tempcntb=\count131
+\blx@tempcntc=\count132
+\blx@maxsection=\count133
+\blx@maxsegment@0=\count134
+\blx@notetype=\count135
+\blx@parenlevel@text=\count136
+\blx@parenlevel@foot=\count137
+\blx@sectionciteorder@0=\count138
+\labelnumberwidth=\skip48
+\labelalphawidth=\skip49
+\shorthandwidth=\skip50
+\biblabelsep=\skip51
+\bibitemsep=\skip52
+\bibnamesep=\skip53
+\bibinitsep=\skip54
+\bibparsep=\skip55
+\bibhang=\skip56
+\blx@bcfin=\read1
+\blx@bcfout=\write3
+\c@mincomprange=\count139
+\c@maxcomprange=\count140
+\c@mincompwidth=\count141
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'alphabetic.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count142
+\c@savedafterword=\count143
+\c@annotator=\count144
+\c@savedannotator=\count145
+\c@author=\count146
+\c@savedauthor=\count147
+\c@bookauthor=\count148
+\c@savedbookauthor=\count149
+\c@commentator=\count150
+\c@savedcommentator=\count151
+\c@editor=\count152
+\c@savededitor=\count153
+\c@editora=\count154
+\c@savededitora=\count155
+\c@editorb=\count156
+\c@savededitorb=\count157
+\c@editorc=\count158
+\c@savededitorc=\count159
+\c@foreword=\count160
+\c@savedforeword=\count161
+\c@holder=\count162
+\c@savedholder=\count163
+\c@introduction=\count164
+\c@savedintroduction=\count165
+\c@namea=\count166
+\c@savednamea=\count167
+\c@nameb=\count168
+\c@savednameb=\count169
+\c@namec=\count170
+\c@savednamec=\count171
+\c@shortauthor=\count172
+\c@savedshortauthor=\count173
+\c@shorteditor=\count174
+\c@savedshorteditor=\count175
+\c@translator=\count176
+\c@savedtranslator=\count177
+\c@labelname=\count178
+\c@savedlabelname=\count179
+\c@institution=\count180
+\c@savedinstitution=\count181
+\c@lista=\count182
+\c@savedlista=\count183
+\c@listb=\count184
+\c@savedlistb=\count185
+\c@listc=\count186
+\c@savedlistc=\count187
+\c@listd=\count188
+\c@savedlistd=\count189
+\c@liste=\count190
+\c@savedliste=\count191
+\c@listf=\count192
+\c@savedlistf=\count193
+\c@location=\count194
+\c@savedlocation=\count195
+\c@organization=\count196
+\c@savedorganization=\count197
+\c@origlocation=\count198
+\c@savedoriglocation=\count199
+\c@origpublisher=\count200
+\c@savedorigpublisher=\count201
+\c@publisher=\count202
+\c@savedpublisher=\count203
+\c@language=\count204
+\c@savedlanguage=\count205
+\c@pageref=\count206
+\c@savedpageref=\count207
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2013/11/25 v2.8a biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 
+\c@textcitecount=\count208
+\c@textcitetotal=\count209
+\c@textcitemaxnames=\count210
+\c@biburlnumpenalty=\count211
+\c@biburlucpenalty=\count212
+\c@biburllcpenalty=\count213
+\c@smartand=\count214
+)
+Package biblatex Info: Trying to load bibliography style 'alphabetic'...
+Package biblatex Info: ... file 'alphabetic.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/alphabetic.bbx
+File: alphabetic.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count215
+\c@bbx:relatedtotal=\count216
+))
+Package biblatex Info: Trying to load citation style 'alphabetic'...
+Package biblatex Info: ... file 'alphabetic.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/alphabetic.cbx
+File: alphabetic.cbx 2013/11/25 v2.8a biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count217
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen106
+\captionmargin@=\dimen107
+\captionwidth=\dimen108
+\caption@tempdima=\dimen109
+\caption@indent=\dimen110
+\caption@parindent=\dimen111
+\caption@hangindent=\dimen112
+)
+Package caption Info: KOMA-Script document class.
+\c@ContinuedFloat=\count218
+)
+\c@subfigure=\count219
+\c@subtable=\count220
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrhack.sty
+Package: scrhack 2013/12/19 v3.12 KOMA-Script package 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count221
+\lst@gtempboxa=\box27
+\lst@token=\toks18
+\lst@length=\count222
+\lst@currlwidth=\dimen113
+\lst@column=\count223
+\lst@pos=\count224
+\lst@lostspace=\dimen114
+\lst@width=\dimen115
+\lst@newlines=\count225
+\lst@lineno=\count226
+\lst@maxwidth=\dimen116
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count227
+\lst@skipnumbers=\count228
+\lst@framebox=\box28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package scrhack Info: loading listings hack on input line 22.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/listings.hak
+File: listings.hak 2013/12/19 v3.12 KOMA-Script package (hacking package listin
+gs)
+Package tocbasic Info: setting babel extension for `lol' on input line 137.
+Package scrhack Info: redefining \lstlistoflistings on input line 137.
+)
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/lstaddons/lstautogobble.sty
+Package: lstautogobble 2012/05/03 v0.1 Implements 'autogobble' option for 'list
+ings'
+\lstag@spacecount=\count229
+)
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen117
+\extrarowheight=\dimen118
+\NC@list=\toks19
+\extratabsurround=\skip57
+\backup@length=\skip58
+)
+\everycr=\toks20
+\minrowclearance=\skip59
+)
+\rownum=\count230
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texmf/tex/latex/xcolor/svgnam.def
+File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
+))
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks21
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box29
+
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
+))
+Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
+
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks22
+\pgfkeys@temptoks=\toks23
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks24
+))
+\pgf@x=\dimen119
+\pgf@y=\dimen120
+\pgf@xa=\dimen121
+\pgf@ya=\dimen122
+\pgf@xb=\dimen123
+\pgf@yb=\dimen124
+\pgf@xc=\dimen125
+\pgf@yc=\dimen126
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
+\c@pgf@counta=\count231
+\c@pgf@countb=\count232
+\c@pgf@countc=\count233
+Normal \count register pool exhausted, switching to extended pool.
+\c@pgf@countd=\count277
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+)))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
+\pgfsyssoftpath@smallbuffer@items=\count278
+\pgfsyssoftpath@bigbuffer@items=\count279
+)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen127
+\pgfmath@count=\count280
+\pgfmath@box=\box30
+\pgfmath@toks=\toks25
+\pgfmath@stack@operand=\toks26
+\pgfmath@stack@operation=\toks27
+)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)))
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count281
+))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
+\pgf@picminx=\dimen128
+\pgf@picmaxx=\dimen129
+\pgf@picminy=\dimen130
+\pgf@picmaxy=\dimen131
+\pgf@pathminx=\dimen132
+\pgf@pathmaxx=\dimen133
+\pgf@pathminy=\dimen134
+\pgf@pathmaxy=\dimen135
+\pgf@xx=\dimen136
+\pgf@xy=\dimen137
+\pgf@yx=\dimen138
+\pgf@yy=\dimen139
+\pgf@zx=\dimen140
+\pgf@zy=\dimen141
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
+\pgf@path@lastx=\dimen142
+\pgf@path@lasty=\dimen143
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
+\pgf@shorten@end@additional=\dimen144
+\pgf@shorten@start@additional=\dimen145
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
+\pgfpic=\box31
+\pgf@hbox=\box32
+\pgf@layerbox@main=\box33
+\pgf@picture@serial@count=\count282
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
+\pgflinewidth=\dimen146
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
+\pgf@pt@x=\dimen147
+\pgf@pt@y=\dimen148
+\pgf@pt@temp=\dimen149
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
+\pgf@max=\dimen150
+\pgf@sys@shading@range@num=\count283
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
+\pgfexternal@startupbox=\box34
+))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
+)))
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
+\pgfnodeparttextbox=\box35
+)
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
+)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen151
+\pgf@nodesepend=\dimen152
+)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
+))
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
+\pgffor@iter=\dimen153
+\pgffor@skip=\dimen154
+\pgffor@stack=\toks28
+\pgffor@toks=\toks29
+))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
+
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
+\pgf@plot@mark@count=\count284
+\pgfplotmarksize=\dimen155
+)
+\tikz@lastx=\dimen156
+\tikz@lasty=\dimen157
+\tikz@lastxsaved=\dimen158
+\tikz@lastysaved=\dimen159
+\tikzleveldistance=\dimen160
+\tikzsiblingdistance=\dimen161
+\tikz@figbox=\box36
+\tikz@tempbox=\box37
+\tikztreelevel=\count285
+\tikznumberofchildren=\count286
+\tikznumberofcurrentchild=\count287
+\tikz@fig@count=\count288
+
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
+\pgfmatrixcurrentrow=\count289
+\pgfmatrixcurrentcolumn=\count290
+\pgf@matrix@numberofcolumns=\count291
+)
+\tikz@expandcount=\count292
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
+))) (/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2013/10/03 v1.9 Data Visualization (1.9)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks30
+\t@pgfplots@tokb=\toks31
+\t@pgfplots@tokc=\toks32
+\pgfplots@tmpa=\dimen162
+\c@pgfplots@coordindex=\count293
+\c@pgfplots@scanlineindex=\count294
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
+.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_loader.code.tex
+Package pgfplots: loading complementary code for your PGF version...
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_misc.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks33
+\pgfkeys@temptoks=\toks34
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks35
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count295
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2012/09/11 v2.10 (rcs-revision 1.17)
+\pgf@plot@mark@count=\count296
+\pgfplotmarksize=\dimen163
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgflibraryfpu.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2012/11/30  (rcs-revision 1.38)
+\pgfpic=\box38
+\pgf@hbox=\box39
+\pgf@layerbox@main=\box40
+\pgf@picture@serial@count=\count297
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2012/11/07  (rcs-revision 1.5)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructure.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructureext.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
+.code.tex
+\c@pgfplotsarray@tmp=\count298
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
+x.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
+d.code.tex
+\c@pgfplotstable@counta=\count299
+\t@pgfplotstable@a=\toks36
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
+x
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
+de.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
+fshading.code.tex
+\c@pgfplotslibrarysurf@no=\count300
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
+shading.pgfsys-pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
+tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
+ex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
+e.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.code.tex
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen164
+\pgfdecoratedremainingdistance=\dimen165
+\pgfdecoratedinputsegmentcompleteddistance=\dimen166
+\pgfdecoratedinputsegmentremainingdistance=\dimen167
+\pgf@decorate@distancetomove=\dimen168
+\pgf@decorate@repeatstate=\count301
+\pgfdecorationsegmentamplitude=\dimen169
+\pgfdecorationsegmentlength=\dimen170
+)
+\tikz@lib@dec@box=\box41
+)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.pathmorphing.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.p
+athmorphing.code.tex))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
+ations.pathreplacing.code.tex
+(/usr/share/texmf/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.p
+athreplacing.code.tex))
+\pgfplots@numplots=\count302
+\pgfplots@xmin@reg=\dimen171
+\pgfplots@xmax@reg=\dimen172
+\pgfplots@ymin@reg=\dimen173
+\pgfplots@ymax@reg=\dimen174
+\pgfplots@zmin@reg=\dimen175
+\pgfplots@zmax@reg=\dimen176
+)
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotm
+arks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
+
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2010/10/15 v2.10 (rcs-revision 1.12)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplotstable 2013/10/03 v1.9 Table typesetting and Pretty-printing (1
+.9)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code
+.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.colt
+ype.code.tex))) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen177
+\lightrulewidth=\dimen178
+\cmidrulewidth=\dimen179
+\belowrulesep=\dimen180
+\belowbottomsep=\dimen181
+\aboverulesep=\dimen182
+\abovetopsep=\dimen183
+\cmidrulesep=\dimen184
+\cmidrulekern=\dimen185
+\defaultaddspace=\dimen186
+\@cmidla=\count303
+\@cmidlb=\count304
+\@aboverulesep=\dimen187
+\@belowrulesep=\dimen188
+\@thisruleclass=\count305
+\@lastruleclass=\count306
+\@thisrulewidth=\dimen189
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
+\MT@toks=\toks37
+\MT@count=\count307
+LaTeX Info: Redefining \textls on input line 766.
+\MT@outer@kern=\dimen190
+LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
+\MT@listname@count=\count308
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip60
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen191
+\Hy@linkcounter=\count309
+\Hy@pagecounter=\count310
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count311
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count312
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen192
+\Fld@menulength=\count313
+\Field@Width=\dimen193
+\Fld@charsize=\dimen194
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count314
+\c@Item=\count315
+\c@Hfootnote=\count316
+)
+Package scrhack Info: hyperref hack deactivated because of
+(scrhack)             detection of hyperref version, that doesn't
+(scrhack)             need that hack, on input line 31.
+
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count317
+\c@bookmark@seq@number=\count318
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip61
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+Package: glossaries 2014/01/20 v4.03 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks38
+\XKV@tempa@toks=\toks39
+\XKV@depth=\count319
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
+Package: mfirstuc 2013/11/04 v1.08 (NLCT)
+\@glsmfirst=\toks40
+\@glsmrest=\toks41
+)
+(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xfor/xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-base.sty
+Package: datatool-base 2013/09/06 v2.18 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip62
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks42
+\ex@=\dimen195
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen196
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count320
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count321
+\leftroot@=\count322
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count323
+\DOTSCASE@=\count324
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box42
+\strutbox@=\box43
+\big@size=\dimen197
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count325
+\c@MaxMatrixCols=\count326
+\dotsspace@=\muskip11
+\c@parentequation=\count327
+\dspbrk@lvl=\count328
+\tag@help=\toks43
+\row@=\count329
+\column@=\count330
+\maxfields@=\count331
+\andhelp@=\toks44
+\eqnshift@=\dimen198
+\alignsep@=\dimen199
+\tagshift@=\dimen200
+\tagwidth@=\dimen201
+\totwidth@=\dimen202
+\lineht@=\dimen203
+\@envbody=\toks45
+\multlinegap=\skip63
+\multlinetaggap=\skip64
+\mathdisplay@stack=\toks46
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/substr/substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count332
+)
+(/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-fp.sty
+Package: datatool-fp 2013/08/29 v2.17 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count333
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count334
+\FP@xia=\count335
+\FP@xib=\count336
+\FP@xfa=\count337
+\FP@xfb=\count338
+\FP@rega=\count339
+\FP@regb=\count340
+\FP@regs=\count341
+\FP@times=\count342
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count343
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks47
+\@dtl@tmpcount=\count344
+\dtl@tmplength=\skip65
+\dtl@sortresult=\count345
+\@dtl@numgrpsepcount=\count346
+\@dtl@datatype=\count347
+\dtl@codeA=\count348
+\dtl@codeB=\count349
+\@dtl@foreach@level=\count350
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-
+307.sty
+Package: glossaries-compatible-307 2013/11/14 v4.0 (NLCT)
+) (/usr/share/texmf/tex/latex/beamer/base/translator/translator.sty
+Package: translator 2010/06/12 ver 1.10
+
+(/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
+.tex))
+\gls@level=\count351
+\@gls@tmpb=\toks48
+\gls@tmplen=\skip66
+\glswrite=\write5
+\glskeylisttok=\toks49
+\glslabeltok=\toks50
+\glsshorttok=\toks51
+\glslongtok=\toks52
+
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.st
+y
+Package: glossary-hypernav 2013/11/14 v4.0 (NLCT)
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+Package: glossary-list 2013/11/14 v4.0 (NLCT)
+\glslistdottedwidth=\skip67
+) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+Package: glossary-long 2013/11/14 v4.0 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip68
+\LTright=\skip69
+\LTpre=\skip70
+\LTpost=\skip71
+\LTchunksize=\count352
+\LTcapwidth=\dimen204
+\LT@head=\box44
+\LT@firsthead=\box45
+\LT@foot=\box46
+\LT@lastfoot=\box47
+\LT@cols=\count353
+\LT@rows=\count354
+\c@LT@tables=\count355
+\c@LT@chunks=\count356
+\LT@p@ftn=\toks53
+)
+Class scrbook Info: longtable captions redefined on input line 43.
+\glsdescwidth=\skip72
+\glspagelistwidth=\skip73
+)
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+Package: glossary-super 2013/11/14 v4.0 (NLCT)
+
+(/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2004/02/20 v4.1e the supertabular environment
+\c@tracingst=\count357
+\ST@wd=\dimen205
+\ST@rightskip=\skip74
+\ST@leftskip=\skip75
+\ST@parfillskip=\skip76
+\ST@pageleft=\dimen206
+\ST@headht=\dimen207
+\ST@tailht=\dimen208
+\ST@pagesofar=\dimen209
+\ST@pboxht=\dimen210
+\ST@lineht=\dimen211
+\ST@stretchht=\dimen212
+\ST@prevht=\dimen213
+\ST@toadd=\dimen214
+\ST@dimen=\dimen215
+\ST@pbox=\box48
+))
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+Package: glossary-tree 2013/11/14 v4.0 (NLCT)
+\glstreeindent=\skip77
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count358
+\calc@Bcount=\count359
+\calc@Adimen=\dimen216
+\calc@Bdimen=\dimen217
+\calc@Askip=\skip78
+\calc@Bskip=\skip79
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count360
+\calc@Cskip=\skip80
+))
+(/usr/share/texlive/texmf-dist/tex/latex/progressbar/progressbar.sty
+Package: progressbar 2013/01/06 v1.0b\unhbox \voidb@x \penalty \@M \ 3: progres
+sbar
+
+
+LaTeX Warning: You have requested, on input line 28, version
+               `2011/08/03' of package kvoptions,
+               but only version
+               `2011/06/30 v3.11 Key value format for package options (HO)'
+               is available.
+
+\BarWidth=\skip81
+\BarWidthCenter=\skip82
+\BarHeight=\skip83
+\BarHeightCenter=\skip84
+\BarBorderWidth=\skip85
+\BarRoundedCorners=\skip86
+\BarPartWidth=\skip87
+\BarSubDivisionsWidthANU=\skip88
+\BarSubDivisionsWidthBNU=\skip89
+\BarSubDivisionsWidthCNU=\skip90
+\c@progressbar@counter=\count361
+) (./settings/settings.tex
+\glo@main@file=\write6
+\openout6 = `main.glo'.
+
+Package glossaries Info: Writing glossary file main.glo on input line 8.
+\glo@acronym@file=\write7
+\openout7 = `main.acn'.
+
+Package glossaries Info: Writing glossary file main.acn on input line 8.
+) (./settings/commands.tex)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/american.lbx
+File: american.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
+)) (./main.aux
+
+LaTeX Warning: Label `fig:tool_sid_analysis' multiply defined.
+
+
+LaTeX Warning: Label `fig:OTG_AUTHN_004_1' multiply defined.
+
+)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 11.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 11.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pplx.fd
+File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
+)
+Package nag Info: pgf.sty is broken: disabling dollar check on input line 11.
+Package nag Info: Command \RaggedLeft not defined, skipping amendment on input 
+line 11.
+Package nag Info: Command \RaggedRight not defined, skipping amendment on input
+ line 11.
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `main.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 11.
+Package biblatex Info: Reference segment=0 on input line 11.
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count362
+\scratchdimen=\dimen218
+\scratchbox=\box49
+\nofMPsegments=\count363
+\nofMParguments=\count364
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count365
+\MPscratchDim=\dimen219
+\MPnumerator=\count366
+\makeMPintoPDFobject=\count367
+\everyMPtoPDFconversion=\toks55
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+)
+Package caption Info: supertabular package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count368
+Package scrhack Info: undefining \float@addtolists on input line 11.
+
+ABD: EveryShipout initializing macros
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.9}).
+
+LaTeX Info: Redefining \microtypecontext on input line 11.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `basictext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
+File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
+)
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 11.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count369
+)
+LaTeX Info: Redefining \ref on input line 11.
+LaTeX Info: Redefining \pageref on input line 11.
+LaTeX Info: Redefining \nameref on input line 11.
+
+(./main.out) (./main.out)
+\@outlinefile=\write8
+\openout8 = `main.out'.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/glossaries/dict/glossaries-dictionary-
+English.dict
+Dictionary: glossaries-dictionary, Language: English 
+)
+Package nag Info: Command \hc@caption not defined, skipping amendment on input 
+line 11.
+ (./pages/title.tex
+<logos/tum.pdf, id=465, 55.20625pt x 30.1125pt>
+File: logos/tum.pdf Graphic file (type pdf)
+ <use logos/tum.pdf>
+Package pdftex.def Info: logos/tum.pdf used on input line 4.
+(pdftex.def)             Requested size: 113.81102pt x 62.08203pt.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <20.74> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pplx.fd
+File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
+)
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `zplm' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 11.40997pt on input line 19.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 19.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 11.40997pt on input line 19.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 19.
+
+<logos/faculty.pdf, id=466, 30.1125pt x 33.12375pt>
+File: logos/faculty.pdf Graphic file (type pdf)
+ <use logos/faculty.pdf>
+Package pdftex.def Info: logos/faculty.pdf used on input line 28.
+(pdftex.def)             Requested size: 56.9055pt x 62.60217pt.
+
+[1
+
+\openout5 = `main.ist'.
+
+
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logos/tum.pdf> <./logos/
+faculty.pdf>]) (./pages/abstract.tex
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 1.
+) [2
+
+
+]
+Package tocbasic Info: character protrusion at toc deactivated on input line 18
+.
+ (./main.toc [3
+
+
+]
+LaTeX Font Info:    Font shape `T1/pplx/m/sl' in size <10.95> not available
+(Font)              Font shape `T1/pplx/m/it' tried instead on input line 287.
+ [4] [5])
+\tf@toc=\write9
+\openout9 = `main.toc'.
+
+ [6]
+(./chapters/timetable.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 3.
+) (./chapters/overview.tex
+Underfull \hbox (badness 10000) in paragraph at lines 24--1
+
+ []
+
+[1
+
+
+
+]
+Chapter 2.
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+pplx on input line 9.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pplx.fd
+File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
+) [2
+
+
+])
+(./chapters/tools.tex [3]
+Chapter 3.
+(./chapters/tools/tools_distribution.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 33--4
+
+ []
+
+[4
+
+
+] [5] (./chapters/tools/tools_analysis.tex (./chapters/tools/tool_zap.tex)
+(./chapters/tools/tool_error_mint.tex
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+<figures/OTG-ERR-001-1.png, id=681, 754.82pt x 311.1625pt>
+File: figures/OTG-ERR-001-1.png Graphic file (type png)
+
+<use figures/OTG-ERR-001-1.png>
+Package pdftex.def Info: figures/OTG-ERR-001-1.png used on input line 6.
+(pdftex.def)             Requested size: 334.60571pt x 137.93272pt.
+
+<figures/OTG-ERR-001-2.png, id=683, 811.03pt x 102.3825pt>
+File: figures/OTG-ERR-001-2.png Graphic file (type png)
+
+<use figures/OTG-ERR-001-2.png>
+Package pdftex.def Info: figures/OTG-ERR-001-2.png used on input line 13.
+(pdftex.def)             Requested size: 334.60571pt x 42.2411pt.
+) (./chapters/tools/tool_bomb_transaction.tex
+<figures/tool_bomb_transaction.png, id=684, 737.75626pt x 127.47626pt>
+File: figures/tool_bomb_transaction.png Graphic file (type png)
+
+<use figures/tool_bomb_transaction.png>
+Package pdftex.def Info: figures/tool_bomb_transaction.png used on input line 7
+.
+(pdftex.def)             Requested size: 334.60571pt x 57.81505pt.
+)
+(./chapters/tools/tool_chrome_dev_tools.tex
+<figures/tool_chrome_dev_tools.png, id=685, 1158.3275pt x 590.205pt>
+File: figures/tool_chrome_dev_tools.png Graphic file (type png)
+
+<use figures/tool_chrome_dev_tools.png>
+Package pdftex.def Info: figures/tool_chrome_dev_tools.png used on input line 8
+.
+(pdftex.def)             Requested size: 334.60571pt x 170.48863pt.
+)
+(./chapters/tools/tool_sid_analysis.tex [6
+
+ <./figures/OTG-ERR-001-1.png> <./figures/OTG-ERR-001-2.png>]
+<figures/tool_sid_analysis.png, id=695, 760.8425pt x 567.11874pt>
+File: figures/tool_sid_analysis.png Graphic file (type png)
+
+<use figures/tool_sid_analysis.png>
+Package pdftex.def Info: figures/tool_sid_analysis.png used on input line 6.
+(pdftex.def)             Requested size: 334.60571pt x 249.41187pt.
+) (./chapters/tools/tool_curl.tex [7 <./figures/tool_bomb_transaction.png> <./f
+igures/tool_chrome_dev_tools.png>]
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `cmtt' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+)
+(./chapters/tools/tool_thc_hydra.tex [8 <./figures/tool_sid_analysis.png>])
+(./chapters/tools/tool_vega.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--4
+
+ []
+
+[9]) (./chapters/tools/tool_burp.tex))) (./chapters/tests.tex [10]
+Chapter 4.
+(./chapters/tests/category_1.tex (./chapters/tests/category_1/test_1.tex
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 4--39
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 39
+ []
+
+[11
+
+
+] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 42--51
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 51
+ []
+
+[13
+
+]) (./chapters/tests/category_1/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 4--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--25
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 25
+ []
+
+<figures/OTG-CONFIG-006.png, id=750, 1354.05875pt x 560.0925pt>
+File: figures/OTG-CONFIG-006.png Graphic file (type png)
+
+<use figures/OTG-CONFIG-006.png>
+Package pdftex.def Info: figures/OTG-CONFIG-006.png used on input line 32.
+(pdftex.def)             Requested size: 334.60571pt x 138.40752pt.
+ [14
+
+] [15 <./figures/OTG-CONFIG-006.png>])
+(./chapters/tests/category_1/test_3.tex
+Underfull \hbox (badness 4621) in paragraph at lines 6--7
+[]|\T1/pplx/m/n/10.95 (+20) Accessing the site with []\T1/cmtt/m/n/10.95 https:
+//IP_ADDRESS/secure-coding/
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 6--7
+\T1/cmtt/m/n/10.95 public/login.php[] \T1/pplx/m/n/10.95 (+20) gives a SSL con-
+nec-tion er-ror, i.e. that
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 6--7
+\T1/pplx/m/n/10.95 (+20) the site does not use HTTPS. Fur-ther-more, us-ing the
+ com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--11
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11
+ []
+
+
+Underfull \hbox (badness 4621) in paragraph at lines 17--18
+[]|\T1/pplx/m/n/10.95 (+20) Accessing the site with []\T1/cmtt/m/n/10.95 https:
+//IP_ADDRESS/secure-coding/
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 17--18
+\T1/cmtt/m/n/10.95 public/login.php[] \T1/pplx/m/n/10.95 (+20) gives a SSL con-
+nec-tion er-ror, i.e. that
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 17--18
+\T1/pplx/m/n/10.95 (+20) the site does not use HTTPS. Fur-ther-more, us-ing the
+ com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 14--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+[16
+
+] [17]) (./chapters/tests/category_1/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--11
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 14--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+[18
+
+])) (./chapters/tests/category_2.tex (./chapters/tests/category_2/test_1.tex [1
+9
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 28--81
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 81
+ []
+
+[20
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 122--122
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 84--130
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 130
+ []
+
+[21] [22] [23]) (./chapters/tests/category_2/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--46
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 46
+ []
+
+[24
+
+] [25]
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 50--98
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 98
+ []
+
+[26
+
+] [27]) (./chapters/tests/category_2/test_3.tex
+Underfull \hbox (badness 2318) in paragraph at lines 9--10
+[]\T1/pplx/m/n/10.95 (+20) Login as a Cus-tomer and en-ter the URL - []\T1/cmtt
+/m/n/10.95 http:// 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--37
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 37
+ []
+
+[28
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 40--49
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 49
+ []
+
+[29] [30]) (./chapters/tests/category_2/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--35
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 35
+ []
+
+[31
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 38--47
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 47
+ []
+
+[32]) (./chapters/tests/category_2/test_5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--12
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 15--24
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 24
+ []
+
+[33
+
+] [34])) (./chapters/tests/category_3.tex
+(./chapters/tests/category_3/test_1.tex
+Underfull \hbox (badness 7273) in paragraph at lines 29--30
+[]\T1/pplx/m/n/10.95 (+20) To get a de-tailed re-sponse, use []\T1/cmtt/m/n/10.
+95 curl --verbose
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--36
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--49
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 49
+ []
+
+[35
+
+] [36]
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 52--61
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 61
+ []
+
+<figures/OTG-AUTHN-001_1.png, id=898, 1462.46375pt x 1832.8475pt>
+File: figures/OTG-AUTHN-001_1.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-001_1.png>
+Package pdftex.def Info: figures/OTG-AUTHN-001_1.png used on input line 67.
+(pdftex.def)             Requested size: 169.39119pt x 212.26926pt.
+
+<figures/OTG-AUTHN-001_2.png, id=899, 1345.025pt x 675.52374pt>
+File: figures/OTG-AUTHN-001_2.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-001_2.png>
+Package pdftex.def Info: figures/OTG-AUTHN-001_2.png used on input line 72.
+(pdftex.def)             Requested size: 150.57153pt x 75.61691pt.
+ [37] [38 <./figures/OTG-AUTHN-001_1.png> <./figures/OTG-AUTHN-001_2.png>]) (./
+chapters/tests/category_3/test_2.tex
+<figures/OTG-AUTHN-002_1.png, id=915, 406.51875pt x 456.70625pt>
+File: figures/OTG-AUTHN-002_1.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-002_1.png>
+Package pdftex.def Info: figures/OTG-AUTHN-002_1.png used on input line 8.
+(pdftex.def)             Requested size: 169.39119pt x 190.30309pt.
+
+<figures/OTG-AUTHN-002_2.png, id=916, 342.27875pt x 648.4225pt>
+File: figures/OTG-AUTHN-002_2.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-002_2.png>
+Package pdftex.def Info: figures/OTG-AUTHN-002_2.png used on input line 13.
+(pdftex.def)             Requested size: 150.57153pt x 285.2474pt.
+ [39
+
+ <./figures/OTG-AUTHN-002_1.png> <./figures/OTG-AUTHN-002_2.png>]) (./chapters/
+tests/category_3/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[40
+
+] [41]) (./chapters/tests/category_3/test_4.tex
+Overfull \hbox (2.29315pt too wide) in paragraph at lines 28--29
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--39
+[]\T1/cmtt/m/n/10.95 curl "http://<ip>/secure-coding/public/view_transaction.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--59
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 59
+ []
+
+[42
+
+] [43]
+Underfull \hbox (badness 10000) in paragraph at lines 88--88
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 63--93
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 93
+ []
+
+<figures/OTG-AUTHN-004-1.jpg, id=955, 1294.8375pt x 1143.27126pt>
+File: figures/OTG-AUTHN-004-1.jpg Graphic file (type jpg)
+
+<use figures/OTG-AUTHN-004-1.jpg>
+Package pdftex.def Info: figures/OTG-AUTHN-004-1.jpg used on input line 101.
+(pdftex.def)             Requested size: 334.60571pt x 295.42924pt.
+ [44
+
+] [45 <./figures/OTG-AUTHN-004-1.jpg>])
+(./chapters/tests/category_3/test_5.tex [46
+
+])
+(./chapters/tests/category_3/test_6.tex
+Underfull \hbox (badness 1668) in paragraph at lines 7--8
+[]\T1/pplx/m/n/10.95 (+20) It is found that sen-si-tive data is not saved any-w
+here
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 7--8
+\T1/pplx/m/n/10.95 (+20) through-out the ap-pli-ca-tion. This is achieved with 
+the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+\T1/pplx/m/n/10.95 (+20) header []\T1/cmtt/m/n/10.95 Cache-Control: must-revali
+date, pre-check=0,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--41
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 41
+ []
+
+[47
+
+] <figures/OTG-AUTHN-006.png, id=980, 805.0075pt x 534.99875pt>
+File: figures/OTG-AUTHN-006.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-006.png>
+Package pdftex.def Info: figures/OTG-AUTHN-006.png used on input line 45.
+(pdftex.def)             Requested size: 334.60571pt x 222.37137pt.
+
+Underfull \hbox (badness 1668) in paragraph at lines 55--56
+[]\T1/pplx/m/n/10.95 (+20) It is found that sen-si-tive data is not saved any-w
+here
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 55--56
+\T1/pplx/m/n/10.95 (+20) through-out the ap-pli-ca-tion. This is achieved with 
+the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+\T1/pplx/m/n/10.95 (+20) header []\T1/cmtt/m/n/10.95 Cache-Control: must-revali
+date, pre-check=0,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 51--64
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 64
+ []
+
+[48] [49] [50 <./figures/OTG-AUTHN-006.png>])
+(./chapters/tests/category_3/test_7.tex
+Underfull \hbox (badness 1681) in paragraph at lines 10--11
+\T1/pplx/m/n/10.95 (+20) in the fol-low-ing for-mat. hy-dra -L <user-name list>
+ -
+ []
+
+
+Underfull \hbox (badness 5446) in paragraph at lines 10--11
+\T1/pplx/m/n/10.95 (+20) p <pass-word list> <IP Ad-dress> <form pa-ram-e-ters>
+ []
+
+
+Underfull \hbox (badness 2781) in paragraph at lines 10--11
+\T1/pplx/m/n/10.95 (+20) <failed lo-gin mes-sage>. In our case, the com-mand
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--30
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 30
+ []
+
+[51
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 33--42
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 42
+ []
+
+
+Overfull \vbox (0.324pt too high) has occurred while \output is active []
+
+ [52]
+<figures/OTG-AUTHN-007_1.png, id=1013, 1295.84125pt x 644.4075pt>
+File: figures/OTG-AUTHN-007_1.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-007_1.png>
+Package pdftex.def Info: figures/OTG-AUTHN-007_1.png used on input line 48.
+(pdftex.def)             Requested size: 169.39119pt x 84.22823pt.
+
+<figures/OTG-AUTHN-007_2.png, id=1014, 1352.05125pt x 560.0925pt>
+File: figures/OTG-AUTHN-007_2.png Graphic file (type png)
+
+<use figures/OTG-AUTHN-007_2.png>
+Package pdftex.def Info: figures/OTG-AUTHN-007_2.png used on input line 53.
+(pdftex.def)             Requested size: 150.57153pt x 62.37099pt.
+ [53 <./figures/OTG-AUTHN-007_1.png> <./figures/OTG-AUTHN-007_2.png>]) (./chapt
+ers/tests/category_3/test_8.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--25
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 25
+ []
+
+[54
+
+] [55]) (./chapters/tests/category_3/test_9.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--12
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 12
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 15--24
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 24
+ []
+
+[56
+
+] [57]) (./chapters/tests/category_3/test_10.tex [58
+
+]))
+(./chapters/tests/category_4.tex (./chapters/tests/category_4/test_1.tex
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--29
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 29
+ []
+
+[59
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 32--59
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 59
+ []
+
+[60] <figures/OTG-AUTHZ-001.png, id=1067, 718.685pt x 533.995pt>
+File: figures/OTG-AUTHZ-001.png Graphic file (type png)
+
+<use figures/OTG-AUTHZ-001.png>
+Package pdftex.def Info: figures/OTG-AUTHZ-001.png used on input line 66.
+(pdftex.def)             Requested size: 334.60571pt x 248.62288pt.
+ [61] [62 <./figures/OTG-AUTHZ-001.png>])
+(./chapters/tests/category_4/test_2.tex
+Overfull \hbox (3.54579pt too wide) in paragraph at lines 19--20
+[]\T1/pplx/m/n/10.95 (-20) Edit the URL to []\T1/cmtt/m/n/10.95 http://<IP-addr
+ess>/secure-coding/public/
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--36
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 36
+ []
+
+[63
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 39--48
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 48
+ []
+
+[64]) (./chapters/tests/category_4/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--58
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 58
+ []
+
+[65
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 61--82
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 82
+ []
+
+[66] [67]) (./chapters/tests/category_4/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+[]\T1/pplx/m/n/10.95 (+20) The URL in the ad-dress bar is of the form :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+[]\T1/cmtt/m/n/10.95 http://<IP-address>/secure-coding/public/view_ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--32
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 32
+ []
+
+[68
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 35--45
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 45
+ []
+
+
+Overfull \vbox (0.324pt too high) has occurred while \output is active []
+
+ [69]
+[70])) (./chapters/tests/category_5.tex (./chapters/tests/category_5/test_1.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--33
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 33
+ []
+
+[71
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 36--46
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 46
+ []
+
+[72]) (./chapters/tests/category_5/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--32
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 32
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 35--45
+[] [] 
+ []
+
+[73
+
+]
+Underfull \vbox (badness 10000) detected at line 45
+ []
+
+[74]) (./chapters/tests/category_5/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--32
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 32
+ []
+
+[75
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 35--45
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 45
+ []
+
+[76] [77]) (./chapters/tests/category_5/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+[78
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--33
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 33
+ []
+
+<figures/OTG-SESS-004.png, id=1189, 774.895pt x 481.8pt>
+File: figures/OTG-SESS-004.png Graphic file (type png)
+
+<use figures/OTG-SESS-004.png>
+Package pdftex.def Info: figures/OTG-SESS-004.png used on input line 40.
+(pdftex.def)             Requested size: 334.60571pt x 208.0448pt.
+ [79] [80 <./figures/OTG-SESS-004.png>])
+(./chapters/tests/category_5/test_5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[81
+
+] [82]) (./chapters/tests/category_5/test_6.tex
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--39
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 39
+ []
+
+[83
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 42--78
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 78
+ []
+
+[84] [85]) (./chapters/tests/category_5/test_7.tex
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--24
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 24
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 27--48
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 48
+ []
+
+[86
+
+] [87]) (./chapters/tests/category_5/test_8.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[88
+
+])) (./chapters/tests/category_6.tex (./chapters/tests/category_6/test_1.tex
+Underfull \hbox (badness 1242) in paragraph at lines 11--12
+[]\T1/pplx/m/n/10.95 (+20) Open any pend-ing reg-is-tra-tion and note that the 
+URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+\T1/pplx/m/n/10.95 (+20) is of the form []\T1/cmtt/m/n/10.95 http://<IP-address
+>/secure-coding/ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--30
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 30
+ []
+
+[89
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 33--43
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 43
+ []
+
+[90]) (./chapters/tests/category_6/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+[]\T1/pplx/m/n/10.95 (+20) Fill the form with the de-tails and en-ter []\T1/cmt
+t/m/n/10.95 <img
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--35
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 35
+ []
+
+[91
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 38--70
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 70
+ []
+
+[92] [93] [94]) (./chapters/tests/category_6/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--34
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 34
+ []
+
+[95
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 37--47
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 47
+ []
+
+[96]) (./chapters/tests/category_6/test_4.tex
+Underfull \hbox (badness 1472) in paragraph at lines 5--6
+[]|\T1/pplx/m/n/10.95 (+20) GET and POST re-quest al-ways in-ter-preted the las
+t pa-ram-e-
+ []
+
+
+Underfull \hbox (badness 2205) in paragraph at lines 5--6
+\T1/pplx/m/n/10.95 (+20) ther-more, it could be ob-served that spec-i-fy-ing an
+-other ID
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--33
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 33
+ []
+
+[97
+
+] <figures/OTG-INPVAL-004_1.png, id=1318, 1226.5825pt x 673.51625pt>
+File: figures/OTG-INPVAL-004_1.png Graphic file (type png)
+
+<use figures/OTG-INPVAL-004_1.png>
+Package pdftex.def Info: figures/OTG-INPVAL-004_1.png used on input line 42.
+(pdftex.def)             Requested size: 334.60571pt x 183.73251pt.
+
+<figures/OTG-INPVAL-004_2.png, id=1319, 1241.63875pt x 450.68375pt>
+File: figures/OTG-INPVAL-004_2.png Graphic file (type png)
+
+<use figures/OTG-INPVAL-004_2.png>
+Package pdftex.def Info: figures/OTG-INPVAL-004_2.png used on input line 47.
+(pdftex.def)             Requested size: 334.60571pt x 121.45241pt.
+ [98] [99 <./figures/OTG-INPVAL-004_1.png> <./figures/OTG-INPVAL-004_2.png>]) (
+./chapters/tests/category_6/test_5.tex
+Underfull \hbox (badness 1275) in paragraph at lines 6--7
+\T1/pplx/m/n/10.95 (+20) lo-gin is []\T1/cmtt/m/n/10.95 sqlmap -u "http://IP_AD
+DRESS/secure-coding/public/
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+\T1/cmtt/m/n/10.95 "form_login[email]=test&form_login[password]=test"[]\T1/pplx
+/m/n/10.95 (+20) .
+ []
+
+
+Underfull \hbox (badness 5504) in paragraph at lines 28--29
+\T1/pplx/m/n/10.95 (+20) For test-ing the trans-ac-tion the ses-sion cookie has
+ to
+ []
+
+
+Underfull \hbox (badness 4872) in paragraph at lines 28--29
+\T1/pplx/m/n/10.95 (+20) be given as an ex-tra pa-ram-e-ter in the com-mand as
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 33
+ []
+
+[100
+
+] <figures/OTG-INPVAL-005_1.png, id=1342, 1019.81pt x 627.34375pt>
+File: figures/OTG-INPVAL-005_1.png Graphic file (type png)
+
+<use figures/OTG-INPVAL-005_1.png>
+Package pdftex.def Info: figures/OTG-INPVAL-005_1.png used on input line 40.
+(pdftex.def)             Requested size: 334.60571pt x 205.83708pt.
+
+<figures/OTG-INPVAL-005_2.png, id=1343, 795.97375pt x 90.3375pt>
+File: figures/OTG-INPVAL-005_2.png Graphic file (type png)
+
+<use figures/OTG-INPVAL-005_2.png>
+Package pdftex.def Info: figures/OTG-INPVAL-005_2.png used on input line 47.
+(pdftex.def)             Requested size: 334.60571pt x 37.97456pt.
+ [101] [102 <./figures/OTG-INPVAL-005_1.png> <./figures/OTG-INPVAL-005_2.png>])
+ (./chapters/tests/category_6/test_6.tex
+[103
+
+]) (./chapters/tests/category_6/test_7.tex [104
+
+])
+(./chapters/tests/category_6/test_8.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[105
+
+] [106]) (./chapters/tests/category_6/test_9.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[107
+
+] [108]) (./chapters/tests/category_6/test_10.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[109
+
+] [110]) (./chapters/tests/category_6/test_11.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[111
+
+]) (./chapters/tests/category_6/test_12.tex [112
+
+])
+(./chapters/tests/category_6/test_13.tex
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--41
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 41
+ []
+
+[113
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 44--63
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 63
+ []
+
+<figures/OTG-INPVAL-013-1.png, id=1433, 1231.60126pt x 616.3025pt>
+File: figures/OTG-INPVAL-013-1.png Graphic file (type png)
+
+<use figures/OTG-INPVAL-013-1.png>
+Package pdftex.def Info: figures/OTG-INPVAL-013-1.png used on input line 70.
+(pdftex.def)             Requested size: 334.60571pt x 167.43834pt.
+ [114] [115 <./figures/OTG-INPVAL-013-1.png>]) (./chapters/tests/category_6/tes
+t_14.tex
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--32
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 32
+ []
+
+[116
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 35--54
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 54
+ []
+
+[117] [118]) (./chapters/tests/category_6/test_15.tex
+
+LaTeX Warning: Reference `stored_xss' on page 119 undefined on input line 2.
+
+[119
+
+]) (./chapters/tests/category_6/test_16.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--11
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 14--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+[120
+
+])) (./chapters/tests/category_7.tex
+(./chapters/tests/category_7/test_1.tex
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+)
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 22.
+
+Underfull \hbox (badness 5817) in paragraph at lines 35--39
+\T1/pplx/m/n/10.95 (+20) The 408 time-out mes-sage ad-di-tion-ally pro-vides ^^
+P  samurai-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--82
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 82
+ []
+
+[121
+
+] [122] [123]
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 86--124
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 124
+ []
+
+[124
+
+]
+File: figures/OTG-ERR-001-1.png Graphic file (type png)
+ <use figures/OTG-ERR-001-1.png>
+Package pdftex.def Info: figures/OTG-ERR-001-1.png used on input line 130.
+(pdftex.def)             Requested size: 334.60571pt x 137.93272pt.
+File: figures/OTG-ERR-001-2.png Graphic file (type png)
+ <use figures/OTG-ERR-001-2.png>
+Package pdftex.def Info: figures/OTG-ERR-001-2.png used on input line 136.
+(pdftex.def)             Requested size: 334.60571pt x 42.2411pt.
+
+<figures/OTG-ERR-001-3.png, id=1533, 1144.275pt x 144.54pt>
+File: figures/OTG-ERR-001-3.png Graphic file (type png)
+
+<use figures/OTG-ERR-001-3.png>
+Package pdftex.def Info: figures/OTG-ERR-001-3.png used on input line 142.
+(pdftex.def)             Requested size: 334.60571pt x 42.26619pt.
+ [125] [126 <./figures/OTG-ERR-001-3.png>])
+(./chapters/tests/category_7/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--21
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 21
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 24--58
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 58
+ []
+
+[127
+
+] [128])) (./chapters/tests/category_8.tex
+(./chapters/tests/category_8/test_1.tex
+
+LaTeX Warning: Reference `nmap_ssl_ports' on page 129 undefined on input line 2
+1.
+
+
+Underfull \hbox (badness 7308) in paragraph at lines 21--22
+[]\T1/pplx/m/n/10.95 (+20) To also check typ-i-cal ports with SSL sup-port,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+\T1/pplx/m/n/10.95 (+20) type []\T1/cmtt/m/n/10.95 nmap --script ssl-cert,ssl-e
+num-ciphers -p
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--30
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 30
+ []
+
+[129
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 33--43
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 43
+ []
+
+<figures/OTG-CRYPST-001_1.png, id=1566, 1349.04pt x 562.1pt>
+File: figures/OTG-CRYPST-001_1.png Graphic file (type png)
+
+<use figures/OTG-CRYPST-001_1.png>
+Package pdftex.def Info: figures/OTG-CRYPST-001_1.png used on input line 49.
+(pdftex.def)             Requested size: 169.39119pt x 70.57967pt.
+
+<figures/OTG-CRYPST-001_2.png, id=1567, 1343.0175pt x 566.115pt>
+File: figures/OTG-CRYPST-001_2.png Graphic file (type png)
+
+<use figures/OTG-CRYPST-001_2.png>
+Package pdftex.def Info: figures/OTG-CRYPST-001_2.png used on input line 54.
+(pdftex.def)             Requested size: 169.39119pt x 71.39479pt.
+ [130 <./figures/OTG-CRYPST-001_1.png> <./figures/OTG-CRYPST-001_2.png>]) (./ch
+apters/tests/category_8/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[131
+
+] [132]) (./chapters/tests/category_8/test_3.tex [133
+
+]))
+(./chapters/tests/category_9.tex (./chapters/tests/category_9/test_1.tex
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--46
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 46
+ []
+
+[134
+
+] [135]
+Underfull \hbox (badness 10000) in paragraph at lines 62--62
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 49--65
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 65
+ []
+
+[136
+
+]) (./chapters/tests/category_9/test_2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (3.48593pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (3.48593pt too wide) in alignment at lines 25--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[137
+
+] [138]) (./chapters/tests/category_9/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--11
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 11
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 14--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+[139
+
+] [140]) (./chapters/tests/category_9/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--23
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 23
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 26--46
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 46
+ []
+
+[141
+
+] [142]) (./chapters/tests/category_9/test_5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--41
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 41
+ []
+
+[143
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 44--68
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 68
+ []
+
+[144] [145]) (./chapters/tests/category_9/test_6.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--30
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 30
+ []
+
+[146
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 33--43
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 43
+ []
+
+[147]) (./chapters/tests/category_9/test_7.tex
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--31
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 31
+ []
+
+[148
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 34--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[149]) (./chapters/tests/category_9/test_8.tex [150
+
+])
+(./chapters/tests/category_9/test_9.tex
+Underfull \hbox (badness 1221) in paragraph at lines 13--19
+\T1/pplx/m/n/10.95 (+20) ac-tion" in-ter-face. When above file is up-loaded,
+ []
+
+
+Overfull \hbox (24.39998pt too wide) in alignment at lines 3--51
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 51
+ []
+
+[151
+
+]
+Overfull \hbox (24.39998pt too wide) in alignment at lines 53--75
+ [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 75
+ []
+
+[152] [153])) (./chapters/tests/category_10.tex
+(./chapters/tests/category_10/test_1.tex
+Underfull \hbox (badness 6157) in paragraph at lines 10--11
+[]\T1/pplx/m/n/10.95 (+20) Go to the Trans-ac-tions page by en-ter-ing the URL
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+[]\T1/cmtt/m/n/10.95 http://<IP-address>/secure-coding/public/view 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--20
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 20
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 23--33
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 33
+ []
+
+[154
+
+] [155]) (./chapters/tests/category_10/test_2.tex [156
+
+])
+(./chapters/tests/category_10/test_3.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[157
+
+]) (./chapters/tests/category_10/test_4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--22
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 25--44
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 44
+ []
+
+[158
+
+]) (./chapters/tests/category_10/test_5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--41
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 41
+ []
+
+[159
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 44--54
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 54
+ []
+
+[160]) (./chapters/tests/category_10/test_6.tex
+Underfull \hbox (badness 1360) in paragraph at lines 8--10
+\T1/pplx/m/n/10.95 (+20) ap-pli-ca-tion are []\T1/cmtt/m/n/10.95 <a>[]\T1/pplx/
+m/n/10.95 (+20) , []\T1/cmtt/m/n/10.95 <link>[] \T1/pplx/m/n/10.95 (+20) and []
+\T1/cmtt/m/n/10.95 <script>[]\T1/pplx/m/n/10.95 (+20) . How-ever, these
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 8--10
+\T1/pplx/m/n/10.95 (+20) user-input. The URL pa-ram-e-ters vis-i-ble in the Tra
+ns-ac-tion
+ []
+
+
+Underfull \hbox (badness 1354) in paragraph at lines 8--10
+\T1/pplx/m/n/10.95 (+20) ([]\T1/cmtt/m/n/10.95 http://<IP-address>/view_transac
+tion.php?id=xxx[]\T1/pplx/m/n/10.95 (+20) ) and User
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--15
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 15
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 18--28
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 28
+ []
+
+[161
+
+] [162]) (./chapters/tests/category_10/test_7.tex
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--45
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 45
+ []
+
+[163
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 48--58
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 58
+ []
+
+[164] <figures/OTG-CLIENT-007.png, id=1861, 1028.34187pt x 578.16pt>
+File: figures/OTG-CLIENT-007.png Graphic file (type png)
+
+<use figures/OTG-CLIENT-007.png>
+Package pdftex.def Info: figures/OTG-CLIENT-007.png used on input line 62.
+(pdftex.def)             Requested size: 334.60571pt x 188.12032pt.
+ [165 <./figures/OTG-CLIENT-007.png>])
+(./chapters/tests/category_10/test_8.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--13
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 13
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 16--26
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 26
+ []
+
+[166
+
+]) (./chapters/tests/category_10/test_9.tex
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--24
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 24
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+[167
+
+]
+Underfull \vbox (badness 10000) detected at line 48
+ []
+
+[168] [169]) (./chapters/tests/category_10/test_10.tex
+<figures/OTG-CLIENT-010.png, id=1906, 702.625pt x 335.2525pt>
+File: figures/OTG-CLIENT-010.png Graphic file (type png)
+
+<use figures/OTG-CLIENT-010.png>
+Package pdftex.def Info: figures/OTG-CLIENT-010.png used on input line 6.
+(pdftex.def)             Requested size: 334.60571pt x 159.66095pt.
+ [170
+
+ <./figures/OTG-CLIENT-010.png>])
+(./chapters/tests/category_10/test_11.tex [171
+
+])
+(./chapters/tests/category_10/test_12.tex [172
+
+]))
+(./chapters/tests/category_11.tex (./chapters/tests/category_11/test_1.tex
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 3--18
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 18
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]|\T1/pplx/b/n/10.95 Recommen-
+ []
+
+
+Overfull \hbox (2.00493pt too wide) in alignment at lines 21--30
+[] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 30
+ []
+
+[173
+
+] [174])))
+
+Package glossaries Warning: No \printglossary or \printglossaries found.
+This document will not have a glossary.
+
+No complaints by nag.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 29.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 29.
+(./main.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 29.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 29.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: DD25A045492552753D3DC4B03F4175AF;10471.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 41475 strings out of 493304
+ 826581 string characters out of 6139870
+ 1409764 words of memory out of 5000000
+ 42868 multiletter control sequences out of 15000+600000
+ 52456 words of font info for 230 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 68i,13n,81p,1764b,3093s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texlive/texmf-dist/fonts/
+enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/zapfding/uzdr.pfb>
+Output written on main.pdf (180 pages, 2278554 bytes).
+PDF statistics:
+ 2115 PDF objects out of 2487 (max. 8388607)
+ 1827 compressed objects within 19 object streams
+ 730 named destinations out of 1000 (max. 500000)
+ 41001 words of extra memory for PDF output out of 42996 (max. 10000000)
+
