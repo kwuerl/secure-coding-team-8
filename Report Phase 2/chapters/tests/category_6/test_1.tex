@@ -1,66 +1,47 @@
 \subsection{Testing for Reflected Cross Site Scripting - OTG-INPVAL-001} \label{OTG-INPVAL-001}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-      It has been found that Reflected Cross Site Scripting is possible in the application. None of the URLs that we tried to append script tags to; were successful and the corresponding page was not displayed properly. However, when HTML was appended to the URL, injection was successful. This has been observed in the User page.
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP}
+    \\ \hline
+    \textbf{Observation} & It has been found that Reflected Cross Site Scripting is possible in the application. None of the URLs that we tried to append script tags to; were successful and the corresponding page was not displayed properly. However, when HTML was appended to the URL, injection was successful. This has been observed in the User page. \\
     \textbf{Discovery} &
-        No tools were needed to discover this vulnerability. The URLs need to be modified and parameters set to HTML tags.
-        Steps:
-        1. Login as employee or administrator and click on "User" button on the top.
-        2. Open any pending registration and note that the URL is of the form \textit{"http://<IP-address>/secure-coding/public/view\_user.php?id=7"}.
-        3. Append the string at the end of the URL - \code{"><span>hi</span><br}. The text "hi" appears before the Approve button in the page.
-    \\\\
-    \textbf{Impact} &
-        By injecting html tags, it is possible to manipulate the page and lead the user into performing undesirable actions.
-        This does not require advanced technical skills, though basic knowledge of HTML is necessary for exploiting the vulnerability.
-    \\\\
-    \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-      \hline
-      Attack Vector		& \textcolor{red}{Network}\\
-      \hline
-      Attack Complexity	& \textcolor{red}{Low} \\
-      \hline
-      Privileges Required & \textcolor{red}{None} \\
-      \hline
-      User Interaction	& \textcolor{red}{None} \\
-      \hline
-      Scope		& \textcolor{Green}{Unchanged} \\
-      \hline
-      Confidentiality Impact	& \textcolor{red}{High} \\
-      \hline
-      Integrity Impact		& \textcolor{red}{High} \\
-      \hline
-      Availability Impact		& \textcolor{red}{High} \\
-      \hline
-      \end{tabular}
+        No tools were needed to discover this vulnerability. The URLs need to be modified and parameters set to HTML tags. Steps are described below.
+             \begin{itemize}
+                 \item Login as employee or administrator and click on \enquote{User} button on the top.
+                 \item Open any pending registration and note that the URL is of the form \code{http://<IP-address>/secure-coding/ \allowbreak public/view\_user.php?id=7}.
+                 \item Append the string - \code{"><span>hi</span><br} at the end of the URL. The text \enquote{hi} appears before the Approve button in the page.
+             \end{itemize}
     \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-        It has been verified that Reflected Cross Site Scripting is not possible. All the URLs where we tried to append script and HTML tags returned the response as 404.
-    \\\\
-    \textbf{Discovery} &
-    	Same as described for BANK-APP.
-    \\\\ 
-    \textbf{Likelihood} &
-        Same as described for BANK-APP.
-    \\\\
-    \textbf{Impact} &
-        Same as described for BANK-APP.
-    \\\\
+    \textbf{Likelihood} & Basic knowledge about HTML would suffice in performing these attacks and hence, the likelihood is high. \\
+    \textbf{Impact} & By injecting html tags, it is possible to manipulate the page and lead the user into performing undesirable actions. This does not require advanced technical skills, though basic knowledge of HTML is necessary for exploiting the vulnerability. \\
+    \textbf{Recommen\-dations} & The application needs to sanitize user input from the URLs effectively to avoid such attacks. \\ \hline
     \textbf{CVSS} &
-        Same as described for BANK-APP.
-    \\
-    \hline
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been verified that Reflected Cross Site Scripting is not possible. All the URLs where we tried to append script and HTML tags returned the response as 404. \\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is more secure compared to BANK-APP as it is not vulnerable to Reflected XSS attacks.
 \clearpage
