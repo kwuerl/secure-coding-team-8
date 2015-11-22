@@ -2,7 +2,9 @@
 
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 10 \progressbar[filledcolor=red]{1}
+    \\ \hline
     \textbf{Observation} & It was found that most of the file extensions that we tried were accepted by the application. We tried with files with extensions .php, .pdf, .tar.gz, .doc, .js, .jpeg etc. All of the above file types were accepted by the application as indicated by success messages. \\
     \textbf{Discovery} &
         This vulnerability was discovered in \enquote{New Transaction} page. Steps are as follows:
@@ -31,7 +33,7 @@
             Scope                   & \textcolor{red}{Changed} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{red}{High} \\
-            Availability Impact     & \textcolor{red}{High}
+            Availability Impact     & \textcolor{Green}{None}
         \end{tabular}
     \\ \hline
 \end{longtable}
