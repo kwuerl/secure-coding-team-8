@@ -1,78 +1,52 @@
 \subsection{Testing for bypassing authorization schema - OTG-AUTHZ-002} \label{OTG-AUTHZ-002}
-
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} &
-   \begin {itemize}
-   	\item It has been noted that it is possible to access administrative data though the tester is logged in as a user ordinary privileges. A normal user can access the list of all users and this vulnerability was found in the Users page.
+        \begin {itemize}
+          \item It has been noted that it is possible to access administrative data though the tester is logged in as a user with ordinary privileges. A normal user can access the list of all users and this vulnerability was found in the Users page.
 
-   \item It is also possible to perform certain authorized operations as a normal user. A normal user can perform approval/rejection on pending registrations.This vulnerability was detected in the Users page and has been described in section \ref{OTG-IDENT-003}.
+          \item It is also possible to perform certain authorized operations as a normal user. A normal user can perform approval/rejection on pending registrations. This vulnerability was detected in the Users page and has been described in section \ref{OTG-IDENT-003}.
 
-   \end{itemize}
-    \\\\
+          \end{itemize}\\
     \textbf{Discovery} &
-       No specific tool was required to discover this vulnerability, it was encountered by manually altering the URL. Steps are as follows:
-          \begin{itemize}
-      	    \item Login as a Customer. Click on the Customer name next to the Logout button. The profile and account details of the logged in customer are shown.
+        No specific tool was required to discover this vulnerability, it was discovered by manually altering the URL. Steps are as follows:
+           \begin{itemize}
+            \item Login as a Customer. Click on the Customer name next to the Logout button. The profile and account details of the logged in customer are shown.
 
-      	    \item The URL in the address bar is of the form : \textit{"http://<IP-address>/secure-coding/public/view\_user.php?id=7"}.
+            \item The URL in the address bar is of the form : \code{http://<IP-address>/secure-coding/public/view\_user.php?id=7}.
 
-      	    \item Edit the URL to \textit{"http://<IP-address>/secure-coding/public/view\_users.php"}. The list of all users is now visible.
-          \end{itemize}
-    \\\\
-    \textbf{Likelihood} &
-        Likelihood is high.
-       	    The attacker need not have any specialized skills to exploit this vulnerability. Any customer who is logged in to the bank can perform this action. Also, guessing the URL for the list of users is not difficult as it is similar to the URL for a specific user and a Brute-force method yields successful result quite fast.
-    \\\\
-    \textbf{Impact} &
-           A customer can get hold of details pertaining to other users and even perform action on the pending registrations.
-    \\\\
+            \item Edit the URL to \code{http://<IP-address>/secure-coding/public/view\_users.php}. The list of all users is now visible.
+           \end{itemize}\\
+    \textbf{Likelihood} & Likelihood is high. The attacker need not have any specialized skills to exploit this vulnerability. Any customer who is logged in to the bank can perform this action. Also, guessing the URL for the list of users is not difficult as it is similar to the URL for a specific user and a Brute-force method yields successful result quite fast. \\
+    \textbf{Impact} &  The impact is high as a customer can get hold of details pertaining to other users and even perform action on the pending registrations. \\
+    \textbf{Recommen\-dations} & Actions that require authorization need to be strictly inaccessible to unauthorized users. Here, the Users listing and approval/rejection decisions should solely be accessible to employees and administrators only.. \\ \hline
     \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-           \hline
-           Attack Vector		& \textcolor{red}{Network}\\
-           \hline
-           Attack Complexity	& \textcolor{red}{Low} \\
-           \hline
-           Privileges Required & \textcolor{BurntOrange}{Low} \\
-           \hline
-           User Interaction	& \textcolor{red}{None} \\
-           \hline
-           Scope		& \textcolor{red}{Changed} \\
-           \hline
-           Confidentiality Impact	& \textcolor{red}{High} \\
-           \hline
-           Integrity Impact		& \textcolor{Green}{None} \\
-           \hline
-           Availability Impact		& \textcolor{Green}{None} \\
-           \hline
-           \end{tabular}
-    \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-       In the application, the page containing the list of users is accessible only to employees and administrators. There is no possibility of attack from any user with ordinary privileges, thus making the application more secure, in this aspect.
-    \\\\
-    \textbf{Discovery} &
-   		N/A
-    \\\\
-    \textbf{Likelihood} &
-	   N/A
-    \\\\
-    \textbf{Impact} &
-  		N/A
-    \\\\
-    \textbf{CVSS} &
-       N/A.
-    \\
-    \hline
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network}\\
+            Attack Complexity       & \textcolor{red}{Low}\\
+            Privileges Required     & \textcolor{BurntOrange}{Low}\\
+            User Interaction        & \textcolor{red}{None}\\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High}\\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & In the application, the page containing the list of users is accessible only to employees and administrators. \\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Our application, SecureBank is more secure in this aspect, compared to BANK-APP as there is no possibility of attack from any user with ordinary privileges.
 \clearpage
