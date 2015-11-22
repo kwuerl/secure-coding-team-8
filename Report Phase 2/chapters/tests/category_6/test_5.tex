@@ -1,7 +1,9 @@
 \subsection{Testing for SQL Injection - OTG-INPVAL-005}\label{sql_injection}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
     \textbf{Observation} & The field \code{recipient} in the transaction form is vulnerable to SQL injection. \\
     \textbf{Discovery} & The login, registration and make transaction sites were tested for SQL injection with \code{sqlmap}. The command used for testing the login is \code{sqlmap -u "http://IP\_ADDRESS/secure-coding/public/\allowbreak login.\allowbreak php" -{}-data=\allowbreak "email=test\&password=test"}. For testing the transaction the session cookie has to be given as an extra parameter in the command as \code{-{}-cookie="PHPSESSID=cookie"}. \\
     \textbf{Likelihood} & what is the likelihood that this vulnerability is exploited? Which assumptions must hold and which skills must an attacker have? \\
@@ -20,6 +22,7 @@
         \end{tabular}
     \\ \hline
 \end{longtable}
+\clearpage
 
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.75\linewidth} }\hline

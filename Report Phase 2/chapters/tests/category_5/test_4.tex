@@ -1,7 +1,9 @@
 \subsection{Testing for Exposed Session Variables - OTG-SESS-004}\label{exposed_session_variables}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
     \textbf{Observation} & On the first visit no session variables are set for the session. After the first login there is a cookie called \code{PHPSESSID} with a 26 character value. Even after logging in and out several times, even with another account, the value for \code{PHPSESSID} stays the same. Copying that value and inserting it into another browser with JavaScript while the user is logged in, the other browser also has access to that account, i.e. the session cookie is valid for several sessions for one account at the same time. \\
     \textbf{Discovery} & Using the developer tools of Chrome or Firefox the cookies set can be seen. Furthermore, with ZAP the traffic was scanned for session cookies and session variables. \\
     \textbf{Likelihood} & To read the cookies a hacker only needs to read out the HTTP headers. Executing the JavaScript code \code{document.cookie = "PHPSESSID\allowbreak =SESSION\_COOKIE\_VALUE"} in the browser while on the website sets the cookie. Manually accessing an URL, which usually only a logged in user can see, the hacker is now also logged in. \\

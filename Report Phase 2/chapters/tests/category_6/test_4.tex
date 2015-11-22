@@ -1,7 +1,9 @@
 \subsection{Testing for HTTP Parameter pollution - OTG-INPVAL-004}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
     \textbf{Observation} & GET and POST request always interpreted the last parameter if the parameter was specified twice or more times. Furthermore, it could be observed that specifying another ID for \code{http://IP\_ADDRESS/secure-coding/public/view\_transaction.\allowbreak php?id=ID} while logged in as a client, shows the transaction even if it does not belong the the client. \\
     \textbf{Discovery} & With ZAP GET and POST requests were modified and parameters were specified more than once to see how the application interprets the request. The results were that if a parameter was specified twice or more times, the last occurrence was interpreted. \\
     \textbf{Likelihood} & Changing GET and POST parameters is not difficult. \\

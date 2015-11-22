@@ -1,7 +1,9 @@
 \subsection{Testing for Weak lock out mechanism - OTG-AUTHN-003}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
     \textbf{Observation} & Logging in with a false password can be repeated numerous times without being logged out. \\
     \textbf{Discovery} & With ZAP the password for an existing account was fuzzed. Although the password was false in 99\%, the bank did not lock the account. \\
     \textbf{Likelihood} & Since there is no lock out mechanism an attacker could bruteforce the password. \\
@@ -20,10 +22,13 @@
         \end{tabular}
     \\ \hline
 \end{longtable}
+\clearpage
 
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{SecureBank} \\ \hline
+    & \textbf{SecureBank}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
     \textbf{Observation} & Logging in with a false password can be repeated numerous times without being logged out. \\
     \textbf{Discovery} & With ZAP the password for an existing account was fuzzed. Although the password was false in 99\%, the bank did not lock the account. \\
     \textbf{Likelihood} & Since there is no lock out mechanism an attacker could bruteforce the password. \\
