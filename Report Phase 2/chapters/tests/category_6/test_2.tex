@@ -1,116 +1,74 @@
 \subsection{Testing for Stored Cross Site Scripting - OTG-INPVAL-002} \label{OTG-INPVAL-002}
-
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-       It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful.
-       It was possible also to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page.
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP}
+    \\ \hline
+    \textbf{Observation} & It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful. It was possible also to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page. \\
     \textbf{Discovery} &
-      No specific tool was required to discover this vulnerability, it was encountered by manually testing. Steps are as follows:
-       \begin{itemize}
-	       \item Click on the Register button.
+           No specific tool was required to discover this vulnerability, it was encountered by manually testing. Steps are as follows.
+            \begin{itemize}
+     	       \item Click on the Register button.
 
-	       \item Fill the form with the details and enter \textit{"<img src='logout.php'/>"} in either First Name or Last Name fields. The text to be injected is just 23 characters long and hence can be easily inserted.
+     	       \item Fill the form with the details and enter \code{<img src='logout.php'/>} in either First Name or Last Name fields. The text to be injected is just 23 characters long and hence can be easily inserted.
 
-	       \item Click on the Submit button. A message is displayed for successful registration.
+     	       \item Click on the Submit button. A message is displayed for successful registration.
 
-	       \item Now when an Employee logs in to his/her account and clicks on User button at the top of the page, the list of users is displayed. Upon refresh of this page, the Employee is logged out and is redirected to the Login page.
-       \end{itemize}
-    \\\\
-     \textbf{Likelihood} &
-    Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
-    \\\\
-    \textbf{Impact} &
-       After a successful attack, none of the employees will be able to perform any operations after opening the Users page. This results in a Denial of Service attack.
-       The impact is severe as it affects all employees and administrators that open the Users page.
-    \\\\
-    \textbf{CVSS} &
-        \begin{tabular}{| l | l |}
-                  \hline
-                  Attack Vector		& \textcolor{red}{Network}\\
-                  \hline
-                  Attack Complexity	& \textcolor{red}{Low} \\
-                  \hline
-                  Privileges Required & \textcolor{red}{None} \\
-                  \hline
-                  User Interaction	& \textcolor{red}{None} \\
-                  \hline
-                  Scope		& \textcolor{Green}{Unchanged} \\
-                  \hline
-                  Confidentiality Impact	& \textcolor{Green}{None} \\
-                  \hline
-                  Integrity Impact		& \textcolor{Green}{None} \\
-                  \hline
-                  Availability Impact		& \textcolor{red}{High} \\
-                  \hline
-                  \end{tabular}
-    \\\\
-    \textbf{Recommendations} &
-    In the application, most form fields are free from validation. Proper client and server-side validations need to be implemented for all input fields to prevent XSS attacks of any form.
+     	       \item Now when an Employee logs in to his/her account and clicks on User button at the top of the page, the list of users is displayed. Upon refresh of this page, the Employee is logged out and is redirected to the Login page.
+            \end{itemize}
+
     \\
-    \hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-           It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful.
-           It was possible also to cause a user to automatically log out once he/she opens the Profile page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page.
-    \\\\
-    \textbf{Discovery} &
-      No specific tool was required to discover this vulnerability, it was encountered by manually testing. Steps are as follows:
-       \begin{itemize}
-	       \item Click on the Register button.
-
-	       \item Fill the form with the details and enter \textit{"<img src='logout'/>"} in Address field. The text to be injected is just 23 characters long and hence can be easily inserted.
-
-	       \item Click on the Submit button. A message is displayed for successful registration.
-
-	       \item After the user is approved by an employee, when he/she logs in and opens the "Profile" page, an image is displayed in the Address field. Upon refresh of this page, the user is logged out and is redirected to the Login page.
-	       \item A similar attack can be executed from the "Remarks" field in the Transaction page. This affects the user him/herself as well as all employees and administrators.
-       \end{itemize}
-
-    \\\\
-    \textbf{Likelihood} &
-		    Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely.
-    \\\\
-    \textbf{Impact} &
-            After a successful attack from the Registration form, the victim will be unable to perform any operations after opening the Profile page. This results in a Denial of Service attack.
-            Though critical, the severity is less than in BANK-APP as only the registered user is attacked. This happens because the Address field is not displayed in the Users page and hence, employees are safe from this attack.
-            However, after a successful attack in the Transaction page, none of the users will be able to perform any operations after opening the Transactions/Profile page. This results in a Denial of Service attack for all users.
-            The impact is severe as it affects all employees and administrators that open the Transactions page.
-    \\\\
+    \textbf{Likelihood} & Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely. \\
+    \textbf{Impact} & After a successful attack, none of the employees will be able to perform any operations after opening the Users page. This results in a Denial of Service attack. The impact is severe as it affects all employees and administrators that open the Users page. \\
+    \textbf{Recommen\-dations} & In the application, most form fields are free from validation. Proper client and server-side validations need to be implemented for all input fields to prevent XSS attacks of any form. \\ \hline
     \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-                        \hline
-                        Attack Vector		& \textcolor{red}{Network}\\
-                        \hline
-                        Attack Complexity	& \textcolor{red}{Low} \\
-                        \hline
-                        Privileges Required & \textcolor{red}{None} \\
-                        \hline
-                        User Interaction	& \textcolor{red}{None} \\
-                        \hline
-                        Scope		& \textcolor{Green}{Unchanged} \\
-                        \hline
-                        Confidentiality Impact	& \textcolor{Green}{None} \\
-                        \hline
-                        Integrity Impact		& \textcolor{Green}{None} \\
-                        \hline
-                        Availability Impact		& \textcolor{red}{High} \\
-                        \hline
-                        \end{tabular}
-     \\\\
-     \textbf{Recommendations} &
-     In the application, few fields are restricted by disallowing any characters other than letters, '-' and white space in the Registration form. However, the Address field is free from any constraints.
-     Proper validations need to be implemented for all input fields to prevent XSS attacks of any form.
-     \\
-    \hline
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful. It was possible also to cause a user to automatically log out once he/she opens the Profile page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page. \\
+    \textbf{Discovery} &
+           No specific tool was required to discover this vulnerability, it was encountered by manually testing. Steps are as follows.
+            \begin{itemize}
+     	       \item Click on the Register button.
+
+     	       \item Fill the form with the details and enter \code{<img src='logout'/>} in Address field. The text to be injected is just 23 characters long and hence can be easily inserted.
+
+     	       \item Click on the Submit button. A message is displayed for successful registration.
+
+     	       \item After the user is approved by an employee, when he/she logs in and opens the Profile page, an image is displayed in the Address field. Upon refresh of this page, the user is logged out and is redirected to the Login page.
+     	       \item A similar attack can be executed from the \enquote{Remarks} field in the Transaction page. This affects the user him/herself as well as all employees and administrators.
+            \end{itemize}
+    \\
+    \textbf{Likelihood} & Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely. \\
+    \textbf{Impact} & After a successful attack from the Registration form, the victim will be unable to perform any operations after opening the Profile page. This results in a Denial of Service attack. Though critical, the severity is less than in BANK-APP as only the registered user is attacked. This happens because the Address field is not displayed in the Users page and hence, employees are safe from this attack. However, after a successful attack in the Transaction page, none of the users will be able to perform any operations after opening the Transactions/Profile page. This results in a Denial of Service attack for all users. The impact is severe as it affects all employees and administrators that open the Transactions page. \\
+    \textbf{Recommen\-dations} & In the application, few fields are restricted by disallowing any characters other than letters, '-' and white space in the Registration form. However, the Address field is free from any constraints. Proper validations need to be implemented for all input fields to prevent XSS attacks of any form. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application is secure with respect to Stored XSS attacks and both are vulnerable.
 \clearpage
