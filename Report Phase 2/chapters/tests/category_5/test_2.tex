@@ -1,73 +1,49 @@
 \subsection{Testing for Cookies attributes - OTG-SESS-002}
-
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-     It is found that the cookies that are set upon user login; do not have their properties set to appropriate values such as HttpOnly and Secure. 
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP}
+    \\ \hline
+    \textbf{Observation} & It is found that the cookies that are set upon user login; do not have their properties set to appropriate values such as HttpOnly and Secure. \\
     \textbf{Discovery} &
         Steps are as follows:
-        \begin{itemize}
-         \item Open the Login page in the browser and login with valid credentials.
+             \begin{itemize}
+              \item Open the Login page in the browser and login with valid credentials.
 
-         \item Now open the Chrome extension EditThisCookie.
+              \item Now open the Chrome extension EditThisCookie.
 
-         \item It can be observed that the two flags HTTPOnly and Secure are missing.
-        \end{itemize}
-    \\\\
-     \textbf{Likelihood} &
-	Cookies can be observed just by clicking on the extension provided by the browser. Hence no extra knowledge is required for retrieving the vulnerability. Hence likelihood of this vulnerability is high.
-     \\\\
-    \textbf{Impact} &
-        If cookie information is used by the attacker, then personal information can be compromised.
-    \\\\
-    \textbf{CVSS} &
-     \begin{tabular}{| l | l |}
-           \hline
-           Attack Vector		& \textcolor{red}{Network}\\
-           \hline
-           Attack Complexity	& \textcolor{Green}{High} \\
-           \hline
-           Privileges Required & \textcolor{red}{None} \\
-           \hline
-           User Interaction	& \textcolor{red}{None} \\
-           \hline
-           Scope		& \textcolor{Green}{Unchanged} \\
-           \hline
-           Confidentiality Impact	& \textcolor{red}{High} \\
-           \hline
-           Integrity Impact		& \textcolor{Green}{None} \\
-           \hline
-           Availability Impact		& \textcolor{Green}{None} \\
-           \hline
-           \end{tabular}
-     \\\\
-    \hline
-\end{longtable*}
-\clearpage
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.80\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-        It is found that the cookies that are set upon user login; have the HttpOnly flag set. However, the Secure flag is unset.
-    \\\\
-    \textbf{Discovery} &
-	   The above steps were repeated and it was observed that the session cookie was set to HttpOnly.
-    \\\\
-    \textbf{Likelihood} &
-      Same as described for BANK-APP.
-    \\\\
-    \textbf{Impact} &
-      Chances of stealing the cookie are limited since the session cookie is set to HttpOnly, thus elmiminating the possibility of client-side manipulation.
-    \\\\
-    \textbf{CVSS} &
-      Same as described for BANK-APP.
+              \item It can be observed that the two flags HTTPOnly and Secure are missing.
+             \end{itemize}
     \\
-    \hline
-\end{longtable*}
+    \textbf{Likelihood} & Cookies can be observed just by clicking on the extension provided by the browser. Hence no extra knowledge is required for retrieving the vulnerability. Hence likelihood of this vulnerability is high. \\
+    \textbf{Impact} & If cookie information is used by the attacker, then personal information can be compromised. \\
+    \textbf{Recommen\-dations} & It is recommended to set the HttpOnly flag for the cookies in order to avoid manipulation from client-side scripts.\\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It is found that the cookies that are set upon user login; have the HttpOnly flag set. However, the Secure flag is unset. \\
+    \textbf{Discovery} & The above steps were repeated and it was observed that the session cookie was set to HttpOnly. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Unline BANK-APP, chances of stealing the cookie are limited in SecureBank, since the session cookie is set to HttpOnly, thus elmiminating the possibility of client-side manipulation.
 \clearpage
