@@ -1,7 +1,9 @@
 \subsection{Testing for Command Injection - OTG-INPVAL-013}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 9.8 \progressbar[filledcolor=red]{0.98}
+    \\ \hline
     \textbf{Observation} & 
     	The batch transaction functionality allows Command Injection via the file upload. Due to a vulnerability mentioned in OTG-AUTHN-004 it is possible to inject commands even without being logged in.
     \\
