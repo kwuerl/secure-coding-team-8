@@ -1,50 +1,61 @@
 \subsection{Test Cross Origin Resource Sharing - OTG-CLIENT-007}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.75\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-      It was found that Cross Origin Resource Sharing is not possible since the  'Access-Control-Allow-Origin' header was not set in the requests and hence the application does not support cross origin requests.
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP}
+    \\ \hline
+    \textbf{Observation} & It was found that Cross Origin Resource Sharing is not possible since the \code{Access-Control-Allow-Origin} header was not set in the requests and hence the application does not support cross origin requests. \\
     \textbf{Discovery} &
-        Though a Javascript code snippet was written to test for CORS support, we were not able to simulate cross site requests directly. Following is the code: 
-        Hence we used test-cors.org site to make a request to the application and it failed with the error that the header "Access-Control-Allow-Origin" was missing. See Figure \ref{fig:test_cors}.
-        The header should have been set to * or some domain in order to serve cross domain requests.               
-    \\\\
-     \textbf{Likelihood} &
-     NA
-     \\\\
-    \textbf{Impact} &
-        NA
-    \\\\
-    \textbf{CVSS} &
-       \begin{tabular}{| l | l |}
-             \hline
-             Attack Vector		& \textcolor{red}{Network}\\
-             \hline
-             Attack Complexity	& \textcolor{Green}{High} \\
-             \hline
-             Privileges Required & \textcolor{red}{None} \\
-             \hline
-             User Interaction	& \textcolor{red}{None} \\
-             \hline
-             Scope		& \textcolor{Green}{Unchanged} \\
-             \hline
-             Confidentiality Impact	& \textcolor{red}{High} \\
-             \hline
-             Integrity Impact		& \textcolor{Green}{None} \\
-             \hline
-             Availability Impact		& \textcolor{Green}{None} \\
-             \hline
-             \end{tabular}
-           \\
-    \\\\
-    \textbf{Recommendations} &
-       NA
+        Though a Javascript code snippet was written to test for CORS support, we were not able to simulate cross site requests directly. Following is the code.
+        \begin{lstlisting}
+            function createCORSRequest(method, url){
+                var xhr = new XMLHttpRequest();
+                if ("withCredentials" in xhr){
+                    xhr.open(method, url, true);
+                } else if (typeof XDomainRequest != "undefined"){
+                    // IE8 and IE9
+                    xhr = new XDomainRequest();
+                    xhr.open(method, url);
+                } else {
+                    xhr = null;
+                }
+                return xhr;
+            }
+        \end{lstlisting}
+        \\ &
+        \begin{lstlisting}
+            var request = createCORSRequest("get", "<IP-address/secure
+                -coding/public/login.php>");
+            if (request){
+                request.onload = function(){
+                    //use request.responseText and handle success
+                };
+                request.onerror = function() {
+                  // error handling
+                }
+                request.send();
+            }
+        \end{lstlisting}
+        Hence we used the \enquote{test-cors.org} website to make a request to the application and it failed with the error that the header \enquote{Access-Control-Allow-Origin} was missing. See Figure \ref{fig:test_cors}. The header should have been set to * or some domain in order to serve cross domain requests.
     \\
-    \hline
-\end{longtable*}
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It was found that Cross Origin Resource Sharing is not possible since the  'Access-Control-Allow-Origin' header was not set in the requests and hence the application does not support cross origin requests. \\
+    \textbf{Discovery} & Same as described for BANK-APP. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
 
 \begin{figure}[ht]
 	\centering
@@ -53,30 +64,6 @@
 	\label{fig:test_cors}
 \end{figure}
 
-\clearpage
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.20\textwidth} | p{.75\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-        Same behavior could be observed in the application since the same header was missing in the responses.
-    \\\\
-    \textbf{Discovery} &
-    Same as described for BANK-APP.
-    \\\\
-    \textbf{Likelihood} &
-        NA
-    \\\\
-    \textbf{Impact} &
-		NA
-    \\\\
-    \textbf{CVSS} &
-		Same as described for BANK-APP.
-    \\\\
-    \textbf{Recommendations} &
-    NA
-    \\
-    \hline
-\end{longtable*}
+\subsubsection{Comparison}
+Neither of the applications support cross domain requests and hence this vulnerability does not exist.
 \clearpage
