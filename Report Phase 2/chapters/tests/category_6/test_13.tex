@@ -27,7 +27,9 @@
     \textbf{Impact} & 
     	An atacker can inject a remote shell and basically gain controll over the whole server.
     \\
-    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{Recommen\-dations} &
+        Escape the file name before passing it to \code{shell_exec()} or replace it by a random hash.
+    \\ \hline
     \textbf{CVSS} & 
     	\begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
@@ -58,7 +60,9 @@
     \textbf{Impact} & 
     	N/A
 	\\
-    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{Recommen\-dations} & 
+        N/A
+     \\ \hline
     \textbf{CVSS} &
         N/A
 	\\ \hline

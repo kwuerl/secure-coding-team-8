@@ -23,9 +23,11 @@
     	The fact that the session is not cleared properly makes the application more vulnerable to session hijacking atacks.
     \\
     \textbf{Impact} & 
-    	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
+    	The fact, that the Session is not terminated properly yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
     \\
-    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{Recommen\-dations} &
+        Destroy the session after every logout and regenerate the session id.
+    \\ \hline
     \textbf{CVSS} & 
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{Maroon}{Adjacent Network} \\
@@ -66,7 +68,9 @@
     \textbf{Impact} & 
     	The fact, that the Session is not terminated properly makes yields the possibility that session variables that have not been cleared properly can be read by the next person who logs in.
     \\
-    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{Recommen\-dations} 
+        Destroy the session after every logout and regenerate the session id.
+    \\ \hline
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{Maroon}{Adjacent Network} \\
