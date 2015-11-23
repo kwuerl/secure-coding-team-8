@@ -6,7 +6,8 @@
     \\ \hline
     \textbf{Observation} & When a text file is uploaded with huge data without adhering to the format specified, the application crashes and keeps waiting for the response. \\
     \textbf{Discovery} &
-        A large file was used to discover this vulnerability. Steps are as follows.
+        \begin{itemize}
+            \item \textbf{Scenario 1 -} A large file was used to discover this vulnerability. Steps are as follows.
                 \begin{itemize}
                     \item Open the application and go to the New Transaction page.
                     \item Set the Foxy Proxy standard to Burp Suite for all URLs under the tool tab in Firefox.
@@ -14,10 +15,17 @@
                     \item Now upload a file with huge data.
                     \item Observe the Alerts tab as its get highlighted. It shows that the application crashed since the memory allocation failed. This creates a suspicion of buffer overflow. See Figure \ref{fig:burp_large_file_upload}.
                 \end{itemize}
+            \item \textbf{Scenario 2 -} When we make a manual transaction, and enter higher negative values in amount field such as \code{-99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect. See Figure \ref{fig:transaction} and \ref{fig:overflow_account_history}.
+        \end{itemize}
      \\
     \textbf{Likelihood} & Likelihood is high, since this uploading of file with huge data is quite easy to do and no technical knowledge is required. \\
     \textbf{Impact} & The impact is high since the application crashes without notifying the user about the reason behind it. \\
-    \textbf{Recommen\-dations} & Files with huge data should not be parsed at all, by having a check on file size(both client side and server side).   \\ \hline
+    \textbf{Recommen\-dations} &
+     \begin{itemize}
+         \item Files with huge data should not be parsed at all, by having a check on file size(both client side and server side).
+         \item There should be validation to check for negative amounts before performing transactions.
+     \end{itemize}
+    \\ \hline
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
@@ -38,19 +46,50 @@
      \hfill CVSS Score: 7.4 \progressbar[filledcolor=red]{0.74}
     \\ \hline
     \textbf{Observation} & When a text file is uploaded with huge data without adhering to the format specified, the application crashes and keeps waiting for the response. \\
-    \textbf{Discovery} & Same as described for BANK-APP. \\
+    \textbf{Discovery} &
+        \begin{itemize}
+             \item \textbf{Scenario 1 -} Same as described for BANK-APP.
+             \item \textbf{Scenario 2 -} When we make a manual transaction, and enter large values in amount field like \code{99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect.
+       \end{itemize}
+     \\
     \textbf{Likelihood} & Same as described for BANK-APP. \\
     \textbf{Impact} & Same as described for BANK-APP.  \\
-    \textbf{Recommen\-dations} & Same as described for BANK-APP. \\ \hline
+    \textbf{Recommen\-dations} &
+        \begin{itemize}
+            \item Files with huge data should not be parsed at all, by having a check on file size(both client side and server side).
+            \item There should be validation to check for sufficient funds before a transaction.
+        \end{itemize}
+    \\ \hline
     \textbf{CVSS} & Same as described for BANK-APP.
     \\ \hline
 \end{longtable}
 
 \begin{figure}[ht]
 	\centering
-		\includegraphics[width=.8\linewidth]{figures/OTG-INPVAL-014.png}
+		\includegraphics[width=.8\linewidth]{figures/OTG-INPVAL-014_1.png}
 		\caption{BURP - Testing large file upload}
 	\label{fig:burp_large_file_upload}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+		\includegraphics[width=.8\linewidth]{figures/OTG-INPVAL-014_2.png}
+		\caption{Transaction Page with large value in Amount field}
+	\label{fig:overflow_transaction}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/OTG-INPVAL-014_3.png}
+		\caption{Sender Transaction History after large amount transfer}
+	\end{subfigure}\hfill%
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/OTG-INPVAL-014_4.png}
+		\caption{Recipient Account Balance after large amount transfer}
+	\end{subfigure}
+	\caption{Testing for overflow with large amount transfers}
+	\label{fig:overflow_account_history}
 \end{figure}
 
 \subsubsection{Comparison}
