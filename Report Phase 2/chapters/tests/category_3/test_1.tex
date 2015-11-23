@@ -1,7 +1,9 @@
 \subsection{Testing for Credentials Transported over an Encrypted Channel - OTG-AUTHN-001} \label{OTG-AUTHN-001}
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{BANK-APP} \\ \hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 8.8 \progressbar[filledcolor=red]{0.88}
+    \\ \hline
     \textbf{Observation} & After scanning the application with the Vega tool, it was found that the forms in the Registration, Login and Create Transaction pages submit to an insecure HTTP target. Parameters such as User name, Password, TAN number, Account ID are not encrypted. \\
     \textbf{Discovery} &
          Three tools Vega, Burp Suite and cURL were used to discover this vulnerability.Steps are as follows:
@@ -50,7 +52,9 @@
 
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{SecureBank} \\ \hline
+    & \textbf{SecureBank}
+    \hfill CVSS Score: 8.8 \progressbar[filledcolor=red]{0.88}
+    \\ \hline
     \textbf{Observation} & After scanning the application with the Vega tool, it was found that the forms in the Registration, Login and Create Transaction pages submit to an insecure HTTP target. Parameters such as User name, Password, TAN number, Account ID are not encrypted. \\
     \textbf{Discovery} & The same vulnerability exists in our application as well; since the channel over which the communication takes place is not encrypted. \\
     \textbf{Likelihood} & Same as described for BANK-APP. \\

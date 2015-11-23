@@ -2,6 +2,7 @@
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP}
+    \hfill CVSS Score: 9.8 \progressbar[filledcolor=red]{0.98}
     \\ \hline
     \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. \\
     \textbf{Discovery} &
