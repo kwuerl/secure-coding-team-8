@@ -1,15 +1,17 @@
 \chapter{Executive summary}
 \section*{BANK-APP}
-Due to enabled directory indexing an attacker can get an overview and general comprehension of the application. Therefore it is easier to detect possible points of attack. The database structure can be viewed and the e-mail address for an employee account can be obtained.
+Due to enabled directory indexing, an attacker can get an overview and general comprehension of the application. Therefore it is easier to detect possible points of attack. The database structure can be viewed and the e-mail address for an employee account can be obtained.
 
-Another huge issue are the weak authorization mechanisms. Without being logged in an attacker could approve/disapprove arbitary Customers and Employees and could even upload files. Furthermore, all pages of the applications could be accessed via direct browsing, independent of role.
+Another huge issue is the weak authorization mechanism. Without being logged in, an attacker is able to approve/disapprove arbitary Customers \& Employees and even upload files. Furthermore, all pages of the application could be accessed via direct browsing, independent of role.
 
-Moreover, command and SQL injection is possible in the transaction page. An attacker could inject arbitrary shell commands into the file upload field and the field \emph{recipient} is vulnerable to SQL injection.
+Moreover, Command, SQL injection and Buffer overflow are possible in the Transaction page. An attacker could inject arbitrary shell commands into the file upload field, perform SQL injections via the \emph{Recipient} field or overflow attacks using the \emph{Amount} field.
+
+On the feature front, Batch file upload does not function as expected since it only considers the last transaction and there is no implementation for multiple transactions.
 
 \section*{SecureBank}
-For SecureBank the most vulnerable aspects are the static session ID and the weak lockout mechanisms. After logout the session ID persists. The non-existing lockout mechanisms allow account bruteforcing.
+For SecureBank, the most vulnerable aspects are the static session ID and the weak lockout mechanisms. After logout the session ID persists. The non-existing lockout mechanisms allow account bruteforcing.
+
+The application is also vulnerable to Buffer overflows in the Transaction page, mainly because it does not check for insufficient funds before performing transactions.
 
 \section*{Comparison}
-In general it can be observed that BANK-APP has more vulnerabilities than SecureBank. In over 70 different tests the results showed that BANK-APP was vulnerable in about 50\% of the aspects, whereas SecureBank is only vulnerable in roughly 30\%. 22 of the tests were not applicable since they were not used in either of the bank applications.
-
-Summarized it can be said that due to the amount and severity of the vulnerabilities found BANK-APP has to invest more time to fix the issues than SecureBank.
+In general it can be observed that BANK-APP has more vulnerabilities than SecureBank. In over 70 different tests, the results showed that BANK-APP was vulnerable in about 50\% of the aspects, whereas SecureBank is only vulnerable in roughly 30\%. 22 of the tests were not applicable since they were not used in either of the bank applications.
