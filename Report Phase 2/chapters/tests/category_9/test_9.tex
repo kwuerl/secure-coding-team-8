@@ -1,76 +1,48 @@
 \subsection{Test Upload of Malicious Files - OTG-BUSLOGIC-009}
-\paragraph{BANK-APP} \mbox{}
-\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
-    \hline
-    & \textbf{BANK-APP} \\
-    \hline
-    \textbf{Observation} &
-      Though the application restricts the user from uploading files other than text, but it has no restriction on filenames which can be exploited for shell command injections.
-    \\\\
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP}
+    \hfill CVSS Score: 10 \progressbar[filledcolor=red]{1}
+    \\ \hline
+    \textbf{Observation} & There is no restriction on the type of files to be uploaded in the Transaction page. Hence this can be used to upload malicious files. \\
     \textbf{Discovery} &
-        No tools were used to discover this vulnerability. We manually changed the filename to inject shell commands.
-        \begin{itemize}
-        \item Steps:
-                1. Name a file as "test;touch myfile.txt;.txt".
-                2. Login as a customer and go to the "New Transaction" interface. When above file is uploaded, transaction fails.
-                However, shell command injection is successful which can be observed by verifying the creation of a file with the same name under
-                \code{http://xxx.xxx.xxx.xxx/secure-coding/app/}. 
-                Our command "touch myfile.txt" has created an empty text file called "myfile.txt".
-        \end{itemize}        
-    \\\\
-    \textbf{Likelihood} &
-        Filenames can be easily manipulated without the use of any tools which makes this vulnerability easy to be exploited.
-    \\\\
-    \textbf{Impact} &
-       With this attack, any command can be executed which may be harmful for the system hosting the application. Directories can be deleted which may lead to Denial Of Service attack.
-    \\\\
+         No tools were used to discover this vulnerability and manual testing was performed. Steps followed are as given below.
+         \begin{itemize}
+             \item Login as a customer and go to the "New Transaction" interface.
+             \item Upload a file with name containing parenthesis like \enquote{xxx(1).pdf}, then the application returns a success message, though the transaction is not reflected under \enquote{View Transactions}. This was tried with other file extensions and the output was the same. Though it cannot be guaranteed, it is very likely that the file was uploaded successfully. Similarly, malicious files of type .exe, .bat, .py etc. could be uploaded to trigger attacks.
+             Since the file is not visible in the \code{http://<IP-address>/secure-coding/app/} path, it indicates that the uploaded file gets deleted after parsing is complete. Hence we were not able to simulate a successful attack. However, it is possible for the attacker to block the server and perform a malicious action through the file before it is deleted.
+         \end{itemize}
+    \\
+    \textbf{Likelihood} & Technical knowledge may be required to execute the attack as it is required to perform malicious actions before the file is deleted and requires appropriate timing. \\
+    \textbf{Impact} & With this attack, any file may be uploaded and complete control over the system could be gained. \\
+    \textbf{Recommen\-dations} & It is strictly recommended to restrict all irrelevant file-types.\\ \hline
     \textbf{CVSS} &
-      \begin{tabular}{| l | l |}
-      \hline
-      Attack Vector		& \textcolor{red}{Network}\\
-      \hline
-      Attack Complexity	& \textcolor{red}{Low} \\
-      \hline
-      Privileges Required & \textcolor{red}{None} \\
-      \hline
-      User Interaction	& \textcolor{red}{None} \\
-      \hline
-      Scope		& \textcolor{red}{Changed} \\
-      \hline
-      Confidentiality Impact	& \textcolor{Green}{Low} \\
-      \hline
-      Integrity Impact		& \textcolor{Green}{Low} \\
-      \hline
-      Availability Impact		& \textcolor{red}{High} \\
-      \hline
-      \end{tabular}
-    \\\\
-    \textbf{Recommendations} &
-    	Filenames should be validated before the execution of shell commands to avoid such attacks. In this case, we could remove unwanted characters from the file name (such as ; or ||). This would prevent command piping which creates a leverage for such attacks.\\
-    	\hline
-\end{longtable*}
-\paragraph{SecureBank} \mbox{}
-\begin{longtable*}{p{.30\textwidth} | p{.70\textwidth}}
-    \hline
-    & \textbf{SecureBank} \\
-    \hline
-    \textbf{Observation} &
-      In the application we observed that upload of malicious files is not possible since file names are sanitized. Also, upload is restricted to files of plain text only.
-    \\\\
-    \textbf{Discovery} &
-     Same steps as described above were followed but shell injection was not successful and the file "myfile.txt" was not created.
-    \\\\
-    \textbf{Likelihood} &
-        N/A
-    \\\\
-    \textbf{Impact} &
-        N/A
-    \\\\
-    \textbf{CVSS} &
-        N/A
-    \\\\
-    \textbf{Recommendations} &
-     N/A\\
-     \hline	
-\end{longtable*}
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Changed} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & In the application we observed that upload of malicious files is not possible since upload is restricted to files of type plain text only. \\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is better than BANK-APP as it does not allow the upload of any files other than plain text. Hence the possibility of uploading malicious files is ruled out.
 \clearpage
