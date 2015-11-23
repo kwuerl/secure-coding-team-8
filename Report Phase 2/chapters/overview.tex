@@ -1,5 +1,7 @@
 \chapter{Overview of most important observations}
+
 \section{Vulnerabilities of BANK-APP}
+
 \subsection{Weak Authorization Mechanism}
 All pages of the application can be accessed via direct browsing and ignoring redirects.\\
 The application processes POST data without authorization.\\
@@ -11,6 +13,7 @@ There is the possibility to upload files without being logged in.\\
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-AUTHN-004, OTG-AUTHZ-003, OTG-BUSLOGIC-005
 \end{itemize}
+
 \subsection{Static Session ID}
 The Session ID remains the same even after Logout.
 This leads to a high likelihood for phishing atacks.
@@ -20,6 +23,7 @@ This leads to a high likelihood for phishing atacks.
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-SESS-006
 \end{itemize}
+
 \subsection{Command injection}
 There is the possibility to inject arbitrary shell commands while using the transaction upload functionality.
 This can lead to total control over the Server.
@@ -29,6 +33,7 @@ This can lead to total control over the Server.
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-INPVAL-013, OTG-ERR-001
 \end{itemize}
+
 \subsection{Negative Amount Transfer}
 It is possible to transfer negative amount and thereby steal money from other accounts.
 \begin{itemize}
@@ -37,7 +42,28 @@ It is possible to transfer negative amount and thereby steal money from other ac
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-BUSLOGIC-006
 \end{itemize}
+
+\subsection{SQL injection}
+It is possible to inject SQL in the field \code{recipient} when making a transfer.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-005
+\end{itemize}
+
+\subsection{Directory indexing}
+Directory indexing is activated for the \code{public} and \code{app} folder, which reveals sensitive information.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-AUTHZ-001
+\end{itemize}
+%%%%%%%%
+
 \section{Vulnerabilities of SecureBank}
+
 \subsection{Static Session ID}
 The Session ID remains the same even after Logout.
 This leads to a high likelihood for phishing atacks.
