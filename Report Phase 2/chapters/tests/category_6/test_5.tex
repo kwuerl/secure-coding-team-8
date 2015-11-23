@@ -25,7 +25,7 @@
 \clearpage
 
 \subsubsection{SecureBank}
-\begin{longtable}[l]{ p{2.3cm} | p{.75\linewidth} }\hline
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & Testing for SQL injection all pages were safe. \\
     \textbf{Discovery} & The login, registration and make transaction sites were tested for SQL injection with \code{sqlmap}. The command used for testing the login is \code{sqlmap -u "http://\allowbreak IP\_ADDRESS/login" -{}-data=\allowbreak "form\_login\allowbreak [email]=test\&form\_login\allowbreak [password]=test"}. For testing the transaction the session cookie has to be given as an extra parameter in the command as \code{-{}-cookie="Main\_session=cookie"}. \\

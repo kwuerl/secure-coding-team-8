@@ -4,7 +4,7 @@
     & \textbf{BANK-APP} \\ \hline
     \textbf{Observation} & A customer can approve or reject pending registrations from other customers and employees. This operation is authorized to be performed only by employees, but it has been exposed to all logged-in users. \\
     \textbf{Discovery} &
-     This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability.Steps are as follows:
+     This vulnerability has been exposed using the Burp Suite where the Request was monitored and intercepted to expose the vulnerability. Steps are as follows:
             \begin{itemize}
             \item  Login as a Customer and enter the URL - \code{http:// \allowbreak <IP-address>/secure-coding/public/view\_users.php}. The details of all registered users are shown.
 
@@ -15,7 +15,9 @@
             \item In the browser, enter the URL - \code{http://<IP-address>/ \allowbreak secure-coding/public/view\_user.php?id=xyz}.
 
             \item Go back to Burp and in the Options tab, check the option \enquote{intercept if} for client requests. Move the \enquote{HTTP method} to the top and modify it to match (get|post).
-
+            \end{itemize}
+    \\ &
+            \begin{itemize}
             \item Navigate back to the Intercept tab. The Request details are visible in the \enquote{raw} tab in the below format. Edit the method at the beginning of the request from \enquote{GET}" to \enquote{POST}. Also add \code{userid=xyz\&approve=} at the end of the request.
             \end{itemize}
     \\
@@ -28,13 +30,14 @@
             Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{BurntOrange}{Low} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{Green}{Unchanged}/ \\
-            Confidentiality Impact  & \textcolor{red}{High}/ \\
-            Integrity Impact        & \textcolor{red}{High}/ \\
-            Availability Impact     & \textcolor{BurntOrange}{Low}/
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{BurntOrange}{Low}
         \end{tabular}
     \\ \hline
 \end{longtable}
+\clearpage
 
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline

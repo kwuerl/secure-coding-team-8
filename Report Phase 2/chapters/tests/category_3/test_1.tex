@@ -6,7 +6,7 @@
     \\ \hline
     \textbf{Observation} & After scanning the application with the Vega tool, it was found that the forms in the Registration, Login and Create Transaction pages submit to an insecure HTTP target. Parameters such as User name, Password, TAN number, Account ID are not encrypted. \\
     \textbf{Discovery} &
-         Three tools Vega, Burp Suite and cURL were used to discover this vulnerability.Steps are as follows:
+         Three tools Vega, Burp Suite and cURL were used to discover this vulnerability. Steps are as follows:
             \begin{itemize}
             	\item \textbf{Vega}
             		\begin{itemize}
@@ -14,6 +14,8 @@
 
             			\item Click on the Finish button. A report is generated which has three sections - High, Low, Info. This vulnerability is termed as \code{Clear Password over HTTP} and falls under the High section. See Figure \ref{fig:credentials_over_http}
             		\end{itemize}
+            \end{itemize} \\ &
+            \begin{itemize}
             	\item After detection, one more tool-the Burp Suite was used to delve deeper into it. \textbf{Burp Suite}
             		\begin{itemize}
             		  \item Open Burp Suite Tool. Click on Proxy tab and set interception to on. This enables us to monitor all requests before being served.
@@ -22,9 +24,7 @@
 
             		  \item Now click on the Proxy tab in the Burp Suite. The requested URL data which contains Username and password can be seen in the Raw tab as plain text; revealing that the request was not encrypted.
             		\end{itemize}
-            \end{itemize}
-            \\ &
-            \begin{itemize}
+                    
             	\item To verify whether the application works on HTTP or HTTPS, cURL was used. \textbf{cURL}
             		\begin{itemize}
                    		 \item Open the terminal and type \code{curl https://<IP-address>}. The response states unknown protocol.

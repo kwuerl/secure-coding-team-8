@@ -11,12 +11,10 @@
         \begin{itemize}
             \item \textbf{Scenario 1} - We first tried to upload some file \enquote{xxx.pdf}. But the transaction was unsuccessful and the application returned the error message. Files with extensions .php, .tar.gz, .doc, .js, .jpeg were also tested.
             The error messages returned were in the format - \enquote{Transaction failed with error code: <Code>}. This error code took multiple values like -1, -4, -8, -10 etc. We tried to investigate into this, suspecting that a specific error code could be due to incorrect file type or unexpected text in the file. However, it was not consistent.
-
+        \end{itemize}
+    \\ &
+        \begin{itemize}
             \item \textbf{Scenario 2} - When the file name contains parenthesis like \enquote{xxx(1).pdf}, then the application returned a success message, though the transaction was not reflected under \enquote{View Transactions}. This was tried with other file extensions and the output was the same.
-
-            \end{itemize}
-            \\ &
-            \begin{itemize}
 
             \item \textbf{Scenario 3} - When the file names with double extensions like \enquote{xxx.png.txt} were tested, the behavior was noted to be the same as in Scenario 1 above.
         \end{itemize}
