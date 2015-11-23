@@ -2,6 +2,7 @@
 \subsubsection{BANK-APP}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{BANK-APP}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
     \textbf{Observation} & It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful. It was possible also to cause an employee to automatically log out once he/she opens the Users page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page. \\
     \textbf{Discovery} &
@@ -37,6 +38,7 @@
 \subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
     \textbf{Observation} & It was found that it is possible perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were successful. It was possible also to cause a user to automatically log out once he/she opens the Profile page. This has been done through Stored Cross-Site Scripting(XSS) in the Registration page. \\
     \textbf{Discovery} &
@@ -55,17 +57,7 @@
     \textbf{Likelihood} & Likelihood is high as it does not even require a user to be logged in. Exploitation of this vulnerability requires no advanced technical skills. It is exploitable remotely. \\
     \textbf{Impact} & After a successful attack from the Registration form, the victim will be unable to perform any operations after opening the Profile page. This results in a Denial of Service attack. Though critical, the severity is less than in BANK-APP as only the registered user is attacked. This happens because the Address field is not displayed in the Users page and hence, employees are safe from this attack. However, after a successful attack in the Transaction page, none of the users will be able to perform any operations after opening the Transactions/Profile page. This results in a Denial of Service attack for all users. The impact is severe as it affects all employees and administrators that open the Transactions page. \\
     \textbf{Recommen\-dations} & In the application, few fields are restricted by disallowing any characters other than letters, '-' and white space in the Registration form. However, the Address field is free from any constraints. Proper validations need to be implemented for all input fields to prevent XSS attacks of any form. \\ \hline
-    \textbf{CVSS} &
-        \begin{tabular}[t]{@{}l | l}
-            Attack Vector           & \textcolor{red}{Network} \\
-            Attack Complexity       & \textcolor{red}{Low} \\
-            Privileges Required     & \textcolor{red}{None} \\
-            User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{Green}{Unchanged} \\
-            Confidentiality Impact  & \textcolor{Green}{None} \\
-            Integrity Impact        & \textcolor{Green}{None} \\
-            Availability Impact     & \textcolor{red}{High}
-        \end{tabular}
+    \textbf{CVSS} & Same as described for BANK-APP.
     \\ \hline
 \end{longtable}
 
