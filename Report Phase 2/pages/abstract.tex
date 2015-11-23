@@ -1,2 +1,8 @@
 \chapter{Executive summary}
 In general it can be observed that BANK-APP has more vulnerabilities than SecureBank. In over 70 different tests the results showed that BANK-APP was vulnerable in about 50\% of the aspects, whereas SecureBank is only vulnerable in roughly 30\%. 22 of the tests were not applicable since they were not used in either of the bank applications.
+
+The most important vulnerabilities found for BANK-APP are the weak authorization and lockout mechanisms, the static session ID, command and SQL injection, directory indexing and the aspect that transferring a negative amount is possible. BANK-APP has to sanitize all user inputs in order to fix some of them. Furthermore, due to enabled directory indexing an attacker can get an overview and general comprehension of the application. Therefore it is easier to detect possible points of attack.
+
+For SecureBank the most vulnerable aspects are the static session ID and the weak lockout mechanisms.
+
+Summarized it can be said that due to the amount and severity of the vulnerabilities found BANK-APP has to invest more time to fix the issues than SecureBank.
