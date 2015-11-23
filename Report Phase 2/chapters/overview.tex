@@ -53,6 +53,15 @@ It is possible to inject SQL in the field \code{recipient} when making a transfe
 	\item \textbf{Reference:} OTG-INPVAL-005
 \end{itemize}
 
+\subsection{Reflected & Stored XSS}
+It is possible to perform cross site scripting attacks from the Registration, User and Transaction pages.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-001, OTG-INPVAL-002
+\end{itemize}
+
 \subsection{Directory indexing}
 Directory indexing is activated for the \code{public} and \code{app} folder, which reveals sensitive information.
 \begin{itemize}
@@ -92,6 +101,15 @@ Providing large values in Amount leads to overflow.
 	\item \textbf{Impact:} High
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-INPVAL-014
+\end{itemize}
+
+\subsection{Stored XSS}
+It is possible to perform cross site scripting attacks from the Registration and Transaction pages.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-002
 \end{itemize}
 
 \subsection{Weak lockout mechanisms}
