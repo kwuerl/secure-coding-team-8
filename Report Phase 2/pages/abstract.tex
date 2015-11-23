@@ -4,12 +4,16 @@ Due to enabled directory indexing, an attacker can get an overview and general c
 
 Another huge issue is the weak authorization mechanism. Without being logged in, an attacker is able to approve/disapprove arbitary Customers \& Employees and even upload files. Furthermore, all pages of the application could be accessed via direct browsing, independent of role.
 
+Stored \& Reflected XSS vulnerabilities also exist in the Registration, User and Transaction pages.
+
 Moreover, Command, SQL injection and Buffer overflow are possible in the Transaction page. An attacker could inject arbitrary shell commands into the file upload field, perform SQL injections via the \emph{Recipient} field or overflow attacks using the \emph{Amount} field.
 
 On the feature front, Batch file upload does not function as expected since it only considers the last transaction and there is no implementation for multiple transactions.
 
 \section*{SecureBank}
 For SecureBank, the most vulnerable aspects are the static session ID and the weak lockout mechanisms. After logout the session ID persists. The non-existing lockout mechanisms allow account bruteforcing.
+
+Stored XSS vulnerabilities exist in the Registration and Transaction pages.
 
 The application is also vulnerable to Buffer overflows in the Transaction page, mainly because it does not check for insufficient funds before performing transactions.
 
