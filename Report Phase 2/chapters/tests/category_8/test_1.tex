@@ -19,7 +19,7 @@
      	\item \textbf{Test for SSL services -}
      		\begin{itemize}
      			\item Open the terminal and type \code{nmap -sV --reason -PN -n --top-ports 100 <IP-address>}.
-     			\item To also check typical ports with SSL support, type \code{nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995 <IP-address>}. See Figure \ref{nmap_ssl_ports}. Observing the output, it can be concluded that none of the ports on the virtual machine support SSL service.
+     			\item To also check typical ports with SSL support, type \code{nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995 <IP-address>}. See Figure \ref{fig:nmap_ssl_ports}. Observing the output, it can be concluded that none of the ports on the virtual machine support SSL service.
      		\end{itemize}
 		\end{itemize}
     \\

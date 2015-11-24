@@ -15,7 +15,7 @@
                     \item Now upload a file with huge data.
                     \item Observe the Alerts tab as its get highlighted. It shows that the application crashed since the memory allocation failed. This creates a suspicion of buffer overflow. See Figure \ref{fig:burp_large_file_upload}.
                 \end{itemize}
-            \item \textbf{Scenario 2 -} When we make a manual transaction, and enter higher negative values in amount field such as \code{-99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect. See Figure \ref{fig:transaction} and \ref{fig:overflow_account_history}.
+            \item \textbf{Scenario 2 -} When we make a manual transaction, and enter higher negative values in amount field such as \code{-99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect. See Figure \ref{fig:overflow_transaction} and \ref{fig:overflow_account_history}.
             \item \textbf{Scenario 3 -} When file is uploaded having name as \code{text\%x.\%x.txt}, file was not uploaded and showed an error. The behavior is same even if the same test is present inside the file. Hence format string specifier doesnt create any vulnerability.
         \end{itemize}
      \\
