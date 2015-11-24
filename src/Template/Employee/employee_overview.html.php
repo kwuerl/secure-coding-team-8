@@ -90,7 +90,7 @@
                             <th>Transaction Id</th>
                             <th>Amount</th>
                             <th>From Account No.</th>
-                            <th>To Account Name</th>
+                            <th>To Account No.</th>
                             <th>Remarks</th>
                     </thead>
                     <tbody>

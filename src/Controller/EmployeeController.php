@@ -62,11 +62,14 @@ class EmployeeController extends UserController {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
+        /*Fetch the details of the current user */
+        $accountInfo = $this->get('account_repository')->findOne(array("customer_id"=>$customerId));
         /*Fetch all transactions for the selected customer*/
         $result = $this->getTransactions($customerId);
         // render the form
         $this->get("templating")->render("Employee/customer_details.html.php", array(
             "customer" => $customer,
+            "accountInfo" => $accountInfo,
             "onHoldTransactionList" => $result['onHoldTransactionList'],
             "approvedTransactionList" => $result['approvedTransactionList']
         ));

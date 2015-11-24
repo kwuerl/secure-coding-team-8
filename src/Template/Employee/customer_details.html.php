@@ -1,6 +1,7 @@
 <?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->block("content", function ($t) {
     $customer = $t->get("customer");
+    $accountInfo = $t->get("accountInfo");
     $onHoldTransactionList = $t->get("onHoldTransactionList");
     $approvedTransactionList = $t->get("approvedTransactionList"); ?>
 <!-- Content Wrapper. Contains page content -->
@@ -57,7 +58,9 @@
                         </div>
                         <div class="form-group">
                             <label>Account No.</label>
-                            <div>2242243555</div>
+                            <div>
+                                <?= $t->s($accountInfo->getAccountId()); ?>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
