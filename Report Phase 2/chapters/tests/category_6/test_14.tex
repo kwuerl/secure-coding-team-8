@@ -16,6 +16,7 @@
                     \item Observe the Alerts tab as its get highlighted. It shows that the application crashed since the memory allocation failed. This creates a suspicion of buffer overflow. See Figure \ref{fig:burp_large_file_upload}.
                 \end{itemize}
             \item \textbf{Scenario 2 -} When we make a manual transaction, and enter higher negative values in amount field such as \code{-99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect. See Figure \ref{fig:transaction} and \ref{fig:overflow_account_history}.
+            \item \textbf{Scenario 3 -} When file is uploaded having name as \code{text\%x.\%x.txt}, file was not uploaded and showed an error. The behavior is same even if the same test is present inside the file. Hence format string specifier doesnt create any vulnerability.
         \end{itemize}
      \\
     \textbf{Likelihood} & Likelihood is high, since this uploading of file with huge data is quite easy to do and no technical knowledge is required. \\
@@ -50,6 +51,7 @@
         \begin{itemize}
              \item \textbf{Scenario 1 -} Same as described for BANK-APP.
              \item \textbf{Scenario 2 -} When we make a manual transaction, and enter large values in amount field like \code{99999999999999999}, integer overflow takes place since the amount reflected on both sides(sender and recipeient) is incorrect.
+             \item \textbf{Scenario 3 -} When file is uploaded having name as \code{text\%x.\%x.txt}, file was read and transaction executed succesfully. If the same text is present inside the file(in \enquote{Name}/\enquote{Remarks} fields), the file is uploaded and transaction is sucessful if other Account details are valid. Hence format string specifier doesnt create any vulnerability.
        \end{itemize}
      \\
     \textbf{Likelihood} & Same as described for BANK-APP. \\
@@ -93,5 +95,5 @@
 \end{figure}
 
 \subsubsection{Comparison}
-Neither applications perform well in handling big files leading to application crash, and thus suspectecting buffer overflow.
+Neither applications perform well in handling big files leading to application crash, and thus suspecting buffer overflow.
 \clearpage
