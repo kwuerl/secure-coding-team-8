@@ -48,7 +48,7 @@ class TransactionController extends Controller {
 			    $requestVar = $request->getData('make_transfer');
 			    $transaction_code = $requestVar['transaction_code'];
 			    $amount = $requestVar['amount'];
-			    if( $amount < 0 ){
+			    if( $amount <= 0 ){
 			    	$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct amount.", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
 					return;
