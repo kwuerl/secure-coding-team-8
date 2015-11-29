@@ -48,6 +48,8 @@ class TransactionController extends Controller {
 			    $requestVar = $request->getData('make_transfer');
 			    $transaction_code = $requestVar['transaction_code'];
 			    $amount = $requestVar['amount'];
+
+			    /*Return if the amount entered is invalid(i.e., negative or 0)*/
 			    if( $amount <= 0 ){
 			    	$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct amount.", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
@@ -56,10 +58,10 @@ class TransactionController extends Controller {
 			    $customer_id = $customer->getId();
 			    $account_repo = $this->get('account_repository');
 			    $transaction_code_repo = $this->get('transaction_code_repository');
-				$is_valid_transaction = $transaction_code_repo->findOne(array("customer_id" => $customer_id, "code" => $transaction_code, "is_used" => 0));
+				$is_valid_transaction_code = $transaction_code_repo->findOne(array("customer_id" => $customer_id, "code" => $transaction_code, "is_used" => 0));
 
 				// Checking whether the transaction is valid , then proceed further
-				if (!empty($is_valid_transaction)) {
+				if (!empty($is_valid_transaction_code)) {
 					// fill the model
 					$model = new \Model\Transaction();
 					$helper->fillModel($model);
@@ -68,15 +70,28 @@ class TransactionController extends Controller {
 					$from_account = $account_repo->findOne(array("customer_id" => $customer_id));
 					$to_account = $account_repo->findOne(array("account_id" => $model->getToAccountId()));
 					$from_account_id = $from_account->getAccountId();
+					$from_account_balance = $from_account->getBalance();
 					$model->setFromAccountId($from_account_id);
 
+                    /*Return if recipient account does not exist*/
+					if (!$to_account) {
+						$this->get("flash_bag")->add(_OPERATION_FAILURE, "Recipient Account does not exist.", "error");
+						$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+						return;
+					}
+                    /*Return if customer account does not have sufficient funds*/
+					if ($amount > $from_account_balance) {
+						$this->get("flash_bag")->add(_OPERATION_FAILURE, "Insufficient funds for the transfer.", "error");
+						$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+						return;
+					}
 					// check whether the amount > 10000
 					if ($amount > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
 						$model->setIsOnHold(1);
 					}
 
 					// add to transaction repository
-					if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction)) {
+					if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction_code)) {
 						// after successful transfer , redirect to make_transfer page
 						$this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
 						$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
