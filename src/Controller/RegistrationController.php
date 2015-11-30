@@ -30,7 +30,8 @@ class RegistrationController extends Controller {
 
 		$helper->addField("address", "text", array(
 			array("required", "Address is required"),
-			array("maxLength", "Max. 60 characters allowed", array(60))
+			array("maxLength", "Max. 60 characters allowed", array(60)),
+			array("address", "Please input a valid address, e.g. Example St. 1a")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("postal_code", "text", array(

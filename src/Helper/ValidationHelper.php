@@ -96,4 +96,15 @@ class ValidationHelper {
 		}
 		return false;
 	}
+	/**
+	 * Checks if $input is a valid address
+	 *
+	 * @param FormHelper $helper
+	 * @param string $input
+	 *
+	 * @return boolean
+	 */
+	public static function address(FormHelper $helper, $input) {
+		return preg_match("/^[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\-\s.]+[0-9\-]+[a-zA-Z]*$/u", $input);
+	}
 }
