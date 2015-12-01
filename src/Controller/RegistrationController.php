@@ -52,12 +52,12 @@ class RegistrationController extends Controller {
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
+			array("minLength", "Has to be at least 6 characters long", array(6)),
+			array("password", "Must contain at least one lowercase character, one uppercase character and at least one digit.")
 		), array("ltrim", "rtrim"), "");
 
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed"),
 			array("equal", "Passwords do not match", array("_password_plain"))
 		), array("ltrim", "rtrim"), "");
 

@@ -41,7 +41,7 @@ class ValidationHelper {
 		return preg_match("/^[a-zA-ZäöüÄÖÜ][a-zA-ZäöüÄÖÜ\-\s]+$/u", $input);
 	}
 	/**
-	 * Checks if $input is a valid password
+	 * Checks if $input is a valid password. It has to be at least 6 characters, has at least one lower- and uppercase character and at least one digit.
 	 *
 	 * @param FormHelper $helper
 	 * @param string $input
@@ -49,7 +49,7 @@ class ValidationHelper {
 	 * @return boolean
 	 */
 	public static function password(FormHelper $helper, $input) {
-		return preg_match("/^[a-zA-Z0-9\\\+\?\^\$#\-_]+$/", $input);
+		return preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*[\säöüÄÖÜ%\/<>]).+$/u", $input);
 	}
 	/**
 	 * Checks if $input has the same value as the fields defined in $fields
@@ -91,6 +91,23 @@ class ValidationHelper {
 	public static function maxLength(FormHelper $helper, $input, $maxLength=0) {
 		if ($maxLength > 0) {
 			if (strlen($input) <= $maxLength) {
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * Checks if $input length >= $minLength
+	 *
+	 * @param FormHelper $helper
+	 * @param string $input
+	 * @param int $minLength
+	 *
+	 * @return boolean
+	 */
+	public static function minLength(FormHelper $helper, $input, $minLength=0) {
+		if ($minLength > 0) {
+			if (strlen($input) >= $minLength) {
 				return true;
 			}
 		}
