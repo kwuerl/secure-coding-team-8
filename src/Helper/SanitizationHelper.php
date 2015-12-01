@@ -14,4 +14,8 @@ class SanitizationHelper {
 	public static function ltrim($input) {
 		return ltrim($input);
 	}
+
+	public static function stripTags($input) {
+		return filter_var($input, FILTER_SANITIZE_STRING);
+	}
 }

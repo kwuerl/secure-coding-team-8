@@ -39,7 +39,7 @@ class TransactionController extends Controller {
 		$helper->addField("remarks", "text", array(
 			array("required", "Remarks is required"),
 			array("maxLength", "Max. 100 characters allowed", array(100))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		// process the request
 		if ($helper->processRequest($request)) {
