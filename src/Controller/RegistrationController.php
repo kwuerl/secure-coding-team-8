@@ -21,45 +21,45 @@ class RegistrationController extends Controller {
 		$helper->addField("first_name", "name", array(
 			array("required", "First name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("last_name", "name", array(
 			array("required", "Last name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("address", "text", array(
 			array("required", "Address is required"),
 			array("maxLength", "Max. 60 characters allowed", array(60)),
 			array("address", "Please input a valid address, e.g. Example St. 1a")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("postal_code", "text", array(
 			array("required", "Postal code is required"),
 			array("number", "Only numbers are allowed"),
 			array("maxLength", "Max. 5 numbers allowed", array(5))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("city", "text", array(
 			array("required", "City is required"),
 			array("maxLength", "Max. 20 characters allowed", array(20))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("email", "email", array(
 			array("required", "E-Mail is required"),
 			array("email", "Please input a valid e-mail")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),
 			array("minLength", "Has to be at least 6 characters long", array(6)),
 			array("password", "Must contain at least one lowercase character, one uppercase character and at least one digit.")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
 			array("equal", "Passwords do not match", array("_password_plain"))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		// try to process the request
 		if ($helper->processRequest($request)) {
@@ -122,28 +122,28 @@ class RegistrationController extends Controller {
 		$helper->addField("first_name", "name", array(
 			array("required", "First name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("last_name", "name", array(
 			array("required", "Last name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("email", "email", array(
 			array("required", "E-Mail is required"),
 			array("email", "Please input a valid e-mail")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed")
-		), array("ltrim", "rtrim"), "");
+			array("minLength", "Has to be at least 6 characters long", array(6)),
+			array("password", "Must contain at least one lowercase character, one uppercase character and at least one digit.")
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
-			array("password", "Only letters, numbers and '-_$^?\+#' allowed"),
 			array("equal", "Passwords do not match", array("_password_plain"))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		// try to process the request
 		if ($helper->processRequest($request)) {

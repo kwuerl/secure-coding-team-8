@@ -15,7 +15,7 @@
             $first_name_errors = $t->get("form")->getError("first_name");
             $last_name_errors = $t->get("form")->getError("last_name");
             $email_errors = $t->get("form")->getError("email");
-            $password_errors = $t->get("form")->getError("password");
+            $password_errors = $t->get("form")->getError("_password_plain");
             $password_repeat_errors = $t->get("form")->getError("password_repeat");
             ?>
         <div class="form-group has-feedback <?php if (sizeof($first_name_errors) > 0) echo "has-error"; ?>">
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
             <label for="form_registration[_password_plain]">Password</label>
-            <input type="password" class="form-control" name="form_registration[_password_plain]" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
+            <input type="password" class="form-control" name="form_registration[_password_plain]" pattern="(?!.*[äöüÄÖÜ\s%&/~§<>]).+" title="Only letters, numbers and '-_$^?\+#*' allowed" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             <?php if (sizeof($password_errors) > 0) { ?>
             <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?><br></p>

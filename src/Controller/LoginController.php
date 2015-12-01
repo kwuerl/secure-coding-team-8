@@ -19,11 +19,11 @@ class LoginController extends Controller {
 		$helper->addField("email", "text", array(
 			array("required", "Email is required"),
 			array("email", "Please input a valid e-mail")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("_password_plain", "text", array(
 			array("required", "Password is required")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		// try to process the request
 		if($helper->processRequest($request)) {

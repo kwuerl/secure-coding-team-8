@@ -18,23 +18,23 @@ class TransactionController extends Controller {
 		$helper->addField("to_account_id", "text", array(
 			array("required", "Beneficiary Account No. is required"),
 		    array("number", "Only numbers are allowed"),
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("to_account_name", "name", array(
 			array("required", "Account Holder Name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("amount", "text", array(
 			array("required", "Amount to be transfered should be specified"),
 			//array("name", "Max. 50000 per day allowed"),
 			array("maxLength", "Enter 15 digit transaction code", array(15))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("transaction_code", "text", array(
 			array("required", "Transaction code is required"),
 			array("maxLength", "Enter 15 digit transaction code", array(15))
-		), array("ltrim", "rtrim"), "");
+		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("remarks", "text", array(
 			array("required", "Remarks is required"),
