@@ -14,10 +14,8 @@ my_bool isAccount(MYSQL* connection, int accountId) {
 	char* query;
 	MYSQL_STMT *statement;
 	MYSQL_BIND parameter[1], result[1];
-	int int_data;
-	unsigned long int_length;
-	int result_data[1];
-	unsigned long result_length;
+	int int_data, result_data;
+	unsigned long int_length, result_length;
 	my_bool is_exists;
 
 	query = "SELECT `ID` FROM `TBL_ACCOUNT` "
@@ -75,12 +73,10 @@ my_bool isAccount(MYSQL* connection, int accountId) {
 my_bool isBalanceSufficient(MYSQL* connection, int accountId, float amount) {
 	char* query;
 	MYSQL_STMT *statement;
-	MYSQL_BIND parameter[2], result[2];
-	int int_data;
+	MYSQL_BIND parameter[2], result[1];
+	int int_data, result_data;
 	float float_data;
-	unsigned long int_length, float_length, result_length[2];
-	int id;
-	float balance;
+	unsigned long parameter_length[2], result_length;
 	my_bool is_balance_sufficient;
 
 	query = "SELECT `ID` FROM `TBL_ACCOUNT` "
@@ -97,17 +93,18 @@ my_bool isBalanceSufficient(MYSQL* connection, int accountId, float amount) {
 	parameter[0].buffer = (char *) &int_data;
 	parameter[0].buffer_length = 2;
 	parameter[0].is_null = 0;
-	parameter[0].length = &int_length;
+	parameter[0].length = &parameter_length[0];
 
+	/*parameter 2 - AMOUNT*/
 	parameter[1].buffer_type = MYSQL_TYPE_FLOAT;
 	parameter[1].buffer = (char *) &float_data;
 	parameter[1].buffer_length = 2;
 	parameter[1].is_null = 0;
-	parameter[1].length = &float_length;
+	parameter[1].length = &parameter_length[1];
 
 	/*assign appropriate values to the result properties*/
 	result[0].buffer_type = MYSQL_TYPE_LONG;
-	result[0].buffer = (char *) &id;
+	result[0].buffer = (char *) &result_data;
 	result[0].buffer_length = 2;
 	result[0].is_null = 0;
 	result[0].length = &result_length;
@@ -126,7 +123,7 @@ my_bool isBalanceSufficient(MYSQL* connection, int accountId, float amount) {
 	/*store the statement result*/
 	storeResult(statement);
 
-	/*Check if the account exists*/
+	/*Check if sufficient balance for the account exists*/
 	if (mysql_stmt_num_rows(statement) == 0) {
 		is_balance_sufficient = 0;
 	} else {
