@@ -177,19 +177,37 @@ class EmployeeController extends UserController {
                 if (!$error) {
                     // send email with transaction codes
                     $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
+					
+					$isTansByPdf  = true;
                     if ($tans) {
-                        $email_msg = $this->get("templating")->render(
-                            "email_transaction_codes.html.php",
-                            array(
-                                "tans" => $tans,
-                                "user" => $user_model
-                            ),
-                            false);
-                        $this->get("email")->sendMail(
-                            $user_model->getEmail(),
-                            "Your registration at SecureBank was successful!",
-                            $email_msg
-                        );
+						if ($isTansByPdf) {
+							$attachment = $this->get('pdf')->generatePdfWithTans($tans);
+							$subject = "Your registration at SecureBank was successful!";
+							$email_msg = "Dear ".$user_model->getFirstName()."&nbsp;".$user_model->getLastName().",<br/><br/>".
+										  "Your registration was approved.<br/>".
+										  "Kindly find the attachment with the TANs.";
+							$attachmentName = $account_id."_".time()."_TAN.pdf";
+							$this->get("email")->sendMailWithAttachment(
+								$user_model->getEmail(),
+								$subject,
+								$email_msg,
+								$attachment,
+								$attachmentName
+							);
+						} else {
+							$email_msg = $this->get("templating")->render(
+								"email_transaction_codes.html.php",
+								array(
+									"tans" => $tans,
+									"user" => $user_model
+								),
+								false);
+							$this->get("email")->sendMail(
+								$user_model->getEmail(),
+								"Your registration at SecureBank was successful!",
+								$email_msg
+							);
+						}
                     } else {
                         // TODO: rollback of customer approval and account generation if transaction code generation failed
                         throw new \Exception("There was an error with generating the transaction codes.");

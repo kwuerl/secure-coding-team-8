@@ -1,6 +1,7 @@
 <?php
 
 require_once("Vendor/Psr4ClassLoader.php");
+require_once('Vendor/fpdf18/protection/fpdf_protection.php');
 
 $loader = new Psr4ClassLoader();
 $loader->addPrefix("Service", "Service");
