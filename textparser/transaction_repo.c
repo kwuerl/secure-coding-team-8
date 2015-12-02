@@ -173,6 +173,28 @@ my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
 
 my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAccountId,
 		int toAccountId, char* toAccountName, float amount, char* remarks) {
+
+	/*Check for valid amount i.e., restrict 0 or negative amounts*/
+	if (amount <= 0) {
+		printf("Incorrect amount for the transfer.\n");
+		return 0;
+	}
+	/*Check if recipient account is same as own account*/
+	if (fromAccountId == toAccountId) {
+		printf("Recipient Account same as own account.\n");
+		return 0;
+	}
+	/*Check for non-existent recipient account*/
+	if (!isAccount(connection, toAccountId)) {
+		printf("Recipient Account does not exist.\n");
+		return 0;
+	}
+	/*Check for insufficient funds*/
+	if (!isBalanceSufficient(connection, fromAccountId, amount)) {
+		printf("Insufficient funds for the transfer.\n");
+		return 0;
+	}
+
 	mysql_autocommit(connection, 0);
 	if (isValidTransactionCode(connection, customerId, code)) {
 		if (setIsUsedTransactionCode(connection, customerId, code)) {
@@ -184,12 +206,12 @@ my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAcco
 				return 0;
 			}
 		} else {
-			printf("Error in updating transaction code.\n");
+			printf("Error in updating TAN (transaction code).\n");
 			mysql_rollback(connection);
 			return 0;
 		}
 	} else {
-		printf("Incorrect transaction code.\n");
+		printf("Incorrect TAN (transaction code).\n");
 		mysql_rollback(connection);
 		return 0;
 	}

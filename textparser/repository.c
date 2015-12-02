@@ -104,7 +104,16 @@ my_bool executeStatement(MYSQL_STMT *statement) {
 	if (mysql_stmt_execute(statement)) {
 		fprintf(stderr, "Error in executing query.\n");
 		fprintf(stderr, " %s\n", mysql_stmt_error(statement));
-		fprintf(stderr, "Error in executing query.\n");
+		return 0;
+	}
+	return 1;
+}
+
+my_bool storeResult(MYSQL_STMT *statement) {
+	/* Store the result of the statement */
+	if (mysql_stmt_store_result(statement)) {
+		fprintf(stderr, "Error in storing statement result.\n");
+		fprintf(stderr, " %s\n", mysql_stmt_error(statement));
 		return 0;
 	}
 	return 1;

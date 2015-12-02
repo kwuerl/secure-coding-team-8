@@ -77,7 +77,7 @@ my_bool isValidTransactionCode(MYSQL *connection, int customerId, char* code) {
 	/*execute the statement*/
 	executeStatement(statement);
 
-	/* Print our results */
+	/*Check if the Transaction code exists*/
 	if (mysql_stmt_fetch(statement) == 0) {
 		is_valid = 1;
 	} else {
