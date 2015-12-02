@@ -51,7 +51,7 @@ class TransactionController extends Controller {
 
 			    /*Return if the amount entered is invalid(i.e., negative or 0)*/
 			    if( $amount <= 0 ){
-			    	$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct amount.", "error");
+			    	$this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect amount for the transfer.", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
 					return;
 			    }
@@ -73,6 +73,12 @@ class TransactionController extends Controller {
 					$from_account_balance = $from_account->getBalance();
 					$model->setFromAccountId($from_account_id);
 
+                    /*Return if recipient account is same as own account.*/
+					if ($model->getToAccountId() === $from_account_id) {
+						$this->get("flash_bag")->add(_OPERATION_FAILURE, "Recipient Account same as own account.", "error");
+						$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+						return;
+					}
                     /*Return if recipient account does not exist*/
 					if (!$to_account) {
 						$this->get("flash_bag")->add(_OPERATION_FAILURE, "Recipient Account does not exist.", "error");
@@ -99,7 +105,7 @@ class TransactionController extends Controller {
 					}
 				}
 				else{
-					$this->get("flash_bag")->add(_OPERATION_FAILURE, "Please enter the correct transaction code.", "error");
+					$this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
 					$this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
                     return;
 				}
