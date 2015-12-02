@@ -31,6 +31,9 @@ $service_container->register("email", "Service\\EmailService", array(
 	_EMAIL
 ));
 
+$service_container->register("pdf", "Service\\PdfService", array(
+));
+
 $service_container->register("transaction", "Service\\TransactionService", array(
 	array("type"=>"service", "value"=>"transaction_code_repository"),
 	array("type"=>"service", "value"=>"random")
