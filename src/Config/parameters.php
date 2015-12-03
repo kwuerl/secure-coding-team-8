@@ -41,6 +41,7 @@ define('_EMAIL', 'securebank15@gmail.com');
 
 define('_ACTION_APPROVE', 1);
 define('_ACTION_REJECT', 2);
+define('_ACTION_SET_BALANCE', 3);
 
 define('_OPERATION_SUCCESS', 'Operation successful');
 define('_OPERATION_FAILURE', 'Operation failed!');

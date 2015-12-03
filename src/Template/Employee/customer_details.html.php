@@ -62,6 +62,12 @@
                                 <?= $t->s($accountInfo->getAccountId()); ?>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Account Balance</label>
+                            <div>
+                                <?= $t->s($accountInfo->getBalance()); ?>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </form>

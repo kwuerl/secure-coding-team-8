@@ -170,7 +170,6 @@ class EmployeeController extends UserController {
                 $account_model->setCustomerId($user_id);
                 $account_model->setType("SAVINGS");
                 $account_model->setIsActive(1);
-                $account_model->setBalance(10000);
 
                 $error = $this->get('customer_repository')->actOnRegistration($user_model, $action, $account_repo, $account_model);
                 $success = 'Customer registration was approved successfully.';
@@ -217,6 +216,26 @@ class EmployeeController extends UserController {
             case _ACTION_REJECT:
                 $error = $this->get('customer_repository')->actOnRegistration($user_model, $action);
                 $success = 'Customer registration was rejected successfully.';
+                break;
+            case _ACTION_SET_BALANCE:
+                $helper = new \Helper\FormHelper("form_account");
+                $balance = $request->getData('account_balance');
+                $account_repo = $this->get('account_repository');
+                $account_model = $account_repo->findOne(array("customer_id"=>$user_id));
+                $account_model->setBalance($balance);
+
+                $result = $account_repo->update($account_model, array("balance"), array("customer_id"=>$user_id));
+                if ($result) {
+                    $user_model->setIsAccountBalanceInitialized(1);
+                    $result = $this->get('customer_repository')->update($user_model, array("is_account_balance_initialized"), array("id"=>$user_id));
+                    if ($result) {
+                        $success = 'Account Balance initialized successfully.';
+                    } else {
+                        $error = "Error in initializing Account Balance.";
+                    }
+                } else {
+                    $error = "Error in initializing Account Balance.";
+                }
                 break;
         }
         $this->notify($success, $error);
