@@ -246,4 +246,19 @@ class AuthService {
 		}
 		return false;
 	}
+	/**
+	 * Gets the User for a token.
+	 *
+	 * @param string $token
+	 *
+	 * @return User | boolean
+	 */
+	public function getUserFromToken($token) {
+		foreach ($this->user_providers as $provider) {
+			if ($user = $provider->getRepository()->findOne(array("token" => $token))) {
+				return $user;
+			}
+		}
+		return false;
+	}
 }

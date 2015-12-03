@@ -67,14 +67,12 @@ class LoginController extends Controller {
 				$employee = $helper->getValue("employee");
 
 				if ($employee == "on") {
-					$repository = "employee_repository";
+					$model = $this->get("employee_repository")->findOne(array("email" => $email));
 					$e = "y";
 				} else {
-					$repository = "customer_repository";
+					$model = $this->get("customer_repository")->findOne(array("email" => $email));
 					$e = "n";
 				}
-
-				$model = $this->get($repository)->findOne(array("email" => $email));
 
 				if ($model !== false) {
 					$user = $this->get("auth")->createToken($model);
