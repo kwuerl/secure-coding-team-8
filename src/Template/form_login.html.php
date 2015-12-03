@@ -35,6 +35,7 @@
             <!-- /.col -->
         </div>
         <?php }); ?>
+        <a href="recover_password" class="text-center row">Forgot password?</a>
         <a href="register" class="text-center row">Register for a new account</a>
         <a href="register_employee" class="text-center row">Register as an employee</a>
     </div>
