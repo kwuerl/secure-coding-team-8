@@ -21,6 +21,12 @@ $routing_service->get("register_employee_get", "/register_employee", "registrati
 $routing_service->post("register_employee_post", "/register_employee", "registration_controller:processEmployeeRegistration");
 
 /*
+ * Password recovery routes
+ */
+$routing_service->get("recover_password_get", "/recover_password", "login_controller:resetPassword");
+$routing_service->post("recover_password_post", "/recover_password", "login_controller:resetPassword");
+
+/*
  * Customer routes
  */
 $routing_service->get("overview", "/overview", "customer_controller:loadOverview");
