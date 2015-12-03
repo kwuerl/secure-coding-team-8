@@ -59,6 +59,7 @@ class EmployeeController extends UserController {
         ));
     }
      public function loadCustomerDetails ($request, $customerId) {
+        $helper = new \Helper\FormHelper("form_set_balance");
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
@@ -68,6 +69,7 @@ class EmployeeController extends UserController {
         $result = $this->getTransactions($customerId);
         // render the form
         $this->get("templating")->render("Employee/customer_details.html.php", array(
+            "form" => $helper,
             "customer" => $customer,
             "accountInfo" => $accountInfo,
             "onHoldTransactionList" => $result['onHoldTransactionList'],
