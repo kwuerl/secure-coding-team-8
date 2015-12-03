@@ -53,44 +53,55 @@ class LoginController extends Controller {
 
 	public function resetPassword($request) {
 		$helper = new \Helper\FormHelper("recover_password");
+
 		$helper->addField("email", "text", array(
 			array("required", "Email is required"),
 			array("email", "Please input a valid e-mail")
 		), array("ltrim", "rtrim", "stripTags"), "");
 
+		$helper->addField("employee", "checkbox", array(), array(), "");
+
 		if ($helper->processRequest($request)) {
 			if ($helper->validate()) {
-				$model = new \Model\User();
-				$helper->fillModel($model);
+				$email = $helper->getValue("email");
+				$employee = $helper->getValue("employee");
 
-				$model = $this->get('customer_repository')->findOne(array("email" => $model->getEmail()));
+				if ($employee == "on") {
+					$repository = "employee_repository";
+					$e = "y";
+				} else {
+					$repository = "customer_repository";
+					$e = "n";
+				}
+
+				$model = $this->get($repository)->findOne(array("email" => $email));
 
 				if ($model !== false) {
-					// generate new pw with 8 characters
-					$new_pw = $this->get("random")->getString(8);
-					$hashed_pw = crypt($new_pw, $model->getSalt());
-					$model->setPassword($hashed_pw);
-					
-					$this->get('customer_repository')->beginDBTransaction();
+					$token = $this->get("random")->getString(16);
+					$url = $_SERVER['SERVER_NAME'].$this->get("routing")->url("reset_password_get", array())."?token=".$token."&e=".$e;
+					$token_valid_time = date("Y-m-d H:i:s", time()+(30*60)); // token valid for 30 min
 
-					if ($this->get('customer_repository')->update($model, array("password"), array("email" => $model->getEmail()))) {
-						$this->get("customer_repository")->commitDB();
+					$model->setToken($token);
+					$model->setTokenValidTime($token_valid_time);
 
-						// send email with new pw
+					$this->get($repository)->beginDBTransaction();
+
+					if ($this->get($repository)->update($model, array("token", "token_valid_time"), array("email" => $model->getEmail()))) {
+						$this->get($repository)->commitDB();
+
+						// send email with pw reset link
 						$this->get("email")->sendMail(
 							$model->getEmail(),
 							"Password reset for your account at SecureBank",
-							"Dear ".$model->getFirstName()." ".$model->getLastName()."your new password for your account at SecureBank is\n".$new_pw."\n\nHave a nice day,\nyour SecureBank"
+							"Dear ".$model->getFirstName()." ".$model->getLastName()."\r\nclick on the link to reset your password for your account at SecureBank:\r\n".$url."\r\n\r\nHave a nice day,\r\nyour SecureBank"
 						);
 
-						$this->get("flash_bag")->add("Reset successful", "You will get an e-mail with your new password soon.", "success");
+						$this->get("flash_bag")->add("Reset successful", "You will get an e-mail with further information soon.", "success");
 						$this->get("routing")->redirect("login_get", array());
-						return;
 					} else {
-						// updating pw in db failed
-						$this->get("customer_repository")->rollBackDB();
+						$this->get($repository)->rollBackDB();
 						$this->get("flash_bag")->add("Reset failed", "An error occurred. Please try again later.", "error");
-					}
+					}				
 				} else {
 					// there is no account with this email
 					$this->get("flash_bag")->add("Reset failed", "There is no account with this e-mail.", "error");
@@ -99,6 +110,73 @@ class LoginController extends Controller {
 		}
 
 		$this->get("templating")->render("form_recover_password.html.php", array(
+			"form" => $helper
+		));
+	}
+
+	public function setNewPassword($request) {
+		$helper = new \Helper\FormHelper("recover_password");
+
+		$helper->addField("_password_plain", "password", array(
+			array("required", "Password is required"),
+			array("minLength", "Has to be at least 6 characters long", array(6)),
+			array("password", "Must contain at least one lowercase character, one uppercase character and at least one digit.")
+		), array("ltrim", "rtrim", "stripTags"), "");
+
+		$helper->addField("password_repeat", "password", array(
+			array("required", "Please repeat your password"),
+			array("equal", "Passwords do not match", array("_password_plain"))
+		), array("ltrim", "rtrim", "stripTags"), "");
+
+		if ($token = $request->getQuery("token")) {
+			$repository = "customer_repository";
+			if ($request->getQuery("e") == "y") {
+				$repository = "employee_repository";
+			}
+			$model = $this->get($repository)->findOne(array("token" => $token));
+
+			if ($model !== false) {
+				$now = date("Y-m-d H:i:s");
+				if ($now < $model->getTokenValidTime()) {
+					if ($helper->processRequest($request)) {
+						if ($helper->validate()) {
+							$model = new \Model\Customer();
+							$helper->fillModel($model);
+
+							// set new password
+							$salt = $this->get("random")->getString(16);
+							$model->setSalt($salt);
+							$model->setPassword(crypt($model->getPasswordPlain(), $salt));
+
+							// delete token
+							$model->setToken("");
+							$model->setTokenValidTime("");
+
+							$this->get($repository)->beginDBTransaction();
+
+							if ($this->get($repository)->update(	$model,
+																	array("salt", "password", "token", "token_valid_time"),
+																	array("token" => $token)
+																)) {
+								$this->get($repository)->commitDB();
+
+								$this->get("flash_bag")->add("Reset successful", "Your password has been changed.", "success");
+								$this->get("routing")->redirect("login_get", array());
+							} else {
+								$this->get($repository)->rollBackDB();
+								$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
+							}
+						}
+					}
+				} else {
+					$this->get("flash_bag")->add("Error", "This token is not valid.", "error");
+				}
+			} else {
+				$this->get("flash_bag")->add("Error", "This token is not valid.", "error");
+			}
+		}
+
+		$this->get("templating")->render("form_reset_password.html.php", array(
 			"form" => $helper
 		));
 	}
