@@ -9,6 +9,7 @@ class Customer extends User {
 	private $address;
 	private $city;
 	private $postal_code;
+	private $is_account_balance_initialized = 0;
 
 	/**
 	 * Gets the customer address
@@ -57,5 +58,21 @@ class Customer extends User {
 	 */
 	public function setPostalCode($postalCode) {
 		$this->postal_code = $postalCode;
+	}
+	/**
+	 * Gets the balance initialized status of the User account
+	 *
+	 * @return integer
+	 */
+	public function getIsAccountBalanceInitialized () {
+		return $this->is_account_balance_initialized;
+	}
+	/**
+	 * Sets the balance initialized status of the User account
+	 *
+	 * @param integer $isBalanceInitialized
+	 */
+	public function setIsAccountBalanceInitialized($isAccountBalanceInitialized) {
+		$this->is_account_balance_initialized = $isAccountBalanceInitialized;
 	}
 }
