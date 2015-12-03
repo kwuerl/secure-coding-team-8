@@ -62,6 +62,7 @@ $service_container->register("static_auth_provider", "Auth\\StaticAuthProvider",
 $service_container->register("auth", "Service\\AuthService", array(
 	array("type"=>"service", "value"=>"session"),
 	array("type"=>"service", "value"=>"routing"),
+	array("type"=>"service", "value"=>"random"),
 	_LOGIN_ROUTE_NAME
 ), array(
 	array("function"=>"addUserProvider", "parameters"=>array(

@@ -77,30 +77,23 @@ class LoginController extends Controller {
 				$model = $this->get($repository)->findOne(array("email" => $email));
 
 				if ($model !== false) {
-					$token = $this->get("random")->getString(16);
-					$url = $_SERVER['SERVER_NAME'].$this->get("routing")->url("reset_password_get", array())."?token=".$token."&e=".$e;
-					$token_valid_time = date("Y-m-d H:i:s", time()+(30*60)); // token valid for 30 min
+					$user = $this->get("auth")->createToken($model);
 
-					$model->setToken($token);
-					$model->setTokenValidTime($token_valid_time);
-
-					$this->get($repository)->beginDBTransaction();
-
-					if ($this->get($repository)->update($model, array("token", "token_valid_time"), array("email" => $model->getEmail()))) {
-						$this->get($repository)->commitDB();
+					if ($user !== false) {
+						$url = $_SERVER['SERVER_NAME'].$this->get("routing")->url("reset_password_get", array())."?token=".$token."&e=".$e;
+						$token = $user->getToken();
 
 						// send email with pw reset link
 						$this->get("email")->sendMail(
-							$model->getEmail(),
+							$user->getEmail(),
 							"Password reset for your account at SecureBank",
-							"Dear ".$model->getFirstName()." ".$model->getLastName()."\r\nclick on the link to reset your password for your account at SecureBank:\r\n".$url."\r\n\r\nHave a nice day,\r\nyour SecureBank"
+							"Dear ".$user->getFirstName()." ".$user->getLastName()."\r\nclick on the link to reset your password for your account at SecureBank:\r\n".$url."\r\n\r\nHave a nice day,\r\nyour SecureBank"
 						);
 
 						$this->get("flash_bag")->add("Reset successful", "You will get an e-mail with further information soon.", "success");
 						$this->get("routing")->redirect("login_get", array());
 					} else {
-						$this->get($repository)->rollBackDB();
-						$this->get("flash_bag")->add("Reset failed", "An error occurred. Please try again later.", "error");
+						$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
 					}				
 				} else {
 					// there is no account with this email
@@ -152,18 +145,13 @@ class LoginController extends Controller {
 							$model->setToken("");
 							$model->setTokenValidTime("");
 
-							$this->get($repository)->beginDBTransaction();
-
 							if ($this->get($repository)->update(	$model,
 																	array("salt", "password", "token", "token_valid_time"),
 																	array("token" => $token)
 																)) {
-								$this->get($repository)->commitDB();
-
 								$this->get("flash_bag")->add("Reset successful", "Your password has been changed.", "success");
 								$this->get("routing")->redirect("login_get", array());
 							} else {
-								$this->get($repository)->rollBackDB();
 								$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
 							}
 						}

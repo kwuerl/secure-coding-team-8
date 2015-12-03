@@ -35,4 +35,12 @@ class EmployeeAuthProvider extends AuthProvider {
 		}
 		return false;
 	}
+	/**
+	 * Returns employee repository
+	 *
+	 * @return Model\Repository
+	 */
+	public function getRepository() {
+		return $this->employee_repository;
+	}
 }

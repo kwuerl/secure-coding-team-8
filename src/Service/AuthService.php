@@ -12,6 +12,7 @@ use Auth\AuthProvider;
 class AuthService {
 	private $session_service;
 	private $routing_service;
+	private $random_service;
 	private $user_providers = array();
 	private $current_user;
 	private $login_route_name;
@@ -19,9 +20,10 @@ class AuthService {
 	/**
 	 * Constructor
 	 */
-	function __construct(SessionService $session_service, RoutingService $routing_service, $login_route_name) {
+	function __construct(SessionService $session_service, RoutingService $routing_service, RandomSequenceGeneratorService $random_service, $login_route_name) {
 		$this->session_service = $session_service;
 		$this->routing_service = $routing_service;
+		$this->random_service = $random_service;
 		$this->login_route_name = $login_route_name;
 	}
 	/**
@@ -219,5 +221,29 @@ class AuthService {
 	public function logout() {
 			$this->session_service->reset();
 			$this->routing_service->redirect($this->login_route_name, array());
+	}
+	/**
+	 * Creates a token for password recovery and sets the valid time for it.
+	 *
+	 * @param User $user
+	 *
+	 * @return User | boolean
+	 */
+	public function createToken(User $user) {
+		$token = $this->random_service->getString(16);
+		// set token valid time to _TOKEN_VALID_TIME minutes
+		$token_valid_time = date("Y-m-d H:i:s", time()+(_TOKEN_VALID_TIME*60));
+		$user->setToken($token);
+		$user->setTokenValidTime($token_valid_time);
+		foreach ($this->user_providers as $provider) {
+			if ($provider->getRepository()->update(
+										$user,
+										array("token", "token_valid_time"),
+										array("email" => $user->getEmail())
+									)) {
+				return $user;
+			}
+		}
+		return false;
 	}
 }

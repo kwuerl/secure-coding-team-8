@@ -35,4 +35,12 @@ class CustomerAuthProvider extends AuthProvider {
 		}
 		return false;
 	}
+	/**
+	 * Returns customer repository
+	 *
+	 * @return Model\Repository
+	 */
+	public function getRepository() {
+		return $this->customer_repository;
+	}
 }
