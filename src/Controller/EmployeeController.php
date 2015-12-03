@@ -180,12 +180,18 @@ class EmployeeController extends UserController {
 					$isTansByPdf  = true;
                     if ($tans) {
 						if ($isTansByPdf) {
-							$attachment = $this->get('pdf')->generatePdfWithTans($tans);
+							$pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
+							$pdf_password_length = strlen($pdf_password);
+							if ($pdf_password_length < 8) {
+								$pdf_password .= str_repeat('x', (8-$pdf_password_length)); 
+							}
+							$attachment = $this->get('pdf')->generatePdfWithTans($tans, $pdf_password);
 							$subject = "Your registration at SecureBank was successful!";
-							$email_msg = "Dear ".$user_model->getFirstName()."&nbsp;".$user_model->getLastName().",<br/><br/>".
+							$email_msg = "Dear ".$first_name."&nbsp;".$last_name.",<br/><br/>".
 										  "Your registration was approved.<br/>".
-										  "Kindly find the attachment with the TANs.";
-							$attachmentName = $account_id."_".time()."_TAN.pdf";
+										  "Kindly find the attachment with the TANs. Note that the document is password protected.<br/>".
+										  "The password is formed by the first two characters of your last name, last four characters of your account number and the first two characters of your first name.<br/>";
+							$attachmentName = time() . "_TAN.pdf";
 							$this->get("email")->sendMailWithAttachment(
 								$user_model->getEmail(),
 								$subject,

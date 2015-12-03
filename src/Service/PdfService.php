@@ -10,19 +10,20 @@ class PdfService {
 	/**
 	 * Constructor
 	 */
-	function __construct($sender_email) {
+	function __construct() {
 		
 	}
 	/**
 	 * Creates pdf containing TANS for newly registered customers
 	 *
 	 * @param array $tans
+	 * @param string $pdfPassword
 	 *
 	 * @return boolean
 	 */
-	public function generatePdfWithTans($tans) {
+	public function generatePdfWithTans($tans, $pdfPassword) {
 		$pdf=new \FPDF_Protection();
-		$pdf->SetProtection(array('print'),'test');
+		$pdf->SetProtection(array('print'), $pdfPassword);
 		$pdf->AddPage();
 		$pdf->SetFont('Arial');
 		$pdf->SetFont('Arial','',12);
