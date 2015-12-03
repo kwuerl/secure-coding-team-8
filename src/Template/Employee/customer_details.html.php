@@ -66,7 +66,6 @@
                             <label>Account Balance</label>
                             <div>
                                 <?= $t->s($accountInfo->getBalance()); ?>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setBalanceModal">Set Balance</button>
                             </div>
                         </div>
                     </div>
@@ -172,35 +171,5 @@
             <!-- /.box -->
         </div>
 </section>
-</div>
-<!-- Set Balance Modal -->
-<div id="setBalanceModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
-                <h4 class="modal-title">Set Balance</h4>
-            </div>
-            <div class="modal-body">
-                <?php $t->formh($t->get("form"), array("action"=>"", "method"=>"post"), function ($t) { ?>
-                <?php
-                    $balance_errors = $t->get("form")->getError("balance");
-                    ?>
-                <div class="form-group has-feedback <?php if (sizeof($balance_errors) > 0) echo "has-error"; ?>">
-                    <?php if (sizeof($balance_errors) > 0) { ?>
-                    <label for="form_set_balance[balance]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $balance_errors[0] ?></label>
-                    <?php } ?>
-                    <input type="number" class="form-control" placeholder="Balance" name="form_set_balance[balance]" value="<?= $t->s($t->get('form')->getValue('balance')); ?>" required>
-                </div>
-                <?php }); ?>
-            </div>
-            <!-- /.box-body -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Confirm</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
 <?php }); ?>

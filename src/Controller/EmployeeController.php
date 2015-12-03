@@ -59,7 +59,6 @@ class EmployeeController extends UserController {
         ));
     }
      public function loadCustomerDetails ($request, $customerId) {
-        $helper = new \Helper\FormHelper("form_set_balance");
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of the selected customer */
         $customer = $this->get('customer_repository')->get($customerId);
@@ -69,7 +68,6 @@ class EmployeeController extends UserController {
         $result = $this->getTransactions($customerId);
         // render the form
         $this->get("templating")->render("Employee/customer_details.html.php", array(
-            "form" => $helper,
             "customer" => $customer,
             "accountInfo" => $accountInfo,
             "onHoldTransactionList" => $result['onHoldTransactionList'],
@@ -219,6 +217,19 @@ class EmployeeController extends UserController {
             case _ACTION_REJECT:
                 $error = $this->get('customer_repository')->actOnRegistration($user_model, $action);
                 $success = 'Customer registration was rejected successfully.';
+                break;
+            case _ACTION_SET_BALANCE:
+                $helper = new \Helper\FormHelper("form_account");
+                $balance = $request->getData('account_balance');
+                $account_repo = $this->get('account_repository');
+                $account_model = $account_repo->findOne(array("customer_id"=>$user_id));
+                $account_model->setBalance($balance);
+                $result = $account_repo->update($account_model, array("balance"), array("customer_id"=>$user_id));
+                if ($result) {
+                    $success = 'Account Balance initialized successfully.';
+                } else {
+                    $error = "Error in initializing Account Balance.";
+                }
                 break;
         }
         $this->notify($success, $error);

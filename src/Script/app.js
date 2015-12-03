@@ -147,6 +147,12 @@ var secureBank = {
                 $('#action_registration').val(2);
             });
 
+            $('#tbl_registered_customers .btn-info').on('click',function(){
+                var customer_id = $(this).parent().attr('id');
+                $('#selectedUserId').val(customer_id);
+                $('#action_registration').val(3);
+            });
+
             $('#approveRegModal').find('.btn-primary').on('click',function(){
                 var action_registration_form = document.forms['action_registration_form'];
                 action_registration_form.submit();
@@ -154,6 +160,12 @@ var secureBank = {
 
             $('#rejectRegModal').find('.btn-primary').on('click',function(){
                 var action_registration_form = document.forms['action_registration_form'];
+                action_registration_form.submit();
+            });
+
+            $('#setBalanceModal').find('.btn-primary').on('click',function(){
+                var action_registration_form = document.forms['action_registration_form'];
+                $('#account_balance').val($("[name='form_set_balance[balance]']").val());
                 action_registration_form.submit();
             });
         });
