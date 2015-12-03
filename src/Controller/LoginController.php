@@ -66,13 +66,35 @@ class LoginController extends Controller {
 				$model = $this->get('customer_repository')->findOne(array("email" => $model->getEmail()));
 
 				if ($model !== false) {
+					// generate new pw with 8 characters
+					$new_pw = $this->get("random")->getString(8);
+					$hashed_pw = crypt($new_pw, $model->getSalt());
+					$model->setPassword($hashed_pw);
+					
+					$this->get('customer_repository')->beginDBTransaction();
 
+					if ($this->get('customer_repository')->update($model, array("password"), array("email" => $model->getEmail()))) {
+						$this->get("customer_repository")->commitDB();
+
+						// send email with new pw
+						$this->get("email")->sendMail(
+							$model->getEmail(),
+							"Password reset for your account at SecureBank",
+							"Dear ".$model->getFirstName()." ".$model->getLastName()."your new password for your account at SecureBank is\n".$new_pw."\n\nHave a nice day,\nyour SecureBank"
+						);
+
+						$this->get("flash_bag")->add("Reset successful", "You will get an e-mail with your new password soon.", "success");
+						$this->get("routing")->redirect("login_get", array());
+						return;
+					} else {
+						// updating pw in db failed
+						$this->get("customer_repository")->rollBackDB();
+						$this->get("flash_bag")->add("Reset failed", "An error occurred. Please try again later.", "error");
+					}
 				} else {
-					$this->get("flash_bag")->add("Reset failed", "There is no account with this e-mail.");
+					// there is no account with this email
+					$this->get("flash_bag")->add("Reset failed", "There is no account with this e-mail.", "error");
 				}
-
-				$new_pw = $this->get("random")->getString(8);
-
 			}
 		}
 
