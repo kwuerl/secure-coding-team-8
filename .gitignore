@@ -1,4 +1,4 @@
 textparser/*.o
-Report Phase 2/build/*
-!Report Phase 2/build/main.pdf
-Report Phase 2/logos/*.pdf
+bbtesting-report/build/*
+!bbtesting-report/build/main.pdf
+bbtesting-report/logos/*.pdf
