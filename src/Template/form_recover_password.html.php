@@ -20,6 +20,10 @@
             <input type="email" class="form-control" placeholder="E-Mail" name="recover_password[email]" value="<?= $t->s($t->get('form')->getValue('email')); ?>" required>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
+        <div class="form-group has-feedback">
+            <label for="recover_password[employee]" class="control-label">Are you an employee?</label>
+            <input type="checkbox" name="recover_password[employee]">
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Reset password</button>

@@ -20,6 +20,8 @@ class User {
 	protected $is_closed = 0;
 	protected $is_rejected = 0;
 	protected $_provider;
+	protected $token = "";
+	protected $token_valid_time = "";
 	/**
 	 * Gets the user id
 	 *
@@ -243,5 +245,37 @@ class User {
 	 */
 	public function setRegistrationDate($registrationDate) {
 		$this->registration_date = $registrationDate;
+	}
+	/**
+	 * Gets the token
+	 *
+	 * @return string
+	 */
+	public function getToken() {
+		return $this->token;
+	}
+	/**
+	 * Gets the token
+	 *
+	 * @return string
+	 */
+	public function setToken($token) {
+		$this->token = $token;
+	}
+	/**
+	 * Gets the token valid time
+	 *
+	 * @return timestamp
+	 */
+	public function getTokenValidTime() {
+		return $this->token_valid_time;
+	}
+	/**
+	 * Sets the token valid time
+	 *
+	 * @param timestamp $tokenValidTime
+	 */
+	public function setTokenValidTime($tokenValidTime) {
+		$this->token_valid_time = $tokenValidTime;
 	}
 }
