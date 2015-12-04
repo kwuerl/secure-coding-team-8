@@ -78,7 +78,7 @@ class LoginController extends Controller {
 					$user = $this->get("auth")->createToken($model);
 
 					if ($user !== false) {
-						$url = $_SERVER['SERVER_NAME'].$this->get("routing")->url("reset_password_get", array())."?token=".$token."&e=".$e;
+						$url = $_SERVER['SERVER_NAME'].$this->get("routing")->url("reset_password_get", array())."?token=".$user->getToken();
 						$token = $user->getToken();
 
 						// send email with pw reset link
