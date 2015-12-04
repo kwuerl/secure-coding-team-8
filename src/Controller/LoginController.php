@@ -85,11 +85,12 @@ class LoginController extends Controller {
 						$this->get("email")->sendMail(
 							$user->getEmail(),
 							"Password reset for your account at SecureBank",
-							"Dear ".$user->getFirstName()." ".$user->getLastName()."\r\nclick on the link to reset your password for your account at SecureBank:\r\n".$url."\r\n\r\nHave a nice day,\r\nyour SecureBank"
+							"Dear ".$user->getFirstName()." ".$user->getLastName()."<br> click on the link to reset your password for your account at SecureBank:<br><a href='".$url."' target='_blank'>".$url."</a><br><br>Have a nice day,<br> your SecureBank"
 						);
 
 						$this->get("flash_bag")->add("Reset successful", "You will get an e-mail with further information soon.", "success");
 						$this->get("routing")->redirect("login_get", array());
+						return;
 					} else {
 						$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
 					}				
