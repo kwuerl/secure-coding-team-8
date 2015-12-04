@@ -105,7 +105,7 @@ class LoginController extends Controller {
 		));
 	}
 
-	public function setNewPassword($request) {
+	public function getPasswordResetView($request) {
 		$helper = new \Helper\FormHelper("recover_password");
 
 		$helper->addField("_password_plain", "password", array(
@@ -118,6 +118,21 @@ class LoginController extends Controller {
 			array("required", "Please repeat your password"),
 			array("equal", "Passwords do not match", array("_password_plain"))
 		), array("ltrim", "rtrim", "stripTags"), "");
+
+		if ($token = $request->getQuery("token")) {
+			if ($user = $this->get("auth")->getUserFromToken($token)) {
+				$this->get("templating")->render("form_reset_password.html.php", array(
+					"form" => $helper,
+					"token" => $token
+				));
+				return;
+			}
+		}
+		$this->get("flash_bag")->add("Token invalid", "The token is either invalid or has expired.", "error");
+		$this->get("routing")->redirect("recover_password_get", array());
+	}
+
+	public function setNewPassword($request) {
 
 		if ($token = $request->getQuery("token")) {
 			$repository = "customer_repository";

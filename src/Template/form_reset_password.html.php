@@ -30,6 +30,7 @@
             <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_repeat_errors[0] ?><br></p>
             <?php } ?>
         </div>
+        <input type="hidden" name="reset_password[token]" value="<?= $t->get('token'); ?>">
         <div class="row">
             <div class="col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block btn-flat">Reset password</button>
