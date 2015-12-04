@@ -106,7 +106,7 @@ class LoginController extends Controller {
 	}
 
 	public function getPasswordResetView($request) {
-		$helper = new \Helper\FormHelper("recover_password");
+		$helper = new \Helper\FormHelper("reset_password");
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),
@@ -117,6 +117,10 @@ class LoginController extends Controller {
 		$helper->addField("password_repeat", "password", array(
 			array("required", "Please repeat your password"),
 			array("equal", "Passwords do not match", array("_password_plain"))
+		), array("ltrim", "rtrim", "stripTags"), "");
+
+		$helper->addField("token", "text", array(
+			array("required", "Token has to be set")
 		), array("ltrim", "rtrim", "stripTags"), "");
 
 		if ($token = $request->getQuery("token")) {
@@ -132,53 +136,38 @@ class LoginController extends Controller {
 		$this->get("routing")->redirect("recover_password_get", array());
 	}
 
-	public function setNewPassword($request) {
+	public function processPasswordReset($request) {
+		$helper = new \Helper\FormHelper("reset_password");
 
-		if ($token = $request->getQuery("token")) {
-			$repository = "customer_repository";
-			if ($request->getQuery("e") == "y") {
-				$repository = "employee_repository";
-			}
-			$model = $this->get($repository)->findOne(array("token" => $token));
+		$helper->addField("_password_plain", "password", array(
+			array("required", "Password is required"),
+			array("minLength", "Has to be at least 6 characters long", array(6)),
+			array("password", "Must contain at least one lowercase character, one uppercase character and at least one digit.")
+		), array("ltrim", "rtrim", "stripTags"), "");
 
-			if ($model !== false) {
-				$now = date("Y-m-d H:i:s");
-				if ($now < $model->getTokenValidTime()) {
-					if ($helper->processRequest($request)) {
-						if ($helper->validate()) {
-							$model = new \Model\Customer();
-							$helper->fillModel($model);
+		$helper->addField("password_repeat", "password", array(
+			array("required", "Please repeat your password"),
+			array("equal", "Passwords do not match", array("_password_plain"))
+		), array("ltrim", "rtrim", "stripTags"), "");
 
-							// set new password
-							$salt = $this->get("random")->getString(16);
-							$model->setSalt($salt);
-							$model->setPassword(crypt($model->getPasswordPlain(), $salt));
+		$helper->addField("token", "text", array(
+			array("required", "Token has to be set")
+		), array("ltrim", "rtrim", "stripTags"), "");
 
-							// delete token
-							$model->setToken("");
-							$model->setTokenValidTime("");
-
-							if ($this->get($repository)->update(	$model,
-																	array("salt", "password", "token", "token_valid_time"),
-																	array("token" => $token)
-																)) {
-								$this->get("flash_bag")->add("Reset successful", "Your password has been changed.", "success");
-								$this->get("routing")->redirect("login_get", array());
-							} else {
-								$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
-							}
-						}
-					}
+		if ($helper->processRequest($request)) {
+			if ($helper->validate()) {
+				if ($user = $this->get("auth")->setNewPassword($helper->getValue("token"), $helper->getValue("_password_plain"))) {
+					$this->get("flash_bag")->add("Reset successful", "Your password has been changed.", "success");
+					$this->get("routing")->redirect("login_get", array());
+					return;
 				} else {
-					$this->get("flash_bag")->add("Error", "This token is not valid.", "error");
+					$this->get("flash_bag")->add("An error occurred", "Please try again later.", "error");
 				}
-			} else {
-				$this->get("flash_bag")->add("Error", "This token is not valid.", "error");
 			}
 		}
-
 		$this->get("templating")->render("form_reset_password.html.php", array(
-			"form" => $helper
+			"form" => $helper,
+			"token" => $helper->getValue("token")
 		));
 	}
 }

@@ -26,7 +26,7 @@ $routing_service->post("register_employee_post", "/register_employee", "registra
 $routing_service->get("recover_password_get", "/recover_password", "login_controller:resetPassword");
 $routing_service->post("recover_password_post", "/recover_password", "login_controller:resetPassword");
 $routing_service->get("reset_password_get", "/reset_password", "login_controller:getPasswordResetView");
-$routing_service->post("reset_password_post", "/reset_password", "login_controller:setNewPassword");
+$routing_service->post("reset_password_post", "/reset_password", "login_controller:processPasswordReset");
 
 /*
  * Customer routes

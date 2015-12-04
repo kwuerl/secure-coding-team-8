@@ -11,7 +11,7 @@
         <?php $t->flash_echo(); ?>
         <?php $t->formh($t->get("form"), array("action"=>"/reset_password", "method"=>"post"), function ($t) { ?>
         <?php
-            $pw_errors = $t->get("form")->getError("_plain_password");
+            $pw_errors = $t->get("form")->getError("_password_plain");
             $password_repeat_errors = $t->get("form")->getError("password_repeat");
             ?>
         <div class="form-group has-feedback <?php if (sizeof($pw_errors) > 0) echo "has-error"; ?>">
