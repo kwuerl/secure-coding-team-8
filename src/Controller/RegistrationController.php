@@ -61,6 +61,10 @@ class RegistrationController extends Controller {
 			array("equal", "Passwords do not match", array("_password_plain"))
 		), array("ltrim", "rtrim", "stripTags"), "");
 
+		$helper->addField("tan_method", "radio", array(
+		   array("maxLength", "Max. 1 character allowed", array(1))
+        		), array("ltrim", "rtrim", "stripTags"), "");
+
 		// try to process the request
 		if ($helper->processRequest($request)) {
 

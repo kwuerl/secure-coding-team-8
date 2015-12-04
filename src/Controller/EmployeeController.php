@@ -154,7 +154,8 @@ class EmployeeController extends UserController {
         $action = $request->getData('action_registration');
         $user_id = $request->getData('selectedUserId');
         $user_model = $this->get('customer_repository')->findOne(array("id" => $user_id));
-
+        $first_name = $user_model->getFirstName();
+        $last_name = $user_model->getLastName();
         switch ($action) {
             case _ACTION_APPROVE:
 
@@ -174,48 +175,37 @@ class EmployeeController extends UserController {
                 $error = $this->get('customer_repository')->actOnRegistration($user_model, $action, $account_repo, $account_model);
                 $success = 'Customer registration was approved successfully.';
                 if (!$error) {
-                    // send email with transaction codes
-                    $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
-					
-					$isTansByPdf  = true;
-                    if ($tans) {
-						if ($isTansByPdf) {
-							$pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
-							$pdf_password_length = strlen($pdf_password);
-							if ($pdf_password_length < 8) {
-								$pdf_password .= str_repeat('x', (8-$pdf_password_length)); 
-							}
-							$attachment = $this->get('pdf')->generatePdfWithTans($tans, $pdf_password);
-							$subject = "Your registration at SecureBank was successful!";
-							$email_msg = "Dear ".$first_name."&nbsp;".$last_name.",<br/><br/>".
-										  "Your registration was approved.<br/>".
-										  "Kindly find the attachment with the TANs. Note that the document is password protected.<br/>".
-										  "The password is formed by the first two characters of your last name, last four characters of your account number and the first two characters of your first name.<br/>";
-							$attachmentName = time() . "_TAN.pdf";
-							$this->get("email")->sendMailWithAttachment(
-								$user_model->getEmail(),
-								$subject,
-								$email_msg,
-								$attachment,
-								$attachmentName
-							);
-						} else {
-							$email_msg = $this->get("templating")->render(
-								"email_transaction_codes.html.php",
-								array(
-									"tans" => $tans,
-									"user" => $user_model
-								),
-								false);
-							$this->get("email")->sendMail(
-								$user_model->getEmail(),
-								"Your registration at SecureBank was successful!",
-								$email_msg
-							);
-						}
-                    } else {
-                        // TODO: rollback of customer approval and account generation if transaction code generation failed
-                        throw new \Exception("There was an error with generating the transaction codes.");
+                    $tan_method = $user_model->getTanMethod();
+
+                    if($tan_method == IS_TAN_BY_EMAIL) {
+                        // send email with transaction codes
+                        $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
+
+                        if ($tans) {
+                            $pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
+                            $pdf_password_length = strlen($pdf_password);
+                            if ($pdf_password_length < 8) {
+                                $pdf_password .= str_repeat('x', (8-$pdf_password_length));
+                            }
+                            $attachment = $this->get('pdf')->generatePdfWithTans($tans, $pdf_password);
+                            $subject = "Your registration at SecureBank was successful!";
+                            $email_msg = "Dear ".$first_name."&nbsp;".$last_name.",<br/><br/>".
+                                          "Your registration was approved.<br/>".
+                                          "Kindly find the attachment with the TANs. Note that the document is password protected.<br/>".
+                                          "The password is formed by the first two characters of your last name, last four characters of your account number and the first two characters of your first name.<br/>".
+                                          "Do not share TANs with anyone.";
+                            $attachmentName = time() . "_TAN.pdf";
+                            $this->get("email")->sendMailWithAttachment(
+                                $user_model->getEmail(),
+                                $subject,
+                                $email_msg,
+                                $attachment,
+                                $attachmentName
+                            );
+                        } else {
+                            // TODO: rollback of customer approval and account generation if transaction code generation failed
+                            throw new \Exception("There was an error with generating the transaction codes.");
+                        }
                     }
                 }
                 break;
@@ -228,7 +218,8 @@ class EmployeeController extends UserController {
                 $balance = $request->getData('account_balance');
                 $account_repo = $this->get('account_repository');
                 $account_model = $account_repo->findOne(array("customer_id"=>$user_id));
-                if(is_numeric($balance) && $balance<=10000){
+
+                if(is_numeric($balance) && $balance <= _MAX_ALLOWED_BALANCE_INITIALIZATION) {
                      /*Check if balance is not already initialized.*/
                     if (!$user_model->getIsAccountBalanceInitialized()) {
                         $account_model->setBalance($balance);
