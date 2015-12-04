@@ -36,9 +36,31 @@ class LoginController extends Controller {
 				$helper->fillModel($model);
 
 				// AuthService
-				if (!$this->get("auth")->login($model)) {
-					$this->get("flash_bag")->add("Login failed", "Unfortunately the Login failed", "error");
-				} 
+				try {
+					$login = $this->get("auth")->login($model);
+				} catch (\Exception $e) {
+					switch ($e->getMessage()) {
+						case 'UserLockedException':
+							$this->get("flash_bag")->add("Account locked", "Your account is currently locked.", "error");
+							break;
+						
+						case 'UserNotFoundException':
+							$this->get("flash_bag")->add("Login failed", "There is no account with this e-mail.", "error");
+							break;
+
+						case 'LoginFailedException':
+							$this->get("flash_bag")->add("Login failed", "Either the e-mail or the password is wrong.", "error");
+							break;
+
+						case 'UserNotEnabledException':
+							$this->get("flash_bag")->add("Login failed", "Your account is not approved yet.", "error");
+							break;
+						
+						default:
+							$this->get("flash_bag")->add("Login failed", "An error occurred. Please try again later.", "error");
+							break;
+					}
+				}
 			}
 		} 
 		// render the form

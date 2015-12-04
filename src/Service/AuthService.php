@@ -8,6 +8,7 @@ use Auth\AuthProvider;
  * AuthService is used to manage logins and sessions
  *
  * @author Korbinian Würl <korbinianwuerl@googlemail.com>
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  */
 class AuthService {
 	private $session_service;
@@ -125,8 +126,9 @@ class AuthService {
 	 *
 	 * @return boolean
 	 *
-	 * @throws UserNotFoundException
 	 * @throws UserNotEnabledException
+	 * @throws UserLockedException
+	 * @throws LoginFailedException
 	 */
 	private function verify(User $user) {
 		foreach($this->user_providers as $provider) {
@@ -145,10 +147,14 @@ class AuthService {
 	 * @return boolean
 	 *
 	 * @throws UserNotFoundException
-	 * @throws UserNotEnabledException
 	 */
 	public function login(User $user) {
 		if ($user = $this->verify($user)) {
+			// unlock user after successful login
+			$user->setLoginAttempts(0);
+			$user->setLockedUntil("");
+			$user->getProvider()->getRepository()->update($user, array("login_attempts", "locked_until"), array("email" => $user->getEmail()));
+
 			if ($this->session_service->has("redirect_after_login")) {
 				$redirect_after_login = $this->session_service->get("redirect_after_login");
 				$redirect_name = $redirect_after_login[0];
@@ -172,6 +178,7 @@ class AuthService {
 			if ($this->session_service->has("redirect_after_login")) {
 				$this->session_service->del("redirect_after_login");
 			}
+			throw new \Exception("UserNotFoundException");
 			return false;
 		}
 	}
