@@ -74,7 +74,7 @@ form[name='approve_transaction']{
     font-weight:bold;
 }
 
-#customer_reg_pending .btn, #employee_regsitrations_table .btn,#cust_details_table1 .btn, #approve_trans_table .btn{
+#customer_reg_pending .btn, #employee_regsitrations_table .btn,#cust_details_table1 .btn, #approve_trans_table .btn, #tbl_registered_customers .btn{
     padding :1px 6px;
 }
 
@@ -204,4 +204,8 @@ div >h1{
 .small-box .icon{
     font-size : 40px;
     top : 4px;
+}
+
+#tbl_registered_customers .actions {
+    text-indent: 2%;
 }

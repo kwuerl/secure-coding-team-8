@@ -103,7 +103,7 @@
                                     <td>
                                         <?= $t->s($customer->getEmail()); ?>
                                     </td>
-                                    <td id=<?= "'".$customer->getId()."'>" ?>
+                                    <td class="actions" id=<?= "'".$customer->getId()."'>" ?>
                                     <?php if (!$customer->getIsAccountBalanceInitialized()) {?>
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setBalanceModal">Set Balance</button>
                                     <?php }?>
