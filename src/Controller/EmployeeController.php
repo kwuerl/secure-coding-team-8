@@ -193,7 +193,7 @@ class EmployeeController extends UserController {
                                           "Your registration was approved.<br/>".
                                           "Kindly find the attachment with the TANs. Note that the document is password protected.<br/>".
                                           "The password is formed by the first two characters of your last name, last four characters of your account number and the first two characters of your first name.<br/>".
-                                          "Do not share TANs with anyone.";
+                                          "Please do not share TANs with anyone.";
                             $attachmentName = time() . "_TAN.pdf";
                             $this->get("email")->sendMailWithAttachment(
                                 $user_model->getEmail(),
@@ -208,9 +208,20 @@ class EmployeeController extends UserController {
                         }
                     } else {
                         $scs_pin = $this->get("scs")->generateSCSPin($user_id);
-
+                        // sends email after SCS Pin generation
                         if($scs_pin) {
-                            //send mail to user with scs pin
+                            $subject = "Your registration at SecureBank was successful!";
+                            $email_msg = "Dear ".$first_name."&nbsp;".$last_name.",<br/><br/>".
+                                          "Your registration was approved.<br/>".
+                                          "The pin for your Smart Card Simulator is ".$scs_pin."<br/>".
+                                          "Please do not share the SCS pin with anyone.";
+                            $this->get("email")->sendMail(
+                                $user_model->getEmail(),
+                                $subject,
+                                $email_msg
+                            );
+
+
                         } else {
                             throw new \Exception("There was an error in generating SCS pin.");
                         }
