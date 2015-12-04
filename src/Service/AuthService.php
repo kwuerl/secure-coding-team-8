@@ -219,8 +219,8 @@ class AuthService {
 	 * @return boolean
 	 */
 	public function logout() {
-			$this->session_service->reset();
-			$this->routing_service->redirect($this->login_route_name, array());
+		$this->session_service->reset();
+		$this->routing_service->redirect($this->login_route_name, array());
 	}
 	/**
 	 * Creates a token for password recovery and sets the valid time for it.
@@ -236,12 +236,14 @@ class AuthService {
 		$user->setToken($token);
 		$user->setTokenValidTime($token_valid_time);
 		foreach ($this->user_providers as $provider) {
-			if ($provider->getRepository()->update(
-										$user,
-										array("token", "token_valid_time"),
-										array("email" => $user->getEmail())
-									)) {
-				return $user;
+			if (method_exists($provider, 'getRepository')) {
+				if ($provider->getRepository()->update(
+											$user,
+											array("token", "token_valid_time"),
+											array("email" => $user->getEmail())
+										)) {
+					return $user;
+				}
 			}
 		}
 		return false;
@@ -255,8 +257,10 @@ class AuthService {
 	 */
 	public function getUserFromToken($token) {
 		foreach ($this->user_providers as $provider) {
-			if ($user = $provider->getRepository()->findOne(array("token" => $token))) {
-				return $user;
+			if (method_exists($provider, 'getRepository')) {
+				if ($user = $provider->getRepository()->findOne(array("token" => $token))) {
+					return $user;
+				}
 			}
 		}
 		return false;
