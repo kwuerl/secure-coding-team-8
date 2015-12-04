@@ -177,7 +177,7 @@ class EmployeeController extends UserController {
                 if (!$error) {
                     $tan_method = $user_model->getTanMethod();
 
-                    if($tan_method == IS_TAN_BY_EMAIL) {
+                    if($tan_method == _TAN_METHOD_EMAIL) {
                         // send email with transaction codes
                         $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
 
@@ -185,7 +185,7 @@ class EmployeeController extends UserController {
                             $pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
                             $pdf_password_length = strlen($pdf_password);
                             if ($pdf_password_length < 8) {
-                                $pdf_password .= str_repeat('x', (8-$pdf_password_length));
+                                $pdf_password .= str_repeat('x', (8 - $pdf_password_length));
                             }
                             $attachment = $this->get('pdf')->generatePdfWithTans($tans, $pdf_password);
                             $subject = "Your registration at SecureBank was successful!";
@@ -205,6 +205,14 @@ class EmployeeController extends UserController {
                         } else {
                             // TODO: rollback of customer approval and account generation if transaction code generation failed
                             throw new \Exception("There was an error with generating the transaction codes.");
+                        }
+                    } else {
+                        $scs_pin = $this->get("scs")->generateSCSPin($user_id);
+
+                        if($scs_pin) {
+                            //send mail to user with scs pin
+                        } else {
+                            throw new \Exception("There was an error in generating SCS pin.");
                         }
                     }
                 }

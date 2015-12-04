@@ -39,6 +39,11 @@ $service_container->register("transaction", "Service\\TransactionService", array
 	array("type"=>"service", "value"=>"random")
 ));
 
+$service_container->register("scs", "Service\\SCSService", array(
+	array("type"=>"service", "value"=>"scs_repository"),
+	array("type"=>"service", "value"=>"random")
+));
+
 $service_container->register("account", "Service\\AccountService", array(
 	array("type"=>"service", "value"=>"account_repository")
 ));
@@ -172,4 +177,10 @@ $service_container->register("transaction_code_repository", "Model\\TransactionC
 	array("type"=>"service", "value"=>"db_wrapper"),
 	_TBL_TRANSACTION_CODE,
 	_CLASS_MODEL_TRANSACTION_CODE
+));
+
+$service_container->register("scs_repository", "Model\\SCSRepository", array(
+	array("type"=>"service", "value"=>"db_wrapper"),
+	_TBL_SCS,
+	_CLASS_MODEL_SCS
 ));

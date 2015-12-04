@@ -21,6 +21,7 @@ define('_TBL_EMPLOYEE', 'TBL_EMPLOYEE');
 define('_TBL_ACCOUNT', 'TBL_ACCOUNT');
 define('_TBL_TRANSACTION', 'TBL_TRANSACTION');
 define('_TBL_TRANSACTION_CODE', 'TBL_TRANSACTION_CODE');
+define('_TBL_SCS', 'TBL_SCS');
 
 define('_GROUP_USER', 'USER');
 define('_GROUP_EMPLOYEE', 'EMPLOYEE');
@@ -32,6 +33,7 @@ define('_CLASS_MODEL_EMPLOYEE', "\Model\Employee");
 define('_CLASS_MODEL_ACCOUNT', "\Model\Account");
 define('_CLASS_MODEL_TRANSACTION', "\Model\Transaction");
 define('_CLASS_MODEL_TRANSACTION_CODE', "\Model\TransactionCode");
+define('_CLASS_MODEL_SCS', "\Model\SCS");
 
 define('_LOGIN_ROUTE_NAME', 'login_get');
 define('_EMPLOYEE_START_PAGE', 'employee_overview');
@@ -50,7 +52,7 @@ define('_ERROR_TRANSACTION_CLOSED', 'This transaction is already closed.');
 define('_ERROR_REGISTRATION_CLOSED', 'This registration is already closed.');
 
 define('_TRANSFER_LIMIT_FOR_AUTO_APPROVAL', 10000);
-define('_MAX_ALLOWED_BALANCE_INITIALIZATION', 10000);
+define('_MAX_ALLOWED_BALANCE_INITIALIZATION', 50000);
 
 define('_TRANSACTIONS_PER_PAGE', 5);
 define('_NO_LIMIT', 0);
@@ -65,5 +67,5 @@ define('ACCOUNT_ID_PREFIX', 1000000000);
 define('_TOKEN_VALID_TIME', 30);
 define('_LOCKED_TIME', 60);
 
-define('IS_TAN_BY_EMAIL', 1);
-define('IS_TAN_BY_SCS', 2);
+define('_TAN_METHOD_EMAIL', 1);
+define('_TAN_METHOD_SCS', 2);
