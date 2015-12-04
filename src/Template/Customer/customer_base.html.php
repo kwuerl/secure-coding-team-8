@@ -1,6 +1,8 @@
 <?php $t->extend("app_base.html.php"); ?>
 <?php $t->set("profile_href", "/profile"); ?>
-<?php $t->block("sidebar", function ($t) { ?>
+<?php $t->block("sidebar", function ($t) {
+    $currentUser = $t->current_user();
+?>
 	<ul class="sidebar-menu">
 	    <li class="treeview<?= $t->get('menu_active')=="home"?" active":""; ?>">
             <a href="/overview">
@@ -32,5 +34,13 @@
                 <span>Statement</span>
             </a>
         </li>
+        <?php if ((int)$currentUser->getTanMethod() === _TAN_METHOD_SCS) { ?>
+            <li class="treeview">
+                <a href="/downloadscs">
+                    <i class="fa fa-download"></i>
+                    <span>Download SCS</span>
+                </a>
+            </li>
+        <?php }?>
 	</ul>
 <?php }); ?>
