@@ -22,6 +22,8 @@ class User {
 	protected $_provider;
 	protected $token = "";
 	protected $token_valid_time = "";
+	protected $login_attempts = 0;
+	protected $locked_until = "";
 	/**
 	 * Gets the user id
 	 *
@@ -255,9 +257,9 @@ class User {
 		return $this->token;
 	}
 	/**
-	 * Gets the token
+	 * Sets the token
 	 *
-	 * @return string
+	 * @param string
 	 */
 	public function setToken($token) {
 		$this->token = $token;
@@ -277,5 +279,37 @@ class User {
 	 */
 	public function setTokenValidTime($tokenValidTime) {
 		$this->token_valid_time = $tokenValidTime;
+	}
+	/**
+	 * Gets the number of login attempts
+	 *
+	 * @return integer
+	 */
+	public function getLoginAttempts() {
+		return $this->login_attempts;
+	}
+	/**
+	 * Sets the numer of login attempts
+	 *
+	 * @param integer
+	 */
+	public function setLoginAttempts($loginAttempts) {
+		$this->login_attempts = $loginAttempts;
+	}
+	/**
+	 * Gets the locked until time
+	 *
+	 * @return timestamp
+	 */
+	public function getLockedUntil() {
+		return $this->locked_until;
+	}
+	/**
+	 * Sets the locked until time
+	 *
+	 * @param timestamp $lockedUntil
+	 */
+	public function setLockedUntil($lockedUntil) {
+		$this->locked_until = $lockedUntil;
 	}
 }

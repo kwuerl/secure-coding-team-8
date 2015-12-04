@@ -63,6 +63,7 @@ define('_PENDING_TRANSACTIONS', 104);
 define('ACCOUNT_ID_PREFIX', 1000000000);
 
 define('_TOKEN_VALID_TIME', 30);
+define('_LOCKED_TIME', 60);
 
 define('IS_TAN_BY_EMAIL', 1);
 define('IS_TAN_BY_SCS', 2);
