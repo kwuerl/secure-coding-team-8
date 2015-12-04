@@ -153,7 +153,9 @@ class AuthService {
 			// unlock user after successful login
 			$user->setLoginAttempts(0);
 			$user->setLockedUntil("");
-			$user->getProvider()->getRepository()->update($user, array("login_attempts", "locked_until"), array("email" => $user->getEmail()));
+			if (method_exists($user->getProvider(), "getRepository")) {
+				$user->getProvider()->getRepository()->update($user, array("login_attempts", "locked_until"), array("email" => $user->getEmail()));
+			}
 
 			if ($this->session_service->has("redirect_after_login")) {
 				$redirect_after_login = $this->session_service->get("redirect_after_login");
