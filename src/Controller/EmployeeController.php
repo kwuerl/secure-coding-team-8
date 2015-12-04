@@ -228,24 +228,28 @@ class EmployeeController extends UserController {
                 $balance = $request->getData('account_balance');
                 $account_repo = $this->get('account_repository');
                 $account_model = $account_repo->findOne(array("customer_id"=>$user_id));
+                if(is_numeric($balance) && $balance<=10000){
+                     /*Check if balance is not already initialized.*/
+                    if (!$user_model->getIsAccountBalanceInitialized()) {
+                        $account_model->setBalance($balance);
 
-                /*Check if balance is not already initialized.*/
-                if (!$user_model->getIsAccountBalanceInitialized()) {
-                    $account_model->setBalance($balance);
-
-                    $result = $account_repo->update($account_model, array("balance"), array("customer_id"=>$user_id));
-                    if ($result) {
-                        $user_model->setIsAccountBalanceInitialized(1);
-                        $result = $this->get('customer_repository')->update($user_model, array("is_account_balance_initialized"), array("id"=>$user_id));
+                        $result = $account_repo->update($account_model, array("balance"), array("customer_id"=>$user_id));
                         if ($result) {
-                            $success = 'Account Balance initialized successfully.';
+                            $user_model->setIsAccountBalanceInitialized(1);
+                            $result = $this->get('customer_repository')->update($user_model, array("is_account_balance_initialized"), array("id"=>$user_id));
+                            if ($result) {
+                                $success = 'Account Balance initialized successfully.';
+                            } else {
+                                $error = "Error in initializing Account Balance.";
+                            }
                         } else {
                             $error = "Error in initializing Account Balance.";
                         }
                     } else {
                         $error = "Error in initializing Account Balance.";
                     }
-                } else {
+                }
+                else{
                     $error = "Error in initializing Account Balance.";
                 }
                 break;
