@@ -230,7 +230,7 @@ class AuthService {
 	 * @return User | boolean
 	 */
 	public function createToken(User $user) {
-		$token = $this->random_service->getString(16);
+		$token = str_replace(array("+", "&", "/"), "", $this->random_service->getString(16));
 		// set token valid time to _TOKEN_VALID_TIME minutes
 		$token_valid_time = date("Y-m-d H:i:s", time()+(_TOKEN_VALID_TIME*60));
 		$user->setToken($token);
@@ -259,7 +259,38 @@ class AuthService {
 		foreach ($this->user_providers as $provider) {
 			if (method_exists($provider, 'getRepository')) {
 				if ($user = $provider->getRepository()->findOne(array("token" => $token))) {
-					return $user;
+					if (date("Y-m-d H:i:s") <= $user->getTokenValidTime()) {
+						return $user;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	/**
+	 * Sets a new password for a User and resets token.
+	 *
+	 * @param string $token
+	 * @param string $password
+	 *
+	 * @return User | boolean
+	 */
+	public function setNewPassword($token, $password) {
+		$model = $this->getUserFromToken($token);
+		if ($model !== false) {
+			$salt = $this->random_service->getString(16);
+			$model->setSalt($salt);
+			$model->setPassword(crypt($password, $salt));
+
+			// reset token
+			$model->setToken("");
+			$model->setTokenValidTime("");
+
+			foreach ($this->user_providers as $provider) {
+				if (method_exists($provider, 'getRepository')) {
+					if ($provider->getRepository()->update($model, array("salt", "password", "token", "token_valid_time"), array("token" => $token))) {
+						return $model;
+					}
 				}
 			}
 		}
