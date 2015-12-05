@@ -38,7 +38,7 @@
                                     $amount_errors = $t->get("form")->getError("amount");
                                     $transaction_code_errors = $t->get("form")->getError("transaction_code");
                                     $remarks_errors = $t->get("form")->getError("remarks");
-                                    ?>
+                                ?>
                                 <div class="form-group has-feedback <?php if (sizeof($to_account_id_errors) > 0) echo "has-error"; ?>">
                                     <label for="make_transfer[to_account_id]">Beneficiary Account No.</label>
                                     <input type="text" class="form-control" name="make_transfer[to_account_id]" value="<?= $t->s($t->get('form')->getValue('to_account_id')); ?>" required maxlength='10'>
@@ -86,8 +86,18 @@
                     <div class="tab-pane" id="upload-form">
                         <div class="box box-primary">
                             <?php $t->formh($t->get("form2"), array("action"=>"/make_transfer", "method"=>"post", "enctype"=>"multipart/form-data"), function ($t) { ?>
+                            <?php
+                                $transaction_code_errors = $t->get("form2")->getError("transaction_code");
+                            ?>
                             <div class="box-body">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="1024" />
+                                <div class="form-group has-feedback <?php if (sizeof($transaction_code_errors) > 0) echo "has-error"; ?>">
+                                    <label for="make_transfer_via_file_upload[transaction_code]">Transaction Code</label>
+                                    <input type="text" class="form-control" name="make_transfer_via_file_upload[transaction_code]" value="<?= $t->s($t->get('form')->getValue('transaction_code')); ?>" required maxlength='15'>
+                                    <?php if (sizeof($transaction_code_errors) > 0) { ?>
+                                    <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $transaction_code_errors[0] ?><br></p>
+                                    <?php } ?>
+                                </div>
                                 <div class="form-group">
                                     <label>File input</label>
                                     <input type="file" id="transactionCodeFile" name="make_transfer_via_file_upload[file]" required>
