@@ -139,11 +139,15 @@
                 <table id="cust_details_table2" class="table table-bordered table-striped app-data-table-small">
                     <thead>
                         <tr>
-                            <th>Transaction Id</th>
-                            <th>To Account Number</th>
-                            <th>Transaction Date</th>
+                            <th class="width_5">ID</th>
+                            <th>From Account No.</th>
+                            <th>From Account Name</th>
+                            <th>To Account No.</th>
+                            <th>To Account Name</th>
+                            <th >Date</th>
                             <th>Amount</th>
                             <th>Remarks</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php foreach($approvedTransactionList as $transaction) {?>
@@ -152,7 +156,16 @@
                                 <?= $t->s($transaction->getId()); ?>
                             </td>
                             <td>
+                                <?= $t->s($transaction->getFromAccountId()); ?>
+                            </td>
+                            <td>
+                                <?= $t->s($transaction->getFromAccountName()); ?>
+                            </td>
+                            <td>
                                 <?= $t->s($transaction->getToAccountId()); ?>
+                            </td>
+                            <td>
+                                <?= $t->s($transaction->getToAccountName()); ?>
                             </td>
                             <td>
                                 <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>

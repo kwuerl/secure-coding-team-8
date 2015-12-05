@@ -34,10 +34,10 @@
                         <table id="statement_table" class="table table-bordered table-striped app-data-table">
                             <thead>
                                 <tr>
-                                    <th class='trans-history-transaction-id' rowspan='2'>Transaction ID</th>
-                                    <th class='trans-history-transaction-date' rowspan='2'>Transaction Date</th>
+                                    <th class='trans-history-transaction-id' rowspan='2'>ID</th>
+                                    <th class='trans-history-beneficiary-account-id' rowspan='2'>To / From Account No.</th>
+                                    <th class='trans-history-transaction-date' rowspan='2'>Date</th>
                                     <th class='trans-history-amount' colspan='2' >Amount</th>
-                                    <th class='trans-history-beneficiary-account-id' rowspan='2'>To/From Account ID</th>
                                     <th class='trans-history-remarks' rowspan='2'>Remarks</th>
                                 </tr>
                                 <tr>
@@ -61,6 +61,9 @@
                                     <td>
                                         <?= $t->s($transaction->getId()); ?>
                                     </td>
+                                     <td>
+                                        <?= $t->s($accountId); ?>
+                                    </td>
                                     <td>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
@@ -69,9 +72,6 @@
                                     </td>
                                     <td class="text-right">
                                         <?= $t->s($credit_amount); ?>
-                                    </td>
-                                    <td>
-                                        <?= $t->s($accountId); ?>
                                     </td>
                                     <td>
                                         <?= $t->s($transaction->getRemarks()); ?>

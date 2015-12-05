@@ -85,7 +85,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email Id</th>
-                                    <th>Actions</th>
+                                    <th class="width_10">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

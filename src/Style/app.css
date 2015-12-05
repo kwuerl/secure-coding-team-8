@@ -119,16 +119,16 @@ form[name='approve_transaction']{
 }
 
 .trans-history-transaction-id{
-    width : 12%;
+    width : 5%;
 }
 
 
 .trans-history-transaction-date{
-    width : 15%;
+    width : 7%;
 }
 
 .trans-history-amount{
-    width : 13%;
+    width : 21%;
 }
 
 .trans-history-beneficiary-account-id{
@@ -144,7 +144,7 @@ form[name='approve_transaction']{
 }
 
 .trans-history-remarks{
-    width : 19%;
+    width : 26%;
 }
 
 .content-header > h1{
@@ -207,5 +207,14 @@ div >h1{
 }
 
 #tbl_registered_customers .actions {
-    text-indent: 2%;
+    text-align:center;
+}
+
+
+#approve_trans_table .width_5, #cust_details_table2 .width_5{
+    width : 5%;
+}
+
+#approve_trans_table .width_10, #tbl_registered_customers .width_10{
+    width : 12%;
 }

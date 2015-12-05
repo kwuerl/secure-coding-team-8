@@ -40,11 +40,13 @@
             <table id="approve_trans_table" class="table table-bordered table-striped app-data-table">
                 <thead>
                     <tr>
-                        <th>Transaction Id</th>
-                        <th>Transaction Date</th>
-                        <th>Amount</th>
+                        <th class="width_5">ID</th>
+                        <th>From Account No.</th>
+                        <th>From Account Name</th>
                         <th>To Account No.</th>
                         <th>To Account Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
                         <th>Remarks</th>
                         <th>Actions</th>
                 </thead>
@@ -55,16 +57,22 @@
                             <?= $t->s($transaction->getId()); ?>
                         </td>
                         <td>
-                            <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                            <?= $t->s($transaction->getFromAccountId()); ?>
                         </td>
-                        <td class="text-right">
-                            <?= $t->s($transaction->getAmount()); ?>
+                        <td>
+                            <?= $t->s($transaction->getFromAccountName()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getToAccountId()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getToAccountName()); ?>
+                        </td>
+                         <td>
+                            <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                        </td>
+                        <td class="text-right">
+                            <?= $t->s($transaction->getAmount()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getRemarks()); ?>
