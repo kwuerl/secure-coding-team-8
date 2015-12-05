@@ -41,7 +41,7 @@ class TransactionRepository extends Repository {
         $statement = "SELECT TBL_TRANSACTION.*
                         FROM TBL_ACCOUNT, TBL_TRANSACTION
                         WHERE (TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
-                        OR TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.TO_ACCOUNT_ID) AND TBL_TRANSACTION.IS_ON_HOLD = 0
+                        OR TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.TO_ACCOUNT_ID) AND TBL_TRANSACTION.IS_ON_HOLD = 0 AND TBL_TRANSACTION.IS_REJECTED = 0
                         AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
                         if ($limit)
                             $statement .= " LIMIT $limit ;";
