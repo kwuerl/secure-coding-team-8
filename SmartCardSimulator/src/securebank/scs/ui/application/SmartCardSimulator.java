@@ -1,7 +1,12 @@
+/**
+ * SmartCardSimulator class
+ *
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ */
+
 package securebank.scs.ui.application;
 
 import java.awt.EventQueue;
-
 import javax.swing.UIManager;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -144,9 +149,9 @@ public class SmartCardSimulator {
 		JFilePicker filePicker = new JFilePicker("Choose a file* ", "Browse");
 		filePicker.setBackground(Color.WHITE);
         filePicker.setMode(JFilePicker.MODE_OPEN);
-        filePicker.setBounds(12, 55, 409, 71);    
+        filePicker.setBounds(12, 55, 409, 71);
         
-        filePicker.addFileTypeFilter(".txt", "Text Files");
+        //filePicker.addFileTypeFilter(".txt", "Text Files");
         panelBatch.add(filePicker);
         
         JButton btnGenerateTanForBatch = new JButton("Generate TAN");

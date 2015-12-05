@@ -1,3 +1,11 @@
+/**
+ * SmartCardSimulator class
+ *
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ *
+ * Part of code taken from http://www.codejava.net/java-se/swing/file-picker-component-in-swing
+ */
+
 package securebank.scs.ui.components;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -50,7 +58,7 @@ public class JFilePicker extends JPanel {
         add(label);
         add(textField);
         add(button);
-         
+
     }
      
     private void buttonActionPerformed(ActionEvent evt) {
@@ -66,8 +74,8 @@ public class JFilePicker extends JPanel {
     }
  
     public void addFileTypeFilter(String extension, String description) {
-        FileTypeFilter filter = new FileTypeFilter(extension, description);
-        fileChooser.addChoosableFileFilter(filter);
+        //FileTypeFilter filter = new FileTypeFilter(extension, description);
+        //fileChooser.addChoosableFileFilter(filter);
     }
      
     public void setMode(int mode) {
