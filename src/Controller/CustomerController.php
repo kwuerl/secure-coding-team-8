@@ -101,4 +101,8 @@ class CustomerController extends UserController {
             "invokedFrom" => _STATEMENT,
         ));
     }
+
+    public function downloadSCS($request){
+        $customer = $this->get("auth")->check(_GROUP_USER);
+    }
 }

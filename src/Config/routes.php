@@ -39,6 +39,8 @@ $routing_service->post("make_transfer_post", "/make_transfer", "transaction_cont
 $routing_service->post("statement_download", "/statement_download", "customer_controller:generateStatementPDF");
 $routing_service->post("transaction_history_download", "/transaction_history_download", "customer_controller:generateTransactionHistoryPDF");
 $routing_service->get("statement", "/statement", "customer_controller:loadStatement");
+$routing_service->get("downloadscs", "/downloadscs", "customer_controller:downloadSCS");
+
 
 /*
  * Employee routes
