@@ -4,10 +4,12 @@ namespace Model;
  * the Transaction model class
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ * @author Vivek Sethia <vivek.sethia@tum.de>
  */
 class Transaction {
 	private $id = 0;
 	private $from_account_id = 0;
+	private $from_account_name = "";
 	private $to_account_id = 0;
 	private $to_account_name = "";
 	private $amount = 0;
@@ -175,5 +177,22 @@ class Transaction {
 	 */
 	public function setIsRejected($isRejected) {
 		$this->is_rejected = $isRejected;
+	}
+
+	/**
+	 * Gets the from account name  of the transaction
+	 *
+	 * @return integer
+	 */
+	public function getFromAccountName() {
+		return $this->from_account_name;
+	}
+	/**
+	 * Sets the from account name of the transaction
+	 *
+	 * @param integer $fromAccountName
+	 */
+	public function setFromAccountName($fromAccountName) {
+		$this->from_account_name = $fromAccountName;
 	}
 }

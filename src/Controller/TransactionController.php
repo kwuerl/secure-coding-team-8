@@ -79,6 +79,7 @@ class TransactionController extends Controller {
 			}
 
 			$customer_id = $customer->getId();
+			$customer_name = $customer->getFirstName()." ".$customer->getLastName();
 			$account_repo = $this->get('account_repository');
 			$transaction_code_repo = $this->get('transaction_code_repository');
 
@@ -121,6 +122,7 @@ class TransactionController extends Controller {
 
 					$model->setTransactionDate(date("Y-m-d H:i:s"));
 					$model->setFromAccountId($from_account_id);
+					$model->setFromAccountName($customer_name);
 
 					/*Put the transaction on hold if the transfer amount > 10000.*/
 					if ($amount > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
