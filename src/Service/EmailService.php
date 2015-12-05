@@ -5,6 +5,7 @@ namespace Service;
  * This Service can be used to send e-mails
  *
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
+ * @author Vivek Sethia<vivek.sethia@tum.de>
  */
 class EmailService {
 	private $sender_email = "";

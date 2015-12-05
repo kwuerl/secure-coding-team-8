@@ -5,6 +5,9 @@ use Model\SCS;
 use Model\SCSRepository;
 /**
  * This Service is used to provide SCS-related services
+ *
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ *
  */
 class SCSService {
 	private $repository;

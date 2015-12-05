@@ -5,6 +5,10 @@ use Model\TransactionCode;
 use Model\TransactionCodeRepository;
 /**
  * This Service is used for anything which has to do with Transaction
+ *
+ * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
+ * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
+ *
  */
 class TransactionCodeService {
 	private $repository;

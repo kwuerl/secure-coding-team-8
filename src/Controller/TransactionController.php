@@ -6,6 +6,7 @@ namespace Controller;
  *
  * @author Vivek Sethia <vivek.sethia@tum.de>
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
+ * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
  */
 class TransactionController extends Controller {
 

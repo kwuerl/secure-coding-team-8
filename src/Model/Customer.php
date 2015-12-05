@@ -4,6 +4,7 @@ namespace Model;
  * The Customer model class
  *
  * @author Swathi Shyam Sunder<swathi.ssunder@tum.de>
+ * @author Vivek Sethia<vivek.sethia@tum.de>
  */
 class Customer extends User {
 	private $address;
