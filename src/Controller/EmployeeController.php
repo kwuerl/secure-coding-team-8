@@ -116,9 +116,15 @@ class EmployeeController extends UserController {
                 $to_account_id = $transaction_model->getToAccountId();
                 $from_account = $account_repo->findOne(array("account_id"=>$from_account_id));
                 $to_account = $account_repo->findOne(array("account_id"=>$to_account_id));
+                $from_account_balance = $from_account->getBalance();
 
-                $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action, $account_repo, $from_account, $to_account);
-                $success = 'Transaction was approved successfully.';
+                /*Return if customer account does not have sufficient funds*/
+                if ($transaction_model->getAmount() > $from_account_balance) {
+                    $error = "Insufficient funds for the transfer.";
+                } else {
+                    $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action, $account_repo, $from_account, $to_account);
+                    $success = 'Transaction was approved successfully.';
+                }
                 break;
             case _ACTION_REJECT:
                 $error = $this->get('transaction_repository')->actOnTransaction($transaction_model, $action);
