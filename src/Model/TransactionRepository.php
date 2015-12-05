@@ -133,13 +133,26 @@ class TransactionRepository extends Repository {
 				}
 			}
 			$customer_id = $fromAccount->getCustomerId();
-			$transaction_code_id = $transactionCode->getCode();
-			$transactionCode->setIsUsed(1);
-			$result = $transactionCodeRepo->update($transactionCode, array("is_used"), array("code" => $transaction_code_id, "customer_id" => $customer_id));
+
+			/*If the transaction code is a string i.e., _TAN_METHOD_SCS case, then create a new transaction code model and add it.*/
+			if (is_string($transactionCode)) {
+				$transaction_code_id = $transactionCode;
+				$transactionCode = new \TransactionCode();
+				$transactionCode->setCustomerId($customer_id);
+				$transactionCode->setCode($transaction_code_id);
+				$transactionCode->setIsUsed(1);
+				$result = $transactionCodeRepo->add($transactionCode);
+			} else {/*Transaction code model already exists i.e., _TAN_METHOD_EMAIL case, then just update the model.*/
+				$transaction_code_id = $transactionCode->getCode();
+				$transactionCode->setIsUsed(1);
+				$result = $transactionCodeRepo->update($transactionCode, array("is_used"), array("code" => $transaction_code_id, "customer_id" => $customer_id));
+			}
+
 			if (!$result) {
 				$db->rollBack();
 				return $result;
 			}
+
 			$db->commit();
 		} else {
 			$db->rollBack();
