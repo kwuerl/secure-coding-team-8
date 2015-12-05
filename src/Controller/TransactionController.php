@@ -113,10 +113,10 @@ class TransactionController extends Controller {
 			if ($customer->getTanMethod() === _TAN_METHOD_SCS) {
 				//TODO
 			} else {
-				$is_valid_transaction_code = $transaction_code_repo->findOne(array("customer_id" => $customer_id, "code" => $transaction_code, "is_used" => 0));
+				$is_valid_transaction_code = $this->get("transaction_code")->isCodePristine($customer_id, $transaction_code);
 
 				// Checking whether the transaction is valid , then proceed further
-				if (!empty($is_valid_transaction_code)) {
+				if ($is_valid_transaction_code) {
 
 
 					$model->setTransactionDate(date("Y-m-d H:i:s"));

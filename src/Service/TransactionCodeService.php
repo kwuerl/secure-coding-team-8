@@ -52,19 +52,31 @@ class TransactionCodeService {
 		}
 	}
 	/**
-	 * Checks if the transaction code $code is valid
+	 * Checks if the transaction code $code is pristine i.e., unused
 	 *
 	 * @param int $customer_id    The customer id
 	 * @param string $code    The code to check
 	 *
-	 * @return boolean    Returns true, if code is valid and not used for that customer, otherwise returns false
+	 * @return boolean    Returns the transaction code model, if code is unused for that customer, otherwise returns false
 	 */
-	public function checkCode($customer_id, $code) {
-		$db_result = $this->repository->findOne(array("customer_id" => $customer_id, "code" => $code));
+	public function isCodePristine($customer_id, $code) {
+		$db_result = $this->repository->findOne(array("customer_id" => $customer_id, "code" => $code, "is_used" => 0));
 		if ($db_result) {
-			if (!$db_result->getIsUsed()) {
-				return true;
-			}
+			return $db_result;
+		}
+		return false;
+	}
+	/**
+	 * Checks if the transaction code $code exists
+	 *
+	 * @param string $code    The code to check
+	 *
+	 * @return boolean    Returns the transaction code model, if code exists, otherwise returns false
+	 */
+	public function isCodeExists($code) {
+		$db_result = $this->repository->findOne(array("code" => $code));
+		if ($db_result) {
+			return $db_result;
 		}
 		return false;
 	}
