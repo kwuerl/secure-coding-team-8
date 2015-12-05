@@ -54,31 +54,6 @@ my_bool prepareStatement(MYSQL_STMT *statement, char* query, int queryLength) {
 	return 1;
 }
 
-/*TODO Not working as expected when invoked*/
-void initializeParameters(char** parameterTypes, MYSQL_BIND* parameter,
-		int parameterCount) {
-	int i;
-	unsigned long parameter_length[parameterCount];
-
-	/*printf("\nin init params");*/
-	for (i = 0; i < parameterCount; i++) {
-
-		if (strcmp(parameterTypes[i], "int") == 0) {
-			int data;
-			parameter[i].buffer_type = MYSQL_TYPE_LONG;
-			parameter[i].buffer_length = 2;
-			parameter[i].buffer = (char *) &data;
-		} else if (strcmp(parameterTypes[i], "string") == 0) {
-			char data[STRING_SIZE];
-			parameter[i].buffer_type = MYSQL_TYPE_STRING;
-			parameter[i].buffer_length = STRING_SIZE;
-			parameter[i].buffer = (char *) data;
-		}
-		parameter[i].is_null = 0;
-		parameter[i].length = &parameter_length[i];
-	}
-}
-
 my_bool bindParameters(MYSQL_STMT *statement, MYSQL_BIND *parameters) {
 	/* Bind the parameters buffer */
 	if (mysql_stmt_bind_param(statement, parameters)) {

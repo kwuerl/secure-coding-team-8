@@ -14,17 +14,17 @@
 
 #define STRING_SIZE 256
 
-MYSQL_BIND parameters[9], result[1]; /*input & output parameter buffers*/
+MYSQL_BIND parameters[10], result[1]; /*input & output parameter buffers*/
 
 int int_data[5]; /*input and output values*/
-char str_data[4][STRING_SIZE];
+char str_data[3][STRING_SIZE];
 float float_data[1];
 int result_data[1];
 MYSQL_TIME current_time;
 
-unsigned long int_length[9], result_length;
+unsigned long parameter_length[10], result_length;
 
-my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
+my_bool addTransaction(MYSQL *connection, int customerId, char* customerName, int fromAccountId,
 		int toAccountId, char* toAccountName, float amount, char* remarks) {
 
 	char* query;
@@ -33,13 +33,13 @@ my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
 
 	int is_on_hold = (amount > 10000) ? 1 : 0;
 	int is_rejected = 0;
-	int is_closed = 0;
+	int is_closed = (amount > 10000) ? 0 : 1;
 
 	query =
 			"INSERT INTO `TBL_TRANSACTION`("
-					"`TRANSACTION_DATE`, `FROM_ACCOUNT_ID`, `TO_ACCOUNT_ID`, `TO_ACCOUNT_NAME`,"
+					"`TRANSACTION_DATE`, `FROM_ACCOUNT_ID`, `FROM_ACCOUNT_NAME`, `TO_ACCOUNT_ID`, `TO_ACCOUNT_NAME`,"
 					"`AMOUNT`, `REMARKS`, `IS_ON_HOLD`, `IS_REJECTED`, `IS_CLOSED`) VALUES("
-					"?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	/*initialize the statement*/
 	statement = initializeStatement(connection);
@@ -48,59 +48,75 @@ my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
 		result = prepareStatement(statement, query, strlen(query));
 
 		if (result) {
+			/*Parameter 1 - TRANSACTION_DATE*/
 			parameters[0].buffer_type = MYSQL_TYPE_DATETIME;
 			parameters[0].buffer = (char *) &current_time;
 			parameters[0].buffer_length = 2;
 			parameters[0].is_null = 0;
-			parameters[0].length = &int_length[1];
+			parameters[0].length = &parameter_length[0];
 
+			/*Parameter 2 - FROM_ACCOUNT_ID*/
 			parameters[1].buffer_type = MYSQL_TYPE_LONG;
 			parameters[1].buffer = (char *) &int_data[0];
 			parameters[1].buffer_length = 2;
 			parameters[1].is_null = 0;
-			parameters[1].length = &int_length[1];
+			parameters[1].length = &parameter_length[1];
 
-			parameters[2].buffer_type = MYSQL_TYPE_LONG;
-			parameters[2].buffer = (char *) &int_data[1];
-			parameters[2].buffer_length = 2;
+			/*Parameter 3 - FROM_ACCOUNT_NAME*/
+			parameters[2].buffer_type = MYSQL_TYPE_STRING;
+			parameters[2].buffer = (char *) str_data[0];
+			parameters[2].buffer_length = STRING_SIZE;
 			parameters[2].is_null = 0;
-			parameters[2].length = &int_length[2];
+			parameters[2].length = &parameter_length[2];
 
-			parameters[3].buffer_type = MYSQL_TYPE_STRING;
-			parameters[3].buffer = (char *) str_data[1];
-			parameters[3].buffer_length = STRING_SIZE;
+			/*Parameter 4 - TO_ACCOUNT_ID*/
+			parameters[3].buffer_type = MYSQL_TYPE_LONG;
+			parameters[3].buffer = (char *) &int_data[1];
+			parameters[3].buffer_length = 2;
 			parameters[3].is_null = 0;
-			parameters[3].length = &int_length[3];
+			parameters[3].length = &parameter_length[3];
 
-			parameters[4].buffer_type = MYSQL_TYPE_FLOAT;
-			parameters[4].buffer = (char *) &float_data[0];
-			parameters[4].buffer_length = 2;
+			/*Parameter 5 - TO_ACCOUNT_NAME*/
+			parameters[4].buffer_type = MYSQL_TYPE_STRING;
+			parameters[4].buffer = (char *) str_data[1];
+			parameters[4].buffer_length = STRING_SIZE;
 			parameters[4].is_null = 0;
-			parameters[4].length = &int_length[4];
+			parameters[4].length = &parameter_length[4];
 
-			parameters[5].buffer_type = MYSQL_TYPE_STRING;
-			parameters[5].buffer = (char *) str_data[3];
-			parameters[5].buffer_length = STRING_SIZE;
+			/*Parameter 6 - AMOUNT*/
+			parameters[5].buffer_type = MYSQL_TYPE_FLOAT;
+			parameters[5].buffer = (char *) &float_data[0];
+			parameters[5].buffer_length = 2;
 			parameters[5].is_null = 0;
-			parameters[5].length = &int_length[5];
+			parameters[5].length = &parameter_length[5];
 
-			parameters[6].buffer_type = MYSQL_TYPE_TINY;
-			parameters[6].buffer = (char *) &int_data[2];
-			parameters[6].buffer_length = 2;
+			/*Parameter 7 - REMARKS*/
+			parameters[6].buffer_type = MYSQL_TYPE_STRING;
+			parameters[6].buffer = (char *) str_data[2];
+			parameters[6].buffer_length = STRING_SIZE;
 			parameters[6].is_null = 0;
-			parameters[6].length = &int_length[6];
+			parameters[6].length = &parameter_length[6];
 
+			/*Parameter 8 - IS_ON_HOLD*/
 			parameters[7].buffer_type = MYSQL_TYPE_TINY;
-			parameters[7].buffer = (char *) &int_data[3];
+			parameters[7].buffer = (char *) &int_data[2];
 			parameters[7].buffer_length = 2;
 			parameters[7].is_null = 0;
-			parameters[7].length = &int_length[7];
+			parameters[7].length = &parameter_length[7];
 
+			/*Parameter 9 - IS_REJECTED*/
 			parameters[8].buffer_type = MYSQL_TYPE_TINY;
-			parameters[8].buffer = (char *) &int_data[4];
+			parameters[8].buffer = (char *) &int_data[3];
 			parameters[8].buffer_length = 2;
 			parameters[8].is_null = 0;
-			parameters[8].length = &int_length[8];
+			parameters[8].length = &parameter_length[8];
+
+			/*Parameter 10 - IS_CLOSED*/
+			parameters[9].buffer_type = MYSQL_TYPE_TINY;
+			parameters[9].buffer = (char *) &int_data[4];
+			parameters[9].buffer_length = 2;
+			parameters[9].is_null = 0;
+			parameters[9].length = &parameter_length[9];
 
 			/*bind the parameters and result*/
 			result = bindParameters(statement, parameters);
@@ -112,11 +128,13 @@ my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
 				int_data[3] = is_rejected;
 				int_data[4] = is_closed;
 
+				strcpy(str_data[0], customerName);
+				parameter_length[2] = strlen(str_data[0]);
 				strcpy(str_data[1], toAccountName);
-				int_length[3] = strlen(str_data[1]);
+				parameter_length[4] = strlen(str_data[1]);
+				strcpy(str_data[2], remarks);
+				parameter_length[6] = strlen(str_data[2]);
 				float_data[0] = amount;
-				strcpy(str_data[3], remarks);
-				int_length[5] = strlen(str_data[3]);
 
 				/*set the current date-time in the time-stamp structure*/
 				getCurrentDateTime(&current_time.year, &current_time.month,
@@ -171,7 +189,7 @@ my_bool addTransaction(MYSQL *connection, int customerId, int fromAccountId,
 	return 1;
 }
 
-my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAccountId,
+my_bool makeTransfer(MYSQL* connection, int customerId, char* customerName, char* code, int fromAccountId,
 		int toAccountId, char* toAccountName, float amount, char* remarks) {
 
 	/*Check for valid amount i.e., restrict 0 or negative amounts*/
@@ -196,22 +214,16 @@ my_bool makeTransfer(MYSQL* connection, int customerId, char* code, int fromAcco
 	}
 
 	mysql_autocommit(connection, 0);
-	if (isValidTransactionCode(connection, customerId, code)) {
-		if (setIsUsedTransactionCode(connection, customerId, code)) {
-			if (addTransaction(connection, customerId, fromAccountId, toAccountId, toAccountName, amount, remarks)) {
-				mysql_commit(connection);
-			} else {
-				printf("Error in adding transaction.\n");
-				mysql_rollback(connection);
-				return 0;
-			}
+	if (setIsUsedTransactionCode(connection, customerId, code)) {
+		if (addTransaction(connection, customerId, customerName, fromAccountId, toAccountId, toAccountName, amount, remarks)) {
+			mysql_commit(connection);
 		} else {
-			printf("Error in updating TAN (transaction code).\n");
+			printf("Error in adding transaction.\n");
 			mysql_rollback(connection);
 			return 0;
 		}
 	} else {
-		printf("Incorrect TAN (transaction code).\n");
+		printf("Error in updating TAN (transaction code).\n");
 		mysql_rollback(connection);
 		return 0;
 	}

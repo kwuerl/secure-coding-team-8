@@ -10,14 +10,12 @@
 static short account_id_size = 10;
 static short account_name_size = 30;
 static short amount_size = 8;
-static short code_size = 15;
 static short remarks_size = 128;
 
 struct transaction_row {
 	char *account_id;
 	char *account_name;
 	char *amount;
-	char *code;
 	char *remarks;
 };
 
@@ -26,7 +24,6 @@ struct transaction_row construct_transaction_row() {
 	ret.account_id = malloc(sizeof(char)*(account_id_size+1));
 	ret.account_name = malloc(sizeof(char)*(account_name_size+1));
 	ret.amount = malloc(sizeof(char)*(amount_size+1));
-	ret.code = malloc(sizeof(char)*(code_size+1));
 	ret.remarks = malloc(sizeof(char)*(remarks_size+1));
 	return ret;
 }
@@ -35,7 +32,6 @@ void destruct_transaction_row(struct transaction_row row) {
 	free(row.account_id);
 	free(row.account_name);
 	free(row.amount);
-	free(row.code);
 	free(row.remarks);
 }
 
@@ -61,7 +57,7 @@ int main(int argc, char **argv) {
 		do {
 			if((c = fgetc(input_file)) == '\n') {
 				// close line
-				if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7])) {
+				if (processTransfer(atoi(argv[2]), argv[5], atoi(argv[4]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[6], argv[7], argv[8], argv[9])) {
 					success = 1;
 				} else {
 					success = 0;
@@ -96,14 +92,6 @@ int main(int argc, char **argv) {
 	                        j++;
 	                    }
 					} else if (i == 3) {
-						if (j < code_size) {
-							current_row.code[j] = c;
-							j++;
-	                    } else if (j == code_size) {
-	                        current_row.code[j] = 0;
-	                        j++;
-	                    }
-					} else if (i == 4) {
 						if (j < remarks_size) {
 							current_row.remarks[j] = c;
 							j++;
@@ -127,10 +115,6 @@ int main(int argc, char **argv) {
 						current_row.amount[j] = 0;
 	                }
 				} else if (i == 3) {
-					if (j < code_size) {
-						current_row.code[j] = 0;
-	                }
-				} else if (i == 4) {
 					if (j < remarks_size) {
 						current_row.remarks[j] = 0;
 	                }
@@ -143,7 +127,7 @@ int main(int argc, char **argv) {
 	    } while (c != EOF);
 	    
 	    if(i != 0 && row_count != 0) {
-	    	if (processTransfer(atoi(argv[2]), current_row.code, atoi(argv[3]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[4], argv[5], argv[6], argv[7])) {
+	    	if (processTransfer(atoi(argv[2]), argv[5], atoi(argv[4]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[6], argv[7], argv[8], argv[9])) {
 	    		success = 1;
 	    	} else {
 	    		success = 0;
