@@ -1,2 +1,2 @@
-1328725389;vorname nachname;12345.67;lMtZgBNgNI2BFPM;thank you for your purchase\; have a nice day.
-1328725389;vorname nachname2;432;8qe9Pu6MYdRC3ua;thank you for your purchase\; have a nice day.
+1328725389;vorname nachname;12345.67;thank you for your purchase\; have a nice day.
+1328725389;vorname nachname2;432;thank you for your purchase\; have a nice day.
