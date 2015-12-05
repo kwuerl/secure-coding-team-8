@@ -38,4 +38,19 @@ class SCSService {
         }
         return false;
 	}
+	/**
+     * Checks if the scs pin is valid for the specified customer
+     *
+     * @param int $customer_id    The customer id
+     * @param string $pin    The PIN to check
+     *
+     * @return boolean    Returns true, if pin is valid for the specified customer and false otherwise
+     */
+    public function validatePin($customer_id, $pin) {
+        $db_result = $this->repository->findOne(array("customer_id" => $customer_id, "pin" => $pin));
+        if ($db_result) {
+            return true;
+        }
+        return false;
+    }
 }
