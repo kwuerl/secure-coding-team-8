@@ -6,21 +6,19 @@
 
 package securebank.scs.ui.application;
 
-import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.ColorUIResource;
-
 import securebank.scs.ui.components.JFilePicker;
 
 import java.awt.Color;
@@ -28,28 +26,12 @@ import java.awt.Font;
 
 public class SmartCardSimulator {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField fieldRecipientAccountId;
 	private JTextField fieldAmount;
 	private JTextField fieldScsPin;
 	private JLabel lblMessageSingle;
 	private JLabel lblMessageBatch;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SmartCardSimulator window = new SmartCardSimulator();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -71,15 +53,15 @@ public class SmartCardSimulator {
 		
 
 		UIManager.put("TabbedPane.contentAreaColor", Color.DARK_GRAY);
-		UIManager.put("TabbedPane.light", ColorUIResource.GRAY);
-		UIManager.put("TabbedPane.highlight", ColorUIResource.GRAY);
-		UIManager.put("TabbedPane.shadow", ColorUIResource.GRAY);
-		UIManager.put("TabbedPane.darkShadow", ColorUIResource.DARK_GRAY);
-		UIManager.put("TabbedPane.selected", ColorUIResource.LIGHT_GRAY);
-		UIManager.put("TabbedPane.borderHightlightColor", ColorUIResource.GRAY);
+		UIManager.put("TabbedPane.light", Color.GRAY);
+		UIManager.put("TabbedPane.highlight", Color.GRAY);
+		UIManager.put("TabbedPane.shadow", Color.GRAY);
+		UIManager.put("TabbedPane.darkShadow", Color.DARK_GRAY);
+		UIManager.put("TabbedPane.selected", Color.LIGHT_GRAY);
+		UIManager.put("TabbedPane.borderHightlightColor", Color.GRAY);
 		
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setFont(new Font("Century Schoolbook L", Font.BOLD, 14));
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setBounds(12, 12, 426, 248);
@@ -126,6 +108,7 @@ public class SmartCardSimulator {
 		btnGenerateTanForSingle.setForeground(Color.WHITE);
 		btnGenerateTanForSingle.setBackground(Color.DARK_GRAY);
 		btnGenerateTanForSingle.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (isValidSingleTransaction()) {
 					System.out.println(fieldRecipientAccountId.getText());
@@ -159,7 +142,8 @@ public class SmartCardSimulator {
         btnGenerateTanForBatch.setForeground(Color.WHITE);
         btnGenerateTanForBatch.setBackground(Color.DARK_GRAY);
         btnGenerateTanForBatch.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	@Override
+			public void actionPerformed(ActionEvent e) {
         		String filePath = filePicker.getSelectedFilePath();
         		if (filePath.trim().isEmpty()) {
         			//markFieldForError(filePicker);

@@ -1,5 +1,5 @@
 /**
- * SmartCardSimulator class
+ * FilePicker class
  *
  * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
  *

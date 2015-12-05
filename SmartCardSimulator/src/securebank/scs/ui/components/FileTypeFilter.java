@@ -1,3 +1,11 @@
+/**
+ * FileTypePicker class
+ *
+ * @author Swathi Shyam Sunder <swathi.ssunder@tum.de>
+ *
+ * Part of code taken from http://www.codejava.net/java-se/swing/file-picker-component-in-swing
+ */
+
 package securebank.scs.ui.components;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
@@ -20,7 +28,8 @@ public class FileTypeFilter extends FileFilter {
         return file.getName().toLowerCase().endsWith(extension);
     }
      
-    public String getDescription() {
+    @Override
+	public String getDescription() {
         return description + String.format(" (*%s)", extension);
     }
 }
