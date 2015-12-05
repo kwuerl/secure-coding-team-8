@@ -6,7 +6,7 @@ use Model\TransactionCodeRepository;
 /**
  * This Service is used for anything which has to do with Transaction
  */
-class TransactionService {
+class TransactionCodeService {
 	private $repository;
 	private $random;
 	/**

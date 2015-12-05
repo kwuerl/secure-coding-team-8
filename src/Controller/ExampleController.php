@@ -43,14 +43,14 @@ class ExampleController extends Controller {
 	}
 
 	public function testTransactionCode($request) {
-		$set = $this->get("transaction")->generateTransactionCodeSet(1);
+		$set = $this->get("transaction_code")->generateTransactionCodeSet(1);
 		$this->get("templating")->render("test_transaction_codes.html.php", array(
 			"transaction_codes" => $set
 		));
 	}
 
 	public function testEmailTemplate($request) {
-		$tans = $this->get("transaction")->generateTransactionCodeSet(1);
+		$tans = $this->get("transaction_code")->generateTransactionCodeSet(1);
 		$user_model = $this->get('customer_repository')->findOne(array("id" => 7));
 		$this->get("templating")->render("email_transaction_codes.html.php", array(
             "tans" => $tans,

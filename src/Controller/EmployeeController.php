@@ -179,7 +179,7 @@ class EmployeeController extends UserController {
 
                     if($tan_method == _TAN_METHOD_EMAIL) {
                         // send email with transaction codes
-                        $tans = $this->get("transaction")->generateTransactionCodeSet($user_id);
+                        $tans = $this->get("transaction_code")->generateTransactionCodeSet($user_id);
 
                         if ($tans) {
                             $pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
