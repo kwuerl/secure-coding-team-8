@@ -37,35 +37,41 @@
                         <table id="transaction_history_table" class="table table-bordered table-striped app-data-table">
                             <thead>
                                 <tr>
-                                    <th class='trans-history-transaction-id'>Transaction ID</th>
-                                    <th class='trans-history-transaction-date'>Transaction Date</th>
+                                    <th class='trans-history-transaction-id'>ID</th>
+                                    <th class='trans-history-beneficiary-account-id'>To Account No.</th>
+                                    <th class='trans-history-beneficiary-name'>To Account Name</th>
+                                    <th class='trans-history-transaction-date'>Date</th>
                                     <th class='trans-history-amount'>Amount</th>
-                                    <th class='trans-history-beneficiary-account-id'>Beneficiary Account ID</th>
-                                    <th class='trans-history-beneficiary-name'>Beneficiary Account Name</th>
                                     <th class='trans-history-status'>Status</th>
                                     <th class='trans-history-remarks'>Remarks</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach($transactionList as $transaction) {
-                                    $class = ($transaction->getIsOnHold()) ? 'fa fa-retweet' :  'fa fa-check-circle';
                                     $title = $transactionStatus[$transaction->getIsOnHold()];
+                                    if($transaction->getIsOnHold())
+                                        $class = 'fa fa-retweet';
+                                    else if($transaction->getIsRejected()) {
+                                        $class = 'fa fa-times';
+                                        $title = "REJECTED";
+                                    } else
+                                        $class ='fa fa-check-circle';
                                     ?>
                                 <tr>
                                     <td>
                                         <?= $t->s($transaction->getId()); ?>
                                     </td>
                                     <td>
-                                        <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
-                                    </td>
-                                    <td class="text-right">
-                                        <?= $t->s($transaction->getAmount()); ?>
-                                    </td>
-                                    <td>
                                         <?= $t->s($transaction->getToAccountId()); ?>
                                     </td>
                                     <td>
                                         <?= $t->s($transaction->getToAccountName()); ?>
+                                    </td>
+                                    <td>
+                                        <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                                    </td>
+                                    <td class="text-right">
+                                        <?= $t->s($transaction->getAmount()); ?>
                                     </td>
                                     <td data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
                                     <i class=<?php echo "'".$class."'></i>" ?>
