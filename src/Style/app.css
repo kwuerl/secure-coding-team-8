@@ -211,10 +211,15 @@ div >h1{
 }
 
 
-#approve_trans_table .width_5, #cust_details_table2 .width_5{
+#approve_trans_table .width_5, #cust_details_table2 .width_5, #tbl_completed_transactions .width_5{
     width : 5%;
 }
 
 #approve_trans_table .width_10, #tbl_registered_customers .width_10{
     width : 12%;
+}
+
+#tbl_completed_transactions .status{
+	text-align : center;
+	width : 5%;
 }

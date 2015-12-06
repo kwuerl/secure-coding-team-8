@@ -1,7 +1,13 @@
 <?php $t->extend("Employee/employee_base.html.php"); ?>
 <?php $t->set("menu_active", "approve_transactions"); ?>
 <?php $t->block("content", function ($t) {
-    $transactionList = $t->get("transactionList"); ?>
+    $transactionList = $t->get("transactionList"); 
+    $completedtransactionList = $t->get("completedtransactionList");
+     $transactionStatus = array(
+        '0' => 'COMPLETED',
+        '1' => 'ON HOLD'
+     );
+    ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <div class="flash-echo">
@@ -10,11 +16,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Transactions pending for Approval
+        Transactions
     </h1>
     <ol class="breadcrumb">
         <li><a href="/overview"><i class="fa fa-home"></i> Home</a></li>
-        <li class='active'>Pending Transactions</a></li>
+        <li class='active'>Transactions</a></li>
     </ol>
 </section>
 <?php $t->formh($t->get("form"), array("action"=>"/transactions", "method"=>"post"), function ($t) { ?>
@@ -36,8 +42,11 @@
     <div class="col-md-12">
     <!-- general form elements -->
     <div class="box box-primary">
+		<div class="box-header with-border">
+            <h3 class="box-title">Pending Transactions</h3>
+        </div>
         <div class="box-body">
-            <table id="approve_trans_table" class="table table-bordered table-striped app-data-table">
+            <table id="approve_trans_table" class="table table-bordered table-striped app-data-table-small">
                 <thead>
                     <tr>
                         <th class="width_5">ID</th>
@@ -80,6 +89,85 @@
                         <td>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveTransModal">Approve</button>
                             <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectTransModal">Reject</button>
+                        </td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box -->
+    </div>
+</section>
+<div class="row">
+    <div class="col-xs-12">
+        <?php if( count($completedtransactionList) != 0 ) { ?>
+        <a href='/transactions_completed_download' id='downloadPDF' target='_blank' class="pull-right"><i class="fa fa-download"></i> Download as PDF
+        </a>
+        <?php } ?>
+    </div>
+</div>
+<section class="content">
+    <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-primary">
+		<div class="box-header with-border">
+            <h3 class="box-title">Completed Transactions</h3>
+        </div>
+        <div class="box-body">
+            <table id="tbl_completed_transactions" class="table table-bordered table-striped app-data-table-small">
+                <thead>
+                    <tr>
+                        <th class="width_5">ID</th>
+                        <th>From Account No.</th>
+                        <th>From Account Name</th>
+                        <th>To Account No.</th>
+                        <th>To Account Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                </thead>
+                <tbody>
+                    <?php foreach ($completedtransactionList as $transaction) {
+					 $title = $transactionStatus[$transaction->getIsOnHold()];
+						if($transaction->getIsOnHold())
+							$class = 'fa fa-retweet';
+						else if($transaction->getIsRejected()) {
+							$class = 'fa fa-times';
+							$title = "REJECTED";
+						} else
+							$class ='fa fa-check-circle';
+								
+						?>
+                    <tr>
+                        <td class='app-transaction-id'>
+                            <?= $t->s($transaction->getId()); ?>
+                        </td>
+                        <td>
+                            <?= $t->s($transaction->getFromAccountId()); ?>
+                        </td>
+                        <td>
+                            <?= $t->s($transaction->getFromAccountName()); ?>
+                        </td>
+                        <td>
+                            <?= $t->s($transaction->getToAccountId()); ?>
+                        </td>
+                        <td>
+                            <?= $t->s($transaction->getToAccountName()); ?>
+                        </td>
+                         <td>
+                            <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                        </td>
+                        <td class="text-right">
+                            <?= $t->s($transaction->getAmount()); ?>
+                        </td>
+                        <td class='status' data-order="<?php echo $transaction->getIsOnHold() ?>" title=<?php echo "'".$title."'>" ?>
+							<i class=<?php echo "'".$class."'></i>" ?>
+						</td>
+                        <td>
+                            <?= $t->s($transaction->getRemarks()); ?>
                         </td>
                     </tr>
                     <?php }?>

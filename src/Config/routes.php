@@ -60,3 +60,5 @@ $routing_service->get("customer_completed_transaction_download", "/customer_comp
                         "employee_controller:generateCustomerCompletedTransactionPDF");
 $routing_service->get("transactions_pending_download", "/transactions_pending_download",
                         "employee_controller:generatePendingTransactionsPDF");
+$routing_service->get("transactions_pending_download", "/transactions_completed_download",
+                        "employee_controller:generateCompletedTransactionsPDF");

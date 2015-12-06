@@ -94,10 +94,12 @@ class EmployeeController extends UserController {
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch all transactions that are on-hold.*/
         $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
+        $completedtransactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>0));
         // render the form
         $this->get("templating")->render("Employee/approve_transactions.html.php", array(
             "form" => $helper,
-            "transactionList" => $transactionList
+            "transactionList" => $transactionList,
+            "completedtransactionList" => $completedtransactionList
         ));
     }
 
@@ -321,6 +323,19 @@ class EmployeeController extends UserController {
                 "invokedFrom" => _PENDING_TRANSACTIONS,
             ));
         }
+
+    public function generateCompletedTransactionsPDF($request){
+			$employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+            /*Fetch the transaction details for the corresponding customer */
+            $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>0));
+
+            // render the form
+            $this->get("templating")->render("transaction_history_download.php", array(
+                //"form" => $helper
+                "transactionList" => $transactionList,
+                "invokedFrom" => _COMPLETED_TRANSACTIONS,
+            ));
+	}
 
     private function notify($success, $error) {
         if (!$error) {

@@ -91,9 +91,29 @@ switch( $invokedFrom) {
                                                       $pdfTitle ='Pending Transactions';
                                                       $filename = 'Pending_Transactions_'.time().'.pdf';
                                                       break;
+                                                      
+   case _COMPLETED_TRANSACTIONS                   :   $transactionList = $t->get("transactionList");
+                                                      $headers = array(
+                                                           "ID"                   => "10" ,
+                                                           "From Account No."     => "25" ,
+                                                           "From Account Name"    => "30" ,
+                                                           "To Account No."       => "25" ,
+                                                           "To Account Name"      => "25" ,
+                                                           "Date"                 => "15" ,
+                                                           "Amount"               => "20" ,
+                                                           "Status"               => "15",
+                                                           "Remarks"              => "30" ,
 
+                                                      );
+                                                      $transactionStatus = array(
+                                                             '0' => 'COMPLETED',
+                                                             '1' => 'ON HOLD',
+                                                             '2' => "REJECTED"
+                                                      );
+                                                      $pdfTitle ='Completed Transactions';
+                                                      $filename = 'Completed_Transactions_'.time().'.pdf';
+                                                      break;
 }
-
 
 $pdf = new \FPDF( 'P', 'mm', 'A4' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
@@ -107,7 +127,8 @@ $pdf->SetFont( 'Arial', '', 14 );
 $pdf->Ln( 10);
 $pdf->Cell( 0, 15, $pdfTitle , 0, 0, 'C' );
 $pdf->Ln( 15 );
-if( $invokedFrom != _PENDING_TRANSACTIONS ){
+
+if(($invokedFrom !==_PENDING_TRANSACTIONS) && ($invokedFrom !==_COMPLETED_TRANSACTIONS)) {
     //$customer_name ='Customer Name : '.$customer->getFirstName().' '.$customer->getLastName();
     $pdf->SetFont( 'Arial', 'B', 10 );
     $pdf->Cell( 0, 6, 'Account Number : '.$accountInfo->getAccountId(), 0, 0, 'L' );
@@ -180,6 +201,19 @@ foreach($transactionList as $transaction) {
                                           $pdf->Cell($width[$i++],$col_height,$transaction->getToAccountName(),1,0,'C',false);
                                           $pdf->Cell($width[$i++],$col_height,date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),1,0,'C',false);
                                           $pdf->Cell($width[$i++],$col_height,$transaction->getAmount(),1,0,'R',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getRemarks(),1,0,'C',false);
+                                          $pdf->Ln();
+                                          break;
+                                          
+          case _COMPLETED_TRANSACTIONS :  $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];  
+										  $pdf->Cell($width[$i++],$col_height,$transaction->getId(),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getFromAccountId(),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getFromAccountName(),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getToAccountId(),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getToAccountName(),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),1,0,'C',false);
+                                          $pdf->Cell($width[$i++],$col_height,$transaction->getAmount(),1,0,'R',false);
+                                          $pdf->Cell($width[$i++],$col_height,$status,1,0,'C',false);
                                           $pdf->Cell($width[$i++],$col_height,$transaction->getRemarks(),1,0,'C',false);
                                           $pdf->Ln();
                                           break;

@@ -31,7 +31,7 @@
         <li class="treeview<?= $t->get('menu_active')=="approve_transactions"?" active":""; ?>">
             <a href="/transactions">
             <i class="fa fa-tasks"></i>
-            <span>Pending Transactions</span>
+            <span>Transactions</span>
             </a>
         </li>
     </ul>
