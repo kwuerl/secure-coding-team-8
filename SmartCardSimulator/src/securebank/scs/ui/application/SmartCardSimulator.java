@@ -15,6 +15,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
@@ -28,13 +32,15 @@ import javax.swing.JTextPane;
 
 public class SmartCardSimulator {
 
-	public JFrame frame;
+	public JFrame frmSecureBank;
 	private JTextField fieldRecipientAccountId;
 	private JTextField fieldAmount;
 	private JTextField fieldScsPin;
 	private JTextPane textPaneSingle;
 	private JTextPane textPaneBatch;
-
+	private TanGenerator tanGenerator;
+	private JTextField fieldScsPinBatch;
+	
 	/**
 	 * Initialize the smart card simulator.
 	 */
@@ -46,12 +52,13 @@ public class SmartCardSimulator {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(102, 102, 102));
-		frame.setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSecureBank = new JFrame();
+		frmSecureBank.setTitle("SecureBank - Smart Card Simulator");
+		frmSecureBank.getContentPane().setBackground(new Color(102, 102, 102));
+		frmSecureBank.setBackground(Color.WHITE);
+		frmSecureBank.setBounds(100, 100, 450, 300);
+		frmSecureBank.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSecureBank.getContentPane().setLayout(null);
 		
 
 		UIManager.put("TabbedPane.contentAreaColor", Color.DARK_GRAY);
@@ -68,7 +75,7 @@ public class SmartCardSimulator {
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setBounds(12, 12, 426, 248);
 		
-		frame.getContentPane().add(tabbedPane);
+		frmSecureBank.getContentPane().add(tabbedPane);
 
 		JPanel panelSingle = new JPanel();
 		panelSingle.setBackground(Color.WHITE);
@@ -113,13 +120,9 @@ public class SmartCardSimulator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (isValidSingleTransaction()) {
-					System.out.println(fieldRecipientAccountId.getText());
-					System.out.println(fieldAmount.getText());
-					System.out.println(fieldScsPin.getText());
-					
-					TanGenerator tanGenerator = new TanGenerator();
-					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText(), fieldAmount.getText(), fieldScsPin.getText());
-					displayTan(tan);
+					tanGenerator = new TanGenerator();
+					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText() + fieldAmount.getText() + fieldScsPin.getText());
+					displayTan("_SINGLE", tan);
 				}				
 			}
 		});
@@ -141,9 +144,9 @@ public class SmartCardSimulator {
 		JFilePicker filePicker = new JFilePicker("Choose a file* ", "Browse");
 		filePicker.setBackground(Color.WHITE);
         filePicker.setMode(JFilePicker.MODE_OPEN);
-        filePicker.setBounds(12, 55, 409, 71);
+        filePicker.setBounds(12, 72, 409, 71);
         
-        //filePicker.addFileTypeFilter(".txt", "Text Files");
+        filePicker.addFileTypeFilter(".txt", "Text Files");
         panelBatch.add(filePicker);
         
         JButton btnGenerateTanForBatch = new JButton("Generate TAN");
@@ -153,25 +156,70 @@ public class SmartCardSimulator {
         btnGenerateTanForBatch.addActionListener(new ActionListener() {
         	@Override
 			public void actionPerformed(ActionEvent e) {
-        		String filePath = filePicker.getSelectedFilePath();
-        		if (filePath.trim().isEmpty()) {
-        			//markFieldForError(filePicker);
-        			textPaneBatch.setText("Please choose a file.");
-        		} else {
-        			textPaneBatch.setText("");
-        			System.out.println(filePath);	
+        		LineBorder errorField;
+        		String scsPin = fieldScsPinBatch.getText().trim();
+        		String filePath = filePicker.getSelectedFilePath().trim();
+
+        		/*Check if the SCS Pin entered is empty*/
+        		if (scsPin.isEmpty()) {
+        			errorField = new LineBorder(Color.RED, 1, true);		
+        			textPaneBatch.setText("Please enter a valid SCS pin.");
+        			fieldScsPinBatch.setBorder(errorField);
+        			return;
+        		}        		
+        		/*Check if SCS Pin entered is valid*/
+        		if (!isValidScsPin(scsPin)) {
+        			errorField = new LineBorder(Color.RED, 1, true);
+        			textPaneBatch.setText("Incorrect SCS Pin for the transfer.");
+        			fieldScsPinBatch.setBorder(errorField);
+        			return;
         		}
+        		/*Check if no file is provided*/	
+        		if (filePath.isEmpty()) {
+        			textPaneBatch.setText("Please choose a file.");
+        			return;
+        		} 
+        		        		
+    			textPaneBatch.setText("");
+    			
+    			try {
+					BufferedReader reader = new BufferedReader(new FileReader(filePath));
+					String fileContent = "", line;
+					while((line = reader.readLine()) != null) {						
+						fileContent += line;
+					}
+					if (reader != null) {
+						reader.close();
+					}
+					tanGenerator = new TanGenerator();
+					String tan = tanGenerator.getTan(scsPin + fileContent.trim());
+					displayTan("_BATCH", tan);
+				} catch (FileNotFoundException e1) {					
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}        		
         	}
-        });
-        btnGenerateTanForBatch.setBounds(23, 192, 300, 20);
+        });        
+        btnGenerateTanForBatch.setBounds(130, 155, 154, 25);
         panelBatch.add(btnGenerateTanForBatch);
         
         textPaneBatch = new JTextPane();
-        textPaneSingle.setText("");
-        textPaneBatch.setBounds(130, 165, 300, 20);
-        textPaneSingle.setContentType("text/html");
-		textPaneSingle.setEditable(false);
+        textPaneBatch.setText("");
+        textPaneBatch.setBounds(23, 192, 300, 20);
+        textPaneBatch.setContentType("text/html");
+		textPaneBatch.setEditable(false);
         panelBatch.add(textPaneBatch);
+        
+        JLabel lblScsPinBatch = new JLabel("SCS Pin*");
+        lblScsPinBatch.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
+        lblScsPinBatch.setBounds(23, 38, 140, 25);
+        panelBatch.add(lblScsPinBatch);
+        
+        fieldScsPinBatch = new JTextField();
+        fieldScsPinBatch.setBounds(111, 35, 140, 25);
+        panelBatch.add(fieldScsPinBatch);
+        fieldScsPinBatch.setColumns(10);
 	}
 	
 	/**
@@ -235,8 +283,12 @@ public class SmartCardSimulator {
 	/**
 	 * Displays the tan.
 	 */
-	private void displayTan(String tan) {
-		textPaneSingle.setText("Your TAN is <b>" + tan + "</b>");		
+	private void displayTan(String mode, String tan) {
+		String message = "Your TAN is <b>" + tan + "</b>";
+		if (mode == "_SINGLE") 
+			textPaneSingle.setText(message);
+		else if (mode == "_BATCH")
+			textPaneBatch.setText(message);
 	}
 	
 	/**
@@ -276,17 +328,23 @@ public class SmartCardSimulator {
 				markFieldForError(fieldRecipientAccountId, "Incorrect Recipient Account Id for the transfer");				
 				return false;
 			}
-						
-			String scsPin = fieldScsPin.getText().trim();
-			/*Return if the SCS Pin entered does not contain 6 characters.*/
-			if (scsPin.length() != 6) {
+			
+			if (isValidScsPin(fieldScsPin.getText().trim())) {
 				markFieldForError(fieldScsPin, "Incorrect SCS Pin for the transfer");				
 				return false;
-			}
-		
-			setMessage("");
-			return true;
+			} else {
+				setMessage("");
+				return true;
+			}			
 		}
 		return false;
+	}
+	
+	private Boolean isValidScsPin(String scsPin) {		
+		/*Return if the SCS Pin entered does not contain 6 characters.*/
+		if (scsPin.length() != 6) {							
+			return false;
+		}
+		return true;
 	}
 }

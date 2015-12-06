@@ -56,16 +56,15 @@ class SCSService {
         return false;
     }
     /**
-     * Generates a TAN code for the customer based on the provided details.
+     * Generates a TAN code based on the input string provided
      *
-     * @param int $recipientAccountId   Recipient Account ID
-     * @param float $amount             Amount
-     * @param string $scsPin            SCS Pin
+     * @param string $input            Input string
      *
      * @return string  Returns the generated TAN code
      */
-    public function generateTan($recipientAccountId, $amount, $scsPin) {
-        $utf = utf8_encode(strval($recipientAccountId) . strval($amount) . strval($scsPin));
+    public function generateTan($input) {
+        $input = preg_replace('/\s+/', '', $input);
+        $utf = utf8_encode($input);
         $hash = hash("sha512", $utf);
 
         return substr($hash, 0, 15);
