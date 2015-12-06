@@ -137,7 +137,7 @@ class TransactionRepository extends Repository {
 			/*If the transaction code is a string i.e., _TAN_METHOD_SCS case, then create a new transaction code model and add it.*/
 			if (is_string($transactionCode)) {
 				$transaction_code_id = $transactionCode;
-				$transactionCode = new \TransactionCode();
+				$transactionCode = new TransactionCode();
 				$transactionCode->setCustomerId($customer_id);
 				$transactionCode->setCode($transaction_code_id);
 				$transactionCode->setIsUsed(1);

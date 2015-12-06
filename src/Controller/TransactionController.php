@@ -120,37 +120,56 @@ class TransactionController extends Controller {
             return;
         }
 
-        if ($customer->getTanMethod() === _TAN_METHOD_SCS) {
-            //TODO
-        } else {
-            $is_valid_transaction_code = $this->get("transaction_code")->isCodePristine($customer_id, $transaction_code);
+        /*Check if SCS is enabled for the customer*/
+        if ((int)$customer->getTanMethod() === _TAN_METHOD_SCS) {
+            $scs_pin = $this->get("scs")->getPin($customer_id);
 
-            // Checking whether the transaction is valid , then proceed further
-            if ($is_valid_transaction_code) {
+            /*Generate the TAN for the transaction based on the entered details and the customer's SCS pin*/
+            $scs_transaction_code = $this->get("scs")->generateTan($model->getToAccountId(), $model->getAmount(), $scs_pin);
+            $is_valid_transaction_code = ($scs_transaction_code === $transaction_code) ? $transaction_code : false;
 
-                $model->setTransactionDate(date("Y-m-d H:i:s"));
-                $model->setFromAccountId($from_account_id);
-                $model->setFromAccountName($customer_name);
+            /*Return if the SCS pin or transaction code is invalid*/
+            if (!$is_valid_transaction_code) {
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect SCS pin or TAN (transaction code).", "error");
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                return;
+            }
 
-                /*Put the transaction on hold if the transfer amount > 10000.*/
-                if ($amount > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
-                    $model->setIsOnHold(1);
-                } else { /*Else, close the transaction by auto-approval.*/
-                    $model->setIsClosed(1);
-                }
+            $code_exists = $this->get("transaction_code")->isCodeExists($transaction_code);
 
-                // add to transaction repository
-                if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction_code)) {
-                    // after successful transfer , redirect to make_transfer page
-                    $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
-                    $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
-                    return;
-                }
-            } else {
+            /*Return if the transaction code is already used*/
+            if ($code_exists) {
                 $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
                 $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                 return;
             }
+        } else {
+            $is_valid_transaction_code = $this->get("transaction_code")->isCodePristine($customer_id, $transaction_code);
+
+            /*Return if the transaction code is invalid*/
+            if (!$is_valid_transaction_code) {
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                return;
+            }
+        }
+        $model->setTransactionDate(date("Y-m-d H:i:s"));
+        $model->setFromAccountId($from_account_id);
+        $model->setFromAccountName($customer_name);
+
+        /*Put the transaction on hold if the transfer amount > 10000.*/
+        if ($amount > _TRANSFER_LIMIT_FOR_AUTO_APPROVAL ){
+            $model->setIsOnHold(1);
+        } else { /*Else, close the transaction by auto-approval.*/
+            $model->setIsClosed(1);
+        }
+
+        // add to transaction repository
+        if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction_code)) {
+            // after successful transfer , redirect to make_transfer page
+            $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+            return;
         }
 	}
 

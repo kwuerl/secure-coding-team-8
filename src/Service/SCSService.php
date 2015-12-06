@@ -42,18 +42,32 @@ class SCSService {
         return false;
 	}
 	/**
-     * Checks if the scs pin is valid for the specified customer
+     * Returns the scs pin for the specified customer
      *
      * @param int $customer_id    The customer id
-     * @param string $pin    The PIN to check
      *
-     * @return boolean    Returns true, if pin is valid for the specified customer and false otherwise
+     * @return string|boolean    Returns the pin for the specified customer, if found and false otherwise
      */
-    public function validatePin($customer_id, $pin) {
-        $db_result = $this->repository->findOne(array("customer_id" => $customer_id, "pin" => $pin));
+    public function getPin($customer_id) {
+        $db_result = $this->repository->findOne(array("customer_id" => $customer_id));
         if ($db_result) {
-            return true;
+            return $db_result->getPin();
         }
         return false;
+    }
+    /**
+     * Generates a TAN code for the customer based on the provided details.
+     *
+     * @param int $recipientAccountId   Recipient Account ID
+     * @param float $amount             Amount
+     * @param string $scsPin            SCS Pin
+     *
+     * @return string  Returns the generated TAN code
+     */
+    public function generateTan($recipientAccountId, $amount, $scsPin) {
+        $utf = utf8_encode(strval($recipientAccountId) . strval($amount) . strval($scsPin));
+        $hash = hash("sha512", $utf);
+
+        return substr($hash, 0, 15);
     }
 }
