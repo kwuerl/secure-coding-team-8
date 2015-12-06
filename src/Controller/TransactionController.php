@@ -15,6 +15,10 @@ class TransactionController extends Controller {
 
 		// create the FormHelper
         $helper = new \Helper\FormHelper("make_transfer");
+
+        // make transfer via file upload
+        $helper2 = new \Helper\FormHelper("make_transfer_via_file_upload");
+
 		//add one field
 		$helper->addField("to_account_id", "text", array(
 			array("required", "Beneficiary Account No. is required"),
@@ -46,12 +50,9 @@ class TransactionController extends Controller {
 		if ($helper->processRequest($request)) {
 			//try to validate
 			if ($helper->validate()) {
-				return $this->processSingleTransfer($request, $helper, $customer);
+				return $this->processSingleTransfer($request, $helper, $helper2, $customer);
 			}
 		}
-
-		// make transfer via file upload
-		$helper2 = new \Helper\FormHelper("make_transfer_via_file_upload");
 
 	    $helper2->addField("transaction_code", "text", array(
             array("required", "Transaction code is required"),
@@ -64,7 +65,7 @@ class TransactionController extends Controller {
 		if ($helper2->processRequest($request)) {
 			//try to validate
 			if ($helper2->validate()) {
-				return $this->processBatchTransfer($request, $helper2, $customer);
+				return $this->processBatchTransfer($request, $helper, $helper2, $customer);
 			}
 		}
 		// render the form
@@ -74,7 +75,7 @@ class TransactionController extends Controller {
 		));
 	}
 
-	private function processSingleTransfer($request, $helper, $customer) {
+	private function processSingleTransfer($request, $helper, $helper2, $customer) {
         $requestVar = $request->getData('make_transfer');
         $transaction_code = $requestVar['transaction_code'];
         $amount = $requestVar['amount'];
@@ -82,7 +83,7 @@ class TransactionController extends Controller {
         /*Return if the amount entered is invalid(i.e., negative or 0)*/
         if( $amount <= 0 ){
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect amount for the transfer.", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
 
@@ -103,19 +104,19 @@ class TransactionController extends Controller {
         /*Return if recipient account is same as own account.*/
         if ($model->getToAccountId() === $from_account_id) {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "Recipient Account same as own account.", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
         /*Return if recipient account does not exist*/
         if (!$to_account) {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "Recipient Account does not exist.", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
         /*Return if customer account does not have sufficient funds*/
         if ($amount > $from_account_balance) {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "Insufficient funds for the transfer.", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
 
@@ -142,19 +143,19 @@ class TransactionController extends Controller {
                 if ($this->get('transaction_repository')->makeTransfer($model, $account_repo, $from_account, $to_account, $transaction_code_repo, $is_valid_transaction_code)) {
                     // after successful transfer , redirect to make_transfer page
                     $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
-                    $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+                    $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                     return;
                 }
             } else {
                 $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
-                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
                 return;
             }
         }
 	}
 
-	private function processBatchTransfer($request, $helper2, $customer) {
-	    $requestVar = $request->getData('make_transfer');
+	private function processBatchTransfer($request, $helper, $helper2, $customer) {
+	    $requestVar = $request->getData('make_transfer_via_file_upload');
         $transaction_code = $requestVar['transaction_code'];
 
         $upload_dir = $_SERVER['DOCUMENT_ROOT'].'/tmp/';
@@ -176,7 +177,7 @@ class TransactionController extends Controller {
         /*Return if the TAN code is invalid*/
         if (!$is_valid_transaction_code) {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
 
@@ -215,18 +216,14 @@ class TransactionController extends Controller {
             if ($return_var == 0) {
                 $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
             } else {
-                if (in_array("Error in connecting to the database.", $output)) {
-                    $this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with connecting to the database. Please try again later.", "error");
-                } else {
-                    $this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with your transaction. Please try again later.", "error");
-                }
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, $output[0], "error");
             }
             unlink($uploaded_file_name);
             $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         } else {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper));
+            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
     }

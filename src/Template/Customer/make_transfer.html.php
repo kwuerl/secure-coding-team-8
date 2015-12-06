@@ -93,7 +93,7 @@
                                 <input type="hidden" name="MAX_FILE_SIZE" value="1024" />
                                 <div class="form-group has-feedback <?php if (sizeof($transaction_code_errors) > 0) echo "has-error"; ?>">
                                     <label for="make_transfer_via_file_upload[transaction_code]">Transaction Code</label>
-                                    <input type="text" class="form-control" name="make_transfer_via_file_upload[transaction_code]" value="<?= $t->s($t->get('form')->getValue('transaction_code')); ?>" required maxlength='15'>
+                                    <input type="text" class="form-control" name="make_transfer_via_file_upload[transaction_code]" value="<?= $t->s($t->get('form2')->getValue('transaction_code')); ?>" required maxlength='15'>
                                     <?php if (sizeof($transaction_code_errors) > 0) { ?>
                                     <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $transaction_code_errors[0] ?><br></p>
                                     <?php } ?>
