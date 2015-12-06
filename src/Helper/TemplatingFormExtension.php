@@ -58,6 +58,11 @@ class TemplatingFormExtension extends TemplatingHelperExtension {
 			echo " ".$name."=\"".$option."\"";
 		}
 		echo ">";
+		if($helper->useCSRF() == true) {
+			
+			$token = $helper->createCSRF();
+			echo '<input type="hidden" name="'.$helper->getName().'['.$token["key"].']" value="'.$token["token"].'" />';
+		}
 		$closure($t);
 		// TODO: CSRF things
 		echo "</form>";

@@ -20,7 +20,12 @@ $service_container->register("flash_bag", "Service\\FlashBagService", array(
 ));
 
 $service_container->register("csrf", "Service\\CSRFService", array(
-	array("type"=>"service", "value"=>"session")
+	array("type"=>"service", "value"=>"session"),
+	array("type"=>"service", "value"=>"random")
+));
+
+$service_container->register("form", "Service\\FormService", array(
+	array("type"=>"service", "value"=>"csrf")
 ));
 
 $service_container->register("db_wrapper", "Service\\DbWrapperService", array(

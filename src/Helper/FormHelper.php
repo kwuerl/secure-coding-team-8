@@ -15,12 +15,21 @@ class FormHelper {
 	private $method;
 	private $uniq_name;
 	private $error_messages = array();
+	private $csrf_service;
+	private $use_csrf;
 	/**
 	 * Constructor
 	 */
-	function __construct($uniq_name, $method="POST") {
+	function __construct($uniq_name, $method="POST", $csrf_service = null) {
 		$this->method = $method;
 		$this->uniq_name = $uniq_name;
+		if($csrf_service != null) {
+			$this->csrf_service = $csrf_service;
+			$this->use_csrf = true;
+		} else {
+			$this->use_csrf = false;
+		}
+		
 	}
 	/**
 	 * Adds a form field to the FormHelper
@@ -76,6 +85,8 @@ class FormHelper {
 
 		$error_messages = array();
 
+
+
 		// loop through all field configs
 		foreach ($this->field_configs as $name=>$config) {
 
@@ -105,7 +116,48 @@ class FormHelper {
 			// save the field value
 			$this->field_values[$name] = $field_raw;
 		}
+
+		if($this->use_csrf == true) {
+			$key = $this->csrf_service->getContextKey("form_default");
+			if($key !== false) {
+				if(array_key_exists($key, $data)) {
+					$this->field_values[$key] = $data[$key];
+				}
+			}
+		}
+
 		return true;
+	}
+	/**
+	 * Checks the current form for the CSRF Token field
+	 *
+	 * @return boolean
+	 */
+	public function checkCSRF() {
+		if($this->use_csrf == true) {
+			$key = $this->csrf_service->getContextKey("form_default");
+			if(!$key) {
+				return false;
+			}
+			if(!array_key_exists($key, $this->field_values)) {
+				return false;
+			}
+			if(!$this->csrf_service->checkCSRFToken("form_default", $this->field_values[$key])) {
+				return false;
+			}
+		}
+		return true;
+	}
+	/**
+	 * Create a CSRF Token
+	 *
+	 * @return array | boolean
+	 */
+	public function createCSRF() {
+		if($this->use_csrf == true) {
+			return $this->csrf_service->createCSRFToken("form_default");
+		}
+		return false;
 	}
 	/**
 	 * Runs all validations on the Request
@@ -117,6 +169,13 @@ class FormHelper {
 		$validation_helper_reflec = new \ReflectionClass('Helper\ValidationHelper'); 
 
 		$error_messages = array();
+
+		// check the csrf token
+		if(!$this->checkCSRF()) {
+			echo "NOOO";
+			$this->error_messages[] = "The CSRF token could not be verified!";
+			return false;
+		}
 
 		// loop through all field configs
 		foreach ($this->field_configs as $name=>$config) {
@@ -228,6 +287,14 @@ class FormHelper {
 	 */
 	public function getMethod() {
 		return $this->method;
+	}
+	/**
+	 * Returns true if the Helper uses CSRF tokens
+	 *
+	 * @return string
+	 */
+	public function useCSRF() {
+		return $this->use_csrf;
 	}
 	/**
 	 * Returns all form errors

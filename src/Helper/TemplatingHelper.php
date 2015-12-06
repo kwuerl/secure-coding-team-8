@@ -133,6 +133,6 @@ class TemplatingHelper {
      */
     public function s($input) {
     	// TODO: sanitize input for use in template
-    	return $input;
+    	return htmlspecialchars($input);
     }
 }

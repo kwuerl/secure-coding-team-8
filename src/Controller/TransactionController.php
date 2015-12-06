@@ -200,7 +200,7 @@ class TransactionController extends Controller {
             return;
         }
 
-        $random_file_name = str_replace("/", "", \Service\RandomSequenceGeneratorService::getString(10));
+        $random_file_name = str_replace("/", "", $this->get("random")->getString(10));
         $uploaded_file_name = $upload_dir.$random_file_name.".txt";
 
         // rename uploaded file name if already exists

@@ -13,7 +13,7 @@ class LoginController extends Controller {
 		if($this->get("auth")->redirectCurrentUserToUserHome()) return;
 		if($msg = $this->get("auth")->getLastMessage()) $this->get("flash_bag")->add("Authentification failed", $msg, "error");
 		// create the FormHelper
-		$helper = new \Helper\FormHelper("form_login");
+		$helper = $this->get("form")->getCSRFFormHelper("form_login");
 
 		//add one field
 		$helper->addField("email", "text", array(
