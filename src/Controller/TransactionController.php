@@ -125,7 +125,7 @@ class TransactionController extends Controller {
             $scs_pin = $this->get("scs")->getPin($customer_id);
 
             /*Generate the TAN for the transaction based on the entered details and the customer's SCS pin*/
-            $scs_transaction_code = $this->get("scs")->generateTan($model->getToAccountId(), $model->getAmount(), $scs_pin);
+            $scs_transaction_code = $this->get("scs")->generateTan(strval($model->getToAccountId()) . strval($model->getAmount()) . strval($scs_pin));
             $is_valid_transaction_code = ($scs_transaction_code === $transaction_code) ? $transaction_code : false;
 
             /*Return if the SCS pin or transaction code is invalid*/
