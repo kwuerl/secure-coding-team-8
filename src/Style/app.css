@@ -124,7 +124,7 @@ form[name='approve_transaction']{
 
 
 .trans-history-transaction-date{
-    width : 7%;
+    width : 10%;
 }
 
 .trans-history-amount{
@@ -144,7 +144,7 @@ form[name='approve_transaction']{
 }
 
 .trans-history-remarks{
-    width : 26%;
+    width : 23%;
 }
 
 .content-header > h1{
