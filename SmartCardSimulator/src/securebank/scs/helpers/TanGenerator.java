@@ -15,8 +15,8 @@ public class TanGenerator {
 		
 	}
 	
-	public String getTan(String recipient, String amount, String scsPin) {
-		String hash = generateHash(recipient + amount + scsPin);
+	public String getTan(String input) {
+		String hash = generateHash(input);
 		return getTanFromHash(hash);
 	}
 	
