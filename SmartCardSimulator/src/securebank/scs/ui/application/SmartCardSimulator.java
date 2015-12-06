@@ -143,7 +143,7 @@ public class SmartCardSimulator {
         filePicker.setMode(JFilePicker.MODE_OPEN);
         filePicker.setBounds(12, 55, 409, 71);
         
-        //filePicker.addFileTypeFilter(".txt", "Text Files");
+        filePicker.addFileTypeFilter(".txt", "Text Files");
         panelBatch.add(filePicker);
         
         JButton btnGenerateTanForBatch = new JButton("Generate TAN");
