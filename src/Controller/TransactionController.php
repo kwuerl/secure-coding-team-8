@@ -191,14 +191,6 @@ class TransactionController extends Controller {
 
         $customer_id = $customer->getId();
         $customer_name = $customer->getFirstName() . " " . $customer->getLastName();
-        $is_valid_transaction_code = $this->get("transaction_code")->isCodePristine($customer_id, $transaction_code);
-
-        /*Return if the TAN code is invalid*/
-        if (!$is_valid_transaction_code) {
-            $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
-            return;
-        }
 
         $random_file_name = str_replace("/", "", \Service\RandomSequenceGeneratorService::getString(10));
         $uploaded_file_name = $upload_dir.$random_file_name.".txt";
@@ -216,34 +208,72 @@ class TransactionController extends Controller {
             $i++;
         } while (file_exists($uploaded_file_name));
 
-        /*Check if the file was uploaded successfully*/
-        if ($file['tmp_name'] !== "" && move_uploaded_file($file['tmp_name'], $uploaded_file_name)) {
-            $customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
-
-            $shell_command = $_SERVER['DOCUMENT_ROOT'] .
-                "/../textparser/textparser " .
-                escapeshellarg($uploaded_file_name) . " " .
-                escapeshellarg($customer_id) . " " .
-                escapeshellarg($customer_name) . " " .
-                escapeshellarg($customer_account_id) . " " .
-                escapeshellarg($transaction_code) . " " .
-                escapeshellarg(_MYSQL_HOST) . " " .
-                escapeshellarg(_MYSQL_USER) . " " .
-                escapeshellarg(_MYSQL_PASSWORD) . " " .
-                escapeshellarg(_MYSQL_DATABASE);
-            exec($shell_command, $output, $return_var);
-            if ($return_var == 0) {
-                $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
-            } else {
-                $this->get("flash_bag")->add(_OPERATION_FAILURE, $output[0], "error");
-            }
-            unlink($uploaded_file_name);
-            $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
-            return;
-        } else {
+        /*Return if the file was not uploaded successfully.*/
+        if (($file['tmp_name'] === "") || !move_uploaded_file($file['tmp_name'], $uploaded_file_name)) {
             $this->get("flash_bag")->add(_OPERATION_FAILURE, "There was an error with uploading the file. Please try again later.", "error");
             $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
             return;
         }
+
+        /*Get contents of the file*/
+        $file_content = file_get_contents($uploaded_file_name);
+
+        /*Check if SCS is enabled for the customer*/
+        if ((int)$customer->getTanMethod() === _TAN_METHOD_SCS) {
+            $scs_pin = $this->get("scs")->getPin($customer_id);
+
+            /*Generate the TAN for the transaction based on the uploaded file and the customer's SCS pin*/
+            $scs_transaction_code = $this->get("scs")->generateTan(strval($scs_pin) . trim($file_content));
+
+            $is_valid_transaction_code = ($scs_transaction_code === $transaction_code) ? $transaction_code : false;
+
+            /*Return if the SCS pin or transaction code is invalid*/
+            if (!$is_valid_transaction_code) {
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect SCS pin or TAN (transaction code).", "error");
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                return;
+            }
+
+            $code_exists = $this->get("transaction_code")->isCodeExists($transaction_code);
+
+            /*Return if the transaction code is already used*/
+            if ($code_exists) {
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                return;
+            }
+        } else {
+            $is_valid_transaction_code = $this->get("transaction_code")->isCodePristine($customer_id, $transaction_code);
+
+            /*Return if the transaction code is invalid*/
+            if (!$is_valid_transaction_code) {
+                $this->get("flash_bag")->add(_OPERATION_FAILURE, "Incorrect TAN (transaction code).", "error");
+                $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+                return;
+            }
+        }
+
+        $customer_account_id = $this->get('account_repository')->findOne(array("customer_id" => $customer_id))->getAccountId();
+
+        $shell_command = $_SERVER['DOCUMENT_ROOT'] .
+            "/../textparser/textparser " .
+            escapeshellarg($uploaded_file_name) . " " .
+            escapeshellarg($customer_id) . " " .
+            escapeshellarg($customer_name) . " " .
+            escapeshellarg($customer_account_id) . " " .
+            escapeshellarg($transaction_code) . " " .
+            escapeshellarg(_MYSQL_HOST) . " " .
+            escapeshellarg(_MYSQL_USER) . " " .
+            escapeshellarg(_MYSQL_PASSWORD) . " " .
+            escapeshellarg(_MYSQL_DATABASE);
+        exec($shell_command, $output, $return_var);
+        if ($return_var == 0) {
+            $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
+        } else {
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $output[0], "error");
+        }
+        unlink($uploaded_file_name);
+        $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
+        return;
     }
 }

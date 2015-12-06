@@ -189,15 +189,14 @@ public class SmartCardSimulator {
     			try {
 					BufferedReader reader = new BufferedReader(new FileReader(filePath));
 					String fileContent = "", line;
-					while((line = reader.readLine()) != null) {
-						System.out.println(line);
+					while((line = reader.readLine()) != null) {						
 						fileContent += line;
 					}
 					if (reader != null) {
 						reader.close();
 					}
 					tanGenerator = new TanGenerator();
-					String tan = tanGenerator.getTan(scsPin + fileContent);
+					String tan = tanGenerator.getTan(scsPin + fileContent.trim());
 					displayTan("_BATCH", tan);
 				} catch (FileNotFoundException e1) {					
 					e1.printStackTrace();
