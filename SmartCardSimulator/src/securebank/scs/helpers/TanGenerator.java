@@ -22,7 +22,6 @@ public class TanGenerator {
 	
 	private static String getTanFromHash(String hash) {
 		hash = hash.substring(0, 15);				
-		System.out.println("tan is " + hash);
 		return hash;
 	}
 
@@ -38,7 +37,6 @@ public class TanGenerator {
 			e.printStackTrace();
 		}
 		byte messageDigest[] = digest.digest();
-		System.out.println("digest =" + digest.digest().toString());
 		/*Create Hex String*/
 		StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < messageDigest.length; i++) {

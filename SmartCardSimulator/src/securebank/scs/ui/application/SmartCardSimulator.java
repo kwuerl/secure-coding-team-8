@@ -120,10 +120,6 @@ public class SmartCardSimulator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (isValidSingleTransaction()) {
-					System.out.println(fieldRecipientAccountId.getText());
-					System.out.println(fieldAmount.getText());
-					System.out.println(fieldScsPin.getText());
-					
 					tanGenerator = new TanGenerator();
 					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText() + fieldAmount.getText() + fieldScsPin.getText());
 					displayTan("_SINGLE", tan);
