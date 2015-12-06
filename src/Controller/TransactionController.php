@@ -21,12 +21,12 @@ class TransactionController extends Controller {
 
 		//add one field
 		$helper->addField("to_account_id", "text", array(
-			array("required", "Beneficiary Account No. is required"),
+			array("required", "Recipient Account No. is required"),
 		    array("number", "Only numbers are allowed"),
 		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("to_account_name", "name", array(
-			array("required", "Account Holder Name is required"),
+			array("required", "Recipient Name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim", "stripTags"), "");
 
