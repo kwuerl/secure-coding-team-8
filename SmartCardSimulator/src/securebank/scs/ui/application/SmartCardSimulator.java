@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+import securebank.scs.helpers.TanGenerator;
 import securebank.scs.ui.components.JFilePicker;
 
 import java.awt.Color;
@@ -34,7 +35,7 @@ public class SmartCardSimulator {
 	private JLabel lblMessageBatch;
 
 	/**
-	 * Create the application.
+	 * Initialize the smart card simulator.
 	 */
 	public SmartCardSimulator() {
 		initialize();
@@ -67,7 +68,7 @@ public class SmartCardSimulator {
 		tabbedPane.setBounds(12, 12, 426, 248);
 		
 		frame.getContentPane().add(tabbedPane);
-		
+
 		JPanel panelSingle = new JPanel();
 		panelSingle.setBackground(Color.WHITE);
 		tabbedPane.addTab("Single Transaction", null, panelSingle, null);
@@ -113,7 +114,11 @@ public class SmartCardSimulator {
 				if (isValidSingleTransaction()) {
 					System.out.println(fieldRecipientAccountId.getText());
 					System.out.println(fieldAmount.getText());
-					System.out.println(fieldScsPin.getText());	
+					System.out.println(fieldScsPin.getText());
+					
+					TanGenerator tanGenerator = new TanGenerator();
+					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText(), fieldAmount.getText(), fieldScsPin.getText());
+					displayTan(tan);
 				}				
 			}
 		});
@@ -219,6 +224,12 @@ public class SmartCardSimulator {
 	 */
 	private void setMessage(String message) {
 		lblMessageSingle.setText(message);
+	}
+	/**
+	 * Displays the tan.
+	 */
+	private void displayTan(String tan) {
+		lblMessageSingle.setText("Your TAN is " + tan);		
 	}
 	
 	/**
