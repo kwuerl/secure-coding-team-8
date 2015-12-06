@@ -18,7 +18,7 @@ public class Main {
 			public void run() {
 				try {
 					SmartCardSimulator window = new SmartCardSimulator();
-					window.frame.setVisible(true);
+					window.frmSecureBank.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
