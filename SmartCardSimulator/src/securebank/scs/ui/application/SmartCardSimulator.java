@@ -24,6 +24,7 @@ import securebank.scs.ui.components.JFilePicker;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JTextPane;
 
 public class SmartCardSimulator {
 
@@ -31,8 +32,8 @@ public class SmartCardSimulator {
 	private JTextField fieldRecipientAccountId;
 	private JTextField fieldAmount;
 	private JTextField fieldScsPin;
-	private JLabel lblMessageSingle;
-	private JLabel lblMessageBatch;
+	private JTextPane textPaneSingle;
+	private JTextPane textPaneBatch;
 
 	/**
 	 * Initialize the smart card simulator.
@@ -125,9 +126,12 @@ public class SmartCardSimulator {
 		btnGenerateTanForSingle.setBounds(130, 155, 154, 25);
 		panelSingle.add(btnGenerateTanForSingle);
 		
-		lblMessageSingle = new JLabel("");
-		lblMessageSingle.setBounds(23, 190, 351, 15);
-		panelSingle.add(lblMessageSingle);
+		textPaneSingle = new JTextPane();
+		textPaneSingle.setText("");
+		textPaneSingle.setBounds(23, 192, 300, 20);
+		textPaneSingle.setContentType("text/html");
+		textPaneSingle.setEditable(false);
+		panelSingle.add(textPaneSingle);
 		
 		JPanel panelBatch = new JPanel();
 		panelBatch.setBackground(Color.WHITE);
@@ -152,19 +156,22 @@ public class SmartCardSimulator {
         		String filePath = filePicker.getSelectedFilePath();
         		if (filePath.trim().isEmpty()) {
         			//markFieldForError(filePicker);
-        			lblMessageBatch.setText("Please choose a file.");
+        			textPaneBatch.setText("Please choose a file.");
         		} else {
-        			lblMessageBatch.setText("");
+        			textPaneBatch.setText("");
         			System.out.println(filePath);	
         		}
         	}
         });
-        btnGenerateTanForBatch.setBounds(130, 155, 154, 25);
+        btnGenerateTanForBatch.setBounds(23, 192, 300, 20);
         panelBatch.add(btnGenerateTanForBatch);
         
-        lblMessageBatch = new JLabel("");
-        lblMessageBatch.setBounds(23, 190, 351, 15);
-        panelBatch.add(lblMessageBatch);
+        textPaneBatch = new JTextPane();
+        textPaneSingle.setText("");
+        textPaneBatch.setBounds(130, 165, 300, 20);
+        textPaneSingle.setContentType("text/html");
+		textPaneSingle.setEditable(false);
+        panelBatch.add(textPaneBatch);
 	}
 	
 	/**
@@ -223,13 +230,13 @@ public class SmartCardSimulator {
 	 * Displays the specified message.
 	 */
 	private void setMessage(String message) {
-		lblMessageSingle.setText(message);
+		textPaneSingle.setText(message);
 	}
 	/**
 	 * Displays the tan.
 	 */
 	private void displayTan(String tan) {
-		lblMessageSingle.setText("Your TAN is " + tan);		
+		textPaneSingle.setText("Your TAN is <b>" + tan + "</b>");		
 	}
 	
 	/**
