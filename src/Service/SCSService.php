@@ -63,6 +63,7 @@ class SCSService {
      * @return string  Returns the generated TAN code
      */
     public function generateTan($input) {
+        $input = preg_replace('/\s+/', '', $input);
         $utf = utf8_encode($input);
         $hash = hash("sha512", $utf);
 

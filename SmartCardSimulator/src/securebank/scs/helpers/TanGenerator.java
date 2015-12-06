@@ -16,12 +16,13 @@ public class TanGenerator {
 	}
 	
 	public String getTan(String input) {
+		input = input.replaceAll("\\s+","");
 		String hash = generateHash(input);
 		return getTanFromHash(hash);
 	}
 	
 	private static String getTanFromHash(String hash) {
-		hash = hash.substring(0, 15);				
+		hash = hash.substring(0, 15);
 		return hash;
 	}
 
