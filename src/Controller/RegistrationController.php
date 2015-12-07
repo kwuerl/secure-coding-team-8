@@ -92,8 +92,8 @@ class RegistrationController extends Controller {
 						// send confirmation email
 						$this->get("email")->sendMail(
 							$model->getEmail(),
-							"Thank you for your registration",
-							"Dear ".$model->getFirstName()." ".$model->getLastName().",\nthank you for your registration at SecureBank.\nAs soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.\n\nHave a nice day,\nyour SecureBank"
+							"Thank you for your registration at SecureBank",
+							"Dear ".$model->getFirstName()." ".$model->getLastName().",<br/><br/>Thank you for your registration at SecureBank.<br/>As soon as our employees have checked your registration, you will get another e-mail containing further information on how to proceed.<br/><br/>Have a nice day.<br/><br/> Your SecureBank"
 						);
 
 						// set flash message and redirect
@@ -180,8 +180,8 @@ class RegistrationController extends Controller {
 						// send confirmation email
 						$this->get("email")->sendMail(
 							$model->getEmail(),
-							"Thank you for your application",
-							"Dear ".$model->getFirstName()." ".$model->getLastName().",\nthank you for your application for a job at SecureBank.\nWe will look into your application as soon as possible and we will get back to you.\n\nHave a nice day,\nyour SecureBank"
+							"Thank you for your application at SecureBank",
+							"Dear ".$model->getFirstName()." ".$model->getLastName().",<br/><br/>Thank you for your application for a job at SecureBank.<br/>We will look into your application as soon as possible and get back to you.<br/><br/>Have a nice day.<br/><br/>Your SecureBank"
 						);
 
 						// set flash message and redirect

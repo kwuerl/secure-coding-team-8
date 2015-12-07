@@ -3,6 +3,11 @@ RewriteBase /
 
 Options -Indexes
 
+Header set X-Frame-Options DENY
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
