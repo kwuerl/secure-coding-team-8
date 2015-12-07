@@ -13,6 +13,7 @@ var secureBank = {
                 // var source = $(this).attr("data-source");
                 $(this).dataTable({
                     "paging": true,
+                    "aaSorting": [],
                     "lengthChange": false,
                     "ordering": true,
                     "info": true,
@@ -30,6 +31,7 @@ var secureBank = {
                 // var source = $(this).attr("data-source");
                 $(this).dataTable({
                     "paging": true,
+                    "aaSorting": [],
                     "lengthChange": false,
                     "ordering": true,
                     "info": true,

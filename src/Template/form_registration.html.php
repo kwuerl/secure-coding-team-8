@@ -1,7 +1,7 @@
 <?php $t->extend("base.html.php"); ?>
 <?php $t->set("is_login", true); ?>
 <?php $t->block("body", function ($t) { ?>
-<div class="login-box">
+<div class="login-box registration-form">
     <div class="login-logo">
         <a><b>Secure</b>Bank</a>
     </div>
@@ -21,73 +21,83 @@
             $password_repeat_errors = $t->get("form")->getError("password_repeat");
             $tan_method_errors = $t->get("form")->getError("tan_method");
             ?>
-        <div class="form-group has-feedback <?php if (sizeof($first_name_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[first_name]">First name</label>
-            <input type="text" class="form-control" name="form_registration[first_name]" value="<?= $t->s($t->get('form')->getValue('first_name')); ?>" required>
-            <?php if (sizeof($first_name_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $first_name_errors[0] ?><br></p>
-            <?php } ?>
+        <div class="row">
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($first_name_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[first_name]">First name</label>
+                <input type="text" class="form-control" name="form_registration[first_name]" value="<?= $t->s($t->get('form')->getValue('first_name')); ?>" required>
+                <?php if (sizeof($first_name_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $first_name_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($last_name_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[last_name]">Last name</label>
+                <input type="text" class="form-control" name="form_registration[last_name]" value="<?= $t->s($t->get('form')->getValue('last_name')); ?>" required>
+                <?php if (sizeof($last_name_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $last_name_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
         </div>
-        <div class="form-group has-feedback <?php if (sizeof($last_name_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[last_name]">Last name</label>
-            <input type="text" class="form-control" name="form_registration[last_name]" value="<?= $t->s($t->get('form')->getValue('last_name')); ?>" required>
-            <?php if (sizeof($last_name_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $last_name_errors[0] ?><br></p>
-            <?php } ?>
+        <div class="row">
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($address_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[address]">Address</label>
+                <input type="text" class="form-control" name="form_registration[address]" value="<?= $t->s($t->get('form')->getValue('address')); ?>" required>
+                <?php if (sizeof($address_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $address_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
+             <div class="col-xs-6 form-group has-feedback <?php if (sizeof($city_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[city]">City</label>
+                <input type="text" class="form-control" name="form_registration[city]" value="<?= $t->s($t->get('form')->getValue('city')); ?>" required>
+                <?php if (sizeof($city_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $city_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
         </div>
-        <div class="form-group has-feedback <?php if (sizeof($address_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[address]">Address</label>
-            <input type="text" class="form-control" name="form_registration[address]" value="<?= $t->s($t->get('form')->getValue('address')); ?>" required>
-            <?php if (sizeof($address_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $address_errors[0] ?><br></p>
-            <?php } ?>
+        <div class="row">
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($postal_code_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[postal_code]">Postal code</label>
+                <input type="text" class="form-control" name="form_registration[postal_code]" value="<?= $t->s($t->get('form')->getValue('postal_code')); ?>" required>
+                <?php if (sizeof($postal_code_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $postal_code_errors[0] ?><br></p>
+                <?php } ?>
+             </div>
+             <div class="col-xs-6 form-group has-feedback <?php if (sizeof($email_errors) > 0) echo "has-error"; ?>">
+                 <label for="form_registration[email]">E-Mail</label>
+                 <input type="email" class="form-control" name="form_registration[email]" value="<?= $t->s($t->get('form')->getValue('email')); ?>" required>
+                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                 <?php if (sizeof($email_errors) > 0) { ?>
+                 <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $email_errors[0] ?><br></p>
+                 <?php } ?>
+             </div>
         </div>
-        <div class="form-group has-feedback <?php if (sizeof($postal_code_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[postal_code]">Postal code</label>
-            <input type="text" class="form-control" name="form_registration[postal_code]" value="<?= $t->s($t->get('form')->getValue('postal_code')); ?>" required>
-            <?php if (sizeof($postal_code_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $postal_code_errors[0] ?><br></p>
-            <?php } ?>
+        <div class="row">
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[_password_plain]">Password</label>
+                <input type="password" class="form-control" name="form_registration[_password_plain]" pattern="(?!.*[äöüÄÖÜ\s%&/~§<>]).+" title="Only letters, numbers and '-_$^?\+#*' allowed" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <?php if (sizeof($password_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
+            <div class="col-xs-6 form-group has-feedback <?php if (sizeof($password_repeat_errors) > 0) echo "has-error"; ?>">
+                <label for="form_registration[password_repeat]">Repeat your password</label>
+                <input type="password" class="form-control" name="form_registration[password_repeat]" value="<?= $t->s($t->get('form')->getValue('password_repeat')); ?>" required>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <?php if (sizeof($password_repeat_errors) > 0) { ?>
+                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_repeat_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
         </div>
-        <div class="form-group has-feedback <?php if (sizeof($city_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[city]">City</label>
-            <input type="text" class="form-control" name="form_registration[city]" value="<?= $t->s($t->get('form')->getValue('city')); ?>" required>
-            <?php if (sizeof($city_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $city_errors[0] ?><br></p>
-            <?php } ?>
-        </div>
-        <div class="form-group has-feedback <?php if (sizeof($email_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[email]">E-Mail</label>
-            <input type="email" class="form-control" name="form_registration[email]" value="<?= $t->s($t->get('form')->getValue('email')); ?>" required>
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            <?php if (sizeof($email_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $email_errors[0] ?><br></p>
-            <?php } ?>
-        </div>
-        <div class="form-group has-feedback <?php if (sizeof($password_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[_password_plain]">Password</label>
-            <input type="password" class="form-control" name="form_registration[_password_plain]" pattern="(?!.*[äöüÄÖÜ\s%&/~§<>]).+" title="Only letters, numbers and '-_$^?\+#*' allowed" value="<?= $t->s($t->get('form')->getValue('_password_plain')); ?>" required>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            <?php if (sizeof($password_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_errors[0] ?><br></p>
-            <?php } ?>
-        </div>
-        <div class="form-group has-feedback <?php if (sizeof($password_repeat_errors) > 0) echo "has-error"; ?>">
-            <label for="form_registration[password_repeat]">Repeat your password</label>
-            <input type="password" class="form-control" name="form_registration[password_repeat]" value="<?= $t->s($t->get('form')->getValue('password_repeat')); ?>" required>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            <?php if (sizeof($password_repeat_errors) > 0) { ?>
-            <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $password_repeat_errors[0] ?><br></p>
-            <?php } ?>
-        </div>
-         <div class="form-group has-feedback <?php if (sizeof($tan_method_errors) > 0) echo "has-error"; ?>">
-            <label for="tan_by_email">
-            <input type="radio"  id='tan_by_email' name="form_registration[tan_method]" value="1" checked>&nbsp;&nbsp;I would like to receive TANs by Email.</label>
-            <label for="tan_by_scs">
-            <input type="radio" id="tan_by_scs" name="form_registration[tan_method]" value="2" >&nbsp;&nbsp;I would like to use the TANs generated by the secure Smart Card Simulator.</label>
-            <?php if (sizeof($tan_method_errors) > 0) { ?>
-                <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $tan_method_errors[0] ?><br></p>
-            <?php } ?>
+         <div class="row">
+             <div class="col-xs-12 form-group has-feedback <?php if (sizeof($tan_method_errors) > 0) echo "has-error"; ?>">
+                <label for="tan_by_email">
+                <input type="radio"  id='tan_by_email' name="form_registration[tan_method]" value="1" checked>&nbsp;&nbsp;I would like to receive TANs by Email.</label>
+                <label for="tan_by_scs">
+                <input type="radio" id="tan_by_scs" name="form_registration[tan_method]" value="2" >&nbsp;&nbsp;I would like to use the TANs generated by the secure Smart Card Simulator.</label>
+                <?php if (sizeof($tan_method_errors) > 0) { ?>
+                    <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $tan_method_errors[0] ?><br></p>
+                <?php } ?>
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-12">

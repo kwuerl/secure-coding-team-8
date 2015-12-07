@@ -105,10 +105,10 @@
                                     <td>
                                         <?= $t->s($transaction->getId()); ?>
                                     </td>
-                                    <td>
+                                    <td class='text-center'>
                                         <?= $t->s($accountId); ?>
                                     </td>
-                                    <td>
+                                    <td class='text-center'>
                                         <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                     </td>
                                     <td class="text-right">

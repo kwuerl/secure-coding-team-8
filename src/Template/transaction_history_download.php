@@ -41,9 +41,9 @@ switch( $invokedFrom) {
                                      $pdfTitle ='Transaction History';
                                      $filename = 'Transaction_History_'.time().'.pdf';
                                      $transactionStatus = array(
-                                                             '0' => 'COMPLETED',
-                                                             '1' => 'ON HOLD',
-                                                             '2' => "REJECTED"
+                                                             '0' => 'Approved',
+                                                             '1' => 'On Hold',
+                                                             '2' => "Rejected"
                                                              );
                                      break;
      case _CUSTOMER_DETAILS_PENDING_TRANSACTION :   $accountInfo = $t->get("accountInfo");
@@ -56,8 +56,8 @@ switch( $invokedFrom) {
                                                            "Amount"               => "50" ,
 
                                                     );
-                                                    $pdfTitle ="Customer's Pending Transaction";
-                                                    $filename = 'Customer_Pending_transaction'.time().'.pdf';
+                                                    $pdfTitle ="Pending Transactions";
+                                                    $filename = 'Customer_Pending_Transactions'.time().'.pdf';
                                                     break;
     case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :    $accountInfo = $t->get("accountInfo");
                                                       $customer = $t->get("customer");
@@ -73,8 +73,8 @@ switch( $invokedFrom) {
                                                              "Remarks"              => "25" ,
 
                                                       );
-                                                      $pdfTitle ="Customer's Completed Transaction";
-                                                      $filename = 'Customer_Completed_transaction'.time().'.pdf';
+                                                      $pdfTitle ="Completed Transactions";
+                                                      $filename = 'Customer_Completed_Transactions'.time().'.pdf';
                                                       break;
     case _PENDING_TRANSACTIONS                   :    $transactionList = $t->get("transactionList");
                                                       $headers = array(
@@ -106,9 +106,9 @@ switch( $invokedFrom) {
 
                                                       );
                                                       $transactionStatus = array(
-                                                             '0' => 'COMPLETED',
-                                                             '1' => 'ON HOLD',
-                                                             '2' => "REJECTED"
+                                                             '0' => 'Approved',
+                                                             '1' => 'On Hold',
+                                                             '2' => "Rejected"
                                                       );
                                                       $pdfTitle ='Completed Transactions';
                                                       $filename = 'Completed_Transactions_'.time().'.pdf';
@@ -160,33 +160,33 @@ foreach($transactionList as $transaction) {
                                     $accountId = $transaction->getToAccountId();
                                }
                                $pdf->SetWidths($width);
-                               $pdf->SetAligns(array('L','L','L','R','R','L'));
+                               $pdf->SetAligns(array('L','C','C','R','R','L'));
                                $pdf->Row(array($transaction->getId(),$accountId,date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),
                                                $debit_amount, $credit_amount, $transaction->getRemarks()));
                                break;
           case _TRANSACTION_HISTORY : $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];
                                       $pdf->SetWidths($width);
-                                      $pdf->SetAligns(array('L','L','L','R','C','L'));
+                                      $pdf->SetAligns(array('L','C','L','C','R','L'));
                                       $pdf->Row(array($transaction->getId(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                       date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
                                       $status, $transaction->getRemarks()));
                                       break;
           case _CUSTOMER_DETAILS_PENDING_TRANSACTION :
                                        $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','R'));
+                                       $pdf->SetAligns(array('L','C','C','R'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getToAccountId(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount()));
                                        break;
           case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :
                                        $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','L','L','L','R','L'));
+                                       $pdf->SetAligns(array('L','C','L','C','L','C','R','L'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                        $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
                                                        $transaction->getRemarks()));
                                        break;
           case _PENDING_TRANSACTIONS : $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','L','L','L','R','L'));
+                                       $pdf->SetAligns(array('L','C','L','C','L','C','R','L'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                        $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
@@ -195,7 +195,7 @@ foreach($transactionList as $transaction) {
                                           
           case _COMPLETED_TRANSACTIONS : $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];
                                          $pdf->SetWidths($width);
-                                         $pdf->SetAligns(array('L','L','L','L','L','L','R','C','L'));
+                                         $pdf->SetAligns(array('L','C','L','C','L','C','R','C','L'));
                                          $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                          $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                          date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),

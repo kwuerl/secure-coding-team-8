@@ -97,10 +97,10 @@
                                 <td>
                                     <?= $t->s($transaction->getId()); ?>
                                 </td>
-                                <td>
+                                <td class='text-center'>
                                     <?= $t->s($transaction->getToAccountId()); ?>
                                 </td>
-                                <td>
+                                <td class='text-center'>
                                     <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                                 </td>
                                 <td class="text-right">
@@ -155,19 +155,19 @@
                             <td>
                                 <?= $t->s($transaction->getId()); ?>
                             </td>
-                            <td>
+                            <td class='text-center'>
                                 <?= $t->s($transaction->getFromAccountId()); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getFromAccountName()); ?>
                             </td>
-                            <td>
+                            <td class='text-center'>
                                 <?= $t->s($transaction->getToAccountId()); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getToAccountName()); ?>
                             </td>
-                            <td>
+                            <td class='text-center'>
                                 <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                             </td>
                             <td class="text-right">

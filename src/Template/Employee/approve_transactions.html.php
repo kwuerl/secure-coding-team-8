@@ -4,8 +4,8 @@
     $transactionList = $t->get("transactionList"); 
     $completedtransactionList = $t->get("completedtransactionList");
      $transactionStatus = array(
-        '0' => 'COMPLETED',
-        '1' => 'ON HOLD'
+        '0' => 'Approved',
+        '1' => 'On Hold'
      );
     ?>
 <!-- Content Wrapper. Contains page content -->
@@ -61,19 +61,19 @@
                         <td class='app-transaction-id'>
                             <?= $t->s($transaction->getId()); ?>
                         </td>
-                        <td>
+                        <td class='text-center'>
                             <?= $t->s($transaction->getFromAccountId()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getFromAccountName()); ?>
                         </td>
-                        <td>
+                        <td class='text-center'>
                             <?= $t->s($transaction->getToAccountId()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getToAccountName()); ?>
                         </td>
-                         <td>
+                         <td class='text-center'>
                             <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                         </td>
                         <td class="text-right">
@@ -150,7 +150,7 @@
 							$class = 'fa fa-retweet';
 						else if($transaction->getIsRejected()) {
 							$class = 'fa fa-times';
-							$title = "REJECTED";
+							$title = "Rejected";
 						} else
 							$class ='fa fa-check-circle';
 								
@@ -159,19 +159,19 @@
                         <td class='app-transaction-id'>
                             <?= $t->s($transaction->getId()); ?>
                         </td>
-                        <td>
+                        <td class='text-center'>
                             <?= $t->s($transaction->getFromAccountId()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getFromAccountName()); ?>
                         </td>
-                        <td>
+                        <td class='text-center'>
                             <?= $t->s($transaction->getToAccountId()); ?>
                         </td>
                         <td>
                             <?= $t->s($transaction->getToAccountName()); ?>
                         </td>
-                         <td>
+                         <td class='text-center'>
                             <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
                         </td>
                         <td class="text-right">

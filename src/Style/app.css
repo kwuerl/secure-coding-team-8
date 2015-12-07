@@ -22,6 +22,10 @@ th {
     background-image: url("/Vendor/img/login_bg.jpg");
     background-size: cover;
 }
+
+.registration-form{
+    width : 600px;
+}
 .login-page .login-logo a {
     color:white;
 }
@@ -41,6 +45,9 @@ form[name='approve_transaction']{
     /*border-top-color :#86a0bf;*/
 }
 
+.form-control-feedback{
+    text-align: inherit;
+}
 .content-header > .breadcrumb{
   padding-top : 4px;
   padding-bottom: 4px;
@@ -116,6 +123,10 @@ form[name='approve_transaction']{
 }
 #transaction_history_table td:nth-last-child(2){
     text-align : center;
+}
+
+#transaction_history_table .text-center{
+    text-align: center;
 }
 
 .trans-history-transaction-id{
@@ -215,6 +226,9 @@ div >h1{
     width : 5%;
 }
 
+#cust_details_table2 .text-center, #cust_details_table1 .text-center{
+    text-align: center;
+}
 #approve_trans_table .width_10, #tbl_registered_customers .width_10{
     width : 12%;
 }
@@ -222,4 +236,8 @@ div >h1{
 #tbl_completed_transactions .status{
 	text-align : center;
 	width : 5%;
+}
+
+#tbl_completed_transactions .text-center, #approve_trans_table .text-center, #statement_table .text-center, #customer_transactions_table .text-center{
+    text-align: center;
 }
