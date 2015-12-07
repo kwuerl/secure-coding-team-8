@@ -227,5 +227,6 @@ my_bool makeTransfer(MYSQL* connection, int customerId, char* customerName, char
 		mysql_rollback(connection);
 		return 0;
 	}
+	printf("Transaction was processed successfully. \n");
 	return 1;
 }

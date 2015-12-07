@@ -32,6 +32,7 @@
                         <table id="employee_regsitrations_table" class="table table-bordered table-striped app-data-table-small">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email Id</th>
@@ -41,6 +42,9 @@
                             <tbody>
                                 <?php foreach($employeeRegistrationList as $employee) {?>
                                 <tr>
+                                    <td>
+                                        <?= $t->s($employee->getId()); ?>
+                                    </td>
                                     <td>
                                         <?= $t->s($employee->getFirstName()); ?>
                                     </td>
@@ -81,6 +85,7 @@
                         <table id="emp_list_table" class="table table-bordered table-striped app-data-table-small">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email Id</th>
@@ -89,6 +94,9 @@
                             <tbody>
                                 <?php foreach($employeeList as $employee) {?>
                                 <tr>
+                                    <td>
+                                        <?= $t->s($employee->getId()); ?>
+                                    </td>
                                     <td>
                                         <?= $t->s($employee->getFirstName()); ?>
                                     </td>

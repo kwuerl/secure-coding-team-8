@@ -21,12 +21,12 @@ class TransactionController extends Controller {
 
 		//add one field
 		$helper->addField("to_account_id", "text", array(
-			array("required", "Beneficiary Account No. is required"),
+			array("required", "Recipient Account No. is required"),
 		    array("number", "Only numbers are allowed"),
 		), array("ltrim", "rtrim", "stripTags"), "");
 
 		$helper->addField("to_account_name", "name", array(
-			array("required", "Account Holder Name is required"),
+			array("required", "Recipient Name is required"),
 			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
 		), array("ltrim", "rtrim", "stripTags"), "");
 
@@ -270,7 +270,11 @@ class TransactionController extends Controller {
         if ($return_var == 0) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
         } else {
-            $this->get("flash_bag")->add(_OPERATION_FAILURE, $output[0], "error");
+            $flash_message = "";
+            foreach ($output as $key => $message) {
+                $flash_message .= ($key + 1) . ". " . $message . "<br/>";
+            }
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $flash_message, "error");
         }
         unlink($uploaded_file_name);
         $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -27,7 +28,6 @@ import securebank.scs.helpers.TanGenerator;
 import securebank.scs.ui.components.JFilePicker;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JTextPane;
 
 public class SmartCardSimulator {
@@ -60,40 +60,37 @@ public class SmartCardSimulator {
 		frmSecureBank.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSecureBank.getContentPane().setLayout(null);
 		
-
-		UIManager.put("TabbedPane.contentAreaColor", Color.DARK_GRAY);
-		UIManager.put("TabbedPane.light", Color.GRAY);
-		UIManager.put("TabbedPane.highlight", Color.GRAY);
-		UIManager.put("TabbedPane.shadow", Color.GRAY);
-		UIManager.put("TabbedPane.darkShadow", Color.DARK_GRAY);
-		UIManager.put("TabbedPane.selected", Color.LIGHT_GRAY);
-		UIManager.put("TabbedPane.borderHightlightColor", Color.GRAY);
+		UIManager.put("TabbedPane.contentAreaColor", Color.BLACK);
+		UIManager.put("TabbedPane.light", Color.BLACK);
+		UIManager.put("TabbedPane.highlight", Color.BLACK);
+		UIManager.put("TabbedPane.shadow", Color.BLACK);
+		UIManager.put("TabbedPane.darkShadow", Color.BLACK);
+		UIManager.put("TabbedPane.selected", Color.BLACK);
+		UIManager.put("TabbedPane.borderHightlightColor", Color.BLACK);
 		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
-		tabbedPane.setFont(new Font("Century Schoolbook L", Font.BOLD, 14));
-		tabbedPane.setBackground(Color.WHITE);
+		tabbedPane.setBackground(Color.GRAY);
+		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBounds(12, 12, 426, 248);
 		
 		frmSecureBank.getContentPane().add(tabbedPane);
 
 		JPanel panelSingle = new JPanel();
 		panelSingle.setBackground(Color.WHITE);
-		tabbedPane.addTab("Single Transaction", null, panelSingle, null);
+		ImageIcon iconBatch2 = createImageIcon("/images/single-transfer.png");
+		tabbedPane.addTab("Single Transaction", iconBatch2 , panelSingle, "Single Transaction");
 		panelSingle.setLayout(null);
 		
 		JLabel lblRecipientAccountId = new JLabel("Recipient Account ID*");
-		lblRecipientAccountId.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
-		lblRecipientAccountId.setBounds(23, 26, 140, 25);
+		lblRecipientAccountId.setBounds(23, 26, 165, 25);
 		panelSingle.add(lblRecipientAccountId);
 		
 		JLabel lblAmount = new JLabel("Amount*");
-		lblAmount.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
 		lblAmount.setBounds(23, 66, 140, 25);
 		panelSingle.add(lblAmount);
 		
 		JLabel lblScsPin = new JLabel("SCS Pin*");
-		lblScsPin.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
 		lblScsPin.setBounds(23, 106, 140, 25);
 		panelSingle.add(lblScsPin);
 		
@@ -113,14 +110,13 @@ public class SmartCardSimulator {
 		fieldScsPin.setColumns(10);
 		
 		JButton btnGenerateTanForSingle = new JButton("Generate TAN");
-		btnGenerateTanForSingle.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
 		btnGenerateTanForSingle.setForeground(Color.WHITE);
 		btnGenerateTanForSingle.setBackground(Color.DARK_GRAY);
 		btnGenerateTanForSingle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (isValidSingleTransaction()) {
-					tanGenerator = new TanGenerator();
+					tanGenerator = new TanGenerator(); 
 					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText() + fieldAmount.getText() + fieldScsPin.getText());
 					displayTan("_SINGLE", tan);
 				}				
@@ -131,16 +127,17 @@ public class SmartCardSimulator {
 		
 		textPaneSingle = new JTextPane();
 		textPaneSingle.setText("");
-		textPaneSingle.setBounds(23, 192, 300, 20);
+		textPaneSingle.setBounds(23, 192, 386, 20);
 		textPaneSingle.setContentType("text/html");
 		textPaneSingle.setEditable(false);
 		panelSingle.add(textPaneSingle);
 		
 		JPanel panelBatch = new JPanel();
+		ImageIcon iconBatch = createImageIcon("/images/batch-transfer.png");
 		panelBatch.setBackground(Color.WHITE);
-		tabbedPane.addTab("Batch Transactions", null, panelBatch, null);
-		panelBatch.setLayout(null);		
-		
+		tabbedPane.addTab("Batch Transactions", iconBatch, panelBatch, "Batch Transactions");
+		panelBatch.setLayout(null);
+
 		JFilePicker filePicker = new JFilePicker("Choose a file* ", "Browse");
 		filePicker.setBackground(Color.WHITE);
         filePicker.setMode(JFilePicker.MODE_OPEN);
@@ -150,7 +147,6 @@ public class SmartCardSimulator {
         panelBatch.add(filePicker);
         
         JButton btnGenerateTanForBatch = new JButton("Generate TAN");
-        btnGenerateTanForBatch.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
         btnGenerateTanForBatch.setForeground(Color.WHITE);
         btnGenerateTanForBatch.setBackground(Color.DARK_GRAY);
         btnGenerateTanForBatch.addActionListener(new ActionListener() {
@@ -174,13 +170,16 @@ public class SmartCardSimulator {
         			fieldScsPinBatch.setBorder(errorField);
         			return;
         		}
+        		
+        		fieldScsPinBatch.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+
         		/*Check if no file is provided*/	
         		if (filePath.isEmpty()) {
         			textPaneBatch.setText("Please choose a file.");
         			return;
         		} 
         		        		
-    			textPaneBatch.setText("");
+    			textPaneBatch.setText("");    			
     			
     			try {
 					BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -206,32 +205,42 @@ public class SmartCardSimulator {
         
         textPaneBatch = new JTextPane();
         textPaneBatch.setText("");
-        textPaneBatch.setBounds(23, 192, 300, 20);
+        textPaneBatch.setBounds(23, 192, 386, 20);
         textPaneBatch.setContentType("text/html");
 		textPaneBatch.setEditable(false);
         panelBatch.add(textPaneBatch);
         
         JLabel lblScsPinBatch = new JLabel("SCS Pin*");
-        lblScsPinBatch.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
-        lblScsPinBatch.setBounds(23, 38, 140, 25);
+        lblScsPinBatch.setBounds(18, 35, 129, 25);
         panelBatch.add(lblScsPinBatch);
         
         fieldScsPinBatch = new JTextField();
-        fieldScsPinBatch.setBounds(111, 35, 140, 25);
+        fieldScsPinBatch.setBounds(125, 35, 125, 25);
         panelBatch.add(fieldScsPinBatch);
         fieldScsPinBatch.setColumns(10);
 	}
 	
+	private ImageIcon createImageIcon(String path) {
+		java.net.URL imgUrl = getClass().getResource(path);
+		if (imgUrl != null) {
+			return new ImageIcon(imgUrl);
+		} else {
+			System.err.println("Error in loading icon.");
+			return null;
+		}
+	}
+
 	/**
 	 * Verifies if the all the required fields in the form are filled. 
 	 */
 	private Boolean isFormFilled() {
 		String msgRequiredFields = "Please fill all the required fields.";		
 		Boolean isFormFilled = true;
+		LineBorder border = new LineBorder(Color.DARK_GRAY, 1, true);
 		
-		fieldAmount.setBorder(null);
-		fieldRecipientAccountId.setBorder(null);
-		fieldScsPin.setBorder(null);
+		fieldAmount.setBorder(border);
+		fieldRecipientAccountId.setBorder(border);
+		fieldScsPin.setBorder(border);
 		
 		/*Check if the Amount entered is empty*/
 		if (fieldAmount.getText().trim().isEmpty()) {
@@ -297,11 +306,12 @@ public class SmartCardSimulator {
 	private Boolean isValidSingleTransaction() {						
 		Pattern numeric = Pattern.compile("[0-9]*\\.?[0-9]+");
 		Matcher matcher;
+		LineBorder border = new LineBorder(Color.DARK_GRAY, 1, true);
 		
 		if (isFormFilled()) {
-			fieldAmount.setBorder(null);
-			fieldRecipientAccountId.setBorder(null);
-			fieldScsPin.setBorder(null);
+			fieldAmount.setBorder(border);
+			fieldRecipientAccountId.setBorder(border);
+			fieldScsPin.setBorder(border);
 			
 			matcher = numeric.matcher(fieldAmount.getText().trim());
 			if (matcher.matches()) {
@@ -329,7 +339,7 @@ public class SmartCardSimulator {
 				return false;
 			}
 			
-			if (isValidScsPin(fieldScsPin.getText().trim())) {
+			if (!isValidScsPin(fieldScsPin.getText().trim())) {
 				markFieldForError(fieldScsPin, "Incorrect SCS Pin for the transfer");				
 				return false;
 			} else {
