@@ -27,6 +27,7 @@ pw:
 
 user: swathi.ssunder+1@gmail.com
 pw: SecureB@nk10
+scs-pin: rPC4kT
 
 user: maitonnucam@googlemail.com
 pw: test1A
