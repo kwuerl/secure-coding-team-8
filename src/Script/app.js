@@ -68,28 +68,27 @@ var secureBank = {
 
             // ==== Approve/ Reject Transaction operations =======//
             $("form[data-confirm-modal]").submit(function(event) {
-                var confirm_modal = $(`
-                    <!-- Approve Transaction Modal -->
-                    <div id="confirm-modal" class="modal fade" role="dialog" tabindex="-1">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
-                                    <h4 class="modal-title">`+$(this).attr("data-modal-title")+`</h4>
-                                </div>
-                                <div class="modal-body">
-                                    `+$(this).attr("data-modal-body")+`
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Yes</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-                );
+                var confirm_modal = $(' \
+                    <!-- Approve Transaction Modal --> \
+                    <div id="confirm-modal" class="modal fade" role="dialog" tabindex="-1"> \
+                        <div class="modal-dialog"> \
+                            <!-- Modal content--> \
+                            <div class="modal-content"> \
+                                <div class="modal-header"> \
+                                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button> \
+                                    <h4 class="modal-title">'+$(this).attr("data-modal-title")+'</h4> \
+                                </div> \
+                                <div class="modal-body"> \
+                                    '+$(this).attr("data-modal-body")+' \
+                                </div> \
+                                <!-- /.box-body --> \
+                                <div class="modal-footer"> \
+                                    <button type="submit" class="btn btn-primary">Yes</button> \
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> \
+                                </div> \
+                            </div> \
+                        </div> \
+                    </div>');
                 $("body").append(confirm_modal);
                 //$('#confirm-modal .hide').show();
                 $('#confirm-modal').on('hidden.bs.modal', function(){
