@@ -15,7 +15,7 @@ class RegistrationController extends Controller {
 	public function processRegistration($request) {
 		if($this->get("auth")->redirectCurrentUserToUserHome()) return;
 		// create the FormHelper
-		$helper = new \Helper\FormHelper("form_registration");
+		$helper =  $this->get("form")->getCSRFFormHelper("form_registration");
 
 		//add one field
 		$helper->addField("first_name", "name", array(
@@ -120,7 +120,7 @@ class RegistrationController extends Controller {
 	 */
 	public function processEmployeeRegistration($request) {
 		// create the FormHelper
-		$helper = new \Helper\FormHelper("form_registration");
+		$helper = $this->get("form")->getCSRFFormHelper("form_registration");
 
 		//add one field
 		$helper->addField("first_name", "name", array(

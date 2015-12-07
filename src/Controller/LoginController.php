@@ -74,7 +74,7 @@ class LoginController extends Controller {
 	}
 
 	public function resetPassword($request) {
-		$helper = new \Helper\FormHelper("recover_password");
+		$helper =  $this->get("form")->getCSRFFormHelper("recover_password");
 
 		$helper->addField("email", "text", array(
 			array("required", "Email is required"),
@@ -129,7 +129,7 @@ class LoginController extends Controller {
 	}
 
 	public function getPasswordResetView($request) {
-		$helper = new \Helper\FormHelper("reset_password");
+		$helper =  $this->get("form")->getCSRFFormHelper("reset_password");
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),
@@ -160,7 +160,7 @@ class LoginController extends Controller {
 	}
 
 	public function processPasswordReset($request) {
-		$helper = new \Helper\FormHelper("reset_password");
+		$helper =  $this->get("form")->getCSRFFormHelper("reset_password");
 
 		$helper->addField("_password_plain", "password", array(
 			array("required", "Password is required"),

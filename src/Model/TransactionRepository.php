@@ -18,7 +18,7 @@ class TransactionRepository extends Repository {
 		$statement = "SELECT TBL_TRANSACTION.*
 		 				FROM TBL_ACCOUNT, TBL_TRANSACTION
 		 				WHERE TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
-		 				AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
+		 				AND TBL_ACCOUNT.CUSTOMER_ID = :customerId ORDER BY TBL_TRANSACTION.TRANSACTION_DATE DESC";
 
 		/* create a prepared statement */
 		if ($query = $this->db_wrapper->get()->prepare($statement)) {
@@ -42,7 +42,7 @@ class TransactionRepository extends Repository {
                         FROM TBL_ACCOUNT, TBL_TRANSACTION
                         WHERE (TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.FROM_ACCOUNT_ID
                         OR TBL_ACCOUNT.ACCOUNT_ID = TBL_TRANSACTION.TO_ACCOUNT_ID) AND TBL_TRANSACTION.IS_ON_HOLD = 0 AND TBL_TRANSACTION.IS_REJECTED = 0
-                        AND TBL_ACCOUNT.CUSTOMER_ID = :customerId";
+                        AND TBL_ACCOUNT.CUSTOMER_ID = :customerId ORDER BY TBL_TRANSACTION.TRANSACTION_DATE DESC";
                         if ($limit)
                             $statement .= " LIMIT $limit ;";
 
@@ -103,7 +103,7 @@ class TransactionRepository extends Repository {
 				$result = $this->update($model, array("is_on_hold", "is_rejected", "is_closed"), array("id" => $transaction_id));
 				break;
 		}
-		return ($result == 1) ? "" : $result;
+		return $result;
 	}
 
 	/**
@@ -191,4 +191,28 @@ class TransactionRepository extends Repository {
 		}
 		return true;
 	}
+	/**
+     * returns the users transaction by category
+     *
+     * @param int  $customerId    The customers id
+     *
+     * @return array
+     */
+    public function getUserTransactionsCategorized($customerId){
+        $transactionList = $this->getByCustomerId($customerId);
+        /*Separate the transactions into completed and on-hold transactions.*/
+        $onHoldTransactionList = array();
+        $approvedTransactionList = array();
+        foreach ($transactionList as $transaction) {
+            $onHold = $transaction->getIsOnHold();
+            if ($onHold)
+                $onHoldTransactionList[] = $transaction;
+            else
+                $approvedTransactionList[] = $transaction;
+        }
+        return array(
+            'onHoldTransactionList' => $onHoldTransactionList,
+            'approvedTransactionList' => $approvedTransactionList
+            );
+    }
 }

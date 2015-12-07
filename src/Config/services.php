@@ -53,6 +53,16 @@ $service_container->register("account", "Service\\AccountService", array(
 	array("type"=>"service", "value"=>"account_repository")
 ));
 
+$service_container->register("customer", "Service\\CustomerService", array(
+	array("type"=>"service", "value"=>"account_repository"),
+	array("type"=>"service", "value"=>"customer_repository"),
+	array("type"=>"service", "value"=>"account"),
+	array("type"=>"service", "value"=>"transaction_code"),
+	array("type"=>"service", "value"=>"pdf"),
+	array("type"=>"service", "value"=>"email"),
+	array("type"=>"service", "value"=>"scs")
+));
+
 // ------------  Auth  -----------------
 
 $service_container->register("customer_auth_provider", "Auth\\CustomerAuthProvider", array(

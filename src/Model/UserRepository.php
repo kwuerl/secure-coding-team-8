@@ -1,5 +1,7 @@
 <?php
 namespace Model;
+
+use \Exception\RegistrationIsClosedException;
 /**
  * Repository class for the User model
  *
@@ -22,8 +24,7 @@ abstract class UserRepository extends Repository {
         $user_id = $model->getId();
 
         if ($model->getIsClosed() == 1) {
-            $error = _ERROR_REGISTRATION_CLOSED;
-            return $error;
+            throw new RegistrationIsClosedException();
         }
         switch($action) {
             case _ACTION_APPROVE:
@@ -59,6 +60,6 @@ abstract class UserRepository extends Repository {
                 $result = $this->update($model, array("is_active", "is_rejected", "is_closed"), array("id" => $user_id));
                 break;
         }
-        return ($result == 1) ? "" : $result;
+        return $result;
     }
 }
