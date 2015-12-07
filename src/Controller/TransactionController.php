@@ -68,6 +68,7 @@ class TransactionController extends Controller {
         $customer = $this->get("auth")->check(_GROUP_USER);
         // create the FormHelper
         $helper = $this->getFormTransferHelper();
+        $helper2 = $this->getFileTransferHelper();
         // process the request
         if ($helper->processRequest($request)) {
             //try to validate
@@ -75,7 +76,6 @@ class TransactionController extends Controller {
                 return $this->processSingleTransfer($request, $helper, $helper2, $customer);
             }
         }
-        $helper2 = $this->getFileTransferHelper();
         $this->get("templating")->render("Customer/make_transfer.html.php", array(
             "form" => $helper,
             "form2" => $helper2,
@@ -85,6 +85,7 @@ class TransactionController extends Controller {
 		$customer = $this->get("auth")->check(_GROUP_USER);
         // make transfer via file upload
         $helper2 = $this->getFileTransferHelper();
+        $helper = $this->getFormTransferHelper();
 
 		if ($helper2->processRequest($request)) {
 			//try to validate
@@ -92,7 +93,6 @@ class TransactionController extends Controller {
 				return $this->processBatchTransfer($request, $helper, $helper2, $customer);
 			}
 		}
-		$helper = $this->getFormTransferHelper();
         $this->get("templating")->render("Customer/make_transfer.html.php", array(
             "form" => $helper,
             "form2" => $helper2,
