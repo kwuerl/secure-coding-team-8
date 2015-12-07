@@ -19,11 +19,12 @@ pw: AtbpiXeTnPVDhHGbEByQl9dJG
 /* ==============
  * existing users
  * ============== */
-user: korbinianwuerl+1@googlemail.com
-pw:
+user: securebank1@trash-mail.com
+pw: Asdasd1
 
-user: braille.louis@yahoo.co.in
-pw: 
+user: securecoding3@trash-mail.com
+pw: Asdasd2
+scs-pin: D8oDvc
 
 user: swathi.ssunder+1@gmail.com
 pw: SecureB@nk10
@@ -38,7 +39,8 @@ pw: Live2013
 /* ===
  * URL
  * === */
-https://secure-bank.git.dev
+from internal: https://secure-bank.git.dev/
+from external: https://<ip>/
 
 /* ===========
  * source code
