@@ -270,7 +270,11 @@ class TransactionController extends Controller {
         if ($return_var == 0) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
         } else {
-            $this->get("flash_bag")->add(_OPERATION_FAILURE, $output[0], "error");
+            $flash_message = "";
+            foreach ($output as $key => $message) {
+                $flash_message .= ($key + 1) . ". " . $message . "<br/>";
+            }
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, $flash_message, "error");
         }
         unlink($uploaded_file_name);
         $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
