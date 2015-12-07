@@ -114,75 +114,7 @@ var secureBank = {
                 });
             });
 
-            /*$('#approve_trans_table').on('click', '.btn-info', function() {
-                var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
-                $('#selectedTransactionId').val(transaction_id);
-                $('#action_transaction').val(1);
-            });
 
-            $('#approve_trans_table').on('click', '.btn-reject', function() {
-                var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
-                $('#selectedTransactionId').val(transaction_id);
-                $('#action_transaction').val(2);
-            });
-
-            $('#approveTransModal').on('click', '.btn-primary', function() {
-                var approval_form = document.forms['approve_transaction'];
-                approval_form.submit();
-            });
-
-            $('#rejectTransModal').on('click', '.btn-primary', function() {
-                var approval_form = document.forms['approve_transaction'];
-                approval_form.submit();
-            });*/
-            // ==== Approve/ Reject Transaction operations ends =======//
-
-            // ==== Approve/ Reject Registration operations =======//
-            /*$('#employee_regsitrations_table').on('click', '.btn-info', function(){
-                var employee_id = $(this).parent().attr('id');
-                $('#selectedUserId').val(employee_id);
-                $('#action_registration').val(1);
-            });
-
-            $('#employee_regsitrations_table').on('click', '.btn-reject', function(){
-                var employee_id = $(this).parent().attr('id');
-                $('#selectedUserId').val(employee_id);
-                $('#action_registration').val(2);
-            });
-
-            $('#customer_reg_pending').on('click', '.btn-info', function() {
-                var employee_id = $(this).parent().attr('id');
-                $('#selectedUserId').val(employee_id);
-                $('#action_registration').val(1);
-            });
-
-            $('#customer_reg_pending').on('click', '.btn-reject', function() {
-                var employee_id = $(this).parent().attr('id');
-                $('#selectedUserId').val(employee_id);
-                $('#action_registration').val(2);
-            });
-
-            $('#tbl_registered_customers').on('click', '.btn-info', function() {
-                var customer_id = $(this).parent().attr('id');
-                $('#selectedUserId').val(customer_id);
-                $('#action_registration').val(3);
-            });
-
-            $('#approveRegModal').on('click', '.btn-primary', function() {
-                var action_registration_form = document.forms['action_registration_form'];
-                action_registration_form.submit();
-            });
-
-            $('#rejectRegModal').on('click', '.btn-primary', function() {
-                var action_registration_form = document.forms['action_registration_form'];
-                action_registration_form.submit();
-            });
-
-            $('#setBalanceModal').on('click', '.btn-primary', function() {
-                var action_registration_form = document.forms['action_registration_form'];
-                $('#account_balance').val($("[name='form_set_balance[balance]']").val());
-                action_registration_form.submit();
-            });*/
         });
     }
 };
