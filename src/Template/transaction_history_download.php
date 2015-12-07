@@ -56,8 +56,8 @@ switch( $invokedFrom) {
                                                            "Amount"               => "50" ,
 
                                                     );
-                                                    $pdfTitle ="Customer's Pending Transaction";
-                                                    $filename = 'Customer_Pending_transaction'.time().'.pdf';
+                                                    $pdfTitle ="Pending Transactions";
+                                                    $filename = 'Customer_Pending_Transactions'.time().'.pdf';
                                                     break;
     case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :    $accountInfo = $t->get("accountInfo");
                                                       $customer = $t->get("customer");
@@ -73,8 +73,8 @@ switch( $invokedFrom) {
                                                              "Remarks"              => "25" ,
 
                                                       );
-                                                      $pdfTitle ="Customer's Completed Transaction";
-                                                      $filename = 'Customer_Completed_transaction'.time().'.pdf';
+                                                      $pdfTitle ="Completed Transactions";
+                                                      $filename = 'Customer_Completed_Transactions'.time().'.pdf';
                                                       break;
     case _PENDING_TRANSACTIONS                   :    $transactionList = $t->get("transactionList");
                                                       $headers = array(

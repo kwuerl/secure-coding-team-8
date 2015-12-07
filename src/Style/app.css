@@ -125,6 +125,10 @@ form[name='approve_transaction']{
     text-align : center;
 }
 
+#transaction_history_table .text-center{
+    text-align: center;
+}
+
 .trans-history-transaction-id{
     width : 5%;
 }
