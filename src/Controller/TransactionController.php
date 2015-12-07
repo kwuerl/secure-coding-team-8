@@ -294,9 +294,13 @@ class TransactionController extends Controller {
         if ($return_var == 0) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
         } else {
-            $flash_message = "";
+            $flash_message = "One or more transactions failed due to these errors. <br/>";
             foreach ($output as $key => $message) {
-                $flash_message .= ($key + 1) . ". " . $message . "<br/>";
+                if (strpos($message, "success") === false) {
+                    $flash_message .= "Transaction " . ($key + 1) . " failed with error - " . $message . "<br/>";
+                } else {
+                    $flash_message .= "Transaction " . ($key + 1) . " was processed successfully.<br/>";
+                }
             }
             $this->get("flash_bag")->add(_OPERATION_FAILURE, $flash_message, "error");
         }

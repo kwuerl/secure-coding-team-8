@@ -106,6 +106,10 @@ class CustomerController extends UserController {
 
     public function downloadSCS($request){
         $customer = $this->get("auth")->check(_GROUP_USER);
+        /*Send the file to the browser as a download*/
+        header('Content-disposition: attachment; filename=SecureBank-SCS.zip');
+        header('Content-type: application/zip');
+        readfile("../downloads/SecureBank-SCS.zip");
     }
 
 

@@ -64,7 +64,7 @@ class CustomerService {
             $tans = $this->transaction_code->generateTransactionCodeSet($user_model->getId());
 
             if ($tans) {
-                $pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
+                $pdf_password = trim(substr($user_model->getLastName(), 0, 2)) . trim(substr($account_id, -4)) . trim(substr($user_model->getFirstName(), 0, 2));
                 $pdf_password_length = strlen($pdf_password);
                 if ($pdf_password_length < 8) {
                     $pdf_password .= str_repeat('x', (8 - $pdf_password_length));
@@ -123,9 +123,14 @@ class CustomerService {
 	 */
 	private function sendScsEmail($user_model, $scs_pin) {
 		$subject = "Your registration at SecureBank was successful!";
-        $email_msg = "Dear ".$first_name."&nbsp;".$last_name.",<br/><br/>".
+        $email_msg = "Dear ".$user_model->getFirstName()."&nbsp;".$user_model->getLastName().",<br/><br/>".
                       "Your registration was approved.<br/>".
-                      "The pin for your Smart Card Simulator is ".$scs_pin."<br/>".
+                      "The 6-digit pin for your Smart Card Simulator is <b>".$scs_pin."</b>.<br/><br/>".
+                      "To use the Smart Card Simulator, follow the below steps.<br/>".
+                      "1. Login to the bank and download the \"SCS\".<br/>".
+                      "2. Extract the downloaded file to get SecureBank-SCS.jar.<br/>".
+                      "3. If you are a Windows user, double click on the .jar file to run the application. If you are a Linux user, use the command \"java -jar SecureBank-SCS.jar\".<br/>".
+                      "The SCS is now ready to be used.<br/><br/>".
                       "Please do not share the SCS pin with anyone.";
         $this->email->sendMail(
             $user_model->getEmail(),

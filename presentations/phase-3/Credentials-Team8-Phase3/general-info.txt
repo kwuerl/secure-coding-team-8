@@ -1,0 +1,64 @@
+/* =======
+ * OS user
+ * ======= */
+user: samurai
+pw: vskm-8
+
+/* ========
+ * MySQL DB
+ * ======== */
+user: root
+pw: samurai
+
+/* ==========
+ * admin user
+ * ========== */
+user: admin@admin.de
+pw: AtbpiXeTnPVDhHGbEByQl9dJG
+
+/* ==============
+ * existing users
+ * ============== */
+user: korbinianwuerl+1@googlemail.com
+pw:
+
+user: braille.louis@yahoo.co.in
+pw: 
+
+user: swathi.ssunder@tum.de
+pw:
+
+user: maitonnucam@googlemail.com
+pw: test1A
+
+/* ===
+ * URL
+ * === */
+https://secure-bank.git.dev
+
+/* ===========
+ * source code
+ * =========== */
+/var/www/secure-coding-team-8
+|- SmardCardSimulator
+|- src
+|-- Auth
+|-- Config
+|-- Controller
+|-- Exception
+|-- Helper
+|-- Model
+|-- Script
+|-- Service
+|-- Style
+|-- Template
+|-- Vendor
+|- textparser
+
+/* ===================
+ * 3rd party libraries
+ * =================== */
+Bootstrap: /var/www/secure-coding-team-8/src/Vendor/bootstrap
+AdminLTE: /var/www/secure-coding-team-8/src/Vendor/theme
+fpdf: /var/www/secure-coding-team-8/src/Vendor/fpdf18
+Psr4ClassLoader: /var/www/secure-coding-team-8/src/Vendor/Psr4ClassLoader.php
