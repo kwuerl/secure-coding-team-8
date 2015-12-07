@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
 	input_file = fopen(input, "r");
 
 	if (input_file == NULL) {
-		perror("Cannot open input file\n");
+		printf("Error in reading file.\n");
         return(-1);
 	} else {
 		int i = 0;
