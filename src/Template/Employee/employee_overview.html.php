@@ -86,30 +86,30 @@
                 <table id="recent_transactions" class="table table-bordered table-striped app-data-table">
                     <thead>
                         <tr>
-                            <th>Date</th>
                             <th>ID</th>
-                            <th>Amount</th>
                             <th>From Account No.</th>
                             <th>To Account No.</th>
+                            <th>Date</th>
+                            <th>Amount</th>
                             <th>Remarks</th>
                     </thead>
                     <tbody>
                         <?php foreach ($latestTransactionList as $transaction) {?>
                         <tr>
-                            <td>
-                                <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
-                            </td>
                             <td class='app-transaction-id'>
                                 <?= $t->s($transaction->getId()); ?>
-                            </td>
-                            <td class="text-right">
-                                <?= $t->s($transaction->getAmount()); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getFromAccountId()); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getToAccountId()); ?>
+                            </td>
+                            <td>
+                                <?= date('d-m-Y',strtotime($t->s($transaction->getTransactionDate()))); ?>
+                            </td>
+                            <td class="text-right">
+                                <?= $t->s($transaction->getAmount()); ?>
                             </td>
                             <td>
                                 <?= $t->s($transaction->getRemarks()); ?>
