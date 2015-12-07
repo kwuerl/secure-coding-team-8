@@ -6,6 +6,7 @@
  * @author Mai Ton Nu Cam <maitonnucam@googlemail.com>
  * @author Vivek Sethia <vivek.sethia@tum.de>
  */
+define('_DEBUG', true);
 
 define('_EXAMPLE_PARAM', 'EXAMPLE_VALUE');
 define('_DB_SECURE_BANK', 'BANK_DETAILS');
