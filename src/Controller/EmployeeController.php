@@ -81,7 +81,7 @@ class EmployeeController extends UserController {
                 if($user_model != false) {
                     if($this->get('employee_repository')->actOnRegistration($user_model, _ACTION_REJECT) != false) {
                         $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Employee registration was rejected successfully.", "success_notification");
-                        return $this->get('routing')->redirect('transactions_get',array());
+                        return $this->get('routing')->redirect('employees_get',array());
                     }
                 }
             }
@@ -100,7 +100,7 @@ class EmployeeController extends UserController {
                 if($user_model != false) {
                     if($this->get('employee_repository')->actOnRegistration($user_model, _ACTION_APPROVE) != false) {
                         $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Employee registration was approved successfully.", "success_notification");
-                        return $this->get('routing')->redirect('transactions_get',array());
+                        return $this->get('routing')->redirect('employees_get',array());
                     }
                 }
             }

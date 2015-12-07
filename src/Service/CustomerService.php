@@ -98,12 +98,13 @@ class CustomerService {
 	 */
 	private function sendTanEmail($user_model, $tans, $pdf_password) {
 		$attachment = $this->pdf->generatePdfWithTans($tans, $pdf_password);
-        $subject = "Your registration at SecureBank was successful!";
+        $subject = "Your registration at SecureBank was successful";
         $email_msg = "Dear ".$user_model->getFirstName()."&nbsp;".$user_model->getLastName().",<br/><br/>".
                       "Your registration was approved.<br/>".
-                      "Kindly find the attachment with the TANs. Note that the document is password protected.<br/>".
+                      "Kindly find the attachment with the TANs. Note that the document is password protected.<br/><br/>".
                       "The password is formed by the first two characters of your last name, last four characters of your account number and the first two characters of your first name.<br/>".
-                      "Please do not share TANs with anyone.";
+                      "If your first name is John, last name is Doe and account number is xxxxxx1234, your password will be <b>Do1234Jo</b>.<br>".
+                      "Please do not share TANs with anyone.<br/><br/>Have a nice day.<br/><br/> Your SecureBank";
         $attachmentName = time() . "_TAN.pdf";
         $this->email->sendMailWithAttachment(
             $user_model->getEmail(),
@@ -122,7 +123,7 @@ class CustomerService {
 	 * @throws Exception
 	 */
 	private function sendScsEmail($user_model, $scs_pin) {
-		$subject = "Your registration at SecureBank was successful!";
+		$subject = "Your registration at SecureBank was successful";
         $email_msg = "Dear ".$user_model->getFirstName()."&nbsp;".$user_model->getLastName().",<br/><br/>".
                       "Your registration was approved.<br/>".
                       "The 6-digit pin for your Smart Card Simulator is <b>".$scs_pin."</b>.<br/><br/>".
@@ -131,7 +132,7 @@ class CustomerService {
                       "2. Extract the downloaded file to get SecureBank-SCS.jar.<br/>".
                       "3. If you are a Windows user, double click on the .jar file to run the application. If you are a Linux user, use the command \"java -jar SecureBank-SCS.jar\".<br/>".
                       "The SCS is now ready to be used.<br/><br/>".
-                      "Please do not share the SCS pin with anyone.";
+                      "Please do not share the SCS pin with anyone.<br/><br/>Have a nice day.<br/><br/> Your SecureBank";
         $this->email->sendMail(
             $user_model->getEmail(),
             $subject,
