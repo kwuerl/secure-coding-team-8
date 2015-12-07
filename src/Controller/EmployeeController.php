@@ -87,7 +87,7 @@ class EmployeeController extends UserController {
             }
         }
         $this->get("flash_bag")->add(_OPERATION_FAILURE, "The Employee registration could not be rejected", "error");
-        return $this->get('routing')->redirect('transactions_get',array());
+        return $this->get('routing')->redirect('employees_get',array());
     }
 
     public function approveEmployee ($request) {
@@ -106,7 +106,7 @@ class EmployeeController extends UserController {
             }
         }
         $this->get("flash_bag")->add(_OPERATION_FAILURE, "The Employee registration could not be approved", "error");
-        return $this->get('routing')->redirect('transactions_get',array());
+        return $this->get('routing')->redirect('employees_get',array());
         
     }
 
