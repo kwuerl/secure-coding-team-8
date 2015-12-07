@@ -25,11 +25,14 @@ pw:
 user: braille.louis@yahoo.co.in
 pw: 
 
-user: swathi.ssunder@tum.de
-pw:
+user: swathi.ssunder+1@gmail.com
+pw: SecureB@nk10
 
 user: maitonnucam@googlemail.com
 pw: test1A
+
+user: vivek.sethia2014@gmail.com
+pw: Live2013
 
 /* ===
  * URL
