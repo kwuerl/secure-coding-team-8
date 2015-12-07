@@ -64,9 +64,8 @@ class SCSService {
      */
     public function generateTan($input) {
         $input = preg_replace('/\s+/', '', $input);
-        $utf = utf8_encode($input);
+        $utf = utf8_encode($input.strval(round(time()/100)));
         $hash = hash("sha512", $utf);
-
         return substr($hash, 0, 15);
     }
 }

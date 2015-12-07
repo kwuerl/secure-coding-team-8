@@ -16,7 +16,7 @@ public class TanGenerator {
 	}
 	
 	public String getTan(String input) {
-		input = input.replaceAll("\\s+","");
+		input = input.replaceAll("\\s+","") + System.currentTimeMillis()/100000;
 		String hash = generateHash(input);
 		return getTanFromHash(hash);
 	}
