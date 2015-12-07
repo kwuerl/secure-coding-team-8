@@ -64,7 +64,7 @@ class CustomerService {
             $tans = $this->transaction_code->generateTransactionCodeSet($user_model->getId());
 
             if ($tans) {
-                $pdf_password = trim(substr($last_name, 0, 2)) . trim(substr($account_id, -4)) . trim(substr($first_name, 0, 2));
+                $pdf_password = trim(substr($user_model->getLastName(), 0, 2)) . trim(substr($account_id, -4)) . trim(substr($user_model->getFirstName(), 0, 2));
                 $pdf_password_length = strlen($pdf_password);
                 if ($pdf_password_length < 8) {
                     $pdf_password .= str_repeat('x', (8 - $pdf_password_length));
