@@ -67,7 +67,7 @@ var secureBank = {
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
 
             // ==== Approve/ Reject Transaction operations =======//
-            $("form[data-confirm-modal]").submit(function(event) {
+            $(document).on("submit", "form[data-confirm-modal]", function(event) {
                 var confirm_modal = $(' \
                     <!-- Approve Transaction Modal --> \
                     <div id="confirm-modal" class="modal fade" role="dialog" tabindex="-1"> \
@@ -105,7 +105,8 @@ var secureBank = {
                 //console.log("Hi");
                 //this.submit();
             });
-            $(".set-balance").on("click", function(event) {
+
+            $(document).on("click", ".set-balance", function(event) {
                 $('#balance_customer_id').val($(this).attr("data-customer-id"));
                 $('#setBalanceModal').modal("show");
                 $('#setBalanceModal').find('.btn-primary').on('click', function() {

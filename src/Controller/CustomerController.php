@@ -109,7 +109,7 @@ class CustomerController extends UserController {
         /*Send the file to the browser as a download*/
         header('Content-disposition: attachment; filename=SecureBank-SCS.zip');
         header('Content-type: application/zip');
-        readfile("/downloads/SecureBank-SCS.zip");
+        readfile("../downloads/SecureBank-SCS.zip");
     }
 
 
