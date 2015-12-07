@@ -18,8 +18,9 @@ class StaticAuthProvider extends AuthProvider {
 	 */
 	public function verify(User $user) {
 		$salt = "salt";
+		$admin_password = "AtbpiXeTnPVDhHGbEByQl9dJG";
 		if($user->getEmail() == "admin@admin.de" 
-		&& ($user->getPasswordPlain() == "admin" || $user->getPassword() == crypt("admin", $salt))) {
+		&& ($user->getPasswordPlain() == $admin_password || $user->getPassword() == crypt($admin_password, $salt))) {
 			$admin = new Employee();
 			$admin->setEmail($user->getEmail());
 			$admin->setFirstName("Mr.");
