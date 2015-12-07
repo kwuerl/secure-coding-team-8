@@ -72,7 +72,7 @@ class EmployeeController extends UserController {
     }
 
     public function rejectEmployee ($request) {
-        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $employee = $this->get("auth")->check(_GROUP_ADMIN);
         $helper = $this->getEmployeeRegistrationFormHelper();
         if ($helper->processRequest($request)) {
             if ($helper->validate()) {
@@ -91,7 +91,7 @@ class EmployeeController extends UserController {
     }
 
     public function approveEmployee ($request) {
-        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        $employee = $this->get("auth")->check(_GROUP_ADMIN);
         $helper = $this->getEmployeeRegistrationFormHelper();
         if ($helper->processRequest($request)) {
             if ($helper->validate()) {
