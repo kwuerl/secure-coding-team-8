@@ -291,24 +291,17 @@ class TransactionController extends Controller {
             escapeshellarg(_MYSQL_PASSWORD) . " " .
             escapeshellarg(_MYSQL_DATABASE);
         exec($shell_command, $output, $return_var);
-        echo "<pre>";
-        var_dump($return_var);
-        var_dump($output);
         if ($return_var == 0) {
             $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Your transaction has been processed.", "success_notification");
         } else {
             $flash_message = "One or more transactions failed due to these errors. <br/>";
             foreach ($output as $key => $message) {
-                var_dump($key);
-                var_dump($message);
                 if (strpos($message, "success") === false) {
                     $flash_message .= "Transaction " . ($key + 1) . " failed with error - " . $message . "<br/>";
                 } else {
                     $flash_message .= "Transaction " . ($key + 1) . " was processed successfully.<br/>";
                 }
             }
-            echo "</pre>";
-            exit;
             $this->get("flash_bag")->add(_OPERATION_FAILURE, $flash_message, "error");
         }
         unlink($uploaded_file_name);
