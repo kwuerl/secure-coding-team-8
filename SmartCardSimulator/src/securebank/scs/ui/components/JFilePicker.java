@@ -9,7 +9,6 @@
 package securebank.scs.ui.components;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
  
@@ -38,15 +37,12 @@ public class JFilePicker extends JPanel {
  
         // creates the GUI
         label = new JLabel(textFieldLabel);
-        label.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
-         
-        textField = new JTextField(15);
-        textField.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
-        
+
+        textField = new JTextField(11);
+
         button = new JButton(buttonLabel);
-        button.setFont(new Font("Century Schoolbook L", Font.BOLD, 12));
         button.setForeground(Color.WHITE);
-        button.setBackground(Color.GRAY);
+        button.setBackground(Color.GRAY);        
          
         button.addActionListener(new ActionListener() {
             @Override
