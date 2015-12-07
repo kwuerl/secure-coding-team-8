@@ -10,57 +10,81 @@ namespace Controller;
  */
 class TransactionController extends Controller {
 
-	public function makeTransfer($request) {
-		$customer = $this->get("auth")->check(_GROUP_USER);
-
-		// create the FormHelper
+    private function getFormTransferHelper() {
         $helper =  $this->get("form")->getCSRFFormHelper("make_transfer");
 
-        // make transfer via file upload
-        $helper2 =  $this->get("form")->getCSRFFormHelper("make_transfer_via_file_upload");
+        //add one field
+        $helper->addField("to_account_id", "text", array(
+            array("required", "Recipient Account No. is required"),
+            array("number", "Only numbers are allowed"),
+        ), array("ltrim", "rtrim", "stripTags"), "");
 
-		//add one field
-		$helper->addField("to_account_id", "text", array(
-			array("required", "Recipient Account No. is required"),
-		    array("number", "Only numbers are allowed"),
-		), array("ltrim", "rtrim", "stripTags"), "");
+        $helper->addField("to_account_name", "name", array(
+            array("required", "Recipient Name is required"),
+            array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
+        ), array("ltrim", "rtrim", "stripTags"), "");
 
-		$helper->addField("to_account_name", "name", array(
-			array("required", "Recipient Name is required"),
-			array("name", "Only letters, '-' and white space allowed and must be at least 2 characters")
-		), array("ltrim", "rtrim", "stripTags"), "");
+        $helper->addField("amount", "text", array(
+            array("required", "Amount to be transfered should be specified"),
+            //array("name", "Max. 50000 per day allowed"),
+            array("maxLength", "Enter 15 digit transaction code", array(15))
+        ), array("ltrim", "rtrim", "stripTags"), "");
 
-		$helper->addField("amount", "text", array(
-			array("required", "Amount to be transfered should be specified"),
-			//array("name", "Max. 50000 per day allowed"),
-			array("maxLength", "Enter 15 digit transaction code", array(15))
-		), array("ltrim", "rtrim", "stripTags"), "");
-
-		$helper->addField("transaction_code", "text", array(
-			array("required", "Transaction code is required"),
-			array("maxLength", "Enter 15 digit transaction code", array(15))
-		), array("ltrim", "rtrim", "stripTags"), "");
-
-		$helper->addField("remarks", "text", array(
-			array("required", "Remarks is required"),
-			array("maxLength", "Max. 100 characters allowed", array(100))
-		), array("ltrim", "rtrim", "stripTags"), "");
-
-		// process the request
-		if ($helper->processRequest($request)) {
-			//try to validate
-			if ($helper->validate()) {
-				return $this->processSingleTransfer($request, $helper, $helper2, $customer);
-			}
-		}
-
-	    $helper2->addField("transaction_code", "text", array(
+        $helper->addField("transaction_code", "text", array(
             array("required", "Transaction code is required"),
             array("maxLength", "Enter 15 digit transaction code", array(15))
         ), array("ltrim", "rtrim", "stripTags"), "");
 
-		$helper2->addField("file", "", array(
-		), array("ltrim", "rtrim"), "");
+        $helper->addField("remarks", "text", array(
+            array("required", "Remarks is required"),
+            array("maxLength", "Max. 100 characters allowed", array(100))
+        ), array("ltrim", "rtrim", "stripTags"), "");
+
+        return $helper;
+    }
+    private function getFileTransferHelper() {
+        $helper2 =  $this->get("form")->getCSRFFormHelper("make_transfer_via_file_upload");
+
+        $helper2->addField("transaction_code", "text", array(
+            array("required", "Transaction code is required"),
+            array("maxLength", "Enter 15 digit transaction code", array(15))
+        ), array("ltrim", "rtrim", "stripTags"), "");
+
+        $helper2->addField("file", "", array(
+        ), array("ltrim", "rtrim"), "");
+
+        return $helper2;
+    }
+    public function makeTransfer($request) {
+        $helper = $this->getFormTransferHelper();
+        $helper2 = $this->getFileTransferHelper();
+        $this->get("templating")->render("Customer/make_transfer.html.php", array(
+            "form" => $helper,
+            "form2" => $helper2,
+        ));
+    }
+
+	public function makeTransferForm($request) {
+        $customer = $this->get("auth")->check(_GROUP_USER);
+        // create the FormHelper
+        $helper = $this->getFormTransferHelper();
+        // process the request
+        if ($helper->processRequest($request)) {
+            //try to validate
+            if ($helper->validate()) {
+                return $this->processSingleTransfer($request, $helper, $helper2, $customer);
+            }
+        }
+        $helper2 = $this->getFileTransferHelper();
+        $this->get("templating")->render("Customer/make_transfer.html.php", array(
+            "form" => $helper,
+            "form2" => $helper2,
+        ));
+    }
+    public function makeTransferFile($request) {
+		$customer = $this->get("auth")->check(_GROUP_USER);
+        // make transfer via file upload
+        $helper2 = $this->getFileTransferHelper();
 
 		if ($helper2->processRequest($request)) {
 			//try to validate
@@ -68,11 +92,11 @@ class TransactionController extends Controller {
 				return $this->processBatchTransfer($request, $helper, $helper2, $customer);
 			}
 		}
-		// render the form
-		$this->get("templating")->render("Customer/make_transfer.html.php", array(
-			"form" => $helper,
-			"form2" => $helper2,
-		));
+		$helper = $this->getFormTransferHelper();
+        $this->get("templating")->render("Customer/make_transfer.html.php", array(
+            "form" => $helper,
+            "form2" => $helper2,
+        ));
 	}
 
 	private function processSingleTransfer($request, $helper, $helper2, $customer) {
@@ -279,5 +303,91 @@ class TransactionController extends Controller {
         unlink($uploaded_file_name);
         $this->get("routing")->redirect("make_transfer_get", array("form" => $helper, "form2" => $helper2));
         return;
+    }
+
+    private function getTransactionFormHelper () {
+        $helper =  $this->get("form")->getCSRFFormHelper("approve_transaction");
+
+        $helper->addField("transaction_id", "text", array(
+            array("required", "Recipient Account No. is required"),
+            array("number", "Only numbers are allowed"),
+        ), array("ltrim", "rtrim", "stripTags"), "");
+
+        return $helper;
+    }
+
+    public function loadPendingTransactions ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+        // create the FormHelper
+        $helper =  $this->getTransactionFormHelper();
+        /*Fetch all transactions that are on-hold.*/
+        $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
+        $completedtransactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>0));
+        // render the form
+        $this->get("templating")->render("Employee/approve_transactions.html.php", array(
+            "form" => $helper,
+            "transactionList" => $transactionList,
+            "completedtransactionList" => $completedtransactionList
+        ));
+    }
+
+    public function approveTransaction ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+
+        $helper = $this->getTransactionFormHelper();
+
+        if ($helper->processRequest($request)) {
+            //try to validate
+            if ($helper->validate()) {
+                $transaction_id = $helper->getValue("transaction_id");
+                $transaction_model = $this->get('transaction_repository')->findOne(array("id" => (int)$transaction_id));
+                if ($transaction_model !== false) {
+                    $account_repo = $this->get('account_repository');
+                    $from_account_id = $transaction_model->getFromAccountId();
+                    $to_account_id = $transaction_model->getToAccountId();
+                    $from_account = $account_repo->findOne(array("account_id"=>$from_account_id));
+                    $to_account = $account_repo->findOne(array("account_id"=>$to_account_id));
+                    $from_account_balance = $from_account->getBalance();
+
+                    /*Return if customer account does not have sufficient funds*/
+                    if ($transaction_model->getAmount() > $from_account_balance) {
+                        $this->get("flash_bag")->add(_OPERATION_FAILURE, "Insufficient funds for the transfer.", "error");
+                        return $this->get('routing')->redirect('transactions_get',array());
+                    } else {
+                        if($this->get('transaction_repository')->actOnTransaction($transaction_model, _ACTION_APPROVE, $account_repo, $from_account, $to_account) != false) {
+                            $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Transaction was approved successfully.", "success_notification");
+                            return $this->get('routing')->redirect('transactions_get',array());
+                        }
+                    }
+                }
+            }
+        }
+        
+        $this->get("flash_bag")->add(_OPERATION_FAILURE, "The Transaction could not be approved", "error");
+        return $this->get('routing')->redirect('transactions_get',array());
+    }
+
+    public function rejectTransaction ($request) {
+        $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+
+        $helper = $this->getTransactionFormHelper();
+
+        if ($helper->processRequest($request)) {
+            //try to validate
+            if ($helper->validate()) {
+                $transaction_id = $helper->getValue("transaction_id");
+                $transaction_model = $this->get('transaction_repository')->findOne(array("id" => (int)$transaction_id));
+                if ($transaction_model !== false) {
+                    if($this->get('transaction_repository')->actOnTransaction($transaction_model, _ACTION_REJECT) != false) {
+                        $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Transaction was rejected successfully.", "success_notification");
+                        return $this->get('routing')->redirect('transactions_get',array());
+                    }
+                } 
+            }
+        }
+        
+        $this->get("flash_bag")->add(_OPERATION_FAILURE, "The Transaction could not be rejected", "error");
+        
+        return $this->get('routing')->redirect('transactions_get',array());
     }
 }

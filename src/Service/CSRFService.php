@@ -28,7 +28,7 @@ class CSRFService {
 	 */
 	public function createCSRFToken($context) {
 		$tokens = $this->session_service->get("csrf_tokens");
-		if(in_array($context, $tokens)) {
+		if(array_key_exists($context, $tokens)) {
 			$tokens[$context]["expires"] = time()+$this->lifetime;
 			$this->session_service->set("csrf_tokens", $tokens);
 			return $tokens[$context];

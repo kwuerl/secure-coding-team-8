@@ -65,7 +65,55 @@ var secureBank = {
             $('.main-sidebar').css({'height':(($(document).height()))+'px'});
 
             // ==== Approve/ Reject Transaction operations =======//
-            $('#approve_trans_table').on('click', '.btn-info', function() {
+            $("form[data-confirm-modal]").submit(function(event) {
+                var confirm_modal = $(`
+                    <!-- Approve Transaction Modal -->
+                    <div id="confirm-modal" class="modal fade" role="dialog" tabindex="-1">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
+                                    <h4 class="modal-title">`+$(this).attr("data-modal-title")+`</h4>
+                                </div>
+                                <div class="modal-body">
+                                    `+$(this).attr("data-modal-body")+`
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                );
+                $("body").append(confirm_modal);
+                //$('#confirm-modal .hide').show();
+                $('#confirm-modal').on('hidden.bs.modal', function(){
+                    $('#confirm-modal').remove();
+                });
+                event.preventDefault();
+                var that = this;
+                $('#confirm-modal').modal("show");
+                $('#confirm-modal').find('.btn-primary').on('click', function() {
+                    $(this).unbind("click");
+                    that.submit();
+
+                });
+                //console.log("Hi");
+                //this.submit();
+            });
+            $(".set-balance").on("click", function(event) {
+                $('#balance_customer_id').val($(this).attr("data-customer-id"));
+                $('#setBalanceModal').modal("show");
+                $('#setBalanceModal').find('.btn-primary').on('click', function() {
+                    $(this).unbind("click");
+                    $('#balance_form').submit();
+                });
+            });
+
+            /*$('#approve_trans_table').on('click', '.btn-info', function() {
                 var transaction_id = $(this).parent().parent().find('td.app-transaction-id').html();
                 $('#selectedTransactionId').val(transaction_id);
                 $('#action_transaction').val(1);
@@ -85,11 +133,11 @@ var secureBank = {
             $('#rejectTransModal').on('click', '.btn-primary', function() {
                 var approval_form = document.forms['approve_transaction'];
                 approval_form.submit();
-            });
+            });*/
             // ==== Approve/ Reject Transaction operations ends =======//
 
             // ==== Approve/ Reject Registration operations =======//
-            $('#employee_regsitrations_table').on('click', '.btn-info', function(){
+            /*$('#employee_regsitrations_table').on('click', '.btn-info', function(){
                 var employee_id = $(this).parent().attr('id');
                 $('#selectedUserId').val(employee_id);
                 $('#action_registration').val(1);
@@ -133,7 +181,7 @@ var secureBank = {
                 var action_registration_form = document.forms['action_registration_form'];
                 $('#account_balance').val($("[name='form_set_balance[balance]']").val());
                 action_registration_form.submit();
-            });
+            });*/
         });
     }
 };

@@ -30,7 +30,7 @@ th {
 }
 
 form[name='approve_transaction']{
-    display: none;
+    /*display: none;*/
 }
 
 .app-section-min-height{

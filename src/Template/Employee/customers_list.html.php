@@ -19,11 +19,6 @@
             <li class="active">Customers</li>
         </ol>
     </section>
-    <?php $t->formh($t->get("form"), array("action"=>"/customers", "method"=>"post"), function ($t) { ?>
-    <input id='selectedUserId' name='selectedUserId' type='hidden' value=''/>
-    <input id='action_registration' name='action_registration' type='hidden' value=''/>
-    <input id='account_balance' name='account_balance' type='hidden' value=''/>
-    <?php }) ?>
     <!-- Registration Pending Customers -->
     <section class="content">
         <div class="row">
@@ -56,8 +51,26 @@
                                         <?= $t->s($customer->getEmail()); ?>
                                     </td>
                                     <td id=<?= "'".$customer->getId()."'>" ?>
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                        <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                        <?php $t->formh($t->get("form"), array(
+                                            "action"=>"/customers/approve", 
+                                            "method"=>"post", 
+                                            "data-confirm-modal"=>"", 
+                                            "data-modal-title"=>"Approve Registration", 
+                                            "data-modal-body"=>"Are you sure you want to approve the registration?"
+                                        ), function ($t) use ($customer) { ?>
+                                            <input name='action_customer_registration[customer_id]' type='hidden' value='<?= $t->s($customer->getId()); ?>'/>
+                                            <button type="submit" name="action_customer_registration[action]" value="approve" class="btn btn-info">Approve</button>
+                                        <?php }); ?>
+                                        <?php $t->formh($t->get("form"), array(
+                                            "action"=>"/customers/reject", 
+                                            "method"=>"post", 
+                                            "data-confirm-modal"=>"", 
+                                            "data-modal-title"=>"Reject Registration", 
+                                            "data-modal-body"=>"Are you sure you want to reject the registration?"
+                                        ), function ($t) use ($customer) { ?>
+                                            <input name='action_customer_registration[customer_id]' type='hidden' value='<?= $t->s($customer->getId()); ?>'/>
+                                            <button type="submit" name="action_customer_registration[action]" value="reject" class="btn btn-reject">Reject</button>
+                                        <?php }); ?>
                                     </td>
                                 </tr>
                                 <?php }?>
@@ -113,7 +126,7 @@
                                     </td>
                                     <td class="actions" id=<?= "'".$customer->getId()."'>" ?>
                                     <?php if (!$customer->getIsAccountBalanceInitialized()) {?>
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setBalanceModal">Set Balance</button>
+                                        <button type="button" class="btn btn-info set-balance" data-customer-id="<?= $t->s($customer->getId()); ?>">Set Balance</button>
                                     <?php }?>
                                     </td>
                                 </tr>
@@ -132,46 +145,6 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<!-- Approve Registration Modal -->
-<div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
-                <h4 class="modal-title">Approve Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to approve the registration?
-            </div>
-            <!-- /.box-body -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Approve</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Reject Registration Modal -->
-<div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
-                <h4 class="modal-title">Reject Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to reject the registration?
-            </div>
-            <!-- /.box-body -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Reject</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Set Balance Modal -->
 <div id="setBalanceModal" class="modal fade" role="dialog" tabindex="-1">
     <div class="modal-dialog">
@@ -182,15 +155,10 @@
                 <h4 class="modal-title">Set Balance</h4>
             </div>
             <div class="modal-body">
-                <?php $t->formh($t->get("form"), array("action"=>"/form", "method"=>"post"), function ($t) { ?>
-                <?php
-                    $balance_errors = $t->get("form")->getError("balance");
-                    ?>
+                <?php $t->formh($t->get("balance_form"), array("action"=>"/customers/balance", "method"=>"post", "id"=>"balance_form"), function ($t) { ?>
                 <div class="form-group has-feedback <?php if (sizeof($balance_errors) > 0) echo "has-error"; ?>">
-                    <?php if (sizeof($balance_errors) > 0) { ?>
-                    <label for="form_set_balance[balance]" class="control-label"><span class="glyphicon glyphicon-remove-circle"></span> <?= $balance_errors[0] ?></label>
-                    <?php } ?>
-                    <input type="number" class="form-control" placeholder="Balance" name="form_set_balance[balance]" value="<?= $t->s($t->get('form')->getValue('balance')); ?>" required>
+                    <input id="balance_customer_id" name='action_customer_balance[customer_id]' type='hidden' value=''/>
+                    <input type="number" class="form-control" placeholder="Balance" name="action_customer_balance[balance]" value="" required>
                 </div>
                 <?php }); ?>
             </div>

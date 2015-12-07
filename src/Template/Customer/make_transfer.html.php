@@ -31,7 +31,7 @@
                     <div class="tab-pane active" id="html-form">
                         <div class="box box-primary">
                             <div class="box-body">
-                                <?php $t->formh($t->get("form"), array("action"=>"/make_transfer", "method"=>"post"), function ($t) { ?>
+                                <?php $t->formh($t->get("form"), array("action"=>"/make_transfer/form", "method"=>"post"), function ($t) { ?>
                                 <?php
                                     $to_account_id_errors = $t->get("form")->getError("to_account_id");
                                     $to_account_name_errors= $t->get("form")->getError("to_account_name");
@@ -85,7 +85,7 @@
 
                     <div class="tab-pane" id="upload-form">
                         <div class="box box-primary">
-                            <?php $t->formh($t->get("form2"), array("action"=>"/make_transfer", "method"=>"post", "enctype"=>"multipart/form-data"), function ($t) { ?>
+                            <?php $t->formh($t->get("form2"), array("action"=>"/make_transfer/file", "method"=>"post", "enctype"=>"multipart/form-data"), function ($t) { ?>
                             <?php
                                 $transaction_code_errors = $t->get("form2")->getError("transaction_code");
                             ?>

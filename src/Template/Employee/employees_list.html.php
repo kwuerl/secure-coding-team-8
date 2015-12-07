@@ -19,10 +19,6 @@
             <li class="active">Employees</li>
         </ol>
     </section>
-    <?php $t->formh($t->get("form"), array("action"=>"/employees", "method"=>"post"), function ($t) { ?>
-    <input id='selectedUserId' name='selectedUserId' type='hidden' value=''/>
-    <input id='action_registration' name='action_registration' type='hidden' value=''/>
-    <?php }) ?>
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -55,8 +51,26 @@
                                         <?= $t->s($employee->getEmail()); ?>
                                     </td>
                                     <td id=<?= "'".$employee->getId()."'>" ?>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#approveRegModal">Approve</button>
-                                    <button type="button" class="btn btn-reject" data-toggle="modal" data-target="#rejectRegModal">Reject</button>
+                                    <?php $t->formh($t->get("form"), array(
+                                        "action"=>"/employees/approve", 
+                                        "method"=>"post", 
+                                        "data-confirm-modal"=>"", 
+                                        "data-modal-title"=>"Approve Registration", 
+                                        "data-modal-body"=>"Are you sure you want to approve the registration?"
+                                    ), function ($t) use ($employee) { ?>
+                                        <input name='action_employee_registration[employee_id]' type='hidden' value='<?= $t->s($employee->getId()); ?>'/>
+                                        <button type="submit" name="action_employee_registration[action]" value="approve" class="btn btn-info">Approve</button>
+                                    <?php }); ?>
+                                    <?php $t->formh($t->get("form"), array(
+                                        "action"=>"/employees/reject", 
+                                        "method"=>"post", 
+                                        "data-confirm-modal"=>"", 
+                                        "data-modal-title"=>"Reject Registration", 
+                                        "data-modal-body"=>"Are you sure you want to reject the registration?"
+                                    ), function ($t) use ($employee) { ?>
+                                        <input name='action_employee_registration[employee_id]' type='hidden' value='<?= $t->s($employee->getId()); ?>'/>
+                                        <button type="submit" name="action_employee_registration[action]" value="reject" class="btn btn-reject">Reject</button>
+                                    <?php }); ?>
                                     </td>
                                 </tr>
                                 <?php }?>
@@ -119,46 +133,6 @@
         </div>
         <!-- /.row -->
     </section>
-</div>
-<!-- Approve Registration Modal -->
-<div id="approveRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
-                <h4 class="modal-title">Approve Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to approve the registration?
-            </div>
-            <!-- /.box-body -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Approve</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Reject Registration Modal -->
-<div id="rejectRegModal" class="modal fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class='fa fa-times'></i></button>
-                <h4 class="modal-title">Reject Registration</h4>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to reject the registration?
-            </div>
-            <!-- /.box-body -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Reject</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- /.content-wrapper -->
 <?php });

@@ -103,7 +103,7 @@ class TransactionRepository extends Repository {
 				$result = $this->update($model, array("is_on_hold", "is_rejected", "is_closed"), array("id" => $transaction_id));
 				break;
 		}
-		return ($result == 1) ? "" : $result;
+		return $result;
 	}
 
 	/**
@@ -191,4 +191,28 @@ class TransactionRepository extends Repository {
 		}
 		return true;
 	}
+	/**
+     * returns the users transaction by category
+     *
+     * @param int  $customerId    The customers id
+     *
+     * @return array
+     */
+    public function getUserTransactionsCategorized($customerId){
+        $transactionList = $this->getByCustomerId($customerId);
+        /*Separate the transactions into completed and on-hold transactions.*/
+        $onHoldTransactionList = array();
+        $approvedTransactionList = array();
+        foreach ($transactionList as $transaction) {
+            $onHold = $transaction->getIsOnHold();
+            if ($onHold)
+                $onHoldTransactionList[] = $transaction;
+            else
+                $approvedTransactionList[] = $transaction;
+        }
+        return array(
+            'onHoldTransactionList' => $onHoldTransactionList,
+            'approvedTransactionList' => $approvedTransactionList
+            );
+    }
 }
