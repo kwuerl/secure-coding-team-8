@@ -182,7 +182,7 @@ class CustomerController extends UserController {
                 if($user_model != false) {
                     if($this->get('customer_repository')->actOnRegistration($user_model, _ACTION_REJECT) != false) {
                         $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Customer registration was rejected successfully.", "success_notification");
-                        return $this->get('routing')->redirect('transactions_get',array());
+                        return $this->get('routing')->redirect('customers_get',array());
                     }
                 }
             }
@@ -202,7 +202,7 @@ class CustomerController extends UserController {
                     try {
                         $this->get('customer')->initialize($user_model);
                         $this->get("flash_bag")->add(_OPERATION_SUCCESS, "Customer registration was accepted successfully.", "success_notification");
-                        return $this->get('routing')->redirect('transactions_get',array());
+                        return $this->get('routing')->redirect('customers_get',array());
                     } catch (Excpetion $e) {
 
                     }
