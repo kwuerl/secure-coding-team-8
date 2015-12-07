@@ -33,6 +33,7 @@
                         <table id="customer_reg_pending" class="table table-bordered table-striped app-data-table-small">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email Id</th>
@@ -42,6 +43,9 @@
                             <tbody>
                                 <?php foreach($customerRegistrationList as $customer) {?>
                                 <tr>
+                                    <td>
+                                        <?= $t->s($customer->getId()); ?>
+                                    </td>
                                     <td>
                                         <?= $t->s($customer->getFirstName()); ?>
                                     </td>
@@ -82,6 +86,7 @@
                         <table id="tbl_registered_customers" class="table table-bordered table-striped app-data-table-small">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email Id</th>
@@ -91,6 +96,9 @@
                             <tbody>
                                 <?php foreach($customerList as $customer) {?>
                                 <tr>
+                                    <td>
+                                        <?= $t->s($customer->getId()); ?>
+                                    </td>
                                     <td>
                                         <a href=
                                             '<?= $t->s("/customer_details/" . $customer->getId() . ""); ?>'>

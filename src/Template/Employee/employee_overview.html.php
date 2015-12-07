@@ -86,8 +86,8 @@
                 <table id="recent_transactions" class="table table-bordered table-striped app-data-table">
                     <thead>
                         <tr>
-                            <th>Transaction Date</th>
-                            <th>Transaction Id</th>
+                            <th>Date</th>
+                            <th>ID</th>
                             <th>Amount</th>
                             <th>From Account No.</th>
                             <th>To Account No.</th>
