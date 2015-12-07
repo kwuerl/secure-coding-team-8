@@ -56,7 +56,6 @@ $service_container->register("account", "Service\\AccountService", array(
 $service_container->register("customer", "Service\\CustomerService", array(
 	array("type"=>"service", "value"=>"account_repository"),
 	array("type"=>"service", "value"=>"customer_repository"),
-	array("type"=>"service", "value"=>"transaction_repository"),
 	array("type"=>"service", "value"=>"account"),
 	array("type"=>"service", "value"=>"transaction_code"),
 	array("type"=>"service", "value"=>"pdf"),

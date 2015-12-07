@@ -41,7 +41,10 @@ $routing_service->post("statement_download", "/statement_download", "customer_co
 $routing_service->post("transaction_history_download", "/transaction_history_download", "customer_controller:generateTransactionHistoryPDF");
 $routing_service->get("statement", "/statement", "customer_controller:loadStatement");
 $routing_service->get("downloadscs", "/downloadscs", "customer_controller:downloadSCS");
-
+$routing_service->get("customer_pending_transaction_download", "/customer_pending_transaction_download/(:num)",
+                        "customer_controller:generateCustomerPendingTransactionPDF");
+$routing_service->get("customer_completed_transaction_download", "/customer_completed_transaction_download/(:num)",
+                        "customer_controller:generateCustomerCompletedTransactionPDF");
 
 /*
  * Employee routes
@@ -59,10 +62,6 @@ $routing_service->post("employees_reject_post", "/employees/reject","employee_co
 $routing_service->get("transactions_get", "/transactions","transaction_controller:loadPendingTransactions");
 $routing_service->post("transactions_approve_post", "/transactions/approve","transaction_controller:approveTransaction");
 $routing_service->post("transactions_reject_post", "/transactions/reject","transaction_controller:rejectTransaction");
-$routing_service->get("customer_pending_transaction_download", "/customer_pending_transaction_download/(:num)",
-                        "employee_controller:generateCustomerPendingTransactionPDF");
-$routing_service->get("customer_completed_transaction_download", "/customer_completed_transaction_download/(:num)",
-                        "employee_controller:generateCustomerCompletedTransactionPDF");
 $routing_service->get("transactions_pending_download", "/transactions_pending_download",
                         "employee_controller:generatePendingTransactionsPDF");
 $routing_service->get("transactions_pending_download", "/transactions_completed_download",
