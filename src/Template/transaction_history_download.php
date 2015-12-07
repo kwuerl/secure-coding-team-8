@@ -41,9 +41,9 @@ switch( $invokedFrom) {
                                      $pdfTitle ='Transaction History';
                                      $filename = 'Transaction_History_'.time().'.pdf';
                                      $transactionStatus = array(
-                                                             '0' => 'COMPLETED',
-                                                             '1' => 'ON HOLD',
-                                                             '2' => "REJECTED"
+                                                             '0' => 'Approved',
+                                                             '1' => 'On Hold',
+                                                             '2' => "Rejected"
                                                              );
                                      break;
      case _CUSTOMER_DETAILS_PENDING_TRANSACTION :   $accountInfo = $t->get("accountInfo");
@@ -106,9 +106,9 @@ switch( $invokedFrom) {
 
                                                       );
                                                       $transactionStatus = array(
-                                                             '0' => 'COMPLETED',
-                                                             '1' => 'ON HOLD',
-                                                             '2' => "REJECTED"
+                                                             '0' => 'Approved',
+                                                             '1' => 'On Hold',
+                                                             '2' => "Rejected"
                                                       );
                                                       $pdfTitle ='Completed Transactions';
                                                       $filename = 'Completed_Transactions_'.time().'.pdf';
@@ -160,13 +160,13 @@ foreach($transactionList as $transaction) {
                                     $accountId = $transaction->getToAccountId();
                                }
                                $pdf->SetWidths($width);
-                               $pdf->SetAligns(array('L','L','L','R','R','L'));
+                               $pdf->SetAligns(array('L','L','C','R','R','L'));
                                $pdf->Row(array($transaction->getId(),$accountId,date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),
                                                $debit_amount, $credit_amount, $transaction->getRemarks()));
                                break;
           case _TRANSACTION_HISTORY : $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];
                                       $pdf->SetWidths($width);
-                                      $pdf->SetAligns(array('L','L','L','R','C','L'));
+                                      $pdf->SetAligns(array('L','L','L','C','R','L'));
                                       $pdf->Row(array($transaction->getId(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                       date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
                                       $status, $transaction->getRemarks()));

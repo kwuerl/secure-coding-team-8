@@ -4,8 +4,8 @@
     $transactionList = $t->get("transactionList"); 
     $completedtransactionList = $t->get("completedtransactionList");
      $transactionStatus = array(
-        '0' => 'COMPLETED',
-        '1' => 'ON HOLD'
+        '0' => 'Approved',
+        '1' => 'On Hold'
      );
     ?>
 <!-- Content Wrapper. Contains page content -->
@@ -136,7 +136,7 @@
 							$class = 'fa fa-retweet';
 						else if($transaction->getIsRejected()) {
 							$class = 'fa fa-times';
-							$title = "REJECTED";
+							$title = "Rejected";
 						} else
 							$class ='fa fa-check-circle';
 								

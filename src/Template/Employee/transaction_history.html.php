@@ -3,8 +3,8 @@
 <?php $t->block("content", function ($t) {
     $transactionList = $t->get("transactionList");
     $transactionStatus = array(
-        '0' => 'COMPLETED',
-        '1' => 'ON HOLD'
+        '0' => 'Completed',
+        '1' => 'On Hold'
      );
     ?>
 <!-- Content Wrapper. Contains page content -->

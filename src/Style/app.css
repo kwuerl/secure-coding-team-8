@@ -230,3 +230,7 @@ div >h1{
 	text-align : center;
 	width : 5%;
 }
+
+#statement_table .text-center{
+    text-align: center;
+}
