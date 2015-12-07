@@ -40,14 +40,14 @@
                                     $remarks_errors = $t->get("form")->getError("remarks");
                                 ?>
                                 <div class="form-group has-feedback <?php if (sizeof($to_account_id_errors) > 0) echo "has-error"; ?>">
-                                    <label for="make_transfer[to_account_id]">Beneficiary Account No.</label>
+                                    <label for="make_transfer[to_account_id]">Recipient Account No.</label>
                                     <input type="text" class="form-control" name="make_transfer[to_account_id]" value="<?= $t->s($t->get('form')->getValue('to_account_id')); ?>" required maxlength='10'>
                                     <?php if (sizeof($to_account_id_errors) > 0) { ?>
                                     <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $to_account_id_errors[0] ?><br></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group has-feedback <?php if (sizeof($to_account_name_errors) > 0) echo "has-error"; ?>">
-                                    <label for="make_transfer[to_account_name]">Account Holder Name</label>
+                                    <label for="make_transfer[to_account_name]">Recipient Name</label>
                                     <input type="text" class="form-control" name="make_transfer[to_account_name]" value="<?= $t->s($t->get('form')->getValue('to_account_name')); ?>" required maxlength='45'>
                                     <?php if (sizeof($to_account_name_errors) > 0) { ?>
                                     <p class="text-red"><span class="glyphicon glyphicon-remove-circle"></span> <?= $to_account_name_errors[0] ?><br></p>
