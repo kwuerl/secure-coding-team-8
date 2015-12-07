@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -35,11 +36,11 @@ public class SmartCardSimulator {
 	public JFrame frmSecureBank;
 	private JTextField fieldRecipientAccountId;
 	private JTextField fieldAmount;
-	private JTextField fieldScsPin;
+	private JPasswordField fieldScsPin;
 	private JTextPane textPaneSingle;
 	private JTextPane textPaneBatch;
 	private TanGenerator tanGenerator;
-	private JTextField fieldScsPinBatch;
+	private JPasswordField fieldScsPinBatch;
 	
 	/**
 	 * Initialize the smart card simulator.
@@ -104,7 +105,7 @@ public class SmartCardSimulator {
 		panelSingle.add(fieldAmount);
 		fieldAmount.setColumns(10);
 		
-		fieldScsPin = new JTextField();
+		fieldScsPin = new JPasswordField();
 		fieldScsPin.setBounds(224, 106, 140, 25);
 		panelSingle.add(fieldScsPin);
 		fieldScsPin.setColumns(10);
@@ -116,8 +117,8 @@ public class SmartCardSimulator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (isValidSingleTransaction()) {
-					tanGenerator = new TanGenerator(); 
-					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText() + fieldAmount.getText() + fieldScsPin.getText());
+					tanGenerator = new TanGenerator();
+					String tan = tanGenerator.getTan(fieldRecipientAccountId.getText() + fieldAmount.getText() + new String(fieldScsPin.getPassword()));
 					displayTan("_SINGLE", tan);
 				}				
 			}
@@ -153,7 +154,7 @@ public class SmartCardSimulator {
         	@Override
 			public void actionPerformed(ActionEvent e) {
         		LineBorder errorField;
-        		String scsPin = fieldScsPinBatch.getText().trim();
+        		String scsPin = new String(fieldScsPinBatch.getPassword()).trim();
         		String filePath = filePicker.getSelectedFilePath().trim();
 
         		/*Check if the SCS Pin entered is empty*/
@@ -214,7 +215,7 @@ public class SmartCardSimulator {
         lblScsPinBatch.setBounds(18, 35, 129, 25);
         panelBatch.add(lblScsPinBatch);
         
-        fieldScsPinBatch = new JTextField();
+        fieldScsPinBatch = new JPasswordField();
         fieldScsPinBatch.setBounds(125, 35, 125, 25);
         panelBatch.add(fieldScsPinBatch);
         fieldScsPinBatch.setColumns(10);
@@ -255,7 +256,7 @@ public class SmartCardSimulator {
 		}
 				
 		/*Check if the SCS Pin entered is empty*/
-		if (fieldScsPin.getText().trim().isEmpty()) {
+		if (new String(fieldScsPin.getPassword()).trim().isEmpty()) {
 			markFieldForError(fieldScsPin);
 			isFormFilled = false;
 		}
@@ -339,7 +340,7 @@ public class SmartCardSimulator {
 				return false;
 			}
 			
-			if (!isValidScsPin(fieldScsPin.getText().trim())) {
+			if (!isValidScsPin(new String(fieldScsPin.getPassword()).trim())) {
 				markFieldForError(fieldScsPin, "Incorrect SCS Pin for the transfer");				
 				return false;
 			} else {
