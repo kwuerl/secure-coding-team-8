@@ -14,10 +14,10 @@ class TransactionController extends Controller {
 		$customer = $this->get("auth")->check(_GROUP_USER);
 
 		// create the FormHelper
-        $helper = new \Helper\FormHelper("make_transfer");
+        $helper =  $this->get("form")->getCSRFFormHelper("make_transfer");
 
         // make transfer via file upload
-        $helper2 = new \Helper\FormHelper("make_transfer_via_file_upload");
+        $helper2 =  $this->get("form")->getCSRFFormHelper("make_transfer_via_file_upload");
 
 		//add one field
 		$helper->addField("to_account_id", "text", array(

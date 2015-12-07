@@ -13,7 +13,7 @@ define('_DB_SECURE_BANK', 'BANK_DETAILS');
 define('_DB_SERVER', 'mysql');
 define('_MYSQL_HOST', '127.0.0.1');
 define('_MYSQL_USER', 'root');
-define('_MYSQL_PASSWORD', 'root');
+define('_MYSQL_PASSWORD', 'samurai');
 define('_MYSQL_DATABASE', _DB_SECURE_BANK);
 
 define('_TBL_CUSTOMER', 'TBL_CUSTOMER');

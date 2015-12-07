@@ -45,7 +45,7 @@ class EmployeeController extends UserController {
         ));
     }
     public function loadCustomersList ($request) {
-        $helper = new \Helper\FormHelper("action_registration_form");
+        $helper =  $this->get("form")->getCSRFFormHelper("action_registration_form");
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch the details of all customers*/
         $customerList = $this->get('customer_repository')->find(array("is_active"=>1));
@@ -75,7 +75,7 @@ class EmployeeController extends UserController {
         ));
     }
     public function loadEmployeesList ($request) {
-        $helper = new \Helper\FormHelper("action_registration_form");
+        $helper = $this->get("form")->getCSRFFormHelper("action_registration_form");
         $employee = $this->get("auth")->check(_GROUP_ADMIN);
         /*Fetch the details of all employees*/
         $employeeList = $this->get('employee_repository')->find(array("is_active"=>1));
@@ -90,7 +90,7 @@ class EmployeeController extends UserController {
     }
     public function loadPendingTransactions ($request) {
         // create the FormHelper
-        $helper = new \Helper\FormHelper("approve_transaction");
+        $helper =  $this->get("form")->getCSRFFormHelper("approve_transaction");
         $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
         /*Fetch all transactions that are on-hold.*/
         $transactionList = $this->get('transaction_repository')->find(array("is_on_hold"=>1));
@@ -167,7 +167,7 @@ class EmployeeController extends UserController {
         switch ($action) {
             case _ACTION_APPROVE:
 
-                $helper = new \Helper\FormHelper("form_account");
+                $helper =  $this->get("form")->getCSRFFormHelper("form_account");
                 $account_repo = $this->get('account_repository');
 
                 // fill the model
@@ -241,7 +241,7 @@ class EmployeeController extends UserController {
                 $success = 'Customer registration was rejected successfully.';
                 break;
             case _ACTION_SET_BALANCE:
-                $helper = new \Helper\FormHelper("form_account");
+                $helper =  $this->get("form")->getCSRFFormHelper("form_account");
                 $balance = $request->getData('account_balance');
                 $account_repo = $this->get('account_repository');
                 $account_model = $account_repo->findOne(array("customer_id"=>$user_id));
