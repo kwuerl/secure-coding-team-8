@@ -22,6 +22,10 @@ th {
     background-image: url("/Vendor/img/login_bg.jpg");
     background-size: cover;
 }
+
+.registration-form{
+    width : 600px;
+}
 .login-page .login-logo a {
     color:white;
 }
@@ -41,6 +45,9 @@ form[name='approve_transaction']{
     /*border-top-color :#86a0bf;*/
 }
 
+.form-control-feedback{
+    text-align: inherit;
+}
 .content-header > .breadcrumb{
   padding-top : 4px;
   padding-bottom: 4px;
