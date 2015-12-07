@@ -226,6 +226,9 @@ div >h1{
     width : 5%;
 }
 
+#cust_details_table2 .text-center, #cust_details_table1 .text-center{
+    text-align: center;
+}
 #approve_trans_table .width_10, #tbl_registered_customers .width_10{
     width : 12%;
 }
@@ -235,6 +238,6 @@ div >h1{
 	width : 5%;
 }
 
-#statement_table .text-center{
+#tbl_completed_transactions .text-center, #approve_trans_table .text-center, #statement_table .text-center, #customer_transactions_table .text-center{
     text-align: center;
 }

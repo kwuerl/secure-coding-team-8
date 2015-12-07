@@ -160,33 +160,33 @@ foreach($transactionList as $transaction) {
                                     $accountId = $transaction->getToAccountId();
                                }
                                $pdf->SetWidths($width);
-                               $pdf->SetAligns(array('L','L','C','R','R','L'));
+                               $pdf->SetAligns(array('L','C','C','R','R','L'));
                                $pdf->Row(array($transaction->getId(),$accountId,date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),
                                                $debit_amount, $credit_amount, $transaction->getRemarks()));
                                break;
           case _TRANSACTION_HISTORY : $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];
                                       $pdf->SetWidths($width);
-                                      $pdf->SetAligns(array('L','L','L','C','R','L'));
+                                      $pdf->SetAligns(array('L','C','L','C','R','L'));
                                       $pdf->Row(array($transaction->getId(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                       date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
                                       $status, $transaction->getRemarks()));
                                       break;
           case _CUSTOMER_DETAILS_PENDING_TRANSACTION :
                                        $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','R'));
+                                       $pdf->SetAligns(array('L','C','C','R'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getToAccountId(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount()));
                                        break;
           case _CUSTOMER_DETAILS_COMPLETED_TRANSACTION :
                                        $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','L','L','L','R','L'));
+                                       $pdf->SetAligns(array('L','C','L','C','L','C','R','L'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                        $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
                                                        $transaction->getRemarks()));
                                        break;
           case _PENDING_TRANSACTIONS : $pdf->SetWidths($width);
-                                       $pdf->SetAligns(array('L','L','L','L','L','L','R','L'));
+                                       $pdf->SetAligns(array('L','C','L','C','L','C','R','L'));
                                        $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                        $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                        date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
@@ -195,7 +195,7 @@ foreach($transactionList as $transaction) {
                                           
           case _COMPLETED_TRANSACTIONS : $status = ($transaction->getIsRejected()) ? $transactionStatus[2] : $transactionStatus[$transaction->getIsOnHold()];
                                          $pdf->SetWidths($width);
-                                         $pdf->SetAligns(array('L','L','L','L','L','L','R','C','L'));
+                                         $pdf->SetAligns(array('L','C','L','C','L','C','R','C','L'));
                                          $pdf->Row(array($transaction->getId(),$transaction->getFromAccountId(),
                                                          $transaction->getFromAccountName(),$transaction->getToAccountId(),$transaction->getToAccountName(),
                                                          date('d.m.Y',strtotime($transaction->getTransactionDate() ) ),$transaction->getAmount(),
