@@ -1,5 +1,4 @@
 \subsection{Testing for Account Enumeration and Guessable User Account - OTG-IDENT-004} \label{OTG-IDENT-004}
-\subsubsection{InternetBanking}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{InternetBanking} \\ \hline
     \textbf{Observation} & It was found that the application responds with the same error messages for every client request that produces a failed authentication. This has been tested in the Login page. \\
@@ -36,7 +35,6 @@
     \\ \hline
 \end{longtable}
 
-\subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & It was found that the application responds with different error messages for different incorrect login requests. However, it is not possible to enumerate users. There is also a lockout mechanism which locks the account after 5 failed login attempts.\\
