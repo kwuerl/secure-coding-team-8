@@ -1,0 +1,38 @@
+\subsection{Testing for Weak or unenforced username policy - OTG-IDENT-005}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
+    \textbf{Observation} & It has been observed that authentication is based on a combination of User-name \& password and that user-names are provided by the users themselves at the time of registration. It is possible to trigger dictionary attacks for user-names and passwords. Though the error messages are consistent for all failed login attempts, it is possible to perform the attack infinite number of times due to the absence of a lockout mechanism. \\
+    \textbf{Discovery} & This has been tested in the Login and Registration pages. \\
+    \textbf{Likelihood} & Likelihood is low as some skills are required to perform dictionary attcks or to use password-cracking softwares and the time to guess a valid user, given that the error messages are consistent is also high. \\
+    \textbf{Impact} & Impact is high because if a user account is hacked, all permitted operations can be performed.\\
+    \textbf{Recommen\-dations} & A lockout mechanism should be implemented. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{BurntOrange}{Low} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & It has been observed that authentication is only based on a combination of Email id \& password and that account names are not implemented in the application. This has been tested in the Login and Registration pages. Enumeration of Email id \& password is already described in section \ref{OTG-IDENT-004}. \\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+InternetBanking application is vulnerable to user-name and password attacks and there is no lockout policy. In case of SecureBank, authentication is solely based on e-mail \& password combination and there is also a lockout mechanism in-place. Thus, SecureBank is more secure in this regard.
+\clearpage
