@@ -1,0 +1,51 @@
+\subsection{Test Account Provisioning Process - OTG-IDENT-003} \label{OTG-IDENT-003}
+\subsubsection{InternetBanking}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking} \\ \hline
+    \textbf{Observation} & A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employees in the application and is not exposed to other users. However, an employee can reject already approved customers or employees, with no further effect to the system.\\
+    \textbf{Discovery} &
+     This flaw has been exposed using the Advanced Rest Client. Steps are as follows:
+            \begin{itemize}
+            \item  Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
+
+            \item Note the User Id of one of the users. Consider this value is \code{xyz}.
+
+            \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ InternetBanking/employee.php\allowbreak?action=approveregistrations}.
+
+            \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
+            
+            \item Click on \enquote{Send} and observe that the response contains the text \enquote{Account request rejected successfully}.
+            
+            \item However, upon trying to login as user \code{xyz}, there are no failures and the user can function as earlier.
+
+        \end{itemize}
+            \\ &
+        \begin{itemize}
+            
+            \item Upon analyzing the database, it was found that there are 2 tables - \code{userrequest} and \code{user}. All registrations are stored in \code{userrequest} and approved users are stored in \code{user}. Upon approval or rejection, \code{approveddate} or \code{rejecteddate} column of the corresponding entry in the \code{userrequest} table is updated. In case of approval, a new record is also inserted into the \code{user} table. In the above scenario, \code{approveddate} and \code{rejecteddate} both get set for the user \code{xyz}. But login continues to work as it is based on the \code{user} table.
+            
+            \end{itemize}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & Approval or rejection operations should be restricted on already approved users. \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employee and is not exposed to other users. Also, no operations can be performed on already approved users, not even by authorized employees.\\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Though no vulnerability is exposed in InternetBanking application, it is still possible to modify the database, thus exposing a flaw. Considering this, SecureBank is more secure in this regard.
+\clearpage
