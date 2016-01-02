@@ -1,0 +1,80 @@
+\subsection{Testing for Account Enumeration and Guessable User Account - OTG-IDENT-004} \label{OTG-IDENT-004}
+\subsubsection{InternetBanking}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking} \\ \hline
+    \textbf{Observation} & It was found that the application responds with the same error messages for every client request that produces a failed authentication. This has been tested in the Login page. \\
+    \textbf{Discovery} &
+         This test was performed manually by trying various combinations of email and password. Steps are as follows:
+            \begin{itemize}
+            \item \textbf{Scenario 1 -} Testing for Valid user with right password
+            		\begin{itemize}
+            		 \item Open the Login page and enter a valid email and password. Click on the Submit button.
+
+            		 \item The user is redirected to the Transactions page without any success message.
+            		\end{itemize}
+             \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
+             	\begin{itemize}
+             	  \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
+
+             	  \item An error message is displayed that reads \code{
+             	  Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
+             	\end{itemize}
+
+            \item \textbf{Scenario 3-} Testing for non-existent User
+     	       \begin{itemize}
+     	       \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
+
+     	       \item An error message is displayed that reads \code{
+     	       Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
+     	       \end{itemize}
+            \end{itemize}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & It was found that the application responds with different error messages for different incorrect login requests. However, it is not possible to enumerate users. There is also a lockout mechanism which locks the account after 5 failed login attempts.\\
+    \textbf{Discovery} &
+        This test was performed manually by trying various combinations of email and password. Steps are as follows:
+            \begin{itemize}
+            \item \textbf{Scenario 1 -} Testing for Valid user with right password
+                    \begin{itemize}
+                     \item Open the Login page and enter a valid email and password. Click on the Submit button.
+
+                     \item The user is redirected to the Home page without any success message.
+                    \end{itemize}
+             \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
+                \begin{itemize}
+                  \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
+
+                  \item An error message is displayed that reads \code{
+                  Login failed - Either the e-mail or the password is wrong.}, and the user stays on Login page. Also, the data entered in the form is retained.
+                \end{itemize}
+
+            \item \textbf{Scenario 3-} Testing for non-existent User
+               \begin{itemize}
+               \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
+
+               \item An error message is displayed that reads \code{
+               Login failed - There is no account with this email.}, and the user stays on Login page. Also, the data entered in the form is retained.
+               \end{itemize}
+            \end{itemize}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+In InternetBanking application, the vulnerability cannot be exploited as the error messages are consistent for all incorrect requests.
+In case of SecureBank, though the error messages differ, no vulnerability has been detected owing to the absence of username-baseed login and the presence of a lockout mechanism.
+Hence, neither of the applications contain any vulnerabilty.
+\clearpage
