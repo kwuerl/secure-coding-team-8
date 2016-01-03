@@ -1,0 +1,30 @@
+\subsection{Testing for Reflected Cross Site Scripting - OTG-INPVAL-001} \label{OTG-INPVAL-001}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & It has been found that Reflected Cross Site Scripting is not possible in the application. All the URLs where we tried to append script and HTML tags returned the response as 404. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization; leading to HTML tags being rendered as plain text. We also confirmed by manually appending strings such as \code{"><span>hi</span><br} to URLs. After refreshing this page with this value, no changes were observed. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A\\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\clearpage
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been verified that Reflected Cross Site Scripting is not possible. All the URLs where we tried to append script and HTML tags returned the response as 404. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization; leading to HTML tags being rendered as plain text. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither of the applications are vulnerable to Reflected XSS attacks.
+\clearpage
