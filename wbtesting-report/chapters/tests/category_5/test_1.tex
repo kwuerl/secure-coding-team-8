@@ -34,14 +34,7 @@
     & \textbf{SecureBank}
     \\ \hline
     \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. The cookie attribute is also set to \code{HttpOnly} that restricts client side manipulations of the cookie. The cookie attribute is also set to \code{Secure} as we are using HTTPS and hence data transmitted is encrypted. \\
-    \textbf{Discovery} & This was found by manually inspecting the code. The code is as given below.
-        \begin{lstlisting}
-             session_name($name . '_session');
-             session_set_cookie_params($limit, $path, $domain, $https,
-             true);
-             session_start();
-         \end{lstlisting}
-    \\
+    \textbf{Discovery} & This was found by manually inspecting the code. Refer \ref{code:cookie_attributes} for the related code. \\
     \textbf{Likelihood} & N/A \\
     \textbf{Impact} & N/A \\
     \textbf{Recommen\-dations} & N/A \\ \hline
@@ -51,4 +44,10 @@
 
 \subsubsection{Comparison}
 SecureBank is better than InternetBanking, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie and also uses HTTPS for secure communication.
+
+\begin{lstlisting}[caption={PHP code for setting cookie attribues SessionService.php}\label{code:cookie_attributes}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    session_name($name . '_session');
+    session_set_cookie_params($limit, $path, $domain, $https, true);
+    session_start();
+\end{lstlisting}
 \clearpage
