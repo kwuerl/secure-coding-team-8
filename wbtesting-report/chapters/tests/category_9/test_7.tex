@@ -1,0 +1,56 @@
+\subsection{Test Defenses Against Application Mis-use - OTG-BUSLOGIC-007}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+        \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
+    \textbf{Observation} & It is observed that, since the application does not respond in any way to failed attempts at operations and the attacker can continue to abuse functionality and submit malicious content at the application, this vulnerability exists. It has been found that the application can be misused by the attacker with various attacks at different pages.\\
+    \textbf{Discovery} &
+           \begin{itemize}
+     	      \item \textbf{Mis-use in Login -} There is no restriction on the number of failed login attempts and hence the attacker can make infinite attempts in trying to login to the application. This has been further described in the section \ref{OTG-AUTHN-007}.
+     	      \item \textbf{Mis-use in performing Transactions -}
+     	      	\begin{itemize}
+     	      		\item  Login as a Customer and click on New Transaction at the top.
+
+     	      		\item Fill the form with all the details and click on the Submit button OR use the File Upload feature to perform a transaction. In both cases, the action can be replicated multiple times even with incorrect details. The Firefox extension FormFuzzer, Fuzz feature of ZAProxy or a similar tool can be used for filling the forms.
+     	      	\end{itemize}
+     	      	\item These attacks are not monitored which was observed while inspecting the code and finding no mechanism implemented for storing error logs. There is also no lockout mechanism implemented to prevent the user from further attacking the system.
+           \end{itemize}
+    \\
+    \textbf{Likelihood} & This vulnerability does not require any technical skills. Logging into the web application through Brute-force methods is not easy since there is a policy on strong passwords but without a lockout mechanism in-place, it can also be exploited. Any customer who is logged in to the bank can perform transactions. It is exploitable remotely via the web interface and via the batch file functionality. Hence, likelihood is high. \\
+    \textbf{Impact} & The lack of active defenses allows an attacker to hunt for vulnerabilities without any recourse. The owner of the application will thus not know that the application is under attack. Thus the impact of such vulnerability is high. \\
+    \textbf{Recommen\-dations} &
+        \begin{itemize}
+            \item The application should restrict or lock out the user after he exceeds a certain number of the failed attempts while performing any operation.
+            \item Logs of suspected actions should be maintained in database/file so as to monitor attempts for attacks.
+        \end{itemize}
+    \\
+    \hline
+    \textbf{CVSS} & 
+        \begin{tabular}[t]{@{}l | l}
+        	Attack Vector           & \textcolor{red}{Network} \\
+        	Attack Complexity       & \textcolor{red}{Low} \\
+        	Privileges Required     & \textcolor{red}{None} \\
+        	User Interaction        & \textcolor{red}{None} \\
+        	Scope                   & \textcolor{Green}{Unchanged} \\
+        	Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
+        	Integrity Impact        & \textcolor{BurntOrange}{Low} \\
+        	Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been found that there is no error log maintained for unsuccessful operations. In the absence of such monitoring, the application can be attacked by the user without being noticed. However, there is a lockout mechanism on failed login. \\
+    \textbf{Discovery} & By manually inspecting the code, the lockout mechanism was found in \code{DBAuthProvider.php} that locks the account for 60 minutes. \\
+    \textbf{Likelihood} & Likelihood is low as it is not easy to gain access into the system by Brute-force attacks. \\
+    \textbf{Impact} & Impact is low low due to reduced chances of attack owing to the lockout mechanism. The transaction page still can be used with unsuccessful tries but after having successfully logged in to the application which thus reduces the chances of attack. \\
+    \textbf{Recommen\-dations} &  Logs of suspected actions should be maintained in database/file so as to monitor attempts for attacks. \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is more secure than InternetBanking since there is lockout mechanism implemented the entry point of the application which restricts further attacks.
+\clearpage
