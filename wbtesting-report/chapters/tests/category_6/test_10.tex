@@ -1,0 +1,28 @@
+\subsection{Testing for XPath Injection - OTG-INPVAL-010}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & XML \& its database are not used in the application. Hence XPath is not used to address parts of XML document and its database. Therefore XPath Injection is not applicable for this application. Hence no further testing was undertaken. \\
+    \textbf{Discovery} & Code was scanned using \code{grep} to match \code{xml} and none were found. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & XML \& its database are not used in the application. Hence XPath is not used to address parts of XML document and its database. Therefore XPath Injection is not applicable for this application. Hence no further testing was undertaken. \\
+    \textbf{Discovery} & Code was scanned using \code{grep} to match \code{xml} and none were found. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application uses XML documents and hence cannot be tested for this vulnerability that deals with XPath injection.
+\clearpage
