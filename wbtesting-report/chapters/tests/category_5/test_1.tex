@@ -3,7 +3,7 @@
     & \textbf{InternetBanking}
     \hfill CVSS Score: 9.8 \progressbar[filledcolor=red]{0.98}
     \\ \hline
-    \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. \\
+    \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. Also, transmission is over an unecrypted HTTP channel.\\
     \textbf{Discovery} &
         We used EditThisCookie extension of Chrome to look into the cookies present in the application. Steps are as follows:
             \begin{itemize}
@@ -50,5 +50,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-SecureBank is better than BANK-APP, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie.
+SecureBank is better than BANK-APP, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie and also uses HTTPS for secure communication.
 \clearpage
