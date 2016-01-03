@@ -7,29 +7,30 @@
     \textbf{Discovery} &
          This test was performed manually by trying various combinations of email and password. Steps are as follows:
             \begin{itemize}
-            \item \textbf{Scenario 1 -} Testing for Valid user with right password
-                \begin{itemize}
-                 \item Open the Login page and enter a valid email and password. Click on the Submit button.
-                 \item The user is redirected to the Transactions page without any success message.
+                \item \textbf{Scenario 1 -} Testing for Valid user with right password
+                    \begin{itemize}
+                        \item Open the Login page and enter a valid email and password. Click on the Submit button.
+                        \item The user is redirected to the Transactions page without any success message.
+                    \end{itemize}
+                 \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
+                    \begin{itemize}
+                        \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
+                        \item An error message is displayed that reads \code{ Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
+                    \end{itemize}
                 \end{itemize}
-             \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
-             	\begin{itemize}
-             	  \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
-             	  \item An error message is displayed that reads \code{
-             	  Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
-             	\end{itemize}
-            \item \textbf{Scenario 3-} Testing for non-existent User
-     	       \begin{itemize}
-     	       \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
-     	       \item An error message is displayed that reads \code{
-     	       Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
-     	       \end{itemize}
-            \end{itemize}
-            \item \textbf{Scenario 4-} Registering a new User
-               \begin{itemize}
-               \item Open the Registration page and enter thr details. Click on the Submit button.
-               \item An error message is displayed that reads \code{Username already in use, please choose another} or \code{Email-id is already in use, please choose another.} and the user stays on the same page. Refer \ref{code:user_check} for the related code excerpt.
-               \end{itemize}
+                    \\ &
+                \begin{itemize}
+                \item \textbf{Scenario 3-} Testing for non-existent User
+                   \begin{itemize}
+                        \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
+                        \item An error message is displayed that reads \code{
+                   Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
+                   \end{itemize}
+                \item \textbf{Scenario 4-} Registering a new User
+                   \begin{itemize}
+                        \item Open the Registration page and enter thr details. Click on the Submit button.
+                        \item An error message is displayed that reads \code{Username already in use, please choose another} or \code{Email-id is already in use, please choose another.} and the user stays on the same page. Refer \ref{code:user_check} for the related code excerpt.
+                   \end{itemize}
             \end{itemize}
     \\
     \textbf{Likelihood} & Likelihood is low as some skills are required to perform dictionary attcks or to use password-cracking softwares and the time to guess a valid user. \\
@@ -49,50 +50,27 @@
     \\ \hline
 \end{longtable}
 
-\begin{lstlisting}[caption={PHP code for checking user from registrationController.php}\label{code:user_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
-	$user = $db->checkUsername($_POST['username']);
-
-	if($user!=NULL){
-		$error .= 'Username already in use, please choose another.<br>';
-	}
-	if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-		$error .= 'Email is invalid<br>';
-	}
-	else{
-		$user = $db->checkEmail($_POST['email']);
-		if($user!=NULL){
-			$error .= 'Email-id is already in use, please choose another.<br>';
-		}
-	}
-\end{lstlisting}
-
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & It was found that the application responds with different error messages for different incorrect login requests. However, it is not possible to enumerate users. There is also a lockout mechanism which locks the account after 5 failed login attempts.\\
     \textbf{Discovery} &
         This test was performed manually by trying various combinations of email and password. Steps are as follows:
             \begin{itemize}
-            \item \textbf{Scenario 1 -} Testing for Valid user with right password
+                \item \textbf{Scenario 1 -} Testing for Valid user with right password
                     \begin{itemize}
-                     \item Open the Login page and enter a valid email and password. Click on the Submit button.
-
-                     \item The user is redirected to the Home page without any success message.
+                         \item Open the Login page and enter a valid email and password. Click on the Submit button.
+                         \item The user is redirected to the Home page without any success message.
                     \end{itemize}
-             \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
-                \begin{itemize}
-                  \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
-
-                  \item An error message is displayed that reads \code{
-                  Login failed - Either the e-mail or the password is wrong.}, and the user stays on Login page. Also, the data entered in the form is retained.
-                \end{itemize}
-
-            \item \textbf{Scenario 3-} Testing for non-existent User
-               \begin{itemize}
-               \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
-
-               \item An error message is displayed that reads \code{
-               Login failed - There is no account with this email.}, and the user stays on Login page. Also, the data entered in the form is retained.
-               \end{itemize}
+                 \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
+                    \begin{itemize}
+                      \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
+                      \item An error message is displayed that reads \code{Login failed - Either the e-mail or the password is wrong.}, and the user stays on Login page. Also, the data entered in the form is retained.
+                    \end{itemize}
+                \item \textbf{Scenario 3-} Testing for non-existent User
+                   \begin{itemize}
+                       \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
+                       \item An error message is displayed that reads \code{Login failed - There is no account with this email.}, and the user stays on Login page. Also, the data entered in the form is retained.
+                   \end{itemize}
             \end{itemize}
     \\
     \textbf{Likelihood} & N/A \\
@@ -107,3 +85,21 @@ In InternetBanking, it is possible to enumerate usernames and is hence vulnerabl
 In case of SecureBank, though the error messages differ, no vulnerability has been detected owing to the absence of username-baseed login and the presence of a lockout mechanism.
 Hence, SecureBank is more vulnerable than InternetBanking.
 \clearpage
+
+\begin{lstlisting}[caption={PHP code for checking user from registrationController.php}\label{code:user_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+	$user = $db->checkUsername($_POST['username']);
+
+	if($user!=NULL){
+		$error .= 'Username already in use, please choose another.<br>';
+	}
+	if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+		$error .= 'Email is invalid<br>';
+	}
+	else{
+		$user = $db->checkEmail($_POST['email']);
+		if($user!=NULL){
+			$error .= 'Email-id is already in use,
+			please choose another.<br>';
+		}
+	}
+\end{lstlisting}
