@@ -1,0 +1,56 @@
+\subsection{Testing for the Circumvention of Work Flows - OTG-BUSLOGIC-006}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & It is not possible to alter the work-flow of the application due to appropriate checks throughout the application. User privileges have been segregated according to the roles. \\
+    \textbf{Discovery} & By manually inspecting the code, it has been found that user type has been checked throughout the application before serving any page.
+        \begin{itemize}
+            \item The code snippet from \code{clientController.php} is shown below:
+                  \begin{lstlisting}
+                     if ($sessionisemployee){
+                           die('Not client.');
+                     }
+                   \end{lstlisting}
+            \item The code snippet from \code{employeeController.php} is shown below :
+                    \begin{lstlisting}
+                         if ($sessionisemployee != 1){
+                            die('Not employee.');
+                         }
+                    \end{lstlisting}
+        \end{itemize}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A\\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It is not possible to alter the work-flow of the application due to appropriate checks throughout the application. User privileges has been segregated according to the roles.\\
+     \textbf{Discovery} & By manually inspecting the code, it has been found that user type has been checked throughout the application before serving any pages or performing any actions.
+            \begin{itemize}
+                \item The code snippet from \code{ClientController.php} is shown below :
+                      \begin{lstlisting}
+                            $employee = $this->get("auth")->check(_GROUP_USER);
+                      \end{lstlisting}
+                \item The code snippet from \code{EmployeeController.php} is shown below :
+                        \begin{lstlisting}
+                            $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+                        \end{lstlisting}
+            \end{itemize}
+        \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both of the applications are secure since there is restriction on the altering the normal work-flow of the application.
+\clearpage

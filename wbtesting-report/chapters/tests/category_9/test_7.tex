@@ -9,9 +9,9 @@
      	      \item \textbf{Mis-use in Login -} There is no restriction on the number of failed login attempts and hence the attacker can make infinite attempts in trying to login to the application. This has been further described in the section \ref{OTG-AUTHN-007}.
      	      \item \textbf{Mis-use in performing Transactions -}
      	      	\begin{itemize}
-     	      		\item  Login as a Customer and click on New Transaction at the top.
+     	      		\item  Login as a Customer and click on New online transfer at the top.
 
-     	      		\item Fill the form with all the details and click on the Submit button OR use the File Upload feature to perform a transaction. In both cases, the action can be replicated multiple times even with incorrect details. The Firefox extension FormFuzzer, Fuzz feature of ZAProxy or a similar tool can be used for filling the forms.
+     	      		\item Fill the form with all the details and click on the Submit button OR use the Load File feature to perform a transaction. In both cases, the action can be replicated multiple times even with incorrect details. The Firefox extension FormFuzzer, Fuzz feature of ZAProxy or a similar tool can be used for filling the forms.
      	      	\end{itemize}
      	      	\item These attacks are not monitored which was observed while inspecting the code and finding no mechanism implemented for storing error logs. There is also no lockout mechanism implemented to prevent the user from further attacking the system.
            \end{itemize}
