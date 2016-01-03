@@ -1,0 +1,39 @@
+\subsection{Testing for Cookies attributes - OTG-SESS-002}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 9.8 \progressbar[filledcolor=BurntOrange]{0.98}
+    \\ \hline
+    \textbf{Observation} & It is found that the cookies that are set upon user login; do not have their properties set to appropriate values such as HttpOnly and Secure. \\
+    \textbf{Discovery} & Setting of cookie attributes is explained in section \ref{OTG-SESS-001} \\
+    \textbf{Likelihood} & Cookies can be observed just by clicking on the extension provided by the browser. Hence no extra knowledge is required for retrieving the vulnerability. Hence likelihood of this vulnerability is high. \\
+    \textbf{Impact} & If cookie information is used by the attacker, then personal information can be compromised. \\
+    \textbf{Recommen\-dations} & It is recommended to set the HttpOnly flag for the cookies in order to avoid manipulation from client-side scripts. Secure attribute of the cookie should also be set to avoid easy data compromise.\\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It is found that the cookies that are set upon user login; have the HttpOnly and Secureflag set.\\
+    \textbf{Discovery} & Setting of cookie attributes is explained in section \ref{OTG-SESS-001} \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Unline InternetBanking, chances of stealing the cookie are limited in SecureBank, since the session cookie is set to HttpOnly and Secure, thus eliminating the possibility of client-side manipulation and reducing data compromise.
+\clearpage
