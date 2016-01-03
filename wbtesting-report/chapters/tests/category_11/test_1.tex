@@ -11,11 +11,9 @@
         \end{itemize}
     \item \textbf{Usability Flaws}
         \begin{itemize}
-            \item It is possible to perform a transfer to own account. This transfer also reflects in the Transaction History but does not affect the Account Balance in any way.
             \item In the Account details page, the label for User-name is incorrectly displayed as E-mail. The E-mail is also labelled as E-mail.
             \item It is possible to set balance for Employees as well. However, neither do the employees have accounts nor can they perform any transfers and hence this is misleading.
             \item When an employee rejects a transfer, the success message is shown as \code{Payment approved successfully}. This is confusing and requires the employee to cross-check in the transaction history of the customer.
-            \item Employee can reset the balance of any customer to 0 repeatedly and thus prevent the customer from performing any transactions at all.
             \item The PDF that can be downloaded from the Transaction History page is not well-formed. The TAN numbers overlap and are not clearly readable.
             \item In the SCS, TANs are generated even without entering any details like PIN, Amount and Target. Since it is possible to download the SCS from the website, without having an account, this may be used to analyze the algorithm used for TAN generation.
             \item In the SCS, once values are entered, there is no way to clear or reset the values. Even after choosing a file, there is no way to clear the file.

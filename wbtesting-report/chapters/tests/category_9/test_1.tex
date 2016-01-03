@@ -1,33 +1,23 @@
 \subsection{Test Business Logic Data Validation - OTG-BUSLOGIC-001}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{InternetBanking}
-    \hfill CVSS Score: 5.4 \progressbar[filledcolor=BurntOrange]{0.54}
+    \hfill CVSS Score: 8.6 \progressbar[filledcolor=BurntOrange]{0.86}
     \\ \hline
     \textbf{Observation} &
         It has been found that it is possible to enter valid data and cause the application to behave differently due to a deviation in the business logic. Two such vulnerabilities have been found and they are as follows.
         \begin{itemize}
-            \item In the Transaction page, it is possible to perform a transfer with amount 0.00.
-            \item In the Registration page, it is possible to sucessfully register with any Email address and become a user without a valid email address. The only exception is not being able to receive the TAN numbers.
+            \item In the Transaction page, it is possible to perform a transfer to own account. This transfer also reflects in the Transaction History but does not affect the Account Balance in any way.
+            \item In the Registration page, it is possible to sucessfully register with any Email address and become a user without a valid email address. The only exception is not being able to receive the TAN numbers and the SCS pin.
+            \item In the Account Details page, employee can reset the balance of any customer to 0 repeatedly and thus prevent the customer from performing any transactions at all.
         \end{itemize}
     \\
-    \textbf{Discovery} &
-        This vulnerability has been exposed through manual testing using the steps described below.
-        \begin{itemize}
-             \item Login as a Customer and click on the New Transaction button at the top.
-             \item In the form, enter valid values for Recipient Account number \& TAN, but provide \enquote{0.00} in the Amount field. Click on Submit.
-             \item The transaction is successful, as indicated by a message. Click on the Transaction button on top to view the list of all transactions. Notice that the last transaction of amount 0.00 is shown.
-        \end{itemize}
-    \\
-    \textbf{Likelihood} & Likelihood is low. The attacker need not have any technical knowledge to perform this action. \\
-    \textbf{Impact} &
-        \begin{itemize}
-            \item The recipient account shows a transaction of 0.00. This could lead him/her to think that it was a fake transaction. Additionally, it is possible to enter -0.00. This would lead the recipient to believe that his/her account has been hacked.
-            \item It is possible to gain access to the system with no valid email address. Once logged in, the user can take advantage to exploit other vulnerabilities with a few of them described in sections \ref{OTG-AUTHZ-002} and \ref{OTG-IDENT-003}.
-        \end{itemize}
+    \textbf{Discovery} & By checking the code, there was no code related to validation of e-mail address or checking transfer to self.\\
+    \textbf{Likelihood} & Likelihood is high. The attacker need not have any technical knowledge to perform this action. \\
+    \textbf{Impact} & It is possible to gain access to the system with no valid email address. Once logged in, the user can take advantage to exploit other vulnerabilities with a few of them described in sections \ref{OTG-AUTHZ-002} and \ref{OTG-IDENT-003}. Also, it is possible to deny performing transfers by setting the balance to 0.
     \\
     \textbf{Recommen\-dations} &
         \begin{itemize}
-        \item All invalid values such as negative and 0 amounts need to be restricted both on the client and server side of the application.
+        \item Transfer to self should be restricted.
         \item It would be better to have an activation link sent to the email address and only upon clicking of the link, registration could be considered as successful. Such a mechanism should be enforced to tackle the above vulnerability.
         \end{itemize}
     \\ \hline
@@ -35,12 +25,12 @@
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
             Attack Complexity       & \textcolor{red}{Low} \\
-            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            Privileges Required     & \textcolor{BurntOrange}{None} \\
             User Interaction        & \textcolor{red}{None} \\
             Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
             Integrity Impact        & \textcolor{BurntOrange}{Low} \\
-            Availability Impact     & \textcolor{Green}{None}
+            Availability Impact     & \textcolor{Green}{High}
         \end{tabular}
     \\ \hline
 \end{longtable}
@@ -50,21 +40,15 @@
     & \textbf{SecureBank}
     \hfill CVSS Score: 5.4 \progressbar[filledcolor=BurntOrange]{0.54}
     \\ \hline
-    \textbf{Observation} &
-         It has been found that it is possible to enter valid data and cause the application to behave differently due to a deviation in the business logic. Two such vulnerabilities have been found and they are as follows.
-         \begin{itemize}
-             \item In the Transaction page, it is possible to perform a transfer with amount 0.00.
-             \item In the Registration page, it is possible to sucessfully register with any Email address and become a user without a valid email address. The only exception is not being able to receive the TAN numbers.
-         \end{itemize}
-    \\
-    \textbf{Discovery} & Same as described for InternetBanking. \\
-    \textbf{Likelihood} & Same as described for InternetBanking. \\
-    \textbf{Impact} & Same as described for InternetBanking. \\
-    \textbf{Recommen\-dations} & Same as described for InternetBanking. \\ \hline
-    \textbf{CVSS} & Same as described for InternetBanking.
+    \textbf{Observation} & It has been found that there are appropriate checks to validate all data and hence no vulneranbility has been found in this regard. \\
+    \textbf{Discovery} & By manually inspecting the code, validations during transfer, balance initialization \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
     \\ \hline
 \end{longtable}
 
 \subsubsection{Comparison}
-Though SecureBank restricts the entry of negative amounts while performing transactions, there is no contraint on 0.00 values. Both applications are vulnerable in this aspect.
+SecureBank is better than InternetBanking as it does not allow circumvention of work-flow in the application.
 \clearpage
