@@ -1,0 +1,48 @@
+\subsection{Testing for Session Fixation - OTG-SESS-003} \label{OTG-SESS-003}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 8.1 \progressbar[filledcolor=BurntOrange]{0.81}
+    \\ \hline
+    \textbf{Observation} & It has been observed that this vulnerability exists since the cookie PHPSESSID was set without setting the HttpOnly Flag. The same PHPSESSID was used after successful authentication of the user. Thus the session is prone to attack. \\
+    \textbf{Discovery} &
+       We used the Cookie extensions in Firefox \& Chrome and EditThisCookie in Chrome for executing this attack. Steps are as follows.
+       \begin{itemize}
+           \item Login with Administrator credentials into to the application on Chrome.
+           \item Now click on the Cookie extension of Chrome and observe that the PHPSESSID cookie  is set to some value. Copy this value for future use.
+           \item Note that the HostOnly and Session checkboxes are enabled while Secure and HttpOnly are not. This tells us the session can be hijacked by client-side manipulation of the cookie.
+           \item Now we open the Login page in Firefox. Open the Cookie extension through Tool tab in Firefox and add the PHPSESSID cookie manually and set it to the previously copied value.
+           \item Open the link \code{http://<IP-address>/InternetBanking/employee.php?\allowbreakaction=accounts}. Verify that we are now signed in as Administrator without entering any credentials.
+       \end{itemize}
+    \\
+    \textbf{Likelihood} & The attacker requires knowledge about tools or browser extensions for analyzing and modifying cookies. Hence likelihood of the attack is low. \\
+    \textbf{Impact} & Exploiting this vulnerability, it is possible to impersonate any user, including Administrator. The attacker could then perform privileged operations such as rejection of customers, other employees or transactions. Hence this could lead to Denial of Service attack. By impersonating a customer, it is possible to perform illicit transactions. \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been verified that this vulnerability does not exist as the HttpOnly flag is set for the cookie PHPSESSID, thus eliminating the possibility of setting the cookie from client side. \\
+    \textbf{Discovery} & N/A \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is more secure than Online Banking as it sets the HttpOnly flag for the session cookie, thereby preventing client-side manipulation of cookies and session hijacking.
+\clearpage
