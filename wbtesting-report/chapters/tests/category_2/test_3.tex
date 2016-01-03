@@ -5,24 +5,13 @@
     \textbf{Discovery} &
      This flaw has been exposed using the Advanced Rest Client. Steps are as follows:
             \begin{itemize}
-            \item  Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
-
-            \item Note the User Id of one of the users. Consider this value is \code{xyz}.
-
-            \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ InternetBanking/employee.php\allowbreak?action=approveregistrations}.
-
-            \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
-            
-            \item Click on \enquote{Send} and observe that the response contains the text \enquote{Account request rejected successfully}.
-            
-            \item However, upon trying to login as user \code{xyz}, there are no failures and the user can function as earlier.
-
-        \end{itemize}
-            \\ &
-        \begin{itemize}
-            
-            \item Upon analyzing the database, it was found that there are 2 tables - \code{userrequest} and \code{user}. All registrations are stored in \code{userrequest} and approved users are stored in \code{user}. Upon approval or rejection, \code{approveddate} or \code{rejecteddate} column of the corresponding entry in the \code{userrequest} table is updated. In case of approval, a new record is also inserted into the \code{user} table. In the above scenario, \code{approveddate} and \code{rejecteddate} both get set for the user \code{xyz}. But login continues to work as it is based on the \code{user} table.
-            
+                \item  Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
+                \item Note the User Id of one of the users. Consider this value is \code{xyz}.
+                \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ InternetBanking/employee.php\allowbreak?action=approveregistrations}.
+                \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
+                \item Click on \enquote{Send} and observe that the response contains the text \enquote{Account request rejected successfully}.
+                \item However, upon trying to login as user \code{xyz}, there are no failures and the user can function as earlier.
+                \item Upon analyzing the database, it was found that there are 2 tables - \code{userrequest} and \code{user}. All registrations are stored in \code{userrequest} and approved users are stored in \code{user}. Upon approval or rejection, \code{approveddate} or \code{rejecteddate} column of the corresponding entry in the \code{userrequest} table is updated. In case of approval, a new record is also inserted into the \code{user} table. In the above scenario, \code{approveddate} and \code{rejecteddate} both get set for the user \code{xyz}. But login continues to work as it is based on the \code{user} table.
             \end{itemize}
     \\
     \textbf{Likelihood} & N/A \\
@@ -31,7 +20,6 @@
     \textbf{CVSS} & N/A
     \\ \hline
 \end{longtable}
-\clearpage
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
