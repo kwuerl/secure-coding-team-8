@@ -1,0 +1,54 @@
+\subsection{Testing for Bypassing Session Management Schema - OTG-SESS-001} \label{OTG-SESS-001}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 9.8 \progressbar[filledcolor=red]{0.98}
+    \\ \hline
+    \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. \\
+    \textbf{Discovery} &
+        We used EditThisCookie extension of Chrome to look into the cookies present in the application. Steps are as follows:
+            \begin{itemize}
+                \item Go to the login page of the application. Check the cookies with the extension, which shows that there is no cookie.
+                \item Login with valid credentials. Upon checking the cookies now, a cookie PHPSESSID can be seen with some value.
+                \item The cookie remains persistent throughout the application. If the application is not idle the cookie remains set, otherwise the user is logged out using cookie \enquote{expires} attribute.
+            \end{itemize}
+            No other cookie is generated throughout the application. The cookie is set to HostOnly and Session; HttpOnly and Secure are not set. Since the cookie is not set to HttpOnly, it can be modified from client side(via Javascript). Hence session hijacking can be done. For details refer the Discovery subsection. Also as the cookie is not set to Secure, data transmission is not encrypted and hence Man-In-The-Middle attack can be performed.
+            Upon inspecting the code, it was found that though \code{session\_set\_cookie\_params} is called with the correct flags i.e., true for \code{HttpOnly} and \code{Secure}, it does not work as the session name is not set using \code{session\_name}. \\
+    \textbf{Likelihood} & Likelihood is high since cookie manipulation can easily be done. \\
+    \textbf{Impact} & Impact of this attack is high since session hijacking would lead to Denial of Service Attack, data compromise(illegal transactions). \\
+    \textbf{Recommen\-dations} & Cookie should be set to HttpOnly as it would restrict manipulations from client side. Cookies should be used over encrypted channel (HTTPS) so as to prevent data compromise.\\ \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. The cookie attribute is also set to \code{HttpOnly} that restricts client side manipulations of the cookie. The cookie attribute is also set to \code{Secure} as we are using HTTPS and hence data transmitted is encrypted. \\
+    \textbf{Discovery} & This was found by manually inspecting the code. The code is as given below.
+        \begin{lstlisting}
+             session_name($name . '_session');
+             session_set_cookie_params($limit, $path, $domain, $https,
+             true);
+             session_start();
+         \end{lstlisting}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is better than BANK-APP, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie.
+\clearpage
