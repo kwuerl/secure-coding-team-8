@@ -1,0 +1,51 @@
+\subsection{Testing for Weak password policy - OTG-AUTHN-007} \label{OTG-AUTHN-007}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 8.8 \progressbar[filledcolor=red]{0.88}
+    \\ \hline
+    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User has to enter minimum 6 characters which should contain atleast one number, one uppercase, one lowercase and a symbol. This makes it difficult to crack. But the reset password option doesn't have such restriction and user might set a simple password which can be easily cracked through different tools.\\
+    \textbf{Discovery} & Manual inspection of code was done. Refer \ref{code_weak_password_policy} for the related code excerpts. \\
+    \textbf{Likelihood} & Likelihood is high. The attacker can use Brute Force to crack the passwords as there is no lockout mechanism. Moreover, since there is no restriction enforced on passwords(during password reset), it is quite vulnerable. In addition, with the knowledge of THC Hydra or other password cracking tools, an attacker can easily get access to user credentials. \\
+    \textbf{Impact} & After gaining access to the credentials, the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. \\
+    \textbf{Recommen\-dations} & Locking out of account after 5/6 unsuccessful tries should be done. In this way brute force attack gets complicated. Also, restrictions on passwords should be applicable both at the time of registration and during password change.\\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network}\\
+            Attack Complexity       & \textcolor{Green}{Low} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low}\\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High}\\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
+    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User needs to enter minimum 6 characters which should contain an uppercase, a lowercase and a number. This reveals that passwords of users cannot be cracked easily and this vulnerability has been reduced in the Login page. \\
+    \textbf{Discovery} & Same as described for InternetBanking but since a lockout mechanism is implemented and hence brute force attack for password retrievals should be stopped.\\
+    \textbf{Likelihood} & Likelihood is high. However, due to the presence of a lockout mechanism, Brute force attacks are limited to 5 attempts. But the account gets unlocked after 30 minutes allowing further attacks. \\
+    \textbf{Impact} & If the credentials are compromised, the impact is high. the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. \\
+    \textbf{Recommen\-dations} & Special symbols also need to be allowed in passwords to increase the entropy. Lockout mechanism should also be more strict. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network}\\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low}\\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{red}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High}\\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both of the applications are vulnerable to password attacks. On comparing, SecureBank is better than InternetBanking as it has a lockout mechanism and restrictions on password even during password change.
+\clearpage
