@@ -1,0 +1,54 @@
+\subsection{Testing for bypassing authorization schema - OTG-AUTHZ-002} \label{OTG-AUTHZ-002}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & It has been noted that it is not possible to access administrative data though the attacker is logged in as a user with ordinary privileges. \\
+    \textbf{Discovery} & A clear distinction of privileges among the users has been defined due to which a client cannot access employees pages and employee cannot see client specific pages. It has been implemented in \code{clientController.php} and \code{employeeController.php} based on session values.
+         \begin{itemize}
+             \item In \code{clientController.php}, a check for client is in-place by checking session value.
+                 \begin{lstlisting}
+                 if ($sessionisemployee){
+                     die('Not client.');
+                 }
+                 \end{lstlisting}
+             \item In \code{employeeController.php}, a check for employee is in-place by checking session value.
+                 \begin{lstlisting}
+                 if ($sessionisemployee != 1){
+                    die('Not employee.');
+                 }
+                 \end{lstlisting}
+          \end{itemize}
+          \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} &  N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} &  It has been noted that it is not possible to access administrative data though the attacker is logged in as a user with ordinary privileges. \\
+    \textbf{Discovery} & A clear distinction of privileges among the users has been defined in the code. It has been implemented in every function which is being called on an operation based on session values
+         \begin{itemize}
+             \item In \code{CustomerController.php}, in the \code{loadOverview} function, a check for client exists by checking session value.
+                 \begin{lstlisting}
+                    $customer = $this->get("auth")->check(_GROUP_USER);
+                 \end{lstlisting}
+             \item In \code{EmployeeController.php}, in the \code{loadOverview} function, a check for employee exists by checking session value.
+                 \begin{lstlisting}
+                    $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+                 \end{lstlisting}
+          \end{itemize}
+          Similar checks are implemented for all client, employee and administrator operations.
+          \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both applications are secure in this aspect, since functionality is divided based on groups of users and privileges are assigned based on type of user.
+\clearpage
