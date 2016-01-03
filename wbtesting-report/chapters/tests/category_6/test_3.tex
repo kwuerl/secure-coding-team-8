@@ -1,0 +1,43 @@
+\subsection{Testing for HTTP Verb Tampering - OTG-INPVAL-003}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & It was observed that Verb Tampering could be done with HTTP requests but no critical vulnerability was exposed with it. Methods that were allowed :
+           \begin{itemize}
+     	      \item  GET
+     	      \item  POST
+     	      \item  HEAD
+     	      \item OPTIONS
+           \end{itemize}
+           Methods that were rejected:
+           \begin{itemize}
+       	      \item  TRACE
+       	      \item  CONNECT
+           \end{itemize}
+           With HEAD requests, there were no response data shown. In case of \code{TRACE} and \code{CONNECT}, the requests were rejected because of Same Origin Security restriction.
+    \\
+    \textbf{Discovery} & It was found that there is no reference to methods other than GET and POST, in the source code by scanning the code using \code{grep}.
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been observed that Verb Tampering is possible but without any vulnerability being exposed to the attacker.\\
+    \textbf{Discovery} & Same as observed for InternetBanking. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A\\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application exposes vulnerability though verb tampering is possible. Hence both seem secure.
+\clearpage
