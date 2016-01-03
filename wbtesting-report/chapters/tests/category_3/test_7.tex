@@ -4,11 +4,20 @@
     & \textbf{InternetBanking}
     \hfill CVSS Score: 8.8 \progressbar[filledcolor=red]{0.88}
     \\ \hline
-    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User has to enter minimum 6 characters which should contain atleast one number, one uppercase, one lowercase and a symbol. This makes it difficult to crack. But the reset password option doesn't have such restriction and user might set a simple password which can be easily cracked through different tools.\\
-    \textbf{Discovery} & Manual inspection of code was done. Refer \ref{code_weak_password_policy} for the related code excerpts. \\
+    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User has to enter minimum 6 characters which should contain atleast one uppercase character, one lowercase character, one number and one non-alphanumeric character. This makes it difficult to crack. But the reset password option does not have such restriction and user might set a simple password which can be easily cracked through different tools.\\
+    \textbf{Discovery} &
+     \begin{itemize}
+        \item Manual inspection of code was done to check for restrictions on password. Refer \ref{code:weak_password_policy} for the related code excerpts.
+        \item Further inspection of code reveals that the password has been encrypted using \code{md5} before storing in the database. Refer \ref{code:password_encrypt_md5} for the related code excerpt. So for users having the same password, the entries in the database will be the same. Anyone having access to the database can find this easily.
+     \end{itemize}
+     \\ &
+     \begin{itemize}
+        \item MD5 is a hash function and two different strings can absolutely generate colliding MD5 codes. In particular, MD5 codes have a fixed length; so the possible number of MD5 codes is limited. The number of strings (of any length), however, is definitely unlimited so it logically follows that there must be collisions. Though algorithms such as MD5 are designed to minimize the probability of a Hash collision, it is still possible. However the probability of two randomly chosen strings having the same MD5 hash is very low. So it becomes difficult to guess the string from the md5 hash. But using sites that have huge repositories of strings and their corresponding md5 hashes, it is possible to come up with a valid string. One such site is \code{http://www.md5online.org/} using which we were able to retrieve passwords from the md5 values.
+     \end{itemize}
+    \\
     \textbf{Likelihood} & Likelihood is high. The attacker can use Brute Force to crack the passwords as there is no lockout mechanism. Moreover, since there is no restriction enforced on passwords(during password reset), it is quite vulnerable. In addition, with the knowledge of THC Hydra or other password cracking tools, an attacker can easily get access to user credentials. \\
     \textbf{Impact} & After gaining access to the credentials, the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. \\
-    \textbf{Recommen\-dations} & Locking out of account after 5/6 unsuccessful tries should be done. In this way brute force attack gets complicated. Also, restrictions on passwords should be applicable both at the time of registration and during password change.\\ \hline
+    \textbf{Recommen\-dations} & Locking out of account after certain unsuccessful tries should be done. In this way brute force attack gets complicated. Also, restrictions on passwords should be applicable both at the time of registration and during password change.\\ \hline
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network}\\
@@ -27,9 +36,14 @@
     & \textbf{SecureBank}
     \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
-    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User needs to enter minimum 6 characters which should contain an uppercase, a lowercase and a number. This reveals that passwords of users cannot be cracked easily and this vulnerability has been reduced in the Login page. \\
-    \textbf{Discovery} & Same as described for InternetBanking but since a lockout mechanism is implemented and hence brute force attack for password retrievals should be stopped.\\
-    \textbf{Likelihood} & Likelihood is high. However, due to the presence of a lockout mechanism, Brute force attacks are limited to 5 attempts. But the account gets unlocked after 30 minutes allowing further attacks. \\
+    \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User needs to enter minimum 6 characters which should contain atleast one uppercase character, one lowercase and one number. This reveals that passwords of users cannot be cracked easily and this vulnerability has been reduced in the Login page. There is also a lockout mechanism to restrict Brute-force attacks.\\
+    \textbf{Discovery} &
+    \begin{itemize}
+            \item Manual inspection of code was done to check for restrictions on password.
+            \item Before saving the password in the database, it has been encrypted using the \code{crypt} function based on a random \code{salt}. So even for users having the same password, the database entries will be different. Refer \ref{code:password_encrypt} for the related code excerpt.
+    \end{itemize}
+    \\
+    \textbf{Likelihood} & Likelihood is high. However, due to the presence of a lockout mechanism, Brute force attacks are limited to 5 attempts. But the account gets unlocked after 60 minutes allowing further attacks. \\
     \textbf{Impact} & If the credentials are compromised, the impact is high. the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. \\
     \textbf{Recommen\-dations} & Special symbols also need to be allowed in passwords to increase the entropy. Lockout mechanism should also be more strict. \\ \hline
     \textbf{CVSS} &
@@ -45,6 +59,53 @@
         \end{tabular}
     \\ \hline
 \end{longtable}
+
+\begin{lstlisting}[caption={PHP code for checking password strength from DataAccess.php}\label{code:weak_password_policy}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    function checkPassword($pwd) {
+        $errors  = "";
+        $flag = 0;
+
+        if( strlen($pwd) < 6 ) {
+            $errors .= "Password too short, length should be >=6!";
+            $flag = 1;
+        }
+
+        if( strlen($pwd) > 15 ) {
+            $flag = 1;
+            $errors .= "Password too long, length should be <=20!";
+        }
+        if( (!preg_match("#[0-9]+#", $pwd)) || (!preg_match("#[a-z]+#", $pwd))
+        ||(!preg_match("#[A-Z]+#", $pwd))||(!preg_match("#\W+#", $pwd))) {
+            if($flag==1){
+                $errors .= " ";
+                $flag = 2;
+            }
+            $errors .= "Password must include at least one number,
+            lowercase, uppercase and symbol!<br>";
+        }
+
+        if($flag ==1)
+            $errors .= "<br>";
+        return $errors;
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for encryption of password from DataAccess.php}\label{code:password_encrypt_md5}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $query = "insert into userrequest(username, password, email,
+        isemployee, createdate) "
+        ."values("
+        ."'".$username."', "
+        ."md5('".$password."'), "
+        ."'".$email."', "
+        .($usertype == 'employee' ? 1 : 0 )
+        .", now() );";
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for encryption of password from RegistrationController.php}\label{code:password_encrypt}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $salt = $this->get("random")->getString(16);
+    $model->setSalt($salt);
+    $model->setPassword(crypt($model->getPasswordPlain(), $salt));
+\end{lstlisting}
 
 \subsubsection{Comparison}
 Both of the applications are vulnerable to password attacks. On comparing, SecureBank is better than InternetBanking as it has a lockout mechanism and restrictions on password even during password change.
