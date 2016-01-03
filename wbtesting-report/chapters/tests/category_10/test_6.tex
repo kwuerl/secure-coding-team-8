@@ -1,0 +1,29 @@
+\subsection{Testing for Client Side Resource Manipulation - OTG-CLIENT-006}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \\ \hline
+    \textbf{Observation} & It has been noted that injection points required for resource manipulation by the user were found. But these were found to be not vulnerable to attack owing to their proper usage in the application. \\
+    \textbf{Discovery} & Upon scanning the code with \code{grep}, the following injection points were found: \code{<a>}, \code{<link>} and \code{<script>}. However, these tags pointed to static resources and are hence not based on user-input. The URL parameters visible in the Account (\code{http://<IP-address>/InternetBanking/employee.php?action=account&account=xxx}) and History (\code{http://<IP-address>/InternetBanking/client.php?action=history&account=xxx}) pages are only being used in queries for retrieval of data from the database and not as targets of any resources. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & The same behavior is depicted in the application since none of the possible injection points mentioned above have their attributes coming from user input. \\
+    \textbf{Discovery} & Upon scanning the code with \code{grep}, the following injection points were found: \code{<a>}, \code{<link>} and \code{<script>}. However, these tags pointed to static resources and are hence not based on user-input.
+    The URL parameter visible in the Customer Details (\code{http://<IP-address>/customer\_details/xxx}) page is only being used in queries for retrieval of data from the database and not as targets of any resources. In the file \code{routes.php}, no other URL was found to contain URL parameters. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application is vulnerable to this attack as the injection points do not take user-input.
+\clearpage
