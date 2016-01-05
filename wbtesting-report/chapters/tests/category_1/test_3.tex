@@ -1,5 +1,5 @@
 \subsection{Test HTTP Strict Transport Security - OTG-CONFIG-007}
-\subsubsection{InternetBanking}
+
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
 	& \textbf{InternetBanking} \\ \hline
 	\textbf{Observation} & InternetBanking does not use HTTPS and therefore does not implement HSTS. \\
@@ -10,7 +10,6 @@
 	\textbf{CVSS} & N/A \\ \hline
 \end{longtable}
 
-\subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & The HSTS header for \code{Strict-Transport-Security} is set to \code{max-age=\allowbreak 60000; includeSubDomains}. \\

@@ -1,5 +1,5 @@
 \subsection{Testing for Exposed Session Variables - OTG-SESS-004}\label{exposed_session_variables}
-\subsubsection{InternetBanking}
+
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{InternetBanking}
     \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
@@ -24,7 +24,6 @@
 \end{longtable}
 \clearpage
 
-\subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & The session cookie has the \code{secure} and \code{httponly} flag. \\
@@ -37,5 +36,4 @@
 
 \subsubsection{Comparison}
 Both applications use cookies to store the session variable. The vulnerability is given with InternetBanking since copying the session cookie gives a hacker access to the account, if the user is logged in. With SecureBank this is not possible.
-
 \clearpage
