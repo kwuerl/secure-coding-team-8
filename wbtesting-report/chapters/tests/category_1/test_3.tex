@@ -1,0 +1,26 @@
+\subsection{Test HTTP Strict Transport Security - OTG-CONFIG-007}
+\subsubsection{InternetBanking}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+	& \textbf{InternetBanking} \\ \hline
+	\textbf{Observation} & InternetBanking does not use HTTPS and therefore does not implement HSTS. \\
+	\textbf{Discovery} & Accessing the site with \code{https://IP\_ADDRESS/InternetBanking/} shows that HTTPS is not used. Furthermore, using the command \code{curl -s -D- http://\allowbreak IP\_ADDRESS/InternetBanking/ | grep Strict} did not yield any results and therefore the header for \code{Strict-Transport-Security} is not set. \\
+	\textbf{Likelihood} & N/A \\
+	\textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & Use and enforce HTTPS for a secure communication. If using HTTPS, the HSTS header for \code{Strict-Transport-Security} has to be set to \code{max-age=\allowbreak 60000; includeSubDomains}. \\ \hline
+	\textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & The HSTS header for \code{Strict-Transport-Security} is set to \code{max-age=\allowbreak 60000; includeSubDomains}. \\
+    \textbf{Discovery} & Using the command \code{curl -s -D- https://\allowbreak IP\_ADDRESS/ | grep Strict} shows that the header for \code{Strict-Transport-Security} is set. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+InternetBanking does not use HTTPS and therefore the header for \code{Strict-Transport-\allowbreak Security} is not set. SecureBank enforces HTTPS and the header for \code{Strict-Transport-\allowbreak Security} is set to \code{max-age=\allowbreak 60000; includeSubDomains}.
+\clearpage
