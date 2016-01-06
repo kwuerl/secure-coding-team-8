@@ -1,8 +1,8 @@
 \subsection{Testing for Weak password policy - OTG-AUTHN-007} \label{OTG-AUTHN-007}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
-    \hfill CVSS Score: 8.8 \progressbar[filledcolor=red]{0.88}
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 8.3 \progressbar[filledcolor=red]{0.83}
     \\ \hline
     \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User has to enter minimum 6 characters which should contain atleast one uppercase character, one lowercase character, one number and one non-alphanumeric character. This makes it difficult to crack. But the reset password option does not have such restriction and user might set a simple password which can be easily cracked through different tools.\\
     \textbf{Discovery} &
@@ -21,12 +21,12 @@
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network}\\
-            Attack Complexity       & \textcolor{Green}{Low} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
             Privileges Required     & \textcolor{BurntOrange}{Low}\\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
-            Integrity Impact        & \textcolor{red}{High}\\
+            Integrity Impact        & \textcolor{BurntOrange}{Low}\\
             Availability Impact     & \textcolor{red}{High}
         \end{tabular}
     \\ \hline
@@ -34,7 +34,6 @@
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
-    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
     \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User needs to enter minimum 6 characters which should contain atleast one uppercase character, one lowercase and one number. This reveals that passwords of users cannot be cracked easily and this vulnerability has been reduced in the Login page. There is also a lockout mechanism to restrict Brute-force attacks.\\
     \textbf{Discovery} &
@@ -43,20 +42,10 @@
             \item Before saving the password in the database, it has been encrypted using the \code{crypt} function based on a random \code{salt}. So even for users having the same password, the database entries will be different. Refer \ref{code:password_encrypt} for the related code excerpt.
     \end{itemize}
     \\
-    \textbf{Likelihood} & Likelihood is high. However, due to the presence of a lockout mechanism, Brute force attacks are limited to 5 attempts. But the account gets unlocked after 60 minutes allowing further attacks. \\
-    \textbf{Impact} & If the credentials are compromised, the impact is high. the attacker can gain access to the victim's account and perform all operations. In case the victim happens to be an employee or administrator, the attacker can reject other users, thus causing a Denial of Service to them. The attacker can also reject all pending transactions. \\
-    \textbf{Recommen\-dations} & Special symbols also need to be allowed in passwords to increase the entropy. Lockout mechanism should also be more strict. \\ \hline
-    \textbf{CVSS} &
-        \begin{tabular}[t]{@{}l | l}
-            Attack Vector           & \textcolor{red}{Network}\\
-            Attack Complexity       & \textcolor{Green}{High} \\
-            Privileges Required     & \textcolor{BurntOrange}{Low}\\
-            User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
-            Confidentiality Impact  & \textcolor{red}{High} \\
-            Integrity Impact        & \textcolor{red}{High}\\
-            Availability Impact     & \textcolor{red}{High}
-        \end{tabular}
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
     \\ \hline
 \end{longtable}
 
@@ -108,5 +97,5 @@
 \end{lstlisting}
 
 \subsubsection{Comparison}
-Both of the applications are vulnerable to password attacks. On comparing, SecureBank is better than InternetBanking as it has a lockout mechanism and restrictions on password even during password change.
+On comparing, SecureBank is better than Online Banking as it has a strong password policy, lockout mechanism and restrictions on password even during password change.
 \clearpage

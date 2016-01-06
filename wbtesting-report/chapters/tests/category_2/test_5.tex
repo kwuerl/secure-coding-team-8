@@ -1,6 +1,6 @@
 \subsection{Testing for Weak or unenforced username policy - OTG-IDENT-005}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
     \\ \hline
     \textbf{Observation} & It has been observed that authentication is based on a combination of User-name \& password and that user-names are provided by the users themselves at the time of registration. It is possible to trigger dictionary attacks for user-names and passwords. Though the error messages are consistent for all failed login attempts, it is possible to perform the attack infinite number of times due to the absence of a lockout mechanism. \\
@@ -11,10 +11,10 @@
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
-            Attack Complexity       & \textcolor{red}{High} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
             Privileges Required     & \textcolor{red}{None} \\
             User Interaction        & \textcolor{red}{None} \\
-            Scope                   & \textcolor{red}{Unchanged} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
             Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{BurntOrange}{Low} \\
             Availability Impact     & \textcolor{Green}{None}
@@ -34,5 +34,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-InternetBanking application is vulnerable to user-name and password attacks and there is no lockout policy. In case of SecureBank, authentication is solely based on e-mail \& password combination and there is also a lockout mechanism in-place. Thus, SecureBank is more secure in this regard.
+Online Banking application is vulnerable to user-name and password attacks and there is no lockout policy. In case of SecureBank, authentication is solely based on e-mail \& password combination and there is also a lockout mechanism in-place. Thus, SecureBank is more secure in this regard.
 \clearpage

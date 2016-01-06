@@ -1,11 +1,11 @@
 \subsection{Test Account Provisioning Process - OTG-IDENT-003} \label{OTG-IDENT-003}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking} \\ \hline
+    & \textbf{Online Banking} \\ \hline
     \textbf{Observation} & A customer cannot approve or reject pending registrations of other employees or customers. This can only be done by authorized employees in the application and is not exposed to other users. However, an employee can reject already approved customers or employees, with no further effect to the system.\\
     \textbf{Discovery} &
      This flaw has been exposed using the Advanced Rest Client. Steps are as follows:
             \begin{itemize}
-                \item  Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
+                \item Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
                 \item Note the User Id of one of the users. Consider this value is \code{xyz}.
                 \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ InternetBanking/employee.php\allowbreak?action=approveregistrations}.
                 \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
@@ -33,5 +33,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-Though no vulnerability is exposed in InternetBanking application, it is still possible to modify the database, thus exposing a flaw. Considering this, SecureBank is more secure in this regard.
+Though no vulnerability is exposed in Online Banking application, it is still possible to modify the database, thus exposing a flaw. Considering this, SecureBank is more secure in this regard.
 \clearpage

@@ -1,6 +1,6 @@
 \subsection{Testing for Insecure Direct Object References - OTG-AUTHZ-004}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \\ \hline
     \textbf{Observation} & It was observed that Smart Card Simulator can be downloaded directly through the URL \code{http://\allowbreak<IP-address>InternetBanking/SCS/SCS.jar} without being logged in to the application. Though nothing can be done without the pin and user's credentials, the simulator can be used as a test object to observe the TANs generated and create future attacks.\\
     \textbf{Discovery} &
@@ -90,5 +90,5 @@
 \end{lstlisting}
 
 \subsubsection{Comparison}
-SecureBank is more secure than InternetBanking since the Smart Card Simulator cannot be downloaded without authentication.
+SecureBank is more secure than Online Banking since the Smart Card Simulator cannot be downloaded without authentication.
 \clearpage

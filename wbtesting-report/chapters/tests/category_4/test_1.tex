@@ -1,0 +1,38 @@
+\subsection{Testing Directory traversal/file include - OTG-AUTHZ-001}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
+    \textbf{Observation} & Generally speaking, files can be downloaded from and directory listing is enable for all folders with three exceptions. Accessing files in the folders \code{controller}, \code{model} and \code{view} shows a blank page. For example you can download the main c-file for the parser via the link \code{http://IP\_ADDRESS/\allowbreak InternetBanking/\allowbreak parser/main.c}. Although the page shows "not permitted", the browser lets the user save the file. \\
+    \textbf{Discovery} & In each of the folders \code{controller}, \code{model} and \code{view} there is a \code{index.php} file which simply outputs a blank page. For the other folders you could access the path for the files and download them. \\
+    \textbf{Likelihood} & If a hacker knows the folder structure of the application, he/she could easily download all the source code files and look for vulnerabilities. \\
+    \textbf{Impact} & Depending on the content of the files a hacker could use that information for attacking the application. \\
+    \textbf{Recommen\-dations} & Disable directory listing for hiding sensitive information. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Directory listing is disabled. \\
+    \textbf{Discovery} & In the \code{src/.htaccess} file there is the line with \code{Options -Indexes}, which disables directory listing. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Online Banking has directory listing for some folders enabled, whereas SecureBank does not. Therefore it is possible to download some source code from Online Banking by directly accessing the files/folders.
+\clearpage

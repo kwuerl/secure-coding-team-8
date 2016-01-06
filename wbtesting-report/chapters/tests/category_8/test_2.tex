@@ -1,6 +1,6 @@
 \subsection{Testing for Padding Oracle - OTG-CRYPST-002}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \\ \hline
     \textbf{Observation} & It has been found that the application does not encrypt data used in requests. The only random values observed are the generated TAN codes, received in the PDF through Email or in the SCS. However, they are not encrypted and are the actual values of the Transaction codes. Hence there is no possibility of padding oracle vulnerability and we did not perform testing for it. \\
     \textbf{Discovery} & N/A \\

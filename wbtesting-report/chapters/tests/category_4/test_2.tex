@@ -1,6 +1,6 @@
 \subsection{Testing for bypassing authorization schema - OTG-AUTHZ-002} \label{OTG-AUTHZ-002}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \\ \hline
     \textbf{Observation} & It has been noted that it is not possible to access administrative data though the attacker is logged in as a user with ordinary privileges. \\
     \textbf{Discovery} & A clear distinction of privileges among the users has been defined due to which a client cannot access employees pages and employee cannot see client specific pages. It has been implemented in \code{clientController.php} and \code{employeeController.php} based on session values. Refer \ref{code:client_check} for code related to client check and \ref{code:employee_check} for code related to employee check based on session value. \\

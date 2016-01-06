@@ -1,0 +1,39 @@
+\subsection{Testing for Cross Site Request Forgery - OTG-SESS-005}\label{csrf}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 5.3 \progressbar[filledcolor=BurntOrange]{0.53}
+    \\ \hline
+    \textbf{Observation} & No CSRF tokens were used for HTML forms. \\
+    \textbf{Discovery} & The files for rendering the HTML forms do not show any indication for CSRF tokens. For example checking the transfer for CSRF tokens, the files \code{view/online.php} and \code{controller/clientFunctions.php} were checked for any CSRF tokens, but none were found. \\
+    \textbf{Likelihood} & The hacker needs to know the structure of a request and has to find a way to make the user use the fake request. \\
+    \textbf{Impact} & The attacker could force the user to execute the requests on the user account. \\
+    \textbf{Recommen\-dations} & Implement unique CSRF tokens, which are only valid for one request. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & For all HTML forms there is a hidden input field for a CSRF token. Furthermore, the CSRF token is saved in the PHP session. \\
+    \textbf{Discovery} & The files \code{Service/CSRFService.php} and \code{Helper/Templating\allowbreak Form\allowbreak Extension.php} generate CSRF tokens and include it in every HTML form. The CSRF token is unique for each PHP session. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank uses CSRF tokens, whereas Online Banking does not.
+\clearpage
