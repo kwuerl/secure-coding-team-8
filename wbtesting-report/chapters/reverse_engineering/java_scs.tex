@@ -1,7 +1,7 @@
 \section{Java Smart Card Simulator}
 
 \subsection{Decompilation}
-The Smart Card Simuator JAR file was obtained by downloading it from the InternetBanking website. The JAR was decompiled using \code{JavaDecompiler (JD)}. It was found that it contained 3 files - \code{Main.class}, \code{Main\$1.class} and \code{Main\$2.class}. Upon decompilation, the Java code was obtained. However, there were errors in code as the output of JD is not re-compilable code. There were multiple instances of variables with \code{this.val\$} prefix. Analyzing this, it was found that there could be inner classes. When a local final variable is accessed from an inner class, the decompiler shows it with a \code{this.val\$} prefix.
+The Smart Card Simuator JAR file was obtained by downloading it from the Online Banking website. The JAR was decompiled using \code{JavaDecompiler (JD)}. It was found that it contained 3 files - \code{Main.class}, \code{Main\$1.class} and \code{Main\$2.class}. Upon decompilation, the Java code was obtained. However, there were errors in code as the output of JD is not re-compilable code. There were multiple instances of variables with \code{this.val\$} prefix. Analyzing this, it was found that there could be inner classes. When a local final variable is accessed from an inner class, the decompiler shows it with a \code{this.val\$} prefix.
 Observing the context and going through the code, appropriate modifications were made and executable code was generated. Refer \ref{code:scs_java} for the complete code.
 
 \subsection{Analysis of Working}

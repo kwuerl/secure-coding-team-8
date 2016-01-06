@@ -1,7 +1,7 @@
 \subsection{Testing for Browser cache weakness - OTG-AUTHN-006}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking} \\ \hline
+    & \textbf{Online Banking} \\ \hline
     \textbf{Observation} & No settings related to caching were found in the server configuration. However, the HTTP responses contained the header \code{Cache-Control: must-revalidate, pre-check=0, post-check=0, no-store, no-cache}, which relates to the Apache module \code{mod\_expires}. It is also found that sensitive data is not saved anywhere throughout the application. \\
     \textbf{Discovery} & Manual inspection of \code{.htaccess} file and the Apache configuration was done. \\
     \textbf{Likelihood} & N/A \\
@@ -15,7 +15,7 @@
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & No settings related to caching were found in the server configuration. However, the HTTP responses contained the header \code{Cache-Control: must-revalidate, pre-check=0, post-check=0, no-store, no-cache}, which relates to the Apache module \code{mod\_expires}. It is also found that sensitive data is not saved anywhere throughout the application. \\
     \textbf{Discovery} & Manual inspection of \code{.htaccess} file and the Apache configuration was done. \\
-    \textbf{Likelihood} & Same as described for InternetBanking. \\
+    \textbf{Likelihood} & Same as described for Online Banking. \\
     \textbf{Impact} & N/A \\
     \textbf{Recommen\-dations} & N/A \\ \hline
     \textbf{CVSS} & N/A

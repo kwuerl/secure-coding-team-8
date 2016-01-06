@@ -1,8 +1,8 @@
 \subsection{FindBugs}
 FindBugs was used for static analysis of Java code as the first step in finding vulnerablities in the Smart Card Simulator.
 
-\subsubsection{InternetBanking}
-FindBugs reported 3 issues in the Java code of InternetBanking, out of which 1 was categorized as \code{High confidence} and the other 2 as \code{Low confidence}. See \ref{fig:findbugs_overview} for the scan report.
+\subsubsection{Online Banking}
+FindBugs reported 3 issues in the Java code of Online Banking, out of which 1 was categorized as \code{High confidence} and the other 2 as \code{Low confidence}. See \ref{fig:findbugs_overview} for the scan report.
 The issues are mostly related to coding practices \& conventions and are listed below, while one of them could be of concern.
 \begin{itemize}
 	\item Use of default encoding instead of specifying an explicit character encoding when converting to bytes
@@ -26,7 +26,7 @@ As seen, they are easy to correct and do not require much time or effort. The la
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.8\linewidth]{figures/findbugs_overview.png}
-	\caption{Overview of FindBugs scan for InternetBanking}
+	\caption{Overview of FindBugs scan for Online Banking}
 	\label{fig:findbugs_overview}
 \end{figure}
 

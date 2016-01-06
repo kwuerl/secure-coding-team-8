@@ -1,7 +1,7 @@
 \subsection{Testing for Weak password policy - OTG-AUTHN-007} \label{OTG-AUTHN-007}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 8.3 \progressbar[filledcolor=red]{0.83}
     \\ \hline
     \textbf{Observation} & It has been observed that there is restriction on the choice of passwords during registration. User has to enter minimum 6 characters which should contain atleast one uppercase character, one lowercase character, one number and one non-alphanumeric character. This makes it difficult to crack. But the reset password option does not have such restriction and user might set a simple password which can be easily cracked through different tools.\\
@@ -97,5 +97,5 @@
 \end{lstlisting}
 
 \subsubsection{Comparison}
-On comparing, SecureBank is better than InternetBanking as it has a strong password policy, lockout mechanism and restrictions on password even during password change.
+On comparing, SecureBank is better than Online Banking as it has a strong password policy, lockout mechanism and restrictions on password even during password change.
 \clearpage

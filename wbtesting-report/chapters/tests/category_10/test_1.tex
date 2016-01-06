@@ -1,6 +1,6 @@
 \subsection{Testing for DOM based Cross Site Scripting - OTG-CLIENT-001}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \\ \hline
     \textbf{Observation} & DOM based XSS uses the DOM present in the source as injection points. We tried to manipulate URLs to explore this vulnerability. However, no criticality was detected. \\
     \textbf{Discovery} & We scanned the code using \code{grep} for \code{document.location.href} and \code{window.location} in Javascript but none were found. We also confirmed by manually appending strings such as \code{\#<script>alert('hi')</script>} to URLs. After refreshing this page with this value, no changes were observed. \\

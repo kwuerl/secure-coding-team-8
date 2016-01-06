@@ -1,6 +1,6 @@
 \subsection{Testing for Session Fixation - OTG-SESS-003} \label{OTG-SESS-003}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 8.1 \progressbar[filledcolor=BurntOrange]{0.81}
     \\ \hline
     \textbf{Observation} & It has been observed that this vulnerability exists since the cookie PHPSESSID was set without setting the HttpOnly Flag. The same PHPSESSID was used after successful authentication of the user. Thus the session is prone to attack. \\
@@ -11,7 +11,7 @@
            \item Now click on the Cookie extension of Chrome and observe that the PHPSESSID cookie  is set to some value. Copy this value for future use.
            \item Note that the HostOnly and Session checkboxes are enabled while Secure and HttpOnly are not. This tells us the session can be hijacked by client-side manipulation of the cookie.
            \item Now we open the Login page in Firefox. Open the Cookie extension through Tool tab in Firefox and add the PHPSESSID cookie manually and set it to the previously copied value.
-           \item Open the link \code{http://<IP-address>/InternetBanking/employee.php?\allowbreak action=accounts}. Verify that we are now signed in as Administrator without entering any credentials.
+           \item Open the link \code{http://<IP-address>/Online Banking/employee.php?\allowbreak action=accounts}. Verify that we are now signed in as Administrator without entering any credentials.
        \end{itemize}
     \\
     \textbf{Likelihood} & The attacker requires knowledge about tools or browser extensions for analyzing and modifying cookies. Hence likelihood of the attack is low. \\

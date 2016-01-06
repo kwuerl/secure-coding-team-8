@@ -1,6 +1,6 @@
 \subsection{Testing for Bypassing Session Management Schema - OTG-SESS-001} \label{OTG-SESS-001}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 9.8 \progressbar[filledcolor=red]{0.98}
     \\ \hline
     \textbf{Observation} & Session management is based on the cookie PHPSESSID. Upon deletion of this cookie while being logged in, any further operation causes a force log out. This indicates that the user session is based on this cookie. Also, transmission is over an unecrypted HTTP channel.\\
@@ -43,7 +43,7 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-SecureBank is better than InternetBanking, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie and also uses HTTPS for secure communication.
+SecureBank is better than Online Banking, as it disallows session hijacking through the HttpOnly and Secure attributes set for the session cookie and also uses HTTPS for secure communication.
 
 \begin{lstlisting}[caption={PHP code for setting cookie attribues SessionService.php}\label{code:cookie_attributes}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     session_name($name . '_session');

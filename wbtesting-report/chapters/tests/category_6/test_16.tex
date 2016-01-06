@@ -1,7 +1,7 @@
 \subsection{Testing for HTTP Splitting/Smuggling - OTG-INPVAL-016}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking} \\ \hline
+    & \textbf{Online Banking} \\ \hline
     \textbf{Observation} & The application does not use the \code{Location} header with GET parameters. \\
     \textbf{Discovery} & Searching for the keyword \code{location} in the PHP source code we filtered the use of the PHP function \code{header} for redirects. The results showed that no \code{Location} header was used in conjunction with GET parameters. \\
     \textbf{Likelihood} & N/A \\
