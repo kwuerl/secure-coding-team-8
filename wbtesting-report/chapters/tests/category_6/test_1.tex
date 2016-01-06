@@ -1,7 +1,7 @@
 \subsection{Testing for Reflected Cross Site Scripting - OTG-INPVAL-001} \label{OTG-INPVAL-001}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 0.0 \progressbar[filledcolor=Green]{0.0}
     \\ \hline
     \textbf{Observation} & It has been found that Reflected Cross Site Scripting is possible in the application in the \code{Make Payment} interface. \\
@@ -38,7 +38,7 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-SecureBank is better than InternetBanking as it is completely safe from XSS attacks.
+SecureBank is better than Online Banking as it is completely safe from XSS attacks.
 
 \begin{lstlisting}[caption={PHP code for rendering content in Make Payment page from online.php}\label{code:reflected_xss}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     <div class="form-group">

@@ -1,6 +1,6 @@
 \subsection{Testing for Account Enumeration and Guessable User Account - OTG-IDENT-004} \label{OTG-IDENT-004}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
     \\ \hline
     \textbf{Observation} & It was found that the application responds with the same error messages for every client request that produces a failed authentication. This has been tested in the Login page. \\
@@ -81,9 +81,9 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-In InternetBanking, it is possible to enumerate usernames and is hence vulnerable, also owing to the non-existent lockout mechanism.
+In Online Banking, it is possible to enumerate usernames and is hence vulnerable, also owing to the non-existent lockout mechanism.
 In case of SecureBank, though the error messages differ, no vulnerability has been detected owing to the absence of username-baseed login and the presence of a lockout mechanism.
-Hence, SecureBank is more vulnerable than InternetBanking.
+Hence, SecureBank is more vulnerable than Online Banking.
 \clearpage
 
 \begin{lstlisting}[caption={PHP code for checking user from registrationController.php}\label{code:user_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]

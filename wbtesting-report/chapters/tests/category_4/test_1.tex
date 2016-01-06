@@ -1,7 +1,7 @@
 \subsection{Testing Directory traversal/file include - OTG-AUTHZ-001}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
     \textbf{Observation} & Generally speaking, files can be downloaded from and directory listing is enable for all folders with three exceptions. Accessing files in the folders \code{controller}, \code{model} and \code{view} shows a blank page. For example you can download the main c-file for the parser via the link \code{http://IP\_ADDRESS/\allowbreak InternetBanking/\allowbreak parser/main.c}. Although the page shows "not permitted", the browser lets the user save the file. \\
@@ -34,5 +34,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-InternetBanking has directory listing for some folders enabled, whereas SecureBank does not. Therefore it is possible to download some source code from InternetBanking by directly accessing the files/folders.
+Online Banking has directory listing for some folders enabled, whereas SecureBank does not. Therefore it is possible to download some source code from Online Banking by directly accessing the files/folders.
 \clearpage

@@ -1,6 +1,6 @@
 \subsection{Testing for Session Fixation - OTG-SESS-003} \label{OTG-SESS-003}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 8.1 \progressbar[filledcolor=BurntOrange]{0.81}
     \\ \hline
     \textbf{Observation} & It has been observed that this vulnerability exists since the cookie PHPSESSID was set without setting the HttpOnly Flag. The same PHPSESSID was used after successful authentication of the user. Thus the session is prone to attack. \\

@@ -1,10 +1,10 @@
 \subsection{Testing for SQL Injection - OTG-INPVAL-005}\label{sql_injection}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
-    \textbf{Observation} & InternetBanking only uses prepared statements for some queries and does not validate/sanitize user input before using the values in the queries. \\
+    \textbf{Observation} & Online Banking only uses prepared statements for some queries and does not validate/sanitize user input before using the values in the queries. \\
     \textbf{Discovery} & The file \code{DataAccess.php} contains functions for SQL queries. Not every function uses prepared statements. Example: The function \code{getAccountDetails} takes a user ID as parameter and the value is directly included into the query without being escaped. For example it is used in \code{controller/employeeController.php} in line 34. The parameter is the account number, which they directly retrieve from the GET parameter \textit{account}. \\
     \textbf{Likelihood} & SQL injection is one of the most common vulnerabilities and therefore a hacker will try to exploit that. \\
     \textbf{Impact} & With SQL injection a hacker could gain sensitive information, drop the database or change values. \\
@@ -35,5 +35,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-InternetBanking is vulnerable against SQL injection since they do not use prepared statements in most cases. SecureBank does use prepared statements for all queries and sanitizes/validates all user input.
+Online Banking is vulnerable against SQL injection since they do not use prepared statements in most cases. SecureBank does use prepared statements for all queries and sanitizes/validates all user input.
 \clearpage

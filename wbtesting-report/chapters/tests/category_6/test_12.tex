@@ -1,7 +1,7 @@
 \subsection{Testing for Code Injection - OTG-INPVAL-012}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{InternetBanking}
+    & \textbf{Online Banking}
     \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
     \\ \hline
     \textbf{Observation} & The client and the employee site include a PHP file depending on the GET parameter \textit{action}. \\
@@ -34,5 +34,5 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-InternetBanking depends on the GET parameter \textit{action} to display the respective page, therefore code injection is possible. SecureBank does not load files dynamically depending on GET or POST requests.
+Online Banking depends on the GET parameter \textit{action} to display the respective page, therefore code injection is possible. SecureBank does not load files dynamically depending on GET or POST requests.
 \clearpage
