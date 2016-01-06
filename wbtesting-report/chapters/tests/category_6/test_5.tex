@@ -1,0 +1,39 @@
+\subsection{Testing for SQL Injection - OTG-INPVAL-005}\label{sql_injection}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
+    \textbf{Observation} & InternetBanking only uses prepared statements for some queries and does not validate/sanitize user input before using the values in the queries. \\
+    \textbf{Discovery} & The file \code{DataAccess.php} contains functions for SQL queries. Not every function uses prepared statements. Example: The function \code{getAccountDetails} takes a user ID as parameter and the value is directly included into the query without being escaped. For example it is used in \code{controller/employeeController.php} in line 34. The parameter is the account number, which they directly retrieve from the GET parameter \textit{account}. \\
+    \textbf{Likelihood} & SQL injection is one of the most common vulnerabilities and therefore a hacker will try to exploit that. \\
+    \textbf{Impact} & With SQL injection a hacker could gain sensitive information, drop the database or change values. \\
+    \textbf{Recommen\-dations} & Use prepared statements for MySQL queries and sanitize user input. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Prepared statements were used for SQL queries. All user input is sanitized. \\
+    \textbf{Discovery} & The file \code{Model/Repository.php} is a base class for all SQL queries. Each of the queries use the \code{PDO::prepare} function. Since all repositories inherit the functions from the base repository and extra database functions (e.g. in \code{Model/TransactionRepository.php}) also use the \code{PDO::prepare} function, all queries on the database is escaped. Furthermore, \code{Helper/ValidationHelper.php} and \code{Helper/SanitizationHelper.php} implement functions for sanitizing and validation user input. Those functions are used when a form is rendered. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+InternetBanking is vulnerable against SQL injection since they do not use prepared statements in most cases. SecureBank does use prepared statements for all queries and sanitizes/validates all user input.
+\clearpage
