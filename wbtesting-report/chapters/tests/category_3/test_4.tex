@@ -1,0 +1,83 @@
+\subsection{Testing for bypassing authentication schema - OTG-AUTHN-004}
+\subsubsection{InternetBanking}
+\begin{longtable}{p{2.3cm} | p{.79\linewidth}}
+    \hline
+    & \textbf{InternetBanking} \\ 
+    \hline
+    \textbf{Observation} &
+        There were several observations:
+        \begin{itemize}
+          \item Direct Page access is not possible
+          \item Parameter modification is not possible
+          \item Session ID Prediction is not possible
+          \item SQL Injection is not possible in the Login form
+        \end{itemize}
+    \\
+    \textbf{Discovery} &
+        As InternetBanking uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
+        Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
+        For SQL Injection please refer to OTG-INPVAL-005 \newline
+        For direct page access we used curl to mannually revisit pages without an active session. \newline
+    \\
+    \textbf{Likelihood} &
+       N/A
+    \\
+    \textbf{Impact} &
+        N/A
+    \\
+    \textbf{Recommen\-dations} & 
+        N/A
+    \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable}
+\clearpage
+
+\subsubsection{SecureBank}
+\begin{longtable}{p{2.3cm} | p{.79\linewidth}}
+    \hline
+    & \textbf{SecureBank} \\ 
+    \hline
+    \textbf{Observation} &
+        There were several observations:
+        \begin{itemize}
+		  \item Direct Page access is not possible
+		  \item Parameter modification is not possible
+		  \item Session ID Prediction is not possible
+		  \item SQL Injection is not possible in the Login form
+		\end{itemize}
+    \\
+    \textbf{Discovery} &
+    	As SecureBank uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
+        Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
+        For SQL Injection please refer to OTG-INPVAL-005 \newline
+        For direct page access we used curl to mannually revisit pages without an active session. \newline
+    \\
+    \textbf{Likelihood} &
+       N/A
+    \\
+    \textbf{Impact} &
+        N/A
+    \\
+    \textbf{Recommen\-dations} & 
+        N/A
+    \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+BANK-APP contains a very weak authentification mechanism as direct page access is possible for almost every page.
+SecureBank does not seem to have this security flaws.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/OTG-AUTHN-004-1.jpg}
+    \caption{Session Ids can not be predicted as they do not appear to have a pattern.}
+    \label{fig:OTG_AUTHN_004_1}
+\end{figure}
+\clearpage

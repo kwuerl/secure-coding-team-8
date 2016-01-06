@@ -1,0 +1,77 @@
+\subsection{Testing for Command Injection - OTG-INPVAL-013}
+\subsubsection{InternetBanking}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    textbf{Observation} & 
+        We could not detect a Command Injection vulnerability.
+    \\
+    \textbf{Discovery} &
+        The filename of the uploaded file is renamed so there is no command injection possible. See \ref{code:shell_exec_ib}.
+    \\
+    \textbf{Likelihood} & 
+        N/A
+    \\
+    \textbf{Impact} & 
+        N/A
+    \\
+    \textbf{Recommen\-dations} & 
+        N/A
+     \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    	We could not detect a Command Injection vulnerability.
+    \\
+    \textbf{Discovery} &
+        The filename of the uploaded file is renamed so there is no command injection possible. See \ref{code:shell_exec_sb}.
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+	\\
+    \textbf{Recommen\-dations} & 
+        N/A
+     \\ \hline
+    \textbf{CVSS} &
+        N/A
+	\\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+\clearpage
+
+\begin{lstlisting}[caption={PHP code for client check from clientController.php}\label{code:shell_exec_ib}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $target_dir = "/home/samurai/Documents/parse/";
+     ...
+    $target_file = $target_dir . "form.txt";
+     ...
+    if (move_uploaded_file($_FILES["tranfile"]["tmp_name"], $target_file)) {
+        $out = shell_exec("./parser/exec " . $sessionuserid . " " . $target_file);
+        ...
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for client check from clientController.php}\label{code:shell_exec_sb}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $random_file_name = str_replace("/", "", $this->get("random")->getString(10));
+    $uploaded_file_name = $upload_dir.$random_file_name.".txt";
+    $shell_command = $_SERVER['DOCUMENT_ROOT'] .
+        "/../textparser/textparser " .
+        escapeshellarg($uploaded_file_name) . " " .
+        escapeshellarg($customer_id) . " " .
+        escapeshellarg($customer_name) . " " .
+        escapeshellarg($customer_account_id) . " " .
+        escapeshellarg($transaction_code) . " " .
+        escapeshellarg(_MYSQL_HOST) . " " .
+        escapeshellarg(_MYSQL_USER) . " " .
+        escapeshellarg(_MYSQL_PASSWORD) . " " .
+        escapeshellarg(_MYSQL_DATABASE);
+    exec($shell_command, $output, $return_var);
+\end{lstlisting}

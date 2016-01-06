@@ -1,0 +1,54 @@
+\subsection{Test Session Timeout - OTG-SESS-007}
+\subsubsection{BANK-APP}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{BANK-APP} \\ \hline
+    \textbf{Observation} & 
+    	The Session is terminated by PHP after the standard value of 1440s inactivity.
+    \\
+    \textbf{Discovery} & 
+    	In the file \code{auth.php} no explicit Session timeout is specified.
+        \code{php.ini} specifies no timeout different from the standart.
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{Recommen\-dations} & 
+        N/A
+     \\ \hline
+    \textbf{CVSS} & 
+        N/A
+    \\
+   	\hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & 
+    	The Session is terminated by PHP after the standard value of 1440s inactivity.
+    \\
+    \textbf{Discovery} & 
+    	In the file \code{Service/SessionService.php} no explicit Session timeout is specified.
+        \code{php.ini} specifies no timeout different from the standart.
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{Recommen\-dations} & 
+        N/A
+     \\ \hline
+    \textbf{CVSS} & 
+        N/A
+    \\
+   	\hline
+\end{longtable}
+
+\subsubsection{Comparison}
+The results where equal.
+\clearpage

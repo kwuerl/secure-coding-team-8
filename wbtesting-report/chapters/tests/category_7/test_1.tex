@@ -1,0 +1,79 @@
+\subsection{Analysis of Error Codes - OTG-ERR-001}
+\subsubsection{InternetBanking}
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 4.3 \progressbar[filledcolor=BurntOrange]{0.43}
+    \\ \hline
+    \textbf{Observation} & 
+    	Error messages:
+    	\begin{itemize}
+		  \item \textbf{Application Errors:} 
+		  	\begin{itemize}
+			  \item The Application uses Custom Error messages for most of its error feedback
+			  \item MySQL Errors are tried to be presented as \code{mysql_errno()}. Unfortunately this is a invalid syntax.
+			  \item The Application presents direct shell output to the user.
+              \item There are many cases where Exeptions are not catched correctly
+			\end{itemize}
+		\end{itemize}
+    \\
+    \textbf{Discovery} &
+    	On most errors the Application responds with \code{die(message);}.
+        In most cases in \code{DataAccess.php} the Syntax used (\code{die(mysql_errno())}) is wrong and causes a php syntax error.
+        Other errors are thrown as Exception with custom message.
+        Many of these Exceptions are not caught later.
+        For Example the Exception Thrown in \code{DataAccess.php} line 536 is never caught.
+        Due to the current configuration of the Webserver these Exceptions do not end up on the users screen but are only posted to the log file. But a Webserver that is not configured to suppress these Exceptions and Error output would allow to expose a great ammount of Stack traces and Exception codes.
+    \\
+    \textbf{Likelihood} &
+    	An Atacker can use the informations presented by the error messages to validate further atacks. This results in a higher likelihood for other atacks.
+    \\
+    \textbf{Impact} & 
+    	The Mysql error codes can be used by an atacker to directly verify the success of his actions and help him to correct errors.
+    \\
+    \textbf{Recommen\-dations} &
+        Catch Exceptions and hide the direct errors and transalte them to more general custom error messages.
+        Try to avoid incorrect php syntax in code parts that handle errors.
+    \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\subsubsection{SecureBank}
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \hfill CVSS Score: 0 \progressbar{0}
+    \\ \hline
+    \textbf{Observation} & 
+    	No direct PHP Error messages are passed on to the user.
+    \\
+    \textbf{Discovery} &
+    	N/A
+    \\
+    \textbf{Likelihood} & 
+    	N/A
+    \\
+    \textbf{Impact} & 
+    	N/A
+    \\
+    \textbf{Recommen\-dations} &
+        N/A
+    \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+
+\clearpage

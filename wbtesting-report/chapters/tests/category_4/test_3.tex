@@ -1,0 +1,57 @@
+\subsection{Testing for Privilege Escalation - OTG-AUTHZ-003}
+\subsubsection{InternetBanking}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
+    \hline
+    & \textbf{InternetBanking} \\ 
+    \hline
+    \textbf{Observation} &
+       We could not detect any possibilities of privilege escalation.
+    \\
+    \textbf{Discovery} &
+       Controller functions are properly prepended by access right checks.
+       Where the Users Id is used in code it is taken from the session and not from GET or POST parameters.
+       There is no functionality accessible for the Client that allowes write access to the Clients data.
+       It has been implemented in \code{clientController.php} and \code{employeeController.php} based on session values. Refer \ref{code:client_check} for code related to client check and \ref{code:employee_check} for code related to employee check based on session value. \\
+    \\
+    \textbf{Likelihood} &
+       N/A
+    \\
+    \textbf{Impact} &
+        N/A
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
+    \hline
+    & \textbf{SecureBank} \\ 
+    \hline
+    \textbf{Observation} &
+       We could not detect any possibilities of privilege escalation.
+    \\
+    \textbf{Discovery} &
+       Each controller function is prepended by an access right check, that checks for the current users static and contextual privileges.
+       Where the Users Id is used in code it is taken from the session and not from GET or POST parameters.
+       Refer \ref{code:customer_check_secure_bank} for code related to customer check and \ref{code:employee_check_secure_bank} for code related to employee check based on session value. Similar checks are implemented for all client, employee and administrator operations.
+    \\
+    \textbf{Likelihood} &
+       N/A
+    \\
+    \textbf{Impact} &
+        N/A
+    \\
+    \textbf{Recommen\-dations} & recommendations \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\
+    \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+N/A
+\clearpage

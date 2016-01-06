@@ -1,0 +1,62 @@
+\subsection{Analysis of Stack Traces - OTG-ERR-002}
+\subsubsection{InternetBanking}
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking} \\ \hline
+    \hfill CVSS Score: 0 \progressbar{0}
+    \\ \hline
+    \textbf{Observation} & 
+        The Application outputs a php exception with stack trace to the log (to the screen on insecure Webservers) in many error cases. Example is a wrong user input in the recover password functionality. \newline
+    \\
+    \textbf{Discovery} &
+        See OTG-ERR-001.
+    \\
+    \textbf{Likelihood} & 
+        An Atacker can use the informations presented by the error messages to validate further atacks. This results in a higher likelihood for other atacks.
+    \\
+    \textbf{Impact} & 
+        An atacker can use the application errors to estimate application internas like file and include structures.
+    \\
+    \textbf{Recommen\-dations} &
+        Hide the direct errors and translate them to more general custom error messages.
+    \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \textbf{Observation} & 
+        We could not detect stack traces in this application.
+    \\
+    \textbf{Discovery} &
+        See OTG-ERR-001.
+    \\
+    \textbf{Likelihood} &
+        N/A
+    \\
+    \textbf{Impact} & 
+        N/A
+    \\
+    \textbf{Recommen\-dations} &
+        N/A
+    \\ \hline
+    \textbf{CVSS} &
+        N/A
+    \\ \hline
+
+    
+\end{longtable}
+
+\subsubsection{Comparison}
+\clearpage
