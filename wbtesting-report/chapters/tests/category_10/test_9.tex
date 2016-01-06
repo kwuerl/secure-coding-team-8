@@ -1,0 +1,39 @@
+\subsection{Testing for Clickjacking - OTG-CLIENT-009}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{InternetBanking}
+    \hfill CVSS Score: 5.3 \progressbar[filledcolor=BurntOrange]{0.53}
+    \\ \hline
+    \textbf{Observation} & The HTTP header option \code{X-Frame-Options} is not set. \\
+    \textbf{Discovery} & No \code{.htaccess} file was found, which usually is used to set the HTTP header option \code{X-Frame-Options}. \\
+    \textbf{Likelihood} & Testing whether a URL can be loaded within an iframe is not difficult. An attacker can easily create a malicious website with a hidden iframe. \\
+    \textbf{Impact} & Because the bank application can be loaded into an iframe, an attacker could make a user transfer money to the attacker without the user noticing it. The attacker could also make the user type in his password without knowing that he/she is logging into his/her bank account. \\
+    \textbf{Recommen\-dations} & Set the \code{X-Frame-Options} header to either \code{DENY} or \code{SAMEORIGIN}. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\begin{longtable}[l]{ p{2.3cm} | p{.75\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & SecureBank denies clickjacking. \\
+    \textbf{Discovery} & In the \code{src/.htaccess} file there is the line with \code{Header set X-Frame-Options DENY}, which denies embedding the site in an iframe. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+InternetBanking could be loaded into an iframe, whereas SecureBank denies that option.
+\clearpage

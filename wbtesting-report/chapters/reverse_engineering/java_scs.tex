@@ -14,3 +14,5 @@ Observing the context and going through the code, appropriate modifications were
 \item The SCS generates the TAN without any checks and all validations are handled at the PHP end. This includes valid target, amount and correct PIN. It would be recommended to have basic checks such as blank target, negative or zero amount and blank pin checks in the SCS itself.
 \item At the PHP side, a TAN is generated using a similar algorithm as in Java, using the target and amount entered in the Web UI and the SCS pin of the user fetched from the database. If the TAN(from SCS) entered by the user matches this TAN, payment is processed successfully.
 \item There is no expiration of the TAN. So it can be used anytime in the future. This could be vulnerable especially if a TAN has been compromised to an attacker.
+
+\end{itemize}
