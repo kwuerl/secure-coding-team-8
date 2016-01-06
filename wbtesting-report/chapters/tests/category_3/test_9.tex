@@ -21,7 +21,7 @@
      \textbf{CVSS} &
             \begin{tabular}[t]{@{}l | l}
                 Attack Vector           & \textcolor{red}{Network} \\
-                Attack Complexity       & \textcolor{Red}{Low} \\
+                Attack Complexity       & \textcolor{red}{Low} \\
                 Privileges Required     & \textcolor{Green}{High} \\
                 User Interaction        & \textcolor{red}{None} \\
                 Scope                   & \textcolor{Green}{Unchanged} \\
@@ -31,6 +31,20 @@
             \end{tabular}
     \\ \hline
 \end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Password change functionality has been provided to the user though which user receives a link to reset password through email, that is valid for 30 minutes. This can be an issue if the registered email id is known to the attacker. \\
+    \textbf{Discovery} & Manual inspection of code was done. \\
+    \textbf{Likelihood} & N/A\\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & It would be better if security question is also implemented during password change, thus raising the difficulty even if the e-mail is compromised.\\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is clearly more secure in this regard, compared to InternetBanking that has multiple flaws exposed.
 
 \begin{lstlisting}[caption={PHP code for change password functionality from passwordController.php}\label{code:password_change}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -72,17 +86,4 @@
     }
 \end{lstlisting}
 
-\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
-    & \textbf{SecureBank} \\ \hline
-    \textbf{Observation} & Password change functionality has been provided to the user though which user receives a link to reset password through email, that is valid for 30 minutes. This can be an issue if the registered email id is known to the attacker. \\
-    \textbf{Discovery} & Manual inspection of code was done. \\
-    \textbf{Likelihood} & N/A\\
-    \textbf{Impact} & N/A \\
-    \textbf{Recommen\-dations} & It would be better if security question is also implemented during password change, thus raising the difficulty even if the e-mail is compromised.\\ \hline
-    \textbf{CVSS} & N/A
-    \\ \hline
-\end{longtable}
-
-\subsubsection{Comparison}
-SecureBank is clearly more secure in this regard, compared to InternetBanking that has multiple flaws exposed.
 \clearpage
