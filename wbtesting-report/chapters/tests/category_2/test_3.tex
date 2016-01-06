@@ -5,9 +5,9 @@
     \textbf{Discovery} &
      This flaw has been exposed using the Advanced Rest Client. Steps are as follows:
             \begin{itemize}
-                \item Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/Online Banking/employee.php}. The details of all registered users are shown.
+                \item Login as an Employee and enter the URL - \code{http:// \allowbreak <IP-address>/InternetBanking/employee.php}. The details of all registered users are shown.
                 \item Note the User Id of one of the users. Consider this value is \code{xyz}.
-                \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ Online Banking/employee.php\allowbreak?action=approveregistrations}.
+                \item Open the Advanced Rest Client and enter the URL -  \code{http://<IP-address>/ InternetBanking/employee.php\allowbreak?action=approveregistrations}.
                 \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
                 \item Click on \enquote{Send} and observe that the response contains the text \enquote{Account request rejected successfully}.
                 \item However, upon trying to login as user \code{xyz}, there are no failures and the user can function as earlier.
