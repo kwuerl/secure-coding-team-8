@@ -44,8 +44,8 @@
     \\ \hline
     \textbf{Observation} & It has been found that there is no error log maintained for unsuccessful operations. In the absence of such monitoring, the application can be attacked by the user without being noticed. However, there is a lockout mechanism on failed login. \\
     \textbf{Discovery} & By manually inspecting the code, the lockout mechanism was found in \code{DBAuthProvider.php} that locks the account for 60 minutes. \\
-    \textbf{Likelihood} & Likelihood is low as it is not easy to gain access into the system by Brute-force attacks. \\
-    \textbf{Impact} & Impact is low low due to reduced chances of attack owing to the lockout mechanism. The transaction page still can be used with unsuccessful tries but after having successfully logged in to the application which thus reduces the chances of attack. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
     \textbf{Recommen\-dations} &  Logs of suspected actions should be maintained in database/file so as to monitor attempts for attacks. \\ \hline
     \textbf{CVSS} & N/A
     \\ \hline
