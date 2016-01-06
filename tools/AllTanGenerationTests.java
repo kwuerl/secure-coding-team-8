@@ -19,7 +19,6 @@ public class AllTanGenerationTests {
 
 	@Before
 	public void initTest() {
-		new ArrayList<Payment>();
 		target = "some_target";
 		amount = 100.00;
 	}
