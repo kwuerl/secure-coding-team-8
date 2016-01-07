@@ -39,7 +39,7 @@ There are no weak lockout mechanisms available. Therefore account bruteforcing i
 \end{itemize}
 
 \subsection{SQL injection}
-For most of the queries Online Banking did not use prepared statements and did not sanitize/validate user input. Therefore SQL injection is possible.
+For most of the queries, neither are prepared statements used nor are user inputs sanitized/validated.
 \begin{itemize}
 	\item \textbf{Likelihood:} High
 	\item \textbf{Impact:} High
@@ -48,7 +48,7 @@ For most of the queries Online Banking did not use prepared statements and did n
 \end{itemize}
 
 \subsection{Buffer overflow}
-The biggest issue Online Banking has with buffer overflow is the use of functions like \code{strcpy}, \code{strcat} and \code{sprintf} without checking for the lengths.
+The biggest issue with buffer overflow is the use of functions like \code{strcpy}, \code{strcat} and \code{sprintf} without checking for the lengths.
 \begin{itemize}
 	\item \textbf{Likelihood:} High
 	\item \textbf{Impact:} High
