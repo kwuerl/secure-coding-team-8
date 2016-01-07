@@ -1,21 +1,21 @@
 \chapter{Executive summary}
 \section*{Online Banking}
 Online Banking contains a large number of vulnerabilities, syntax errors and business logic flaws.
-One of the moste severe of them is a widespread vulnerability for SQL-injection. For example even the field \code{username} in the registration form is vulnerable. Atackers can gain controll of all data this way.
-Additionally the application contains a number of refelcted XSS vulernatbilities. This way atackers can send poisoned links to unsuspecting persons which allows them to take controll of their account.
-Checking the php error log it unveals a number of syntax errors. The consequence is unsuspected application behaviour.
-The file parser written in C also contains many SQL-injection and buffer overflow vulernabilities. This yields the possibility of total controll over the whole server.\\
+One of the most severe of them is a widespread vulnerability for SQL-injection, even in the registration form. Attackers can gain control of all data through this.
+Additionally, the application exhibits reflected XSS vulnerability. This way attackers can send poisoned links to unsuspecting persons which allows them to take control of their account.
+Checking the php error log it reveals a number of syntax errors. The consequence is unsuspected application behaviour.
+The file parser written in C also contains many SQL-injection and buffer overflow vulnerabilities. This yields the possibility of total control over the whole server.\\
 These are only a few of all contained vulnerabilities.
-In addition to that the application contains a number of derivations from the from application requirements as well as usability flaws and functional issues.
+In addition to this, the application contains a number of deviations from the application requirements as well as usability flaws and functional issues.
 
 
 \section*{SecureBank}
 While analyzing the SecureBank application we could only detect two minor vulnerabilities.
 One is, that the User Identities are not verified automatically. To fix this, email and address verification mechanisms have to be implemented.
-The second one is, that after 100 transactions no new tan codes are sent to the user and this way he can not use the application any more.
-Both of this vulnerabilities are minor from a security aspect and are also contained within the Online Banking application.
+The second one is, that after 100 transactions no new tan codes are sent to the user and this way he cannot use the application any more.
+Both of these vulnerabilities are minor from a security aspect and are also contained within the Online Banking application.
 
 \section*{Comparison}
 A comparison between SecureBank and Online Banking is difficult.\\
-SecureBank forfills almost all functional and security requirements.\\
-Online Banking still has major defficits in allmost all of the named disciplins.
+SecureBank fulfills almost all functional and security requirements.\\
+Online Banking still has major deficiencies in almost all of the named disciplines.
