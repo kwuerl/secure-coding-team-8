@@ -9,7 +9,7 @@ Though there is check for duplicate TAN on the PHP side, if frequency of duplica
 
 \subsubsection{SecureBank}
 The test reported 1 failure in the Java code of SecureBank and passed 7 tests successfully. See \ref{fig:junit_overview_secure_bank} for the test report.
-The failed test \code{shouldNotGenerateDuplicateTan} revealed that the probability of duplicate TANs generated is high. However, this is due to the TAN generation logic that generates the same TAN upto 100 seconds. This is done to achieve expiration of the TAN and make it unusable after 100 seconds. Also, this prevents TANs generated at extremely short intervals. Hence, the test failure can be considered as a false positive.
+The failed test \code{shouldNotGenerateDuplicateTan} revealed that the probability of duplicate TANs generated is high. However, this is due to the TAN generation logic that generates the same TAN upto 100 seconds. This is done to achieve expiration of the TAN and make it unusable after 100 seconds. Also, this prevents TANs generated at extremely short intervals. Also, after 100 seconds, the probability of duplicate TANs is found to be low. Hence, the test failure can be considered as a false positive.
 
 \begin{figure}[ht]
 	\centering
