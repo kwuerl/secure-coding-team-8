@@ -1,2 +1,4 @@
 \subsection{Valgrind}
-Valgrind was used for automatically detecting memory management bugs in the C executable.
+Valgrind was used for automatically detecting memory management bugs in the C executable. The command used was \code{valgrind --leak-check=full <command for parser>}.
+
+It was used primarily to detect the number of allocations and freed blocks. For both application it showed that more heaps were allocated than freed. Refer to section~\ref{buffer_overflow} for more information.
