@@ -1,8 +1,8 @@
 \subsection{Testing for bypassing authentication schema - OTG-AUTHN-004}
-\subsubsection{InternetBanking}
+\subsubsection{Online Banking}
 \begin{longtable}{p{2.3cm} | p{.79\linewidth}}
     \hline
-    & \textbf{InternetBanking} \\ 
+    & \textbf{Online Banking} \\ 
     \hline
     \textbf{Observation} &
         There were several observations:
@@ -14,7 +14,7 @@
         \end{itemize}
     \\
     \textbf{Discovery} &
-        As InternetBanking uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
+        As Online Banking uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
         For SQL Injection please refer to OTG-INPVAL-005 \newline
         For direct page access we used curl to mannually revisit pages without an active session. \newline
@@ -71,7 +71,7 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-BANK-APP contains a very weak authentification mechanism as direct page access is possible for almost every page.
+Online Banking contains a very weak authentification mechanism as direct page access is possible for almost every page.
 SecureBank does not seem to have this security flaws.
 
 \begin{figure}[p]

@@ -79,7 +79,7 @@ SecureBank is clearly more secure in this regard, compared to Online Banking tha
                 $newkey = str_replace(".", "", $newkey);
 
                 $db->SavePasswordRecoveryKey($_POST['email'], $newkey);
-                sendMail($_POST['email'], "InternetBanking Password Recovery",
+                sendMail($_POST['email'], "Online Banking Password Recovery",
                 "Your secret key is: ". $newkey);
         }
 
