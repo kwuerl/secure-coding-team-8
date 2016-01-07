@@ -10,7 +10,7 @@
 		  \item \textbf{Application Errors:} 
 		  	\begin{itemize}
 			  \item The Application uses Custom Error messages for most of its error feedback
-			  \item MySQL Errors are tried to be presented as \code{mysql_errno()}. Unfortunately this is a invalid syntax.
+			  \item MySQL Errors are tried to be presented as \code{mysql\_errno()}. Unfortunately this is a invalid syntax.
 			  \item The Application presents direct shell output to the user.
               \item There are many cases where Exeptions are not catched correctly
 			\end{itemize}
@@ -18,7 +18,7 @@
     \\
     \textbf{Discovery} &
     	On most errors the Application responds with \code{die(message);}.
-        In most cases in \code{DataAccess.php} the Syntax used (\code{die(mysql_errno())}) is wrong and causes a php syntax error.
+        In most cases in \code{DataAccess.php} the Syntax used (\code{die(mysql\_errno())}) is wrong and causes a php syntax error.
         Other errors are thrown as Exception with custom message.
         Many of these Exceptions are not caught later.
         For Example the Exception Thrown in \code{DataAccess.php} line 536 is never caught.
