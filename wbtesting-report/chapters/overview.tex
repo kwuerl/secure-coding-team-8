@@ -37,6 +37,24 @@ There are no weak lockout mechanisms available. Therefore account bruteforcing i
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-AUTHN-003
 \end{itemize}
+
+\subsection{SQL injection}
+For most of the queries Online Banking did not use prepared statements and did not sanitize/validate user input. Therefore SQL injection is possible.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-005
+\end{itemize}
+
+\subsection{Buffer overflow}
+The biggest issue Online Banking has with buffer overflow is the use of functions like \code{strcpy}, \code{strcat} and \code{sprintf} without checking for the lengths.
+\begin{itemize}
+	\item \textbf{Likelihood:} High
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-014
+\end{itemize}
 %%%%%%%%
 
 \section{Vulnerabilities of SecureBank}
