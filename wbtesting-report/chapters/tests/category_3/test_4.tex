@@ -7,17 +7,17 @@
     \textbf{Observation} &
         There were several observations:
         \begin{itemize}
-          \item Direct Page access is not possible
-          \item Parameter modification is not possible
           \item Session ID Prediction is not possible
+          \item Parameter modification is not possible
           \item SQL Injection is not possible in the Login form
+          \item Direct Page access is not possible
         \end{itemize}
     \\
     \textbf{Discovery} &
-        As Online Banking uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
+        As Online Banking uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. See \ref{code:auth_server_ib}.\newline
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
-        For SQL Injection please refer to OTG-INPVAL-005 \newline
-        For direct page access we used curl to mannually revisit pages without an active session. \newline
+        For SQL Injection please refer to OTG-INPVAL-005. \newline
+        Direct page access is not possible as the app uses checks to determine if the applications is bootstrapped and the user is logged in. See \ref{code:auth_check_ib} \newline
     \\
     \textbf{Likelihood} &
        N/A
@@ -53,7 +53,7 @@
     	As SecureBank uses the standard PHP 5.3 way of generating Session IDs it is not vulnerable to Session ID Prediction. \newline
         Parameter modification was eliminated by manually looking at the url parameters in the app. \newline
         For SQL Injection please refer to OTG-INPVAL-005 \newline
-        For direct page access we used curl to mannually revisit pages without an active session. \newline
+        Direct page access has no effect as the Application uses Object a router that blocks direct access.  \newline
     \\
     \textbf{Likelihood} &
        N/A
@@ -73,11 +73,24 @@
 \subsubsection{Comparison}
 Online Banking contains a very weak authentification mechanism as direct page access is possible for almost every page.
 SecureBank does not seem to have this security flaws.
-
-\begin{figure}[p]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/OTG-AUTHN-004-1.jpg}
-    \caption{Session Ids can not be predicted as they do not appear to have a pattern.}
-    \label{fig:OTG_AUTHN_004_1}
-\end{figure}
 \clearpage
+
+\begin{lstlisting}[caption={PHP code for sessions from auth.php}\label{code:auth_server_ib}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+session_start();
+$currentCookieParams = session_get_cookie_params(); 
+session_set_cookie_params( 
+    $currentCookieParams["lifetime"], 
+    $currentCookieParams["path"], 
+    $currentCookieParams["domain"], 
+    true, 
+    true 
+); 
+\end{lstlisting}
+\begin{lstlisting}[caption={PHP code for auth-check in clientController.php}\label{code:auth_check_ib}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+if (!defined('MyConst')){
+    die('not permitted');
+}
+if ($sessionisemployee){
+    die('Not client.');
+}
+\end{lstlisting}

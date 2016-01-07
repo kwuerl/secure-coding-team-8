@@ -29,13 +29,73 @@ According to the specification the four roles should have the following permissi
 \subsubsection{Online Banking}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{Online Banking}
-    \hfill CVSS Score: 0 \progressbar{0}
     \\ \hline
     \textbf{Observation} &
-        Online Banking only uses four role definitions: \textbf{Admin (A)}, \textbf{Employee (E)}, \textbf{Customer (C)}, \textbf{Anyone (N)}.
+        Online Banking only uses four role definitions: \textbf{Employee (E)}, \textbf{Customer (C)}, \textbf{Anyone (N)}.
         For Online Banking according to our tests the resulting access rights where:
         \begin{center}
             \begin{tabular}{ | l | l | l | l |}
+            \hline
+            \textbf{Functionality}          & \textbf{E} & \textbf{C} & \textbf{N} \\ \hline
+            View own transactions           & \xmark    & \cmark    & \xmark \\ \hline
+            View other users transactions   & \cmark    & \xmark    & \xmark \\ \hline
+            Make transaction                & \xmark    & \cmark    & \xmark \\ \hline
+            Approve own transaction         & \xmark    & \xmark    & \xmark \\ \hline
+            Approve other users transaction & \cmark    & \xmark    & \xmark \\ \hline
+            View user list                  & \cmark    & \xmark    & \xmark \\ \hline
+            View own user profile           & \cmark    & \cmark    & \xmark \\ \hline
+            View other users profiles       & \cmark    & \xmark    & \xmark \\ \hline
+            Login                           & \cmark    & \cmark    & \xmark \\ \hline
+            Download SCS                    & \cmark    & \cmark    & \xmark \\ \hline
+            Reset own Password              & \cmark    & \cmark    & \xmark \\ \hline
+            Logout                          & \cmark    & \cmark    & \xmark \\ \hline
+            Register as Employee            & \xmark    & \xmark    & \cmark \\ \hline
+            Register as Customer            & \xmark    & \xmark    & \cmark \\ \hline
+            Approve/Disapprove Customer     & \cmark    & \xmark    & \xmark \\ \hline
+            Approve/Disapprove Employee     & \cmark    & \xmark    & \xmark \\ \hline
+            \end{tabular}
+        \end{center}
+        Online Banking does not use a Admin user. We find it critical to differenciate between Employee and Admin to reduce the possibilities of abuse.
+    \\
+    \textbf{Discovery} &
+        We examined the Application by manually following the provided links and UI elements
+    \\
+    \textbf{Likelihood} &
+        Employees can abusively invite non-authorized persons and give them administrative rights.
+    \\
+    \textbf{Impact} &
+        Foreign persons gain administrative privileges.
+    \\
+    \textbf{Recommen\-dations} &
+        Have the Role Admin for Approval of Employees
+    \\
+    \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{High} \\
+            Privileges Required     & \textcolor{red}{High} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{BurntOrange}{High} \\
+            Integrity Impact        & \textcolor{Green}{High} \\
+            Availability Impact     & \textcolor{Green}{High}
+        \end{tabular}
+    \\
+    \hline
+\end{longtable}
+\clearpage
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
+    \hline
+    & \textbf{SecureBank} \\ 
+    \hline
+    \textbf{Observation} &
+        SecureBank only uses four role definitions: \textbf{Admin (A)}, \textbf{Employee (E)}, \textbf{Customer (C)}, \textbf{Anyone (N)}.
+        For SecureBank according to our tests the resulting access rights where:
+        \begin{center}
+            \begin{tabular}{ | l | l | l | l | l |}
             \hline
             \textbf{Functionality}          & \textbf{A} & \textbf{E} & \textbf{C} & \textbf{N} \\ \hline
             View own transactions           & \xmark    & \xmark    & \cmark    & \xmark \\ \hline
@@ -76,57 +136,7 @@ According to the specification the four roles should have the following permissi
     \\
     \hline
 \end{longtable}
-\clearpage
-
-\subsubsection{SecureBank}
-\begin{longtable}[l]{p{2.3cm} | p{.79\linewidth}}
-    \hline
-    & \textbf{SecureBank} \\ 
-    \hline
-    \textbf{Observation} &
-        SecureBank only uses four role definitions: \textbf{Admin (A)}, \textbf{Employee (E)}, \textbf{Customer (C)}, \textbf{Anyone (N)}.
-        For SecureBank according to our tests the resulting access rights where:
-        \begin{center}
-            \begin{tabular}{ | l | l | l | l | l |}
-            \hline
-            \textbf{Functionality}          & \textbf{A} & \textbf{E} & \textbf{C} & \textbf{N} \\ \hline
-            View own transactions           & \xmark    & \xmark    & \cmark    & \xmark \\ \hline
-            View other users transactions   & \cmark    & \cmark    & \xmark    & \xmark \\ \hline
-            Make transaction                & \xmark    & \xmark    & \cmark    & \xmark \\ \hline
-            Approve own transaction         & \xmark    & \xmark    & \xmark    & \xmark \\ \hline
-            Approve other users transaction & \cmark    & \cmark    & \xmark    & \xmark \\ \hline
-            View user list                  & \cmark    & \cmark    & \xmark    & \xmark \\ \hline
-            View own user profile           & \cmark    & \cmark    & \cmark    & \xmark \\ \hline
-            View other users profiles       & \cmark    & \cmark    & \xmark    & \xmark \\ \hline
-            Login                           & \cmark    & \cmark    & \cmark    & \xmark \\ \hline
-            Logout                          & \cmark    & \cmark    & \cmark    & \xmark \\ \hline
-            Register as Employee            & \xmark    & \xmark    & \xmark    & \cmark \\ \hline
-            Register as Customer            & \xmark    & \xmark    & \xmark    & \cmark \\ \hline
-            Approve/Disapprove Customer     & \cmark    & \cmark    & \xmark    & \xmark \\ \hline
-            Approve/Disapprove Employee     & \cmark    & \xmark    & \xmark    & \xmark \\ \hline
-            \end{tabular}
-        \end{center}
-        No Abnormalities could be determined.
-    \\
-    \textbf{Discovery} &
-        We examined the Application by manually following the provided links and UI elements
-    \\
-    \textbf{Likelihood} &
-        N/A
-    \\
-    \textbf{Impact} &
-        N/A
-    \\
-    \textbf{Recommen\-dations} &
-        N/A
-    \\
-    \hline
-    \textbf{CVSS} &
-        N/A
-    \\
-    \hline
-\end{longtable}
 
 \subsubsection{Comparison}
-In comparison to Online Banking SecureBank has a finer differenciation of roles for employee users as well es a complete seperation of employee and customer accounts. This leads to a limitation of the possibility to abuse given powers.
+Online Banking does not use an Admin user and gives every Employee the right to invite other Employees.
 \clearpage

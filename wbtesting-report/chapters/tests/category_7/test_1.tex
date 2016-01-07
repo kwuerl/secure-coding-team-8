@@ -52,10 +52,9 @@
 \subsubsection{SecureBank}
 \begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
-    \hfill CVSS Score: 0 \progressbar{0}
     \\ \hline
     \textbf{Observation} & 
-    	No direct PHP Error messages are passed on to the user.
+    	No direct PHP Error messages are passed on to the user. See \ref{code:error_routing_sb}
     \\
     \textbf{Discovery} &
     	N/A
@@ -75,5 +74,30 @@
 \end{longtable}
 
 \subsubsection{Comparison}
+Online Banking has some severe flaws in Syntax and Programm Logic.
 
 \clearpage
+
+\begin{lstlisting}[caption={PHP code for error handling from RoutingService.php}\label{code:error_routing_sb}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+/**
+ * Runs the callback for the given request
+ */
+public function dispatch()
+{
+    try {
+
+            ...
+
+    } catch (\Exception $e) {
+        if(_DEBUG === true) throw $e;
+        if (!array_key_exists("503", $this->error_callbacks)) {
+            $this->error_callbacks["503"] = function() {
+                header($_SERVER['SERVER_PROTOCOL']." 503 Fail...");
+                echo '503';
+            };
+        }
+        call_user_func($this->error_callbacks["503"]);
+        return;
+    }
+}
+\end{lstlisting}
