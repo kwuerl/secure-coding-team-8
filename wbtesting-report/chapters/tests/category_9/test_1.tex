@@ -1,0 +1,50 @@
+\subsection{Test Business Logic Data Validation - OTG-BUSLOGIC-001}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 8.6 \progressbar[filledcolor=red]{0.86}
+    \\ \hline
+    \textbf{Observation} &
+        It has been found that it is possible to enter valid data and cause the application to behave differently due to a deviation in the business logic. Two such vulnerabilities have been found and they are as follows.
+        \begin{itemize}
+            \item In the Transaction page, it is possible to perform a transfer to own account. This transfer also reflects in the Transaction History but does not affect the Account Balance in any way.
+            \item In the Account Details page, employee can reset the balance of any customer to 0 repeatedly and thus prevent the customer from performing any transactions at all.
+        \end{itemize}
+    \\
+    \textbf{Discovery} & By checking the code, there was no code related to checking transfer to self. \\
+    \textbf{Likelihood} & Likelihood is high. The attacker need not have any technical knowledge to perform this action. \\
+    \textbf{Impact} & It is possible to deny performing transfers by setting the balance to 0 infinite number of times. \\
+    \textbf{Recommen\-dations} &
+        \begin{itemize}
+        \item Transfer to self should be restricted.
+        \item Balance initialization should be restricted to a specific number of attempts.
+        \end{itemize}
+    \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{BurntOrange}{Low} \\
+            Integrity Impact        & \textcolor{BurntOrange}{Low} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been found that there are appropriate checks to validate all data and hence no vulneranbility has been found in this regard. \\
+    \textbf{Discovery} & By manually inspecting the code, validations during transfer, balance initialization. Balance initialization is also a one-time process. After the emloyee has set the balance of an employee once, it cannot be done again. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is better than Online Banking as it does not allow circumvention of work-flow in the application.
+\clearpage

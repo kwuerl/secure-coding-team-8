@@ -1,0 +1,28 @@
+\subsection{Testing for CSS Injection - OTG-CLIENT-005}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & It has been observed that CSS injections cannot be performed as user inputs are sanitized. Hence we cannot inject html tags which could be used to execute scripts indirectly. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been observed that CSS injections cannot be performed as user inputs are sanitized. Hence we cannot inject html tags which could be used to execute scripts indirectly. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization. \\ \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application is vulnerable to this attack since all inputs are properly sanitized.
+\clearpage

@@ -1,0 +1,51 @@
+\subsection{Testing for the Circumvention of Work Flows - OTG-BUSLOGIC-006}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & It is not possible to alter the work-flow of the application due to appropriate checks throughout the application. User privileges have been segregated according to the roles. \\
+    \textbf{Discovery} & By manually inspecting the code, it has been found that user type has been checked throughout the application before serving any page. Refer \ref{code:client_check} for code related to client check and \ref{code:employee_check} for code related to employee check based on session value. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A\\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{SecureBank}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It is not possible to alter the work-flow of the application due to appropriate checks throughout the application. User privileges has been segregated according to the roles.\\
+    \textbf{Discovery} & By manually inspecting the code, it has been found that user type has been checked throughout the application before serving any pages or performing any actions. Refer \ref{code:customer_check_secure_bank} for code related to customer check and \ref{code:employee_check_secure_bank} for code related to employee check based on session value. Similar checks are implemented for all client, employee and administrator operations. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both of the applications are secure since there is restriction on the altering the normal work-flow of the application.
+
+\begin{lstlisting}[caption={PHP code for client check from clientController.php}\label{code:client_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+     if ($sessionisemployee){
+         die('Not client.');
+     }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for employee check from employeeController.php}\label{code:employee_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    if ($sessionisemployee != 1){
+        die('Not employee.');
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for client check in loadOverview function from CustomerController.php}\label{code:customer_check_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $customer = $this->get("auth")->check(_GROUP_USER);
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for client check in loadOverview function from EmployeeController.php}\label{code:employee_check_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+\end{lstlisting}
+
+\clearpage

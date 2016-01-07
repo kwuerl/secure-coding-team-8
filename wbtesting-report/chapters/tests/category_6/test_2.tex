@@ -1,0 +1,28 @@
+\subsection{Testing for Stored Cross Site Scripting - OTG-INPVAL-002} \label{OTG-INPVAL-002}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & It was found that it is not possible perform stored XSS in the application. Simple HTML and Script tags were tried and but the attacks were unsuccessful. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization; leading to HTML tags being rendered as plain text. \\
+    \textbf{Likelihood} & N/A\\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It was found that it is not possible to perform stored XSS in the application. Simple HTML and Script tags were tried and the attacks were unsuccessful. \\
+    \textbf{Discovery} & Manual inspection of code revealed usage of functions such as \code{htmlspecialchars}, \code{filter\_var} and \code{preg\_match} for input sanitization; leading to HTML tags being rendered as plain text. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both applications are secure with respect to Stored XSS attacks.
+\clearpage

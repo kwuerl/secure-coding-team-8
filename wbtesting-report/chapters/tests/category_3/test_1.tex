@@ -1,0 +1,46 @@
+\subsection{Testing for Credentials Transported over an Encrypted Channel - OTG-AUTHN-001} \label{OTG-AUTHN-001}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 8.6 \progressbar[filledcolor=red]{0.86}
+    \\ \hline
+    \textbf{Observation} & It has been found that the forms in the application submit to an insecure HTTP target. Parameters such as User name, Password, TAN number etc. are not encrypted. \\
+    \textbf{Discovery} & In the observed source code, there was no hint to encryption. Neither is Apache configured to provide any SSL/TLS encryption. This was found by examining the configuration file \code{/etc/apache2/sites-enabled/000-default}.
+            To confirm whether the application works on HTTP or HTTPS via a black-box test, cURL was used. Steps are as follows:
+            \begin{itemize}
+                 \item Open the terminal and type \code{curl https://<IP-address>}. The response states unknown protocol.
+                 \item To get a detailed response, use \code{curl --verbose https://\allowbreak<IP-address>}.
+                 \item Now try with \code{curl http://<IP-address>}. The response indicates a successful connection and the output of the request. It can be concluded that the application works only on HTTP and does not support transmission over HTTPS.
+            \end{itemize}
+    \\
+    \textbf{Likelihood} & Likelihood is high since this takes place over the network and is exploitable remotely. Any attacker; even one with no experience will notice that there is no encryption available, upon visiting the bank’s website for the first time. \\
+    \textbf{Impact} & A successful attack might lead to serious consequences. The request parameters can be tampered with, as they are not encrypted. This could be used by the attacker to impersonate as the victim or even transactions being hijacked. It becomes very easy for a Man-In-The-Middle attack.\\
+    \textbf{Recommen\-dations} & It is recommended to use HTTPS for secure communication and also use encryption for the request parameters.\\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{BurntOrange}{Low} \\
+            Availability Impact     & \textcolor{BurntOrange}{Low}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It has been found that all accesses to the banking application are via \code{https} i.e., secure http connections. Unencrypted traffic over \code{http} is also redirected to the encrypted version of the webpage. \\
+    \textbf{Discovery} & This has been confirmed by examining the configuration file \code{secure-bank.conf} where the SSL and HSTS details can be found. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is secure owing to the secure connection over encrypted channel whereas Online Banking application exposes serious vulnerability.
+\clearpage

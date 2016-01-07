@@ -1,0 +1,89 @@
+\subsection{Testing for weak password change or reset functionalities - OTG-AUTHN-009}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{OnlineBanking}
+      \hfill CVSS Score: 6.7 \progressbar[filledcolor=BurntOrange]{0.67}
+        \\ \hline
+    \textbf{Observation} & Password change functionality has been provided to the user though which the user receives a secret key which can then be used to change the password. The process is weak since any user can invoke such a process if they know any registered email id. \\
+    \textbf{Discovery} & Manual inspection of code revealed the following flaws in implementation.
+    \begin{itemize}
+        \item For password change, the system doesn't check whether it is a registered email or not, and straightaway shoots an email to the specified email; thus allowing to change the password even if the email is not registered.
+        \item Rules applicable on password during Registration are not checked at the time of Password change; thus leading to weak passwords.
+        \item There is no timeout mechanism implemented after reset password functionality was invoked. Hence there can be misuse of the same by an attacker if he gets access of the email id at any point in time.
+        \item If password reset was invoked more than once and while resetting the password, an old secret key was used; the process is completed successfully and password changes with outdated secret key.
+        \item If an attacker gets the access of the victim's email id , he/she can reset the password. If the username of the victim is known, then impersonation as user is also possible.
+        \item After resetting of password, brute force attack can be performed on password as password policy was not enforced during password reset (in case of registered users).
+     \end{itemize}
+     Refer \ref{code:password_change} for the code excerpt from \code{passwordController.php}. \\
+    \\
+    \textbf{Likelihood} & Likelihood is high, since anybody having the knowledge of victim's email id can invoke the process. There is no security check before invoking the reset password process. \\
+    \textbf{Impact} & Impact is high, since this vulnerability causes Denial of Service attack for the victim and there can be  a total compromise of the application to the attacker.\\
+    \textbf{Recommen\-dations} & Password reset functionality should be implemented along with a security measure such as a security question. It can be used to avoid random invocation of the password change functionality. Along with this a timeout mechanism should also be implemented during which the password can be reset, thus reducing the time period of the attacker's exploitation. \\ \hline
+     \textbf{CVSS} &
+            \begin{tabular}[t]{@{}l | l}
+                Attack Vector           & \textcolor{red}{Network} \\
+                Attack Complexity       & \textcolor{red}{Low} \\
+                Privileges Required     & \textcolor{Green}{High} \\
+                User Interaction        & \textcolor{red}{None} \\
+                Scope                   & \textcolor{Green}{Unchanged} \\
+                Confidentiality Impact  & \textcolor{red}{High} \\
+                Integrity Impact        & \textcolor{BurntOrange}{Low} \\
+                Availability Impact     & \textcolor{red}{High}
+            \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & Password change functionality has been provided to the user though which user receives a link to reset password through email, that is valid for 30 minutes. This can be an issue if the registered email id is known to the attacker. \\
+    \textbf{Discovery} & Manual inspection of code was done. \\
+    \textbf{Likelihood} & N/A\\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & It would be better if security question is also implemented during password change, thus raising the difficulty even if the e-mail is compromised.\\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is clearly more secure in this regard, compared to Online Banking that has multiple flaws exposed.
+
+\begin{lstlisting}[caption={PHP code for change password functionality from passwordController.php}\label{code:password_change}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        include_once("DataAccess.php");
+        $db = new DataAccess();
+        $display = "setpaswd";
+
+
+        if (isset($_POST['key'])  && isset($_POST['paswd'])){
+            $error = "";
+
+            $paswd = $_POST['paswd'];
+            $conf = $_POST['conf'];
+            $key = $_POST['key'];
+
+            if ($paswd != $conf){
+                $error = "password doesn't match confirmation";
+            }
+
+            if ($error == ""){
+                try{
+                    $db->ChangePaswd($key, $paswd);
+                    $display = "completed";
+                } catch(Exception $ex){
+                    $error = $ex->getMessage();
+                }
+            }
+
+        } else if (isset($_POST['email'])){
+                $newkey = uniqid("", true).uniqid("", true);
+                $newkey = str_replace(".", "", $newkey);
+
+                $db->SavePasswordRecoveryKey($_POST['email'], $newkey);
+                sendMail($_POST['email'], "InternetBanking Password Recovery",
+                "Your secret key is: ". $newkey);
+        }
+
+    }
+\end{lstlisting}
+
+\clearpage

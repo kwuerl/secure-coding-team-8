@@ -1,0 +1,49 @@
+\subsection{Testing for Buffer overflow - OTG-INPVAL-014}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
+    \\ \hline
+    \textbf{Observation} & Integer overflow was found in the account initialization screen, due to no restriction on number of digits that can be entered.\\
+    \textbf{Discovery} &
+        \begin{itemize}
+            \item From the Account details page, an employee can set the balance for a customer. There is no check on the upper limit of balance which can be set on both client and server side.
+            \item On entering \code{111111111} as the amount to be initialized, the balance was set to \code{99999999.99}. This confirms Integer overflow.
+            \item On entering \code{-200}, the balance was set to \code{0.00}.
+            \item On entering a string \code{ddd}, the result was a database error thrown to the user.
+            \item Upon inspecting the code, and found that there were no checks on the balance to be set and hence it accepted any value (string, negative values, large number etc.). On further observing the database, it was found that the \code{balance} column in the \code{user} table was of type \code{DECIMAL(10,2) UNSIGNED}. Hence Integer overflow takes place when there are more than 8 digits before the decimal. Also, negative value was set to zero due to the \code{unsigned} data type.
+        \end{itemize}
+     \\
+    \textbf{Likelihood} & Likelihood is high, since anyone can easily enter large numbers without having any knowledge of the code and databases. \\
+    \textbf{Impact} & The impact is low since it does not crash the functionality or alter the flow of application. \\
+    \textbf{Recommen\-dations} & There should be appropriate validations on the balance to only accept positive numeric values within a limit.
+    \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low}\\
+            Privileges Required     & \textcolor{red}{None}\\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & There are checks for numeric positive values less than \code{50000} and hence there is no possibility of integer overflow. Similar checks are enforced on other relevant inputs as well. \\
+    \textbf{Discovery} & The code was manually inspected and a check was enforced using the constant \code{\_MAX\_ALLOWED\_BALANCE\_INITIALIZATION} that was set to \code{50000} in the file \code{parameters.php} \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A
+    \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+SecureBank is more secure than Online Banking since there is no possibility of integer overflow.
+\clearpage

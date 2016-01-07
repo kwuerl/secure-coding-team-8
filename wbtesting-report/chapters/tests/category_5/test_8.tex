@@ -1,0 +1,28 @@
+\subsection{Testing for Session puzzling - OTG-SESS-008}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & In the application, the same session cookie \code{PHPSESSID} is used everywhere. Hence there is no case of session overloading. Since the same session cookie is used, it can be leveraged to bypass authentication. Refer section \ref{OTG-SESS-003} for details about session hijacking. \\
+    \textbf{Discovery} & Upon looking up the code, it is seen the session variables are set in the file \code{loginController.php} which is invoked once during login. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & In the application, the same session cookie \code{PHPSESSID} is used everywhere. Hence there is no case of session overloading. Since the same session cookie is used, it can be leveraged to bypass authentication. Refer section \ref{OTG-SESS-003} for details about session hijacking. \\
+    \textbf{Discovery} & Upon looking up the code, it is seen the session variables are set in the file \code{SessionService.php} which is invoked once during login. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both the applications behave similarly in maintaining a single session cookie, and no vulnerability has been found with respect to session overloading/puzzling.
+\clearpage

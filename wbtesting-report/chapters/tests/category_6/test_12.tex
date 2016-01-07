@@ -1,0 +1,38 @@
+\subsection{Testing for Code Injection - OTG-INPVAL-012}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
+    \textbf{Observation} & The client and the employee site include a PHP file depending on the GET parameter \textit{action}. \\
+    \textbf{Discovery} & Searching for the keywords \code{include} and \code{include\_once} in the PHP source code yielded that in \code{view/client.php} and \code{view/employee.php} a file is included via \code{include \$action.'.php';}. Tracing the variable back to its initialization showed that the variable is set in \code{controller/clientController.php} and \code{controller/employeeController.php} respectively. It is set to the GET parameter \textit{action}. \\
+    \textbf{Likelihood} & A hacker could change the GET parameter for \textit{action} and another file is included. Changing a GET parameter is not difficult. \\
+    \textbf{Impact} & If the hacker is able to upload a PHP file to the \code{view} and has more information about the application, he could view that PHP file with the GET parameter and depending on the content of the PHP file, he/she could gain sensitive information. \\
+    \textbf{Recommen\-dations} & Do not load the pages depending on the GET parameter or check the GET parameter for validity. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & SecureBank does not use dynamic file inclusion via GET or POST requests. \\
+    \textbf{Discovery} & Searching for the keywords \code{include} and \code{include\_once} in the PHP source code yielded that SecureBank does not include files dynamically depending on GET or POST requests. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Online Banking depends on the GET parameter \textit{action} to display the respective page, therefore code injection is possible. SecureBank does not load files dynamically depending on GET or POST requests.
+\clearpage

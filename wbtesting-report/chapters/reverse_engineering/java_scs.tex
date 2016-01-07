@@ -1,0 +1,18 @@
+\section{Java Smart Card Simulator}
+
+\subsection{Decompilation}
+The Smart Card Simuator JAR file was obtained by downloading it from the Online Banking website. The JAR was decompiled using \code{JavaDecompiler (JD)}. It was found that it contained 3 files - \code{Main.class}, \code{Main\$1.class} and \code{Main\$2.class}. Upon decompilation, the Java code was obtained. However, there were errors in code as the output of JD is not re-compilable code. There were multiple instances of variables with \code{this.val\$} prefix. Analyzing this, it was found that there could be inner classes. When a local final variable is accessed from an inner class, the decompiler shows it with a \code{this.val\$} prefix.
+Observing the context and going through the code, appropriate modifications were made and executable code was generated. Refer \ref{code:scs_java} for the complete code.
+
+\subsection{Analysis of Working}
+\begin{itemize}
+
+\item Firstly, there is no distinction between users of TAN by PDF or by SCS. All users have the option of using both options. Secondly, the PIN to the SCS can be found in the TAN containing the PDFs; which is a serious flaw. If an attacker gets hold of this PDF and has the user credentials, then all possible attacks can be perfomed. The attacker can not only use the 100 TANs from the PDF but also use the SCS for infinite TAN generation.
+\item The PIN for the SCS is generated in the PHP code using the code \code{\$pin = rand(100000, 999999);}. So the PIN will always be a 6-digit number. The number of possibilities are \code{900000}. This is not very difficult to crack for an attacker using a Brute-force attack, given that the SCS does not have any lockout mechanism. There is no restriction on the number of times it can be used in an hour or even a day.
+\item The SCS takes 3 inputs - \code{PIN}, \code{Target} and \code{Amount} to generate the TAN. However, TANs are generated even without entering any of these details. Since it is possible to download the SCS from the website, without even having an account, this may be used by attackers to analyze the algorithm used for TAN generation.
+\item The SCS is not personalized i.e., it is not unique based on the user. Also, there are no hard-coded passwords or tokens for user identification stored anywhere in the JAR. This is a good thing as an attacker cannot get hold of any user-specific information by just getting access to the SCS.
+\item The SCS generates the TAN without any checks and all validations are handled at the PHP end. This includes valid target, amount and correct PIN. It would be recommended to have basic checks such as blank target, negative or zero amount and blank pin checks in the SCS itself.
+\item At the PHP side, a TAN is generated using a similar algorithm as in Java, using the target and amount entered in the Web UI and the SCS pin of the user fetched from the database. If the TAN(from SCS) entered by the user matches this TAN, payment is processed successfully.
+\item There is no expiration of the TAN. So it can be used anytime in the future. This could be vulnerable especially if a TAN has been compromised to an attacker.
+
+\end{itemize}

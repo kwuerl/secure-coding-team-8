@@ -1,0 +1,39 @@
+\subsection{Testing for Exposed Session Variables - OTG-SESS-004}\label{exposed_session_variables}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \hfill CVSS Score: 6.5 \progressbar[filledcolor=BurntOrange]{0.65}
+    \\ \hline
+    \textbf{Observation} & The session cookie does not have the \code{httponly} flag set, therefore it is possible to set/edit the cookie via JavaScript or other methods. \\
+    \textbf{Discovery} & In \code{controller/loginController.php} a PHP session is started, if the user is logged in successfully. The function for setting the cookie parameters is commented. \\
+    \textbf{Likelihood} & To read the cookies a hacker only needs to read out the HTTP headers. Executing the JavaScript code \code{document.cookie = "PHPSESSID\allowbreak =SESSION\_COOKIE\_VALUE"} in the browser while on the website sets the cookie. \\
+    \textbf{Impact} & Since copying the session cookie grants access to a logged in user there are many risks. \\
+    \textbf{Recommen\-dations} & Session cookies should only be valid for the current browser and IP address. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{red}{None} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{Green}{None} \\
+            Availability Impact     & \textcolor{Green}{None}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & The session cookie has the \code{secure} and \code{httponly} flag. \\
+    \textbf{Discovery} & The file \code{Service/SessionService.php} uses the function \code{session\_set\_cookie\_params} for setting parameters for the session cookie. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both applications use cookies to store the session variable. The vulnerability is given with Online Banking since copying the session cookie gives a hacker access to the account, if the user is logged in. With SecureBank this is not possible.
+\clearpage

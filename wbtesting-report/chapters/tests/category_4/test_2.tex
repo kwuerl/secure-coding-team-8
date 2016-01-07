@@ -1,0 +1,48 @@
+\subsection{Testing for bypassing authorization schema - OTG-AUTHZ-002} \label{OTG-AUTHZ-002}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & It has been noted that it is not possible to access administrative data though the attacker is logged in as a user with ordinary privileges. \\
+    \textbf{Discovery} & A clear distinction of privileges among the users has been defined due to which a client cannot access employees pages and employee cannot see client specific pages. It has been implemented in \code{clientController.php} and \code{employeeController.php} based on session values. Refer \ref{code:client_check} for code related to client check and \ref{code:employee_check} for code related to employee check based on session value. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} &  N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} &  It has been noted that it is not possible to access administrative data though the attacker is logged in as a user with ordinary privileges. \\
+    \textbf{Discovery} & A clear distinction of privileges among the users has been defined in the code. It has been implemented in every function which is being called on an operation based on session values. Refer \ref{code:customer_check_secure_bank} for code related to customer check and \ref{code:employee_check_secure_bank} for code related to employee check based on session value. Similar checks are implemented for all client, employee and administrator operations. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both applications are secure in this aspect, since functionality is divided based on groups of users and privileges are assigned based on type of user.
+
+\begin{lstlisting}[caption={PHP code for client check from clientController.php}\label{code:client_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+     if ($sessionisemployee){
+         die('Not client.');
+     }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for employee check from employeeController.php}\label{code:employee_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    if ($sessionisemployee != 1){
+        die('Not employee.');
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for client check in loadOverview function from CustomerController.php}\label{code:customer_check_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $customer = $this->get("auth")->check(_GROUP_USER);
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for client check in loadOverview function from EmployeeController.php}\label{code:employee_check_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    $employee = $this->get("auth")->check(_GROUP_EMPLOYEE);
+\end{lstlisting}
+
+\clearpage

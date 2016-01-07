@@ -1,0 +1,177 @@
+\section{Java Code for the Smart Card Simulator}
+
+\begin{lstlisting}[caption={Java code of the Smart Card Simulator}\label{code:scs_java}, language=Java, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class TanGenerator {
+	static final JTextField fileField = new JTextField();
+
+	private static int normalize(int paramInt) {
+		if (paramInt < 10) {
+			return paramInt;
+		}
+		return paramInt + 8;
+	}
+
+	public static String compute(String paramString1, String paramString2,
+	String paramString3) throws NoSuchAlgorithmException {
+		Random localRandom = new Random();
+      MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
+
+	  byte[] arrayOfByte1 = (paramString1 + paramString2
+	  + paramString3).getBytes();
+	  byte[] arrayOfByte2 = new byte[arrayOfByte1.length + 2];
+
+	  arrayOfByte2[0] = ((byte) (48 + normalize(localRandom.nextInt(35))));
+	  arrayOfByte2[1] = ((byte) (48 + normalize(localRandom.nextInt(35))));
+
+	  for (int i = 0; i < arrayOfByte1.length; i++) {
+		arrayOfByte2[(i + 2)] = arrayOfByte1[i];
+	  }
+	  byte[] arrayOfByte3 = localMessageDigest.digest(arrayOfByte2);
+
+	  StringBuilder localStringBuilder = new StringBuilder();
+	  localStringBuilder.append((char) arrayOfByte2[0]);
+	  localStringBuilder.append((char) arrayOfByte2[1]);
+
+	  for (int j = 0; j < 13; j++) {
+		int k = arrayOfByte3[j] & 0xFF;
+		int m = normalize(k % 35);
+		localStringBuilder.append((char) (48 + m));
+	  }
+	  return localStringBuilder.toString();
+	}
+
+	public static void main(String[] paramArrayOfString)
+	throws NoSuchAlgorithmException {
+	  System.out.println(compute("123456", "admin", "100"));
+
+	  final JFrame localJFrame = new JFrame("SCS");
+	  localJFrame.setLayout(new BorderLayout());
+
+	  localJFrame.setDefaultCloseOperation(3);
+
+	  final JFileChooser localJFileChooser = new JFileChooser();
+
+	  JPanel localJPanel1 = new JPanel(new GridLayout(1, 2));
+	  localJFrame.add(localJPanel1, "North");
+
+	  fileField.setEditable(false);
+	  fileField.setColumns(16);
+
+	  JPanel localJPanel2 = new JPanel(new FlowLayout(0));
+	  localJPanel2.add(fileField);
+	  localJPanel1.add(localJPanel2);
+
+	  JButton localJButton1 = new JButton("Choose file");
+	  localJButton1.addActionListener(new ActionListener() {
+
+        public void actionPerformed(ActionEvent event) {
+          if (localJFileChooser.showOpenDialog(localJFrame) == 0) {
+              File localFile = localJFileChooser.getSelectedFile();
+              TanGenerator.fileField.setText(localFile.getPath());
+          }
+        }
+	  });
+	  localJPanel1.add(localJButton1);
+
+	  JPanel localJPanel3 = new JPanel(new GridLayout(5, 1));
+	  JPanel localJPanel4 = new JPanel(new GridLayout(5, 1));
+	  localJFrame.add(localJPanel3, "West");
+	  localJFrame.add(localJPanel4, "Center");
+
+	  JTextField localJTextField1 = new JTextField();
+	  localJTextField1.setColumns(16);
+	  JLabel localJLabel1 = new JLabel("PIN:", 4);
+	  localJLabel1.setLabelFor(localJTextField1);
+
+	  localJPanel3.add(localJLabel1);
+	  JPanel localJPanel5 = new JPanel(new FlowLayout(0));
+
+	  localJPanel5.add(localJTextField1);
+	  localJPanel4.add(localJPanel5);
+
+	  final JTextField localJTextField2 = new JTextField();
+	  localJTextField2.setColumns(16);
+	  JLabel localJLabel2 = new JLabel("Target:", 4);
+	  localJLabel2.setLabelFor(localJTextField2);
+
+	  localJPanel3.add(localJLabel2);
+
+	  JPanel localJPanel6 = new JPanel(new FlowLayout(0));
+	  localJPanel6.add(localJTextField2);
+	  localJPanel4.add(localJPanel6);
+
+	  final JTextField localJTextField3 = new JTextField();
+	  localJTextField3.setColumns(16);
+	  JLabel localJLabel3 = new JLabel("Amount:", 4);
+	  localJLabel3.setLabelFor(localJTextField3);
+	  localJPanel3.add(localJLabel3);
+	  JPanel localJPanel7 = new JPanel(new FlowLayout(0));
+	  localJPanel7.add(localJTextField3);
+	  localJPanel4.add(localJPanel7);
+
+	  final JTextField localJTextField4 = new JTextField();
+	  localJTextField4.setColumns(16);
+	  localJTextField4.setEditable(false);
+	  JLabel localJLabel4 = new JLabel("Generated TAN:", 4);
+	  localJLabel4.setLabelFor(localJTextField4);
+	  localJPanel3.add(localJLabel4);
+	  JPanel localJPanel8 = new JPanel(new FlowLayout(0));
+	  localJPanel8.add(localJTextField4);
+	  localJPanel4.add(localJPanel8);
+
+	  JButton localJButton2 = new JButton("Generate TAN");
+
+	  localJButton2.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent event) {
+	   	  try {
+			String str1;
+		    if (TanGenerator.fileField.getText().isEmpty()) {
+			str1 = TanGenerator.compute(localJTextField1.getText(),
+			localJTextField2.getText(),
+			localJTextField3.getText());
+		  } else {
+		    byte[] arrayOfByte = Files
+		    .readAllBytes(Paths.get(TanGenerator.fileField.getText(),
+		    new String[0]));
+		    String str2 = new String(arrayOfByte,
+		    StandardCharsets.UTF_8);
+		    str1 = TanGenerator.compute(localJTextField1.
+		    getText(), str2, "");
+		  }
+		  localJTextField4.setText(str1);
+		  } catch (Exception localException) {
+			localException.printStackTrace();
+		  }
+		}
+	  });
+
+	  JPanel localJPanel9 = new JPanel();
+	  localJPanel9.add(localJButton2);
+	  localJFrame.add(localJPanel9, "South");
+
+	  localJFrame.setLocationRelativeTo(null);
+	  localJFrame.pack();
+	  localJFrame.setVisible(true);
+	}
+}
+\end{lstlisting}

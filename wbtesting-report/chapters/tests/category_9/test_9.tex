@@ -1,0 +1,121 @@
+\subsection{Test Upload of Malicious Files - OTG-BUSLOGIC-009}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+     \hfill CVSS Score: 6.1 \progressbar[filledcolor=BurntOrange]{0.61}
+    \\ \hline
+    \textbf{Observation} & Only text files (upto 500 bytes in size) can be uploaded through \code{Load Online} page.Even if files of other types are somehow uploaded, they cannot be used to exploit the application. \\
+    \textbf{Discovery} &
+         No tools were used to discover this vulnerability and manual testing and code review were done. We tried to upload different types of files but only text files were accepted. The uploaded file is moved to a text file \code{form.txt} and then read for parsing. Therefore command injection through file name of uploaded file is not possible.
+         Since the contents of the file are moved to the same file each time, an attacker having valid login credentials can keep uploading a file and thus causing Denial of service to every other user of the application. Refer \ref{code:upload_file} .\\
+    \textbf{Likelihood} & Likelihood is high since there is no need of technical knowledge for such attacks as the attacker just needs to upload a text file continuously. \\
+    \textbf{Impact} & Impact is high since it can cause Denial of Service to other users of the application as content of the uploaded file is changed continuously by the attacker. \\
+    \textbf{Recommen\-dations} & The uploaded files should be maintained with unique names to avoid conflicts during concurrent events. \\ \hline
+    \textbf{CVSS} &
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{red}{Low} \\
+            Privileges Required     & \textcolor{Green}{High} \\
+            User Interaction        & \textcolor{Green}{Required} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & In the application we observed that upload of malicious files is not possible since upload is restricted to files of type plain text only(upto 1MB in size). Refer \ref{code:upload_file_secure_bank}. \\
+    \textbf{Discovery} & The uploaded files are moved to text files having unique random name and hence do not cause issues even in case of concurrent events. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both the applications are secure since they restrict the uploading to text files only and having measures against command injection as well. However, Online Banking has a serious vulnerability prone to DOS attacks, thus making it vulnerable.
+
+\begin{lstlisting}[caption={PHP code for upload file from clientFunctions.php (Online Banking)}\label{code:upload_file}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+	$target_dir = "/home/samurai/Documents/parse/";
+	$target_file = $target_dir . "form.txt";
+	$uploadOk = 1;
+	$file_type = pathinfo($_FILES["tranfile"]["name"],PATHINFO_EXTENSION);
+
+	if ($_FILES["tranfile"]["size"] > 500){
+		$uploadOk = 0;
+		throw new Exception("File too large!");
+	}
+
+	if($file_type != "txt"){
+		$uploadOk = 0;
+		throw new Exception("Only txt files are accepted!");
+	}
+
+
+	if ($uploadOk != 0){
+		if (move_uploaded_file($_FILES["tranfile"]["tmp_name"], $target_file)){
+		  $out = shell_exec("./parser/exec " . $sessionuserid . " " . $target_file);
+			if($out == "Operation succesful"){
+				return $out;
+			}
+			else{
+				throw new Exception($out);
+			}
+		}
+		else{
+			throw new Exception("Could not upload file");
+		}
+	}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for upload file from TransactionController.php (SecureBank)}\label{code:upload_file_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+	private function processBatchTransfer($request, $helper, $helper2, $customer) {
+	    $requestVar = $request->getData('make_transfer_via_file_upload');
+        $transaction_code = $requestVar['transaction_code'];
+
+        $upload_dir = $_SERVER['DOCUMENT_ROOT'].'/tmp/';
+        $file = $request->getFile('make_transfer_via_file_upload', 'file');
+        if ($file['type'] != "text/plain") {
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file
+             must be a plain text file", "error");
+            $this->get("routing")->redirect("make_transfer_get", array("form" =>
+             $helper, "form2" => $helper2));
+            return;
+        } else if ($file['error'] == 2) {
+            $this->get("flash_bag")->add(_OPERATION_FAILURE, "The uploaded file
+            size exceeds the maximum of 1 MB", "error");
+            $this->get("routing")->redirect("make_transfer_get", array("form" =>
+            $helper, "form2" => $helper2));
+            return;
+        }
+
+        $customer_id = $customer->getId();
+        $customer_name = $customer->getFirstName()
+                         . " " . $customer->getLastName();
+
+        $random_file_name = str_replace("/", "", $this->get("random")->getString(10));
+        $uploaded_file_name = $upload_dir.$random_file_name.".txt";
+
+        // rename uploaded file name if already exists
+        $i = 1;
+        do {
+            if ($i == 1) {
+                $pos = strrpos($uploaded_file_name, ".txt");
+                $uploaded_file_name = substr_replace($uploaded_file_name, "_".$i,
+                                                     $pos, 0);
+            } else {
+                $pos = strrpos($uploaded_file_name, "_".($i-1).".txt");
+                $uploaded_file_name = substr_replace($uploaded_file_name, "_".$i, $pos,
+                 strlen((string)$i)+1);
+            }
+            $i++;
+        } while (file_exists($uploaded_file_name));
+	......
+	}
+\end{lstlisting}
+\clearpage

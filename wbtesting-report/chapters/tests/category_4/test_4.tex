@@ -1,0 +1,94 @@
+\subsection{Testing for Insecure Direct Object References - OTG-AUTHZ-004}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & It was observed that Smart Card Simulator can be downloaded directly through the URL \code{http://\allowbreak<IP-address>InternetBanking/SCS/SCS.jar} without being logged in to the application. Though nothing can be done without the pin and user's credentials, the simulator can be used as a test object to observe the TANs generated and create future attacks.\\
+    \textbf{Discovery} &
+         On inspecting the code, it was found that no authentication was applied on the download link.
+         \begin{itemize}
+             \item \textbf{Scenario 1 -} In case of client, all other actions point to \code{client.php} which in-turn refers to \code{clientController.php} where there is a check for client.
+             Refer \ref{code:scs_download_link_client} and \ref{code:auth_check_client} for the related code excerpts.
+             \item \textbf{Scenario 2 -} In case of employee, All other actions point to \code{employee.php} which in-turn refers to \code{employeeController.php} where there is a check for employee.
+             Refer \ref{code:scs_download_link_employee} and \ref{code:auth_check_employee} for the related code excerpts.
+         \end{itemize}
+    \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A  \\
+    \textbf{Recommen\-dations} &  The simulator should not be allowed to be downloaded without authentication. \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & It was observed that Smart Card Simulator cannot be downloaded directly through the URL. \\
+    \textbf{Discovery} & Code inspection revealed that only clients who have chosen SCS as preferred method for TAN generation, during registration get the link to download the SCS. Refer \ref{code:scs_download_link} for related code.\\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{lstlisting}[caption={HTML code for download of SCS from client.php}\label{code:scs_download_link_client}, language=HTML, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    <li <?php if ($_GET['action'] == 'account') { echo 'class="active"'; } ?>>
+        <a href="client.php?action=account">My account</a>
+    </li>
+    <li <?php if ($_GET['action'] == 'history') { echo 'class="active"'; } ?>>
+        <a href="client.php?action=history">History</a>
+    </li>
+    <li <?php if ($_GET['action'] == 'online') { echo 'class="active"'; } ?>>
+        <a href="client.php?action=online">New online transfer</a>
+    </li>
+    <li <?php if ($_GET['action'] == 'file') { echo 'class="active"'; } ?>>
+        <a href="client.php?action=file">Load file</a>
+    </li>
+    <li>
+        <a href="SCS/SCS.jar">SCS</a>
+    </li>
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code to check for client from clientController.php}\label{code:auth_check_client}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+      if ($sessionisemployee){
+        die('Not client.');
+      }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={HTML code for download of SCS from employee.php}\label{code:scs_download_link_employee}, language=HTML, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    <li <?php if ($_GET['action'] == 'accounts') { echo 'class="active"'; } ?>>
+        <a href="employee.php?action=accounts">Accounts</a>
+    </li>
+    <li <?php if ($_GET['action'] == 'approvepayments') { echo 'class="active"'; } ?>>
+        <a href="employee.php?action=approvepayments">Approve transfers</a>
+    </li>
+    <li <?php if ($_GET['action'] == 'approveregistrations') { echo 'class="active"'; } 
+    ?>>
+        <a href="employee.php?action=approveregistrations">
+        Approve registrations</a>
+    </li>
+    <li>
+        <a href="SCS/SCS.jar">SCS</a>
+    </li>
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code to check for employee from employeeController.php}\label{code:auth_check_employee}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+      if ($sessionisemployee != 1){
+      	die('Not employee.');
+      }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={HTML code for download of SCS from client\_base\_html.php}\label{code:scs_download_link}, language=HTML, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    <?php if ((int)$currentUser->getTanMethod() === _TAN_METHOD_SCS) { ?>
+        <li class="treeview">
+            <a href="/downloadscs">
+                <i class="fa fa-download"></i>
+                <span>Download SCS</span>
+            </a>
+        </li>
+    <?php }?>
+\end{lstlisting}
+
+\subsubsection{Comparison}
+SecureBank is more secure than Online Banking since the Smart Card Simulator cannot be downloaded without authentication.
+\clearpage

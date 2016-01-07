@@ -1,0 +1,29 @@
+\subsection{Testing for SSI Injection - OTG-INPVAL-009}
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking}
+    \\ \hline
+    \textbf{Observation} & 	It has been observed that there are no \code{.shtml} files used in the application. But since it cannot be concluded that the server does not support SSI, the code \code{<pre><!–\#echo var=”DATE\_LOCAL” –> </pre>} was inserted in the Registration form and registration was performed successfully. However, upon logging in as employee, the above code was treated as HTML comments and was only visible in the page source(seen from Chrome Developer Tools). If SSI support was configured on the server, the directive would have been replaced by the contents. Hence it was confirmed that SSI support is not enabled and this vulnerability cannot be present. So no further testing was done. \\
+    \textbf{Discovery} & Code was scanned using \code{grep} and no occurences of \code{.shtml} were found. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+\clearpage
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank}
+    \\ \hline
+    \textbf{Observation} & 	It has been observed that there are no \code{.shtml} files used in the application. But since it cannot be concluded that the server does not support SSI, the code \code{<pre><!–\#echo var=”DATE\_LOCAL” –> </pre>} was inserted in the Registration form and registration was performed successfully. However, upon logging in as administrator or employee, the above code was treated as HTML comments and was only visible in the page source(seen from Chrome Developer Tools). If SSI support was configured on the server, the directive would have been replaced by the contents. Hence it was confirmed that SSI support is not enabled and this vulnerability cannot be present. So no further testing was done. \\
+    \textbf{Discovery} & Code was scanned using \code{grep} and no occurences of \code{.shtml} were found. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Neither application supports SSI and hence cannot be tested for this vulnerability.
+\clearpage

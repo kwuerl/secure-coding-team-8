@@ -1,0 +1,60 @@
+\subsection{Test File Extensions Handling for Sensitive Information - OTG-CONFIG-003} \label{OTG-CONFIG-003}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{Online Banking} \\ \hline
+    \textbf{Observation} & It was found that the application allowed only text files. No other files were accepted. \\
+    \textbf{Discovery} & By manually inspecting the code, appropriate checks for text files were found. Refer \ref{code:file_type_check} for the related code. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
+    & \textbf{SecureBank} \\ \hline
+    \textbf{Observation} & It was found that the application allowed only text files. No other files were accepted. \\
+    \textbf{Discovery} & By manually inspecting the code, appropriate checks for text files were found. Refer \ref{code:file_type_check_secure_bank} for the related code. \\
+    \textbf{Likelihood} & N/A \\
+    \textbf{Impact} & N/A \\
+    \textbf{Recommen\-dations} & N/A \\ \hline
+    \textbf{CVSS} & N/A
+    \\ \hline
+\end{longtable}
+
+\subsubsection{Comparison}
+Both applications handle file extensions properly and neither of them poses any vulnerability.
+
+\begin{lstlisting}[caption={PHP code for checking file type from clientFunctions.php}\label{code:file_type_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    if ($_FILES["tranfile"]["size"] > 500)
+    {
+        $uploadOk = 0;
+        throw new Exception("File too large!");
+
+    }
+
+    if($file_type != "txt")
+    {
+        $uploadOk = 0;
+        throw new Exception("Only txt files are accepted!");
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={PHP code for checking file type from TransactionController.php}\label{code:file_type_check_secure_bank}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
+    if ($file['type'] != "text/plain") {
+        $this->get("flash_bag")->add(_OPERATION_FAILURE,
+        "The uploaded file must be a plain text file",
+        "error");
+        $this->get("routing")->redirect("make_transfer_get",
+        array("form" => $helper, "form2" => $helper2));
+        return;
+    } else if ($file['error'] == 2) {
+        $this->get("flash_bag")->add(_OPERATION_FAILURE,
+        "The uploaded file size exceeds the maximum of 1 MB",
+        "error");
+        $this->get("routing")->redirect("make_transfer_get",
+        array("form" => $helper, "form2" => $helper2));
+        return;
+    }
+\end{lstlisting}
+\clearpage

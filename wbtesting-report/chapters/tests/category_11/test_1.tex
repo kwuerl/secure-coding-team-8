@@ -1,0 +1,26 @@
+\subsection{Online Banking}
+
+\begin{itemize}
+    \item \textbf{Deviations from Application Requirements}
+        \begin{itemize}
+            \item There is no concept of Account Number anywhere in the application. All references to accounts are via User-names. Being a Bank application, this is a foremost flaw.
+            \item There is no provision for the user to choose between PDF and SCS for generation of TANs. As a result, every users is able to use both methods to get the TANs.
+            \item The password for the encrypted PDF containing TANs is same as the user password for the bank application. If the user credentials are compromised, the user can also open the PDF and perform transactions.
+            \item The PIN for the SCS is in the PDF file containing TANs. So again, an attacker who has the user’s credentials, can utilize the 100 TANs in the PDF and use SCS after that to continue performing transfers.
+            \item The Batch transfer functionality does not work as expected. Upon upload of any file, the error message \code{Negative transactions not allowed} is displayed. So it is not at all possible to perform batch transactions.
+        \end{itemize}
+    \item \textbf{Usability Flaws}
+        \begin{itemize}
+            \item In the Account details page, the label for User-name is incorrectly displayed as E-mail. The E-mail is also labelled as E-mail.
+            \item It is possible to set balance for Employees as well. However, neither do the employees have accounts nor can they perform any transfers and hence this is misleading.
+            \item When an employee rejects a transfer, the success message is shown as \code{Payment approved successfully}. This is confusing and requires the employee to cross-check in the transaction history of the customer.
+            \item The PDF that can be downloaded from the Transaction History page is not well-formed. The TAN numbers overlap and are not clearly readable.
+            \item In the SCS, TANs are generated even without entering any details like PIN, Amount and Target. Since it is possible to download the SCS from the website, without having an account, this may be used to analyze the algorithm used for TAN generation.
+            \item In the SCS, once values are entered, there is no way to clear or reset the values. Even after choosing a file, there is no way to clear the file.
+        \end{itemize}
+    \item \textbf{Functionality Issues}
+        \begin{itemize}
+            \item While approving/rejecting registrations, the first registration is always approved or rejected irrespective of which row the action is performed on. Same is the case with approval/rejection of payments. On inspecting code, we found that each row has a form with the same id \code{f\_approve} and upon click of the buttons, the form is fetched using \code{document.getElementById(f\_approve}). Since Javascript fetches the first element that matches the id, the form in the first  row is always returned.
+            \item After rejecting a registration, it can be approved again. This can either be done via tools such as Advanced Rest Client, ZAP etc. or can also happen when two employees try to perform opposing actions on the same registration. Same is the case with payments.
+        \end{itemize}
+\end{itemize}
