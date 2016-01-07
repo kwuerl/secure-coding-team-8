@@ -1,9 +1,10 @@
-\subsection{Testing for Buffer overflow - OTG-INPVAL-014}
+\subsection{Testing for Buffer overflow - OTG-INPVAL-014}\label{buffer_overflow}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{Online Banking}
     \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
-    \textbf{Observation} & Integer overflow was found in the account initialization screen, due to no restriction on number of digits that can be entered.\\
+    \textbf{Observation} & Integer overflow was found in the account initialization screen, due to no restriction on number of digits that can be entered.
+    \newline Moreover, in the C part buffer overflow exists. \\
     \textbf{Discovery} &
         \begin{itemize}
             \item From the Account details page, an employee can set the balance for a customer. There is no check on the upper limit of balance which can be set on both client and server side.
@@ -12,6 +13,7 @@
             \item On entering a string \code{ddd}, the result was a database error thrown to the user.
             \item Upon inspecting the code, and found that there were no checks on the balance to be set and hence it accepted any value (string, negative values, large number etc.). On further observing the database, it was found that the \code{balance} column in the \code{user} table was of type \code{DECIMAL(10,2) UNSIGNED}. Hence Integer overflow takes place when there are more than 8 digits before the decimal. Also, negative value was set to zero due to the \code{unsigned} data type.
         \end{itemize}
+        In the C part it was found with reverse engineering that functions like \code{sprintf}, \code{strcpy} and \code{strcat} were used without checking for the lengths. Furthermore, using Valgrind it was revealed that only 53 of 98 allocated heaps were freed.
      \\
     \textbf{Likelihood} & Likelihood is high, since anyone can easily enter large numbers without having any knowledge of the code and databases. \\
     \textbf{Impact} & The impact is low since it does not crash the functionality or alter the flow of application. \\
@@ -34,8 +36,10 @@
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
     \\ \hline
-    \textbf{Observation} & There are checks for numeric positive values less than \code{50000} and hence there is no possibility of integer overflow. Similar checks are enforced on other relevant inputs as well. \\
-    \textbf{Discovery} & The code was manually inspected and a check was enforced using the constant \code{\_MAX\_ALLOWED\_BALANCE\_INITIALIZATION} that was set to \code{50000} in the file \code{parameters.php} \\
+    \textbf{Observation} & There are checks for numeric positive values less than \code{50000} and hence there is no possibility of integer overflow. Similar checks are enforced on other relevant inputs as well.
+    \newline Moreover, in the C part buffer overflow exists. \\
+    \textbf{Discovery} & The code was manually inspected and a check was enforced using the constant \code{\_MAX\_ALLOWED\_BALANCE\_INITIALIZATION} that was set to \code{50000} in the file \code{parameters.php}.
+    \newline In the C part it was found with reverse engineering that the function \code{strcpy} was used without checking for the lengths. Furthermore, using Valgrind it was revealed that only 98 of 119 allocated heaps were freed. \\
     \textbf{Likelihood} & N/A \\
     \textbf{Impact} & N/A \\
     \textbf{Recommen\-dations} & N/A
