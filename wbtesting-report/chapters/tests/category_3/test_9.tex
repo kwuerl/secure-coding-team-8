@@ -7,7 +7,7 @@
     \textbf{Discovery} & Manual inspection of code revealed the following flaws in implementation.
     \begin{itemize}
         \item For password change, the system doesn't check whether it is a registered email or not, and straightaway shoots an email to the specified email; thus allowing to change the password even if the email is not registered.
-        \item Rules applicable on password during Registration are not checked at the time of Password change; thus leading to weak passwords.
+        \item Rules applicable on password during Registration are not checked at the time of Password change; thus leading to weak passwords. Password field can even be left blank, which is extremely vulnerable.
         \item There is no timeout mechanism implemented after reset password functionality was invoked. Hence there can be misuse of the same by an attacker if he gets access of the email id at any point in time.
         \item If password reset was invoked more than once and while resetting the password, an old secret key was used; the process is completed successfully and password changes with outdated secret key.
         \item If an attacker gets the access of the victim's email id , he/she can reset the password. If the username of the victim is known, then impersonation as user is also possible.
