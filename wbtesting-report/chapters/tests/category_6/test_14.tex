@@ -16,38 +16,48 @@
         In the C part it was found with reverse engineering that functions like \code{sprintf}, \code{strcpy} and \code{strcat} were used without checking for the lengths. Furthermore, using Valgrind it was revealed that only 53 of 98 allocated heaps were freed.
      \\
     \textbf{Likelihood} & Likelihood is high, since anyone can easily enter large numbers without having any knowledge of the code and databases. \\
-    \textbf{Impact} & The impact is low since it does not crash the functionality or alter the flow of application. \\
-    \textbf{Recommen\-dations} & There should be appropriate validations on the balance to only accept positive numeric values within a limit.
+    \textbf{Impact} & The impact is low since it does not crash the functionality or alter the flow of application. On the other hand, the impact for the C part is very high. \\
+    \textbf{Recommen\-dations} & There should be appropriate validations on the balance to only accept positive numeric values within a limit. Check for the lengths in C before using the mentioned functions.
     \\ \hline
     \textbf{CVSS} &
         \begin{tabular}[t]{@{}l | l}
             Attack Vector           & \textcolor{red}{Network} \\
-            Attack Complexity       & \textcolor{red}{Low}\\
-            Privileges Required     & \textcolor{red}{None}\\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
             User Interaction        & \textcolor{red}{None} \\
             Scope                   & \textcolor{Green}{Unchanged} \\
-            Confidentiality Impact  & \textcolor{Green}{None} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
             Integrity Impact        & \textcolor{red}{High} \\
-            Availability Impact     & \textcolor{Green}{None}
+            Availability Impact     & \textcolor{red}{High}
         \end{tabular}
     \\ \hline
 \end{longtable}
 
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
+    \hfill CVSS Score: 7.5 \progressbar[filledcolor=red]{0.75}
     \\ \hline
     \textbf{Observation} & There are checks for numeric positive values less than \code{50000} and hence there is no possibility of integer overflow. Similar checks are enforced on other relevant inputs as well.
     \newline Moreover, in the C part buffer overflow exists. \\
     \textbf{Discovery} & The code was manually inspected and a check was enforced using the constant \code{\_MAX\_ALLOWED\_BALANCE\_INITIALIZATION} that was set to \code{50000} in the file \code{parameters.php}.
     \newline In the C part it was found with reverse engineering that the function \code{strcpy} was used without checking for the lengths. Furthermore, using Valgrind it was revealed that only 98 of 119 allocated heaps were freed. \\
-    \textbf{Likelihood} & N/A \\
-    \textbf{Impact} & N/A \\
-    \textbf{Recommen\-dations} & N/A
-    \\ \hline
-    \textbf{CVSS} & N/A
+    \textbf{Likelihood} & Likelihood is middle because it is complex to reach a buffer overflow without knowing the exact code. \\
+    \textbf{Impact} & Impact is high because a hacker could gain control over the system. \\
+    \textbf{Recommen\-dations} & Check for the lengths in C before using \code{strcpy}. \\ \hline
+    \textbf{CVSS} & 
+        \begin{tabular}[t]{@{}l | l}
+            Attack Vector           & \textcolor{red}{Network} \\
+            Attack Complexity       & \textcolor{Green}{High} \\
+            Privileges Required     & \textcolor{BurntOrange}{Low} \\
+            User Interaction        & \textcolor{red}{None} \\
+            Scope                   & \textcolor{Green}{Unchanged} \\
+            Confidentiality Impact  & \textcolor{red}{High} \\
+            Integrity Impact        & \textcolor{red}{High} \\
+            Availability Impact     & \textcolor{red}{High}
+        \end{tabular}
     \\ \hline
 \end{longtable}
 
 \subsubsection{Comparison}
-SecureBank is more secure than Online Banking since there is no possibility of integer overflow.
+SecureBank is more secure than Online Banking since there is no possibility of integer overflow, but both applications have the risk of buffer overflow in the C part.
 \clearpage

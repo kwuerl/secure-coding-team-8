@@ -50,7 +50,7 @@ For most of the queries, neither are prepared statements used nor are user input
 \subsection{Buffer overflow}
 The biggest issue with buffer overflow is the use of functions like \code{strcpy}, \code{strcat} and \code{sprintf} without checking for the lengths.
 \begin{itemize}
-	\item \textbf{Likelihood:} High
+	\item \textbf{Likelihood:} Medium
 	\item \textbf{Impact:} High
 	\item \textbf{Risk:} High
 	\item \textbf{Reference:} OTG-INPVAL-014
@@ -58,6 +58,15 @@ The biggest issue with buffer overflow is the use of functions like \code{strcpy
 %%%%%%%%
 
 \section{Vulnerabilities of SecureBank}
+
+\subsection{Buffer overflow}
+The biggest issue with buffer overflow is the use of the function \code{strcpy} without checking for the lengths.
+\begin{itemize}
+	\item \textbf{Likelihood:} Medium
+	\item \textbf{Impact:} High
+	\item \textbf{Risk:} High
+	\item \textbf{Reference:} OTG-INPVAL-014
+\end{itemize}
 
 \subsection{Test Number of Times a Function Can be Used Limits}
 after 100 transactions no new tan codes are sent to the user and this way he can not use the application any more.\\
