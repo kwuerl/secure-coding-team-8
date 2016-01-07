@@ -49,6 +49,10 @@
     \\ \hline
 \end{longtable}
 
+\subsubsection{Comparison}
+On comparing, SecureBank is better than Online Banking as it has a strong password policy, lockout mechanism and restrictions on password even during password change.
+
+
 \begin{lstlisting}[caption={PHP code for checking password strength from DataAccess.php}\label{code:weak_password_policy}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     function checkPassword($pwd) {
         $errors  = "";
@@ -96,6 +100,4 @@
     $model->setPassword(crypt($model->getPasswordPlain(), $salt));
 \end{lstlisting}
 
-\subsubsection{Comparison}
-On comparing, SecureBank is better than Online Banking as it has a strong password policy, lockout mechanism and restrictions on password even during password change.
 \clearpage

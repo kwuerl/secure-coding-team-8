@@ -53,7 +53,6 @@ SecureBank is clearly more secure in this regard, compared to Online Banking tha
         $db = new DataAccess();
         $display = "setpaswd";
 
-
         if (isset($_POST['key'])  && isset($_POST['paswd'])){
             $error = "";
 
@@ -64,7 +63,6 @@ SecureBank is clearly more secure in this regard, compared to Online Banking tha
             if ($paswd != $conf){
                 $error = "password doesn't match confirmation";
             }
-
             if ($error == ""){
                 try{
                     $db->ChangePaswd($key, $paswd);
@@ -73,7 +71,6 @@ SecureBank is clearly more secure in this regard, compared to Online Banking tha
                     $error = $ex->getMessage();
                 }
             }
-
         } else if (isset($_POST['email'])){
                 $newkey = uniqid("", true).uniqid("", true);
                 $newkey = str_replace(".", "", $newkey);
@@ -82,7 +79,6 @@ SecureBank is clearly more secure in this regard, compared to Online Banking tha
                 sendMail($_POST['email'], "Online Banking Password Recovery",
                 "Your secret key is: ". $newkey);
         }
-
     }
 \end{lstlisting}
 

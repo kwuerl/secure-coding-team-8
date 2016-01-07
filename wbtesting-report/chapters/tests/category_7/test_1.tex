@@ -1,5 +1,4 @@
 \subsection{Analysis of Error Codes - OTG-ERR-001}
-\subsubsection{Online Banking}
 \begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{Online Banking}
     \hfill CVSS Score: 4.3 \progressbar[filledcolor=BurntOrange]{0.43}
@@ -47,9 +46,7 @@
         \end{tabular}
     \\ \hline
 \end{longtable}
-\clearpage
 
-\subsubsection{SecureBank}
 \begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
     \\ \hline
@@ -77,7 +74,6 @@
 Online Banking has some severe flaws in Syntax and Programm Logic.
 
 \clearpage
-
 \begin{lstlisting}[caption={PHP code for error handling from RoutingService.php}\label{code:error_routing_sb}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
 /**
  * Runs the callback for the given request
@@ -101,3 +97,4 @@ public function dispatch()
     }
 }
 \end{lstlisting}
+\clearpage

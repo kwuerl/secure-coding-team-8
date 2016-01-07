@@ -1,5 +1,4 @@
 \subsection{Testing for logout functionality - OTG-SESS-006}
-\subsubsection{Online Banking}
 \begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{Online Banking}
     \hfill CVSS Score: 4.8 \progressbar[filledcolor=BurntOrange]{0.48}
@@ -42,7 +41,6 @@
     \hline
 \end{longtable}
 
-\subsubsection{SecureBank}
 \begin{longtable}{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank}
     \\ \hline
@@ -77,8 +75,7 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-Only Online Banking is vulnerable here.s
-\clearpage
+Only Online Banking is vulnerable here.
 
 \begin{lstlisting}[caption={PHP code for logout from logoutController.php}\label{code:logout_server_ib}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     session_start();
@@ -97,3 +94,4 @@ Only Online Banking is vulnerable here.s
         $this->init();
     }
 \end{lstlisting}
+\clearpage
