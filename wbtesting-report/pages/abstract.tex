@@ -1,13 +1,11 @@
 \chapter{Executive summary}
 \section*{Online Banking}
 Online Banking contains a large number of vulnerabilities, syntax errors and business logic flaws.
-One of the most severe of them is a widespread vulnerability for SQL-injection, even in the registration form. Attackers can gain control of all data through this.
-Additionally, the application exhibits reflected XSS vulnerability. This way attackers can send poisoned links to unsuspecting persons which allows them to take control of their account.
+One of the most severe of them is a widespread vulnerability for SQL-injection. Additionally, the application exhibits reflected XSS vulnerability. This way attackers can send poisoned links to unsuspecting persons which allows them to take control of their account.
 Checking the php error log it reveals a number of syntax errors. The consequence is unsuspected application behaviour.
 The file parser written in C also contains many SQL-injection and buffer overflow vulnerabilities. This yields the possibility of total control over the whole server.\\
 These are only a few of all contained vulnerabilities.
 In addition to this, the application contains a number of deviations from the application requirements as well as usability flaws and functional issues.
-
 
 \section*{SecureBank}
 While analyzing the SecureBank application we could only detect two minor vulnerabilities.
@@ -16,6 +14,6 @@ The second one is, that after 100 transactions no new tan codes are sent to the 
 Both of these vulnerabilities are minor from a security aspect and are also contained within the Online Banking application.
 
 \section*{Comparison}
-A comparison between SecureBank and Online Banking is difficult.\\
-SecureBank fulfills almost all functional and security requirements.\\
+A comparison between SecureBank and Online Banking is difficult.
+SecureBank fulfills almost all functional and security requirements.
 Online Banking still has major deficiencies in almost all of the named disciplines.
