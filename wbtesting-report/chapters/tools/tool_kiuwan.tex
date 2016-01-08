@@ -9,7 +9,7 @@ Online Banking showed 2266 defects, out of which 76 were of high priority. Refer
     \item Portability
     \item Maintainability
 \end{itemize}
-We analyzed the issues in the Security category and found some false positives. However, few issues turned out to be actual bugs.
+We analyzed the issues in the Security category and found 79\% were false positives. However, few issues turned out to be actual bugs.
 \begin{itemize}
 	\item \textbf{Use of weak cryptographic hash} The user passwords are encrypted using \code{md5} before storing in the database. Since \code{MD5} has several weaknesses when used to generate cryptographic hashes, this is a serious vulnerability. This has been discussed in more detail in section \ref{OTG-AUTHN-007}. See \ref{fig:kiuwan_weak_hash} for the Kiuwan report.
 	\item \textbf{Use of hardcoded password} The database credentials are stored in the file \code{DataAccess.php}. Also, these values are not defined at one place and used throughout code. Rather, the same hard-coded credentials can be found in several functions in the entire file. See \ref{fig:kiuwan_hardcoded_password} for the Kiuwan report.
