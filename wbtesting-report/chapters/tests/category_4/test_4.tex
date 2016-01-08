@@ -31,6 +31,9 @@
     \\ \hline
 \end{longtable}
 
+\subsubsection{Comparison}
+SecureBank is more secure than Online Banking since the Smart Card Simulator cannot be downloaded without authentication.
+
 \begin{lstlisting}[caption={HTML code for download of SCS from client.php}\label{code:scs_download_link_client}, language=HTML, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     <li <?php if ($_GET['action'] == 'account') { echo 'class="active"'; } ?>>
         <a href="client.php?action=account">My account</a>
@@ -62,7 +65,7 @@
     <li <?php if ($_GET['action'] == 'approvepayments') { echo 'class="active"'; } ?>>
         <a href="employee.php?action=approvepayments">Approve transfers</a>
     </li>
-    <li <?php if ($_GET['action'] == 'approveregistrations') { echo 'class="active"'; } 
+    <li <?php if ($_GET['action'] == 'approveregistrations') { echo 'class="active"'; }
     ?>>
         <a href="employee.php?action=approveregistrations">
         Approve registrations</a>
@@ -89,6 +92,4 @@
     <?php }?>
 \end{lstlisting}
 
-\subsubsection{Comparison}
-SecureBank is more secure than Online Banking since the Smart Card Simulator cannot be downloaded without authentication.
 \clearpage

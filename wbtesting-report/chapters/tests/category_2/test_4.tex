@@ -17,15 +17,15 @@
                         \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
                         \item An error message is displayed that reads \code{ Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
                     \end{itemize}
-                \end{itemize}
-                    \\ &
-                \begin{itemize}
                 \item \textbf{Scenario 3-} Testing for non-existent User
                    \begin{itemize}
                         \item Open the Login page and enter an incorrect email and password. Click on the Submit button.
                         \item An error message is displayed that reads \code{
                    Login and/or password not correct.}, and the user stays on Login page. Also, the data entered in the form is cleared off.
                    \end{itemize}
+            \end{itemize}
+            \\ &
+            \begin{itemize}
                 \item \textbf{Scenario 4-} Registering a new User
                    \begin{itemize}
                         \item Open the Registration page and enter thr details. Click on the Submit button.
@@ -61,6 +61,9 @@
                          \item Open the Login page and enter a valid email and password. Click on the Submit button.
                          \item The user is redirected to the Home page without any success message.
                     \end{itemize}
+            \end{itemize}
+            \\ &
+            \begin{itemize}
                  \item \textbf{Scenario 2 -} Testing for Valid user with wrong password
                     \begin{itemize}
                       \item Open the Login page and enter a valid email with an incorrect password. Click on the Submit button.
@@ -84,7 +87,6 @@
 In Online Banking, it is possible to enumerate usernames and is hence vulnerable, also owing to the non-existent lockout mechanism.
 In case of SecureBank, though the error messages differ, no vulnerability has been detected owing to the absence of username-baseed login and the presence of a lockout mechanism.
 Hence, SecureBank is more vulnerable than Online Banking.
-\clearpage
 
 \begin{lstlisting}[caption={PHP code for checking user from registrationController.php}\label{code:user_check}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
 	$user = $db->checkUsername($_POST['username']);
@@ -103,3 +105,5 @@ Hence, SecureBank is more vulnerable than Online Banking.
 		}
 	}
 \end{lstlisting}
+
+\clearpage

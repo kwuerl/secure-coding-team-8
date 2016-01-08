@@ -11,6 +11,9 @@
                 \item Select the POST method and in the payload, enter \code{requestid=xyz\&approve=reject}. Select the \enquote{Content-type} header to \code{application/x-www-form-urlencoded}.
                 \item Click on \enquote{Send} and observe that the response contains the text \enquote{Account request rejected successfully}.
                 \item However, upon trying to login as user \code{xyz}, there are no failures and the user can function as earlier.
+            \end{itemize}
+            \\ &
+            \begin{itemize}
                 \item Upon analyzing the database, it was found that there are 2 tables - \code{userrequest} and \code{user}. All registrations are stored in \code{userrequest} and approved users are stored in \code{user}. Upon approval or rejection, \code{approveddate} or \code{rejecteddate} column of the corresponding entry in the \code{userrequest} table is updated. In case of approval, a new record is also inserted into the \code{user} table. In the above scenario, \code{approveddate} and \code{rejecteddate} both get set for the user \code{xyz}. But login continues to work as it is based on the \code{user} table.
             \end{itemize}
     \\

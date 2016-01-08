@@ -1,5 +1,4 @@
 \subsection{Testing for Command Injection - OTG-INPVAL-013}
-\subsubsection{Online Banking}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{Online Banking}
     \\ \hline
@@ -23,7 +22,6 @@
     \\ \hline
 \end{longtable}
 
-\subsubsection{SecureBank}
 \begin{longtable}[l]{ p{2.3cm} | p{.79\linewidth} }\hline
     & \textbf{SecureBank} \\ \hline
     \textbf{Observation} & 
@@ -47,8 +45,9 @@
 \end{longtable}
 
 \subsubsection{Comparison}
-\clearpage
+Neither application is vulnerable to command injection.
 
+\clearpage
 \begin{lstlisting}[caption={PHP code for client check from clientController.php}\label{code:shell_exec_ib}, language=PHP, basicstyle=\footnotesize, frame=single, captionpos=t, linewidth=.9\textwidth, xleftmargin=.12\textwidth]
     $target_dir = "/home/samurai/Documents/parse/";
      ...
