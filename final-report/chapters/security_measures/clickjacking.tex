@@ -1,0 +1,15 @@
+\section{Clickjacking}
+
+\subsection{Attack Description}
+Clickjacking is when an attacker uses multiple transparent or opaque layers to trick a user into clicking on a button or link on another page when they were intending to click on the top level page. Thus, the attacker is \enquote{hijacking} clicks meant for their page and routing them to another page, most likely owned by another application, domain, or both. 
+An attacker could also make a user transfer money to the attacker without the user noticing it.
+
+Using similar techniques, a user can be led to believe that the credentials are being typed in the bank account, but are instead typing into an invisible frame controlled by the attacker.
+
+\subsection{Countermeasure}
+In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{Prevention of site embedding} - Clickjacking is denied by setting the header \textit{X-Frame-Options} to \textit{DENY} in the \textit{src/.htaccess file}. This ensures that the website cannot be embedded in an iframe.
+\end{itemize}
+
+\clearpage
