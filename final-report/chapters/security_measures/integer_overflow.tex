@@ -6,6 +6,8 @@ An integer overflow condition exists when an integer, which has not been properl
 \subsection{Countermeasure}
 In order to safeguard the application from Integer overflows, following measures are undertaken in the \textbf{SecureBank} application.
 \begin{itemize}
-\item \textbf{Sanitization of all user inputs before further processing} -  \textit{Helper/ValidationHelper.php} and \textit{Helper/SanitizationHelper.php} implement functions for validation and sanitization of user input. These functions are used whenever forms are rendered in the web interface.
+\item \textbf{Sanitization of user inputs before further processing} -  \textit{Helper/ValidationHelper.php} and \textit{Helper/SanitizationHelper.php} implement functions for validation and sanitization of user input. These functions are used whenever forms are rendered in the web interface.
 \item \textbf{Data validation} - This is done by enforcing appropriate checks to validate data during specific operations such as Account Balance Initialization by an employee, Single Transaction and also Batch transfers. This has been done both in PHP and C code.
 \end{itemize}
+
+\clearpage
