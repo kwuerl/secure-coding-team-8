@@ -1,0 +1,14 @@
+\section{Privilege Escalation \& Insecure Direct Object References}
+
+\subsection{Attack Description}
+Privilege escalation occurs when a user gets access to more resources or functionality than they are normally allowed, and such elevation or changes should have been prevented by the application. Vertical escalation is when it is possible to access resources granted to more privileged accounts like acquiring administrator privileges and Horizontal escalation is when it is possible to access resources granted to a similarly configured account like accessing information related to a different user. \\
+
+Insecure Direct Object References occur when an application provides direct access to objects based on user-supplied input. As a result of this vulnerability, attackers can bypass authorization and access resources in the system directly, for example database entries belonging to other users, files in the system and more. This is caused by the fact that the application takes user supplied input and uses it to retrieve an object without performing sufficient authorization checks.
+
+\subsection{Countermeasure}
+In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{Authorization checks} - This is implemented by defining a clear distinction of privileges among the users. Operations are distinguished as Administrator, Employee or Customer actions. Each controller function starts with an access right check, that checks for the static and contextual privileges of the current user. In scenarios where the current user ID is used in code, it is taken from the session and not from GET or POST parameters. 
+\end{itemize}
+
+\clearpage
