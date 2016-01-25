@@ -1,0 +1,18 @@
+\section{Session Variables, Fixation and Puzzling}
+
+\subsection{Attack Description}
+Session Fixation is an attack that permits an attacker to hijack a valid user session. The attack explores a limitation in the way the web application manages the session ID. When authenticating a user, it doesn’t assign a new session ID, making it possible to use an existent session ID. The attack consists of obtaining a valid session ID, inducing a user to authenticate him/herself with that session ID, and then hijacking the user-validated session by the knowledge of the used session ID. The attacker has to provide a legitimate Web application session ID and try to make the victim's browser use it. \\
+
+This is generally exploitable due to exposed session variables. The session tokens such as Cookie, SessionID, Hidden Field; if exposed, will usually enable an attacker to impersonate a victim and access the application illegitimately. It is important that they are protected from eavesdropping at all times, particularly while in transit between the client browser and the application servers. 
+
+\subsection{Countermeasure}
+In order to safeguard the application from vulnerabilities related to Session variables, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{Usage of single Session cookie} - By using the same session cookie \textit{PHPSESSID} everywhere in the application, Session overloading is prevented. The session variables are set in the file \textit{SessionService.php} which is invoked once during login.
+\item \textbf{Secure Session Cookie}
+The session cookie has the \textit{secure} and \textit{httponly} flags set in the file \textit{Service/SessionService.php}. This eliminates the possibility of setting the cookie from client side Javascript or other methods.
+\item \textbf{Session Timeout} - The Session is terminated by PHP after the standard value of 1440s
+inactivity. This has been implemented in the file \textit{Service/SessionService.php} where no explicit Session timeout is specified.
+\end{itemize}
+
+\clearpage
