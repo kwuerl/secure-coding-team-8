@@ -1,0 +1,13 @@
+\section{Cross-Site Request Forgery}
+
+\subsection{Attack Description}
+Cross-Site Request Forgery (CSRF) is an attack that forces an authenticated end user to execute unwanted actions on a web application. CSRF attacks specifically target state-changing requests, not theft of data, since the attacker has no way to see the response to the forged request. By sending a link via email, an attacker may trick the users of the application into executing malicious actions . If the victim is a normal user, a successful CSRF attack can force the user to perform state changing requests like transferring funds etc. If the victim is an administrator or employee, CSRF can compromise the functionality of the entire web application.
+
+\subsection{Countermeasure}
+In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{CSRF Tokens} - This has been implemented in all HTML forms through a hidden input field for a CSRF token. Furthermore, the CSRF token is saved in the PHP session. The files \textit{Service/CSRFService.php} and  \textit{Helper/TemplatingForm
+Extension.php} handle the logic for generation of  CSRF tokens and their inclusion in every HTML form. The CSRF token is unique for each PHP session.
+\end{itemize}
+
+\clearpage
