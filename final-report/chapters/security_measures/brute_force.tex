@@ -1,0 +1,21 @@
+\section{Brute Force Attacks}
+
+\subsection{Attack Description}
+A brute-force attack is an attempt to discover a password by systematically trying every possible combination of letters, numbers, and symbols until the one correct combination that works is discovered.
+Though it is always possible for an attacker to discover a password through a brute-force attack, the downside is that it could take years to find it. The possible combinations of passwords could increase enormously depending on the length and complexity. 
+
+\subsection{Countermeasure}
+In order to safeguard the application from Brute force attacks during login, following measures are undertaken in the \textbf{SecureBank} application.
+
+\begin{itemize}
+\item \textbf{Enforcement of Strong Password} - There is a restriction on the choice of passwords during registration. User needs to enter minimum 6 characters
+which should contain atleast one uppercase character, one lowercase and one number. This reveals that passwords of users cannot be cracked easily.
+
+\item \textbf{Password Encryption} - Before saving the password in the database, it has been encrypted using the \textit{crypt} function based on a random salt. So
+even for users having the same password, the database entries will be different.
+
+\item \textbf{Lockout Mechanism} - Logging in with a false password can be repeated 5 times before the
+account is locked. In the file \textit{Auth/DBAuthProvider.php}, the account is checked for the number of login attempts. If it is greater than or equal to 4, it is set to 5 and the account is locked for 60 minutes.
+\end{itemize}
+
+\clearpage
