@@ -7,7 +7,9 @@ A successful SQL injection exploit can read sensitive data from the database, mo
 \subsection{Countermeasure}
 In order to safeguard the application from SQL injections, following measures are undertaken in the \textbf{SecureBank} application.
 \begin{itemize}
-\item \textbf{Sanitization of all user inputs before execution of queries} -  \textit{Helper/ValidationHelper.php} and \textit{Helper/SanitizationHelper.php} implement functions for validation and sanitization of user input. These functions are used whenever forms are rendered in the web interface.
+\item \textbf{Sanitization of user inputs before execution of queries} -  \textit{Helper/ValidationHelper.php} and \textit{Helper/SanitizationHelper.php} implement functions for validation and sanitization of user input. These functions are used whenever forms are rendered in the web interface.
 \item \textbf{Usage of PDO statements on the PHP side} - All SQL queries are executed via a base class called \textit{Model/Repository.php}, which uses the \textit{PDO::prepare} function. All other repositories inherit this base repository and also use \textit{PDO::prepare} for any additional functions. This ensures that all queries on the database are escaped.
 \item \textbf{Usage of MySQL Prepared statements in the C Parser} - A similar code structure is followed in the C code, where all main database operations are handled in \textit{repository.c}. All other repositories make use of functionality from the repository and add extended functionality, also implemented using MySQL prepared statements. 
 \end{itemize}
+
+\clearpage
