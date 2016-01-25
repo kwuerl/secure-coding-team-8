@@ -1,0 +1,16 @@
+\section{Sensitive data sent via Unencrypted Channel}
+
+\subsection{Attack Description}
+Sensitive data must be protected when it is transmitted through the network. Some examples for sensitive data are Credentials, PINs, Session identifiers, Tokens, Cookies etc.
+If the application transmits sensitive information via unencrypted channels like \textbf{HTTP}, it is considered a security risk.
+
+\subsection{Countermeasure}
+In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{Usage of HTTPS} - It has been found that all accesses to the application are via
+\textit{HTTPS} i.e., secure \textbf{HTTP} connections. Unencrypted traffic over \textit{HTTP} is
+also redirected to the encrypted version of the webpage.
+\item \textbf{Usage of HSTS} - The HSTS (HTTP Strict Transport Security) header for \\ \code{Strict-Transport-Security} is set to \code{max-age= 60000; includeSubDomains}. The  configuration details for SSL and HSTS are found in the file \textit{secure-bank.conf}.
+\end{itemize}
+
+\clearpage
