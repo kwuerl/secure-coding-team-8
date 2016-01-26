@@ -1,0 +1,19 @@
+\section{File-based Attacks}
+
+\subsection{Attack Description}
+File based attacks could be due to upload of malicious files or unexpected file types. The option to upload information is common to most applications. To reduce the risk, we may only accept certain file extensions and reject most others, but attackers are able to encapsulate malicious code into inert file types.
+
+Vulnerabilities related to the uploading of malicious files is unique as these files can easily be rejected through including business logic that will scan files during the upload process and reject those perceived as malicious. 
+
+The application may allow the upload of malicious files that include exploits or shell-code without submitting them to malicious file scanning. Malicious files could be detected and stopped at various points of the application architecture.
+
+\subsection{Countermeasure}
+In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
+\begin{itemize}
+\item \textbf{Rejection of unexpected File Types} - The application only allows \textit{.txt} files to be uploaded while performing Batch Transactions using the web interface. The file type is checked from the meta-data of the file and non-matching types are immediately rejected.
+\item \textbf{Restriction on File Size} - The maximum size of the uploaded file is restrcited to \textit{1MB}. This way, the file is neither read nor processed any further. 
+\item \textbf{Random naming of uploaded files} - Before processing the uploaded files further, they are copies to the server with a unique randomly generated name, in order to prevent any attacks through file name. This also handles cases where same file names could causes concurrency issues.
+\item \textbf{Deletion of uploaded files} - After processing the uploaded file, the file is deleted from the server, without persisting it. This ensures that the application is safeguarded from any extended attacks due to the presence of the file.
+\end{itemize}
+
+\clearpage
