@@ -8,7 +8,8 @@ Insecure Direct Object References occur when an application provides direct acce
 \subsection{Countermeasure}
 In order to safeguard the application from this vulnerability, following measures are undertaken in the \textbf{SecureBank} application.
 \begin{itemize}
-\item \textbf{Authorization checks} - This is implemented by defining a clear distinction of privileges among the users. Operations are distinguished as Administrator, Employee or Customer actions. Each controller function starts with an access right check, that checks for the static and contextual privileges of the current user. In scenarios where the current user ID is used in code, it is taken from the session and not from GET or POST parameters. 
+\item \textbf{Authorization checks} - This is implemented by defining a clear distinction of privileges among the users. Operations are distinguished as Administrator, Employee or Customer actions. Each controller function starts with an access right check, that checks for the static and contextual privileges of the current user. In scenarios where the current user ID is used in code, it is taken from the session and not from GET or POST parameters. This is a countermeasure against vertical privilege escalation.
+\item \textbf{Page access independent from User input} - User related pages, e.g. account information page, do not depend on user input. Specifically page access does not depend on GET or POST parameters, e.g. \code{userid=1} or something similar. This is a countermeasure against horizontal privilege escalation.
 \end{itemize}
 
 \clearpage
