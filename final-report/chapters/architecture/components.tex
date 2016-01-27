@@ -1,0 +1,22 @@
+\section{Main Components}
+
+The most important components of the application, as also depicted in figure \ref{fig:deployment} are detailed below.
+
+\begin{itemize}
+\item \textbf{MySQL} - This is the DBMS used in the application. Further details can be found in the section \ref{section_db}.
+
+\item \textbf{C Parser} - The C Parser is used in the application to support Batch transfers in the banking application, and it serves two main purposes. 
+
+\begin{itemize}
+\item \textbf{File parsing} - This part handles reading the file, basic data validation and memory allocation. Further, it invokes the functions for processing the transfers.
+\item \textbf{Processing Bank Transfer} - This part is mainly responsible for executing database queries for processing account transfers. It also takes care of  validations such as checking for exiting sender and recipient, sufficient funds and legitimate TAN codes.
+\end{itemize}
+
+\item \textbf{Web Banking Application} - This is pre-dominantly the most important part of the application. It is the web interface, that provides all functions to Bank users - from Registration and Login to the complete Banking Work-flow. Extended functionality of the SCS can be taken advantage of as well, by downloading it from the web interface.
+
+\item \textbf{Smart Card Simulator} - This has been explained in complete detail in section \ref{section_scs}.
+
+\item \textbf{External Libraries} - Section \ref{libraries} describes in great detail, about the dependencies on external packages and frameworks.
+
+\end{itemize}
+\clearpage

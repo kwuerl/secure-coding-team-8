@@ -52,7 +52,7 @@ var secureBank = {
             $('.app-notification-success').fadeOut(5000);
             $('.app-notification-error').fadeOut(5000);
 
-            // for clearing the make transfer form when cler button is clicked
+            // for clearing the make transfer form when clear button is clicked
             $('button.clear').on('click', function(event){
                 event.preventDefault();
                 $('input').each(function(){
@@ -90,7 +90,6 @@ var secureBank = {
                         </div> \
                     </div>');
                 $("body").append(confirm_modal);
-                //$('#confirm-modal .hide').show();
                 $('#confirm-modal').on('hidden.bs.modal', function(){
                     $('#confirm-modal').remove();
                 });
@@ -99,11 +98,9 @@ var secureBank = {
                 $('#confirm-modal').modal("show");
                 $('#confirm-modal').find('.btn-primary').on('click', function() {
                     $(this).unbind("click");
-                    that.submit();
+                    that.submit();ps
 
                 });
-                //console.log("Hi");
-                //this.submit();
             });
 
             $(document).on("click", ".set-balance", function(event) {
@@ -114,8 +111,6 @@ var secureBank = {
                     $('#balance_form').submit();
                 });
             });
-
-
         });
     }
 };
