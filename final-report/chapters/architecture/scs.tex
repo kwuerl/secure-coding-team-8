@@ -18,7 +18,7 @@ The SCS generates the TAN after performing basic validations such as entry of ma
 Java code is organized mainly in 2 classes - \code{SmartCardSimulator.java} and \\ \code{TanGenerator.java}. \textbf{SmartCardSimulator} handles the display of the interface and the TAN generation logic is handled by the \textbf{TanGenerator}.
 Refer figure \ref{fig:scs_class_diagram} for the complete Class diagram of the Smart Card Simulator.
 
-
+\subsection{TAN Generation and Working}
 The TanGenerator removes all white-spaces from the inputs, and concatenates the current time in milliseconds divided by 10 5 (=100 seconds) to the input. This input string is then hashed with the \code{SHA512} hashing
 algorithm. The first 15 characters of this hash are the tan number for the corresponding transaction.
 The purpose of using the current time is to set an expiration time for the generated TAN. This makes the code unusable after 100 seconds. There is a minor possibility of client and server time not being in sync which could lead to the TAN becoming unusable. \\
