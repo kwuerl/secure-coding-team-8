@@ -1,3 +1,7 @@
 \chapter{Fixes}
 
+In phase 4 team 13 did the whitebox testing for our application. In their presentation they mentioned four issues to fix. The Business Logic Validation is invalid since in the real world it does not matter whether the account name in a transaction matches with the account number.
 
+The issue with Error Codes and Weak SSL/TLS Ciphers is due to outdated software and we decided to leave it as it is.
+
+The only issue we deemed as necessary to fix was the Guessable User Account issue. For that we simply changed the message the user receives, if the e-mail he entered does not exist. Now the user receives the message "Either the e-mail or the password is wrong.", if the account does not exist or the password is wrong. Therefore it is not possible to conclude whether the account already exists or not.

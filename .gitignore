@@ -2,3 +2,5 @@ textparser/*.o
 bbtesting-report/build/*
 !bbtesting-report/build/main.pdf
 bbtesting-report/logos/*.pdf
+final-report/build/*
+!final-report/build/main.pdf
