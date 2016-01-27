@@ -45,7 +45,7 @@ class LoginController extends Controller {
 							break;
 						
 						case 'UserNotFoundException':
-							$this->get("flash_bag")->add("Login failed", "There is no account with this e-mail.", "error");
+							$this->get("flash_bag")->add("Login failed", "Either the e-mail or the password is wrong.", "error");
 							break;
 
 						case 'LoginFailedException':
