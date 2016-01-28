@@ -28,9 +28,9 @@ The fix involved making changes to the project properties for compatibility to v
 \section{Business Logic Data Validation} - We do not consider this as an issue, as the current implementation is similar to the real-world working. In real working, the account name does not matter and does not  have to match the account number used at the time of transaction. The only relevant factor is the \textit{Account Number} of the recipient.
 If the transfers were performed through the addition of beneficiaries, then the concept of \textit{Recipient Name} would make more sense. However, since we do not have this implementation, this could be termed as an improvement for the future.
 
-\section{Weak SSL/TLS Ciphers} - This issue is due to the outdated software in the Virtual Machine and we opted to leave it as it is.
+\section{Weak SSL/TLS Ciphers} - This was resolved by prohibiting the use of old SSL versions. For that the line \code{SSLProtocol all -SSLv2 -SSLv3} was added to the virtual host configuration.
 
-\section{Error Codes} - Similar to the Weak SSL/TLS Ciphers, this is also caused due to the outdated software and we chose not to update the software for now.
+\section{Error Codes} - This would have been resolved by using custom error pages. We tried to fix this by adding \code{ErrorDocument <code> <custom error page>} to our \code{.htaccess} file, but it did not show the expected result. Therefore up to this point it is not fixed.
 
 \section{Guessable User Account} - This was a minor issue, where-in different error messages were displayed to the user upon failed login. The error message is now made consistent to show \enquote{Either the e-mail or the password is wrong}. So it is not possible to guess whether the account does not exist or the password is wrong.
 
