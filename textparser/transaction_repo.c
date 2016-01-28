@@ -128,11 +128,11 @@ my_bool addTransaction(MYSQL *connection, int customerId, char* customerName, in
 				int_data[3] = is_rejected;
 				int_data[4] = is_closed;
 
-				strcpy(str_data[0], customerName);
+				strncpy(str_data[0], customerName, strlen(str_data[0]));
 				parameter_length[2] = strlen(str_data[0]);
-				strcpy(str_data[1], toAccountName);
+				strncpy(str_data[1], toAccountName, strlen(str_data[1]));
 				parameter_length[4] = strlen(str_data[1]);
-				strcpy(str_data[2], remarks);
+				strncpy(str_data[2], remarks, strlen(str_data[2]));
 				parameter_length[6] = strlen(str_data[2]);
 				float_data[0] = amount;
 
