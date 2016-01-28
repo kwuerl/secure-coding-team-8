@@ -29,7 +29,7 @@ We hid a hint in this pages source!
 								<li><a href="/register_employee" class="scroll">Jobs</a></li>
 								<li><a href="/register" class="scroll">Sign Up</a></li>
 							</ul>
-							<a href="#" id="pull"><img src="images/menu-icon.png" title="menu" /></a>
+							<a href="#" id="pull"></a>
 						</nav>
 						<div class="clearfix"> </div>
 					</div>

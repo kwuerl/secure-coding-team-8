@@ -148,14 +148,9 @@ nav a#pull {
 		top: 23px;
 	}
 	nav a#pull:after {
-		content:"";
-		background: url('nav-icon.png') no-repeat;
-		width: 30px;
-		height: 30px;
-		display: inline-block;
-		position: absolute;
-		right: 15px;
-		top: 10px;
+		content:"\f0c9";
+		color: #fff;
+		font-family: fontAwesome;
 	}
 	nav a#pull img{
 		margin-right: 0%;
