@@ -1,0 +1,70 @@
+/* =======
+ * OS user
+ * ======= */
+user: samurai
+pw: vskm-8
+
+/* ========
+ * MySQL DB
+ * ======== */
+user: root
+pw: samurai
+
+/* ==========
+ * admin user
+ * ========== */
+user: admin@admin.de
+pw: AtbpiXeTnPVDhHGbEByQl9dJG
+
+/* ==============
+ * existing users
+ * ============== */
+user: securebank1@trash-mail.com
+pw: Asdasd1
+
+user: securecoding3@trash-mail.com
+pw: Asdasd2
+scs-pin: D8oDvc
+
+user: swathi.ssunder+1@gmail.com
+pw: SecureB@nk10
+scs-pin: rPC4kT
+
+user: maitonnucam@googlemail.com
+pw: test1A
+
+user: vivek.sethia2014@gmail.com
+pw: Live123
+
+/* ===
+ * URL
+ * === */
+from internal: https://secure-bank.git.dev/
+from external: https://<ip>/
+
+/* ===========
+ * source code
+ * =========== */
+/var/www/secure-coding-team-8
+|- SmardCardSimulator
+|- src
+|-- Auth
+|-- Config
+|-- Controller
+|-- Exception
+|-- Helper
+|-- Model
+|-- Script
+|-- Service
+|-- Style
+|-- Template
+|-- Vendor
+|- textparser
+
+/* ===================
+ * 3rd party libraries
+ * =================== */
+Bootstrap: /var/www/secure-coding-team-8/src/Vendor/bootstrap
+AdminLTE: /var/www/secure-coding-team-8/src/Vendor/theme
+fpdf: /var/www/secure-coding-team-8/src/Vendor/fpdf18
+Psr4ClassLoader: /var/www/secure-coding-team-8/src/Vendor/Psr4ClassLoader.php
