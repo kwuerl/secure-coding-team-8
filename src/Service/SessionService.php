@@ -17,9 +17,8 @@ class SessionService {
 	 * @param int $limit 	The lifetime of the Session Cookie
 	 * @param string $path 	The domain path where the session is active
 	 * @param string $domain The domain where the session is active
-	 * @param boolean $secure Only set the Session Cookie via https
 	 */
-	function __construct(RandomSequenceGeneratorService $random_service, $name="Main", $limit = 0, $path = '/', $domain = null, $secure = null) {
+	function __construct(RandomSequenceGeneratorService $random_service, $name="Main", $limit = 0, $path = '/', $domain = null) {
 		$this->random_service = $random_service;
 		// Prevent a session from beeing initialized twice
 		if(in_array($name, self::$session_lock)) throw new \Exception("Session with '$name' cannot be started twice!");
@@ -28,11 +27,8 @@ class SessionService {
 		// Set the cookie name
 		session_name($name . '_session');
 
-		// Set SSL level
-		$https = isset($secure) ? $secure : isset($_SERVER['HTTPS']);
-
 		// Set session cookie options
-		session_set_cookie_params($limit, $path, $domain, $https, true);
+		session_set_cookie_params($limit, $path, $domain, true, true);
 		session_start();
 
 		// Make sure the session hasn't expired, and destroy it if it has
