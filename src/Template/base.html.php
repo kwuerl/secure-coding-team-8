@@ -3,6 +3,7 @@
     <head>
         <title>SecureBank</title>
         <link rel="icon" type="image/ico" href="favicon.ico"/>
+        <meta name="viewport" content="width=device-width">
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="/Vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/Vendor/bootstrap/css/dataTables.bootstrap.css">

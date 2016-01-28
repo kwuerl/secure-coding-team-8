@@ -9,7 +9,7 @@ We hid a hint in this pages source!
 		<link href="/Vendor/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 		<link href="/Vendor/theme/style.css" rel='stylesheet' type='text/css' />
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
