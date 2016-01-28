@@ -2,7 +2,8 @@
 
 In phase 4, Team 13 performed White-box testing of our application. In their findings, they mentioned six issues to be fixed. They are as stated below.
 
-\section{SCS Exception due to incorrect Java version} - This was a major flaw, as the Smart Card Simulator worked on Java version 1.8 and the version of Java on the Virtual Machine was 1.7. Though the SCS works without any issue after update of Java version, we considered to fix it anyway.
+\section{SCS Exception due to incorrect Java version}
+This was a major flaw, as the Smart Card Simulator worked on Java version 1.8 and the version of Java on the Virtual Machine was 1.7. Though the SCS works without any issue after update of Java version, we considered to fix it anyway.
 The fix involved making changes to the project properties for compatibility to version Java 1.7, before exporting the JAR. This was a minor change and required no modifications in code. Refer figure \ref{fig:fix_java_version}. \\ \\ \\
 
 \begin{figure}[ht]
@@ -14,7 +15,8 @@ The fix involved making changes to the project properties for compatibility to v
 
 \clearpage
 
-\section{SCS Pin shown in Command Line} - While using the Smart Card Simluator in Linux environments, the SCS Pin was being printed to the command line, after clicking the \textit{Generate Tan} button. This is a security flaw and can compromise privacy. This has been fixed and all the stack traces have been modified to simple print statements. Refer figure \ref{fig:fix_scs_pin_shown} for the code change. \\ \\ \\
+\section{SCS Pin shown in Command Line}
+While using the Smart Card Simluator in Linux environments, the SCS Pin was being printed to the command line, after clicking the \textit{Generate Tan} button. This is a security flaw and can compromise privacy. This has been fixed and all the stack traces have been modified to simple print statements. Refer figure \ref{fig:fix_scs_pin_shown} for the code change. \\ \\ \\
 
 \begin{figure}[ht]
 	\centering
@@ -25,14 +27,24 @@ The fix involved making changes to the project properties for compatibility to v
 
 \clearpage 
 
-\section{Business Logic Data Validation} - We do not consider this as an issue, as the current implementation is similar to the real-world working. In real working, the account name does not matter and does not  have to match the account number used at the time of transaction. The only relevant factor is the \textit{Account Number} of the recipient.
+\section{Business Logic Data Validation}
+We do not consider this as an issue, as the current implementation is similar to the real-world working. In real working, the account name does not matter and does not  have to match the account number used at the time of transaction. The only relevant factor is the \textit{Account Number} of the recipient.
 If the transfers were performed through the addition of beneficiaries, then the concept of \textit{Recipient Name} would make more sense. However, since we do not have this implementation, this could be termed as an improvement for the future.
 
-\section{Weak SSL/TLS Ciphers} - This was resolved by prohibiting the use of old SSL versions. For that the line \code{SSLProtocol all -SSLv2 -SSLv3} was added to the virtual host configuration.
+\section{Weak SSL/TLS Ciphers}
+This was resolved by prohibiting the use of old SSL versions. For that the line \code{SSLProtocol all -SSLv2 -SSLv3} was added to the virtual host configuration.
 
-\section{Error Codes} - This would have been resolved by using custom error pages. We tried to fix this by adding \code{ErrorDocument <code> <custom error page>} to our \code{.htaccess} file, but it did not show the expected result. Therefore up to this point it is not fixed.
+\section{Error Codes}
+This would have been resolved by using custom error pages. We tried to fix this by adding \code{ErrorDocument <code> <custom error page>} to our \code{.htaccess} file, but it did not show the expected result. Therefore up to this point it is not fixed.
 
-\section{Guessable User Account} - This was a minor issue, where-in different error messages were displayed to the user upon failed login. The error message is now made consistent to show \enquote{Either the e-mail or the password is wrong}. So it is not possible to guess whether the account does not exist or the password is wrong.
+\section{Cookie Secure Flag}
+Team 13 critized that the secure flag for the PHP session cookie was dependent on whether HTTPS was used or not. Since we enforce the use of HTTPS the issue was minor, but we still fixed it by always setting the secure flag. The fix is in the file \code{src/Service/SessionService.php}.
+
+\section{Potential Buffer Overflow in C}
+There was a potential buffer overflow in our textparser due to the use of \code{strcpy} without checking the length. This was fixed in \code{textparser/transaction\_repo.c}.
+
+\section{Guessable User Account}
+This was a minor issue, where-in different error messages were displayed to the user upon failed login. The error message is now made consistent to show \enquote{Either the e-mail or the password is wrong}. So it is not possible to guess whether the account does not exist or the password is wrong.
 
 The code change for this fix happened to just be modification of the message, as can be seen in the figure \ref{fig:fix_guessable_account}.
 
