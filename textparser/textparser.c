@@ -93,7 +93,11 @@ int main(int argc, char **argv) {
 	                    }
 					} else if (i == 3) {
 						if (j < remarks_size) {
-							current_row.remarks[j] = c;
+							if (feof(input_file)) {
+								current_row.remarks[j] = 0;
+							} else {
+								current_row.remarks[j] = c;
+							}
 							j++;
 	                    } else if (j == remarks_size) {
 	                        current_row.remarks[j] = 0;
@@ -104,6 +108,7 @@ int main(int argc, char **argv) {
 				/*Reset j when a newline is encountered*/
 				if (c == '\n') {
 					j = 0;
+					current_row = construct_transaction_row();
 				}
 			} else {
 				if (i == 0) {
@@ -128,7 +133,7 @@ int main(int argc, char **argv) {
 			}
 			prev_c = c;
 
-	    } while (c != EOF);
+	    } while (!feof(input_file));
 
 	    if(i != 0 && row_count != 0) {
 	    	if (processTransfer(atoi(argv[2]), argv[3], argv[5], atoi(argv[4]), atoi(current_row.account_id), current_row.account_name, strtof(current_row.amount, NULL), current_row.remarks, argv[6], argv[7], argv[8], argv[9])) {
