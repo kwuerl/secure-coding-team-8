@@ -128,12 +128,30 @@ my_bool addTransaction(MYSQL *connection, int customerId, char* customerName, in
 				int_data[3] = is_rejected;
 				int_data[4] = is_closed;
 
-				strncpy(str_data[0], customerName, strlen(str_data[0]));
+				if (strlen(customerName) < sizeof(str_data[0])) {
+					strcpy(str_data[0], customerName);
+				} else {
+					strncpy(str_data[0], customerName, sizeof(str_data[0]));
+					str_data[0][-1] = '\0';
+				}
 				parameter_length[2] = strlen(str_data[0]);
-				strncpy(str_data[1], toAccountName, strlen(str_data[1]));
+
+				if (strlen(toAccountName) < sizeof(str_data[1])) {
+					strcpy(str_data[1], toAccountName);
+				} else {
+					strncpy(str_data[1], toAccountName, sizeof(str_data[1]));
+					str_data[1][-1] = '\0';
+				}
 				parameter_length[4] = strlen(str_data[1]);
-				strncpy(str_data[2], remarks, strlen(str_data[2]));
+
+				if (strlen(remarks) < sizeof(str_data[2])) {
+					strcpy(str_data[2], remarks);
+				} else {
+					strncpy(str_data[2], remarks, sizeof(str_data[2]));
+					str_data[2][-1] = '\0';
+				}
 				parameter_length[6] = strlen(str_data[2]);
+
 				float_data[0] = amount;
 
 				/*set the current date-time in the time-stamp structure*/
