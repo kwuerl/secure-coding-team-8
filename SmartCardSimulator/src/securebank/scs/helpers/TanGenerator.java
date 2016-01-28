@@ -33,9 +33,9 @@ public class TanGenerator {
 			digest = MessageDigest.getInstance("SHA-512");
 			digest.update(toHash.getBytes("UTF-8"));
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			System.out.println("Error in encoding.");
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			System.out.println("Error in encoding.");
 		}
 		byte messageDigest[] = digest.digest();
 		/*Create Hex String*/

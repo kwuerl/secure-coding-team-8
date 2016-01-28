@@ -41,6 +41,7 @@ public class SmartCardSimulator {
 	private JTextPane textPaneBatch;
 	private TanGenerator tanGenerator;
 	private JPasswordField fieldScsPinBatch;
+	private JFilePicker filePicker;
 	
 	/**
 	 * Initialize the smart card simulator.
@@ -139,7 +140,7 @@ public class SmartCardSimulator {
 		tabbedPane.addTab("Batch Transactions", iconBatch, panelBatch, "Batch Transactions");
 		panelBatch.setLayout(null);
 
-		JFilePicker filePicker = new JFilePicker("Choose a file* ", "Browse");
+		filePicker = new JFilePicker("Choose a file* ", "Browse");
 		filePicker.setBackground(Color.WHITE);
         filePicker.setMode(JFilePicker.MODE_OPEN);
         filePicker.setBounds(12, 72, 409, 71);
@@ -195,9 +196,9 @@ public class SmartCardSimulator {
 					String tan = tanGenerator.getTan(scsPin + fileContent.trim());
 					displayTan("_BATCH", tan);
 				} catch (FileNotFoundException e1) {					
-					e1.printStackTrace();
+					System.out.println("Error in finding file.");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.out.println("Error due to IO Exception");
 				}        		
         	}
         });        

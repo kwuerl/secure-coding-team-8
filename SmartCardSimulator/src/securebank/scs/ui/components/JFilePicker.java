@@ -23,9 +23,9 @@ public class JFilePicker extends JPanel {
     private JLabel label;
     private JTextField textField;
     private JButton button;
-     
     private JFileChooser fileChooser;
-     
+    private FileTypeFilter filter;
+    
     private int mode;
     public static final int MODE_OPEN = 1;
     public static final int MODE_SAVE = 2;
@@ -70,7 +70,7 @@ public class JFilePicker extends JPanel {
     }
  
     public void addFileTypeFilter(String extension, String description) {
-        FileTypeFilter filter = new FileTypeFilter(extension, description);
+        filter = new FileTypeFilter(extension, description);
         fileChooser.setFileFilter(filter);
     }
      

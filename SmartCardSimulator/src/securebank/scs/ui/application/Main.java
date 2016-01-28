@@ -20,7 +20,7 @@ public class Main {
 					SmartCardSimulator window = new SmartCardSimulator();
 					window.frmSecureBank.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("Error in displaying SCS");
 				}
 			}
 		});
