@@ -27,6 +27,41 @@ While using the Smart Card Simluator in Linux environments, the SCS Pin was bein
 
 \clearpage 
 
+\section{Cookie Secure Flag}
+In their findings from the White-box testing, Team 13 had pointed out that the secure flag for the PHP session cookie was dependent on whether \textit{HTTPS} was used or not. Since we enforce the use of HTTPS, the issue was a minor one. Nevertheless, we fixed it by always setting the secure flag. The fix is in the file \code{src/Service/SessionService.php}. Refer \ref{fig:fix_cookie_attributes} for the code change. \\ \\ \\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.8\linewidth]{figures/fix_cookie_attributes.png}
+	\caption{Code change to fix issue with cookie attributes}
+	\label{fig:fix_cookie_attributes}
+\end{figure}
+
+\clearpage
+
+\section{Potential Buffer Overflow in C}
+There was a potential buffer overflow in our text-parser due to the use of \code{strcpy} without checking the length. This has been fixed in \code{textparser/transaction\_repo.c}. Refer \ref{} for the code change. \\ \\ \\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.8\linewidth]{figures/fix_buffer_overflow.png}
+	\caption{Code change to fix Buffer overflow}
+	\label{fig:fix_buffer_overflow}
+\end{figure}
+
+\clearpage
+
+\section{Guessable User Account}
+This was a minor issue, where-in different error messages were displayed to the user upon failed login. The error message is now made consistent to show \enquote{Either the e-mail or the password is wrong}. So it is not possible to guess whether the account does not exist or the password is wrong.
+The code change for this fix happened to just be modification of the message, as can be seen in the figure \ref{fig:fix_guessable_account}. \\ \\ \\
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.8\linewidth]{figures/fix_guessable_account.png}
+	\caption{Code change to fix Guessable User Account}
+	\label{fig:fix_guessable_account}
+\end{figure}
+
 \section{Business Logic Data Validation}
 We do not consider this as an issue, as the current implementation is similar to the real-world working. In real working, the account name does not matter and does not  have to match the account number used at the time of transaction. The only relevant factor is the \textit{Account Number} of the recipient.
 If the transfers were performed through the addition of beneficiaries, then the concept of \textit{Recipient Name} would make more sense. However, since we do not have this implementation, this could be termed as an improvement for the future.
@@ -35,24 +70,6 @@ If the transfers were performed through the addition of beneficiaries, then the 
 This was resolved by prohibiting the use of old SSL versions. For that the line \code{SSLProtocol all -SSLv2 -SSLv3} was added to the virtual host configuration.
 
 \section{Error Codes}
-This would have been resolved by using custom error pages. We tried to fix this by adding \code{ErrorDocument <code> <custom error page>} to our \code{.htaccess} file, but it did not show the expected result. Therefore up to this point it is not fixed.
-
-\section{Cookie Secure Flag}
-Team 13 critized that the secure flag for the PHP session cookie was dependent on whether HTTPS was used or not. Since we enforce the use of HTTPS the issue was minor, but we still fixed it by always setting the secure flag. The fix is in the file \code{src/Service/SessionService.php}.
-
-\section{Potential Buffer Overflow in C}
-There was a potential buffer overflow in our textparser due to the use of \code{strcpy} without checking the length. This was fixed in \code{textparser/transaction\_repo.c}.
-
-\section{Guessable User Account}
-This was a minor issue, where-in different error messages were displayed to the user upon failed login. The error message is now made consistent to show \enquote{Either the e-mail or the password is wrong}. So it is not possible to guess whether the account does not exist or the password is wrong.
-
-The code change for this fix happened to just be modification of the message, as can be seen in the figure \ref{fig:fix_guessable_account}.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=.8\linewidth]{figures/fix_guessable_account.png}
-	\caption{Code change to fix Guessable User Account}
-	\label{fig:fix_guessable_account}
-\end{figure}
+This would have been resolved by using custom error pages. We tried to fix this by adding \code{ErrorDocument <code> <custom error page>} to our \code{.htaccess} file, but it did not produce the expected result. Therefore, this issue remains unfixed.
 
 \clearpage
